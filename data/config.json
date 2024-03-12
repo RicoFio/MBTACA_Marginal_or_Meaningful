@@ -1,0 +1,16 @@
+{
+    "agencies": [
+      {
+        "agency_key": "mbta",
+        "path": "./mbta_gtfs_03_10.zip"
+      }
+    ],
+    "bufferSizeMeters": 804,
+    "coordinatePrecision": 5,
+    "outputType": "agency",
+    "outputFormat": "stops-buffer",
+    "startDate": "20240304",
+    "endDate": "20240308",
+    "verbose": true,
+    "zipOutput": false
+  }
