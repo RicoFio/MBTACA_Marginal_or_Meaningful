@@ -1,0 +1,56 @@
+﻿name,data type,description
+fid,Integer,
+muni_id,Double,Municipal id number
+muni,String,Municipal name the area belongs to
+is_housing,Integer,"If the area is housing zoning. ""1"" indicates the area is housing zoning, ""0"" indicates not. We only keep the housing zoning area in this dataset, hence the value in this column is 1 for all rows. This also is reflected in the fragmented municipality boundaries. "
+only_single_family,Integer,"If the area is only for single family housing. ""1"" indicates the area is only single family. ""0"" indicates it is for other housing zonings, for instance, multifamily. We combine the zones that are only_single_family into one shape by the municipality and ones that are not only_single_family into another shape. So there are two rows for some municipalities in this dataset."
+%_single_family,Double,The percentage of how much of residential land in that municipality is zoned exclusively for single-family homes. The values are equal to: (the land area of a single family for that municipality)/(land area of the housing zoning for that municipality). Unit: %.
+is_MBTA_community,Integer,"If the town shows up in the MBTA communities list. ""1"" indicates positive and ""0"" means it does not. "
+Attributes below are aggregated by zoning area from 2010 census data(Blocks),,
+pop,Integer,Total Population
+male,Integer,Male Population
+female,Integer,Female Population
+pop_u18,Integer,Population Under 18 Years
+pop_18_64,Integer,Population 18 - 64 Years
+pop_65o,Integer,Population 65 and Over
+nhwhi,Integer,Non-Hispanic White Population
+nhaa,Integer,Non-Hispanic  Black or African American Population
+nhna,Integer,Non-Hispanic American Indian Population.American Indian and Alaska Native alone.
+nhas,Integer,Non-Hispanic  Asian Population
+nhpi,Integer,Non-Hispanic Pacific Islander Population.American Indian and Alaska Native alone.
+nhoth,Integer,Non-Hispanic Other race Population
+nhmlt,Integer,Non-Hispanic Multi-Race Population
+lat,Integer,Hispanic or Latino Population
+fhh,Integer,Family Households
+fhh2,Integer,2 person Family Households.Subset of: Family Households
+fhh3,Integer,3 person Family Households.Subset of: Family Households
+fhh4,Integer,4 person Family Households.Subset of: Family Households
+fhh5,Integer,5 person Family Households.Subset of: Family Households
+fhh6,Integer,6 person Family Households.Subset of: Family Households
+fhh7o,Integer,7 or more person Family Households.Subset of: Family Households
+nfhh,Integer,Nonfamily Households
+nfhh1,Integer,1 person Nonfamily Households.Subset of: Nonfamily Households
+nfhh2,Integer,2 person Nonfamily Households.Subset of: Nonfamily Households
+nfhh3,Integer,3 person Nonfamily Households.Subset of: Nonfamily Households
+nfhh4,Integer,4 person Nonfamily Households.Subset of: Nonfamily Households
+nfhh5,Integer,5 person Nonfamily Households.Subset of: Nonfamily Households
+nfhh6,Integer,6 person Nonfamily Households.Subset of: Nonfamily Households
+nfhh7o,Integer,7 or more Nonfamily Family Households.Subset of: Nonfamily Households
+"Attributes below are aggregated by zoning area from census data, 2014-18 income(Blocks Groups). The total households from income data may be different with the households from population data.",,
+hh,Integer,Households
+incu10,Integer,Households with Income under $10000
+inc1015,Integer,Households with Income $10000 to $14999
+inc1520,Integer,Households with Income $15000 to $19999
+inc2025,Integer,Households with Income $20000 to $24999
+inc2530,Integer,Households with Income $25000 to $29999
+inc3035,Integer,Households with Income $30000 to $34999
+inc3540,Integer,Households with Income $35000 to $39999
+inc4045,Integer,Households with Income $40000 to $44999
+inc4550,Integer,Households with Income $45000 to $49999
+inc5060,Integer,Households with Income $50000 to $59999
+inc6075,Integer,Households with Income $60000 to $74999
+i7599,Integer,Households with Income $75000 to $99999
+i100125,Integer,Households with Income $100000 to $124999
+i125150,Integer,Households with Income $125000 to $149999
+i150200,Integer,Households with Income $150000 to $199999
+in200o,Integer,Households with Income $200000 or higher
