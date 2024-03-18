@@ -19,6 +19,8 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        with:
+          path: "code/"
 
       - name: build
         env:
