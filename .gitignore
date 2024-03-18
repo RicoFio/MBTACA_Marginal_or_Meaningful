@@ -128,3 +128,7 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Don't include the data folder
+./data/
+.ipynb_checkpoints/
