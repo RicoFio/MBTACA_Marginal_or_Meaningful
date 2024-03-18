@@ -18,9 +18,7 @@ jobs:
           # cache: npm
 
       - name: Install dependencies
-        run: npm install
-        with:
-          path: "code/"
+        run: cd code && npm install
 
       - name: build
         env:
