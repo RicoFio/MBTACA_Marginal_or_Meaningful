@@ -73,7 +73,7 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variable files
-.env
+code/.env.local
 .env.development.local
 .env.test.local
 .env.production.local
@@ -132,3 +132,18 @@ dist
 # Don't include the data folder
 ./data/
 .ipynb_checkpoints/
+
+# Don't include secrets
+*.local
+
+# From svelte
+.DS_Store
+node_modules
+/build
+/.svelte-kit
+/package
+.env.local
+.env.local
+!.env.example
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
