@@ -151,3 +151,4 @@ vite.config.ts.timestamp-*
 # Don't include data
 data/*
 postgis/*
+.idea/*
