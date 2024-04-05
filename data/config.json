@@ -5,10 +5,9 @@
         "path": "./mbta_gtfs_03_10.zip"
       }
     ],
-    "bufferSizeMeters": 804,
-    "coordinatePrecision": 5,
+    "coordinatePrecision": 6,
     "outputType": "agency",
-    "outputFormat": "stops-buffer",
+    "outputFormat": "stops",
     "startDate": "20240304",
     "endDate": "20240308",
     "verbose": true,
