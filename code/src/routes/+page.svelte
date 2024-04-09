@@ -25,8 +25,16 @@
             container: 'map',
             center: [-71.09451, 42.36027],
             zoom: 8,
-            style: 'mapbox://styles/mapbox/streets-v11',
+            style: 'mapbox://styles/smpeter/cluqd5hft05en01qqc4mxa1kd',
         });
+        // Assuming 'map' is your Mapbox GL JS map instance
+        // map.scrollZoom.disable();  // Disable scroll zoom
+        // map.boxZoom.disable();     // Disable box zoom
+        // map.dragPan.disable();     // Disable drag pan
+        // map.dragRotate.disable();  // Disable drag rotate
+        // map.keyboard.disable();    // Disable keyboard control
+        // map.doubleClickZoom.disable(); // Disable double click zoom
+        // map.touchZoomRotate.disable(); // Disable touch zoom and rotate
         await new Promise(resolve => map.on("load", resolve));
 
         map.addSource("MBTALines", {
@@ -132,7 +140,8 @@
     $: filteredStations = query ?
         stations.filter(m =>
             m.Community && typeof m.Community === 'string' &&
-            m.Community.toLowerCase().includes(query.toLowerCase())
+            m.Community.toLowerCase().includes(query.toLowerCase()) &&
+            m.Name === 'Coolidge Corner'
         ) :
         stations;
 
@@ -169,22 +178,6 @@
 <div id="map">
     <svg>
         {#key mapViewChanged}
-            {#each filteredStations as station}
-                <polygon
-                        data-station-name={station.Name}
-                        points= { projectPolygonCoordinates(station.WithBuffer) }
-                        fill="red"
-                        stroke="black"
-                        stroke-width="1"
-                        opacity="0.5"
-                >
-                    <title>
-                        {station.Name}
-                    </title>
-                </polygon>
-            {/each}
-        {/key}
-        {#key mapViewChanged}
             {#each filteredMunicipalities as municipality, index}
                 <polygon
                         id={ `polygon-${index}` }
@@ -198,6 +191,20 @@
                         opacity="0.5"
                 >
                     <title> { municipality.Name } </title>
+                </polygon>
+            {/each}
+            {#each filteredStations as station}
+                <polygon
+                        data-station-name={station.Name}
+                        points= { projectPolygonCoordinates(station.WithBuffer) }
+                        fill="#DD8155"
+                        stroke="black"
+                        stroke-width="1"
+                        opacity="0.5"
+                >
+                    <title>
+                        {station.Name}
+                    </title>
                 </polygon>
             {/each}
         {/key}
