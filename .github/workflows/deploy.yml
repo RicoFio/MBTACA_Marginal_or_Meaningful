@@ -19,17 +19,18 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: code
 
-      - name: build
+      - name: Build
+        run: npm run build
+        working-directory: code
         env:
           BASE_PATH: "/${{ github.event.repository.name }}"
-        run: |
-          npm run build
 
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "build/"
+          path: code/build/  # Ensure this matches your build output directory
 
   deploy:
     needs: build_site
@@ -40,9 +41,7 @@ jobs:
 
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Deploy
-        id: deployment
         uses: actions/deploy-pages@v4

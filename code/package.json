@@ -1,5 +1,5 @@
 {
-	"name": "community-act",
+	"name": "code",
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
@@ -9,13 +9,16 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
+		"@sveltejs/adapter-static": "^3.0.1",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
-		"svelte": "^4.2.7",
+		"svelte": "^5.0.0-next.95",
 		"vite": "^5.0.3"
 	},
 	"type": "module",
 	"dependencies": {
+		"@turf/buffer": "^6.5.0",
+		"@turf/helpers": "^6.5.0",
 		"d3": "^7.9.0",
 		"mapbox-gl": "^3.2.0"
 	}
