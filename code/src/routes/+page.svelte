@@ -1,19 +1,19 @@
 <script>
     import mapboxgl from "mapbox-gl";
-    import * as d3 from 'd3';
+    import * as d3 from "d3";
     import "../../node_modules/mapbox-gl/dist/mapbox-gl.css";
-    import {onMount} from "svelte";
-    import buffer from '@turf/buffer';
-    import { point } from '@turf/helpers';
+    import { onMount } from "svelte";
+    import buffer from "@turf/buffer";
+    import { point } from "@turf/helpers";
+    import Treemap from "$lib/Treemap.svelte";
 
-    mapboxgl.accessToken = "pk.eyJ1IjoicmZpb3Jpc3RhIiwiYSI6ImNsdWQwcDd0aDFkengybG85eW00eDJqdzEifQ.smRFd5P2IKrDHr5HGsfrGw";
+    mapboxgl.accessToken =
+        "pk.eyJ1IjoicmZpb3Jpc3RhIiwiYSI6ImNsdWQwcDd0aDFkengybG85eW00eDJqdzEifQ.smRFd5P2IKrDHr5HGsfrGw";
 
     let map;
     let stations = [];
     let mapViewChanged = 0;
-    let stationFlow = d3.scaleQuantize()
-        .domain([0, 1])
-        .range([0, 0.5, 1]);
+    let stationFlow = d3.scaleQuantize().domain([0, 1]).range([0, 0.5, 1]);
     let query = "";
     let municipalities = [];
     let municipalitiesFilter = -1;
@@ -22,10 +22,10 @@
 
     onMount(async () => {
         map = new mapboxgl.Map({
-            container: 'map',
+            container: "map",
             center: [-71.09451, 42.36027],
             zoom: 8,
-            style: 'mapbox://styles/smpeter/cluqd5hft05en01qqc4mxa1kd',
+            style: "mapbox://styles/smpeter/cluqd5hft05en01qqc4mxa1kd",
         });
         // Assuming 'map' is your Mapbox GL JS map instance
         // map.scrollZoom.disable();  // Disable scroll zoom
@@ -35,7 +35,7 @@
         // map.keyboard.disable();    // Disable keyboard control
         // map.doubleClickZoom.disable(); // Disable double click zoom
         // map.touchZoomRotate.disable(); // Disable touch zoom and rotate
-        await new Promise(resolve => map.on("load", resolve));
+        await new Promise((resolve) => map.on("load", resolve));
 
         map.addSource("MBTALines", {
             type: "geojson",
@@ -55,11 +55,15 @@
         municipalities = await d3.json("/data/mbta_municipalities.geojson");
         stations = await d3.json("/data/mbta_community_stops.geojson");
 
-        stations = stations.features.map(station => {
+        stations = stations.features.map((station) => {
             let newStation = {};
             newStation.Lat = station.geometry.coordinates[1];
             newStation.Long = station.geometry.coordinates[0];
-            newStation.WithBuffer = buffer(point([newStation.Long, newStation.Lat]), 0.5, {units: 'miles'}).geometry.coordinates[0];
+            newStation.WithBuffer = buffer(
+                point([newStation.Long, newStation.Lat]),
+                0.5,
+                { units: "miles" },
+            ).geometry.coordinates[0];
             newStation.Community = station.properties.community;
             newStation.Name = station.properties.stop_name;
             newStation.Routes = station.properties.routes;
@@ -68,28 +72,38 @@
             return newStation;
         });
 
-        municipalities = municipalities.features.map(municipality => {
+        municipalities = municipalities.features.map((municipality) => {
             let newMunicipality = {};
             newMunicipality.PolygonCoordinates = [];
 
-            if (municipality.geometry && Array.isArray(municipality.geometry.coordinates[0])) {
-                newMunicipality.PolygonCoordinates = municipality.geometry.coordinates[0];
+            if (
+                municipality.geometry &&
+                Array.isArray(municipality.geometry.coordinates[0])
+            ) {
+                newMunicipality.PolygonCoordinates =
+                    municipality.geometry.coordinates[0];
             } else {
-                console.log(municipality)
+                console.log(municipality);
             }
             newMunicipality.Name = municipality.properties.community;
-            newMunicipality.TotalHousingUnits = municipality.properties.housing_units_2020;
+            newMunicipality.TotalHousingUnits =
+                municipality.properties.housing_units_2020;
             newMunicipality.PopulationSize = municipality.properties.pop2020;
-            newMunicipality.MBTACommunityType = municipality.properties.mbta_comm_type;
-            newMunicipality.MinHousingCapacityRequirement = municipality.properties.min_rf1_cap_req;
+            newMunicipality.MBTACommunityType =
+                municipality.properties.mbta_comm_type;
+            newMunicipality.MinHousingCapacityRequirement =
+                municipality.properties.min_rf1_cap_req;
             return newMunicipality;
-        })
-    })
+        });
+    });
 
     // Reactive statement to update suggestions based on input
     $: if (input) {
-        suggestions = municipalities.filter(m =>
-            m.Name && typeof m.Name === 'string' && m.Name.toLowerCase().startsWith(input.toLowerCase())
+        suggestions = municipalities.filter(
+            (m) =>
+                m.Name &&
+                typeof m.Name === "string" &&
+                m.Name.toLowerCase().startsWith(input.toLowerCase()),
         );
     } else {
         suggestions = [];
@@ -107,14 +121,15 @@
     }
 
     function projectPolygonCoordinates(coordinates) {
-        return coordinates.map(coord => {
-            let { cx, cy } = getCoords({ Lat: coord[1], Long: coord[0] });
-            return `${cx},${cy}`;
-        }).join(' ');
+        return coordinates
+            .map((coord) => {
+                let { cx, cy } = getCoords({ Lat: coord[1], Long: coord[0] });
+                return `${cx},${cy}`;
+            })
+            .join(" ");
     }
 
     function getCoords(station) {
-
         const longitude = parseFloat(station.Long);
         const latitude = parseFloat(station.Lat);
 
@@ -124,43 +139,73 @@
         }
 
         let point = new mapboxgl.LngLat(longitude, latitude);
-        let {x, y} = map.project(point);
-        return {cx: x, cy: y};
+        let { x, y } = map.project(point);
+        return { cx: x, cy: y };
     }
 
-    $: map?.on("move", evt => mapViewChanged++);
+    $: map?.on("move", (evt) => mapViewChanged++);
 
-    $: filteredMunicipalities = query ?
-        municipalities.filter(m =>
-            m.Name && typeof m.Name === 'string' &&
-            m.Name.toLowerCase().includes(query.toLowerCase())
-        ) :
-        municipalities;
+    $: filteredMunicipalities = query
+        ? municipalities.filter(
+              (m) =>
+                  m.Name &&
+                  typeof m.Name === "string" &&
+                  m.Name.toLowerCase().includes(query.toLowerCase()),
+          )
+        : municipalities;
 
-    $: filteredStations = query ?
-        stations.filter(m =>
-            m.Community && typeof m.Community === 'string' &&
-            m.Community.toLowerCase().includes(query.toLowerCase()) &&
-            m.Name === 'Coolidge Corner'
-        ) :
-        stations;
+    $: filteredStations = query
+        ? stations.filter(
+              (m) =>
+                  m.Community &&
+                  typeof m.Community === "string" &&
+                  m.Community.toLowerCase().includes(query.toLowerCase()) &&
+                  m.Name === "Coolidge Corner",
+          )
+        : stations;
 
     function calculateBoundingBox(coordinates) {
         let bounds = new mapboxgl.LngLatBounds();
 
-        coordinates.forEach(coord => {
+        coordinates.forEach((coord) => {
             bounds.extend(coord);
         });
 
         return bounds;
     }
 
+    zoningData = await d3.csv(TRIP_DATA_URL).then((trips) => {
+				for (let trip of trips) {
+					trip.started_at = new Date(trip.started_at);
+					trip.ended_at = new Date(trip.ended_at);
+
+					let startMinutesIntoDay = minutesSinceMidnight(
+						trip.started_at,
+					);
+					let endMinutesIntoDay = minutesSinceMidnight(trip.ended_at);
+
+					departuresByMinute[startMinutesIntoDay].push(trip);
+					arrivalsByMinute[endMinutesIntoDay].push(trip);
+				}
+				return trips;
+			});
+
+
 </script>
 
 <div>
     <h1>Search</h1>
-    <input type="search" bind:value={input}
-           aria-label="Municipality search" placeholder="🔍 Find your municipality" />
+    <input
+        type="search"
+        bind:value={input}
+        aria-label="Municipality search"
+        placeholder="🔍 Find your municipality"
+    />
+</div>
+<br />
+<div>
+    <h2>Housing Mix Treemap Viz (Dummy data)</h2>
+    <Treemap data={zoningData} />
 </div>
 <div>
     {#if suggestions.length}
@@ -174,33 +219,34 @@
     {/if}
 </div>
 
-<br>
+<br />
 <div id="map">
     <svg>
         {#key mapViewChanged}
             {#each filteredMunicipalities as municipality, index}
                 <polygon
-                        id={ `polygon-${index}` }
-                        points={
-                            municipality.PolygonCoordinates.length ?
-                            projectPolygonCoordinates(municipality.PolygonCoordinates) : ""
-                        }
-                        fill="steelblue"
-                        stroke="black"
-                        stroke-width="1"
-                        opacity="0.5"
+                    id={`polygon-${index}`}
+                    points={municipality.PolygonCoordinates.length
+                        ? projectPolygonCoordinates(
+                              municipality.PolygonCoordinates,
+                          )
+                        : ""}
+                    fill="steelblue"
+                    stroke="black"
+                    stroke-width="1"
+                    opacity="0.5"
                 >
-                    <title> { municipality.Name } </title>
+                    <title> {municipality.Name} </title>
                 </polygon>
             {/each}
             {#each filteredStations as station}
                 <polygon
-                        data-station-name={station.Name}
-                        points= { projectPolygonCoordinates(station.WithBuffer) }
-                        fill="#DD8155"
-                        stroke="black"
-                        stroke-width="1"
-                        opacity="0.5"
+                    data-station-name={station.Name}
+                    points={projectPolygonCoordinates(station.WithBuffer)}
+                    fill="#DD8155"
+                    stroke="black"
+                    stroke-width="1"
+                    opacity="0.5"
                 >
                     <title>
                         {station.Name}
@@ -210,6 +256,8 @@
         {/key}
     </svg>
 </div>
+
+<br />
 
 <style>
     @import url("$lib/global.css");
@@ -236,9 +284,9 @@
             stroke: white;
 
             --color: color-mix(
-                    in oklch,
-                    var(--color-departures) calc(100% * var(--departure-ratio)),
-                    var(--color-arrivals)
+                in oklch,
+                var(--color-departures) calc(100% * var(--departure-ratio)),
+                var(--color-arrivals)
             );
             fill: var(--color);
         }
@@ -260,9 +308,9 @@
         --color-departures: steelblue;
         --color-arrivals: darkorange;
         --color: color-mix(
-                in oklch,
-                var(--color-departures) calc(100% * var(--departure-ratio)),
-                var(--color-arrivals)
+            in oklch,
+            var(--color-departures) calc(100% * var(--departure-ratio)),
+            var(--color-arrivals)
         );
     }
 
@@ -291,14 +339,13 @@
 
     .legend > div:nth-child(2)::before {
         background-color: color-mix(
-                in oklch,
-                var(--color-departures) calc(100% * var(--departure-ratio)),
-                var(--color-arrivals)
+            in oklch,
+            var(--color-departures) calc(100% * var(--departure-ratio)),
+            var(--color-arrivals)
         );
     }
 
     .legend > div:nth-child(3)::before {
         background-color: darkorange;
     }
-
 </style>
