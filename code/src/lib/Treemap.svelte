@@ -19,13 +19,11 @@
             .attr("width", width)
             .attr("height", height);
 
-        console.log('treemap data', data)
 
         // Transform data into hierarchy
         const root = d3.hierarchy({ children: data }).sum((d) => d.value);
 
         console.log("Data being passed to TreeMap component:", data); // Add console log here
-
 
         // Create treemap layout
         const treemap = d3.treemap().size([width, height]).padding(1);
@@ -56,6 +54,12 @@
             .text((d) => d.data.name)
             .attr("fill", "white");
 
+        cell.append("text")
+            .attr("x", 5)
+            .attr("y", 40)
+            .text((d) => `${((d.value / root.value) * 100).toFixed(1)}%`)
+            .attr("fill", "white");
+
         function handleMouseOver() {
             d3.select(this).attr("fill", "orange");
         }
@@ -64,7 +68,6 @@
             d3.select(this).attr("fill", (d) => getColorByCategory(d.data));
         }
     }
-
 
     function getColorByCategory(d) {
         switch (d.category1) {
