@@ -5,6 +5,8 @@
     import {onMount} from "svelte";
     import buffer from '@turf/buffer';
     import { point } from '@turf/helpers';
+    import ForceGraphTest from "../lib/dataVisComponents/force-graph-test.svelte";
+    import ForceGraphSelector from "../lib/dataVisComponents/force-graph-selector.svelte"
 
     mapboxgl.accessToken = "pk.eyJ1IjoicmZpb3Jpc3RhIiwiYSI6ImNsdWQwcDd0aDFkengybG85eW00eDJqdzEifQ.smRFd5P2IKrDHr5HGsfrGw";
 
@@ -154,8 +156,75 @@
 
         return bounds;
     }
+    const data = {
+                    "age": [
+                        {label: 'age group 1', value: 20},
+                        {label: 'age group 2', value: 80},
+                        {label: 'age group 3', value: 40},
+                    ],
+                    "race": [
+                        {label: 'race group 1', value: 30},
+                        {label: 'race group 2', value: 60},
+                        {label: 'race group 3', value: 50},
+                    ],
+                    "gender": [
+                        {label: 'male', value: 50},
+                        {label: 'female', value: 90},
+                    ],
+                    "income": [
+                        {label: 'income group 1', value: 80},
+                        {label: 'income group 2', value: 20},
+                        {label: 'income group 3', value: 40},
+                        {label: 'income group 4', value: 50},
+                    ],
+                    "cars per household": [
+                        {label: 'none', value: 20},
+                        {label: 'one', value: 50},
+                        {label: 'two or more', value: 90},
+                    ],
+                    "mode of transit/work commute": [
+                        {label: 'car', value: 90},
+                        {label: 'train', value: 60},
+                        {label: 'bike', value: 20},
+                        {label: 'walk', value: 10},
+                        {label: 'other', value: 10}
+                    ]
+                }
+    let activeSelection = "mode of transit/work commute"
+    $: current_data = data[activeSelection]
 
 </script>
+
+<ForceGraphSelector bind:activeSelection></ForceGraphSelector>
+
+{#key current_data} <!-- forcing visualization to re-render when data is updated -->
+<ForceGraphTest
+                cssHeight=70
+                cssWidth=70
+                data={ current_data }
+            />
+
+            <!-- <ForceGraphTest
+                    Title="Demo Graphic"
+                    cssHeight=40
+                    cssWidth=60
+                    data={[
+                        // 0, 1, 2, 3
+                        // {a: 0},{a: 1},{a: 2},{a: 3}
+                        {label: 'A', value: 23, includes_protagonist: false},
+                        {label: 'B', value: 51, includes_protagonist: false},
+                        {label: 'C', value: 26, includes_protagonist: false},
+                        // {label: 'C', size: 32},
+                    
+                        // 0, 1, 2, 3
+                        // {a: 0},{a: 1},{a: 2},{a: 3}
+                        {label: 'A', value: 23, includes_protagonist: false},
+                        {label: 'B', value: 51, includes_protagonist: false},
+                        {label: 'C', value: 26, includes_protagonist: false},
+                        // {label: 'C', size: 32},
+                    ] }
+                /> -->
+{/key}
 
 <div>
     <h1>Search</h1>
