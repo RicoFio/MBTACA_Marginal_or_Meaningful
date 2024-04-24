@@ -19,6 +19,11 @@
     let municipalitiesFilter = -1;
     let input = "";
     let suggestions = [];
+    let stopZoneData;
+    let brooklineStopZoneData;
+    let coolidgeCornerStopZoneData;
+    let transformedCCData;
+    let parcelData;
 
     onMount(async () => {
         map = new mapboxgl.Map({
@@ -52,8 +57,36 @@
             },
         });
 
+        function transformStopZoneData(originalData) {
+            return [
+                { name: "Single Family Zoning", value: originalData[0].properties.pctZonedAsSF, category1: "pctZonedAsSF" },
+                { name: "Commerical Zoning", value: originalData[0].properties.pctZonedAsComm, category1: "pctZonedAsComm" },
+                { name: "MultiFamily Zoning", value: originalData[0].properties.pctZonedAsMulti, category1: "pctZonedAsMulti" },
+            ];
+        }
+
         municipalities = await d3.json("/data/mbta_municipalities.geojson");
         stations = await d3.json("/data/mbta_community_stops.geojson");
+
+        stopZoneData = await d3.json(
+            "/data/brookline_milton_stop_zone_dummies.geojson",
+        );
+        let brooklineStopZoneData = stopZoneData.features.filter(
+            (feature) => feature.properties.community === "Brookline",
+        );
+
+        let coolidgeCornerStopZoneData = stopZoneData.features.filter(
+            (feature) => feature.properties.stop_name === "Coolidge Corner",
+        );
+        transformedCCData = transformStopZoneData(
+            coolidgeCornerStopZoneData,
+        );
+
+        console.log('transformedCCData', transformedCCData)
+
+        parcelData = await d3.json(
+            "/data/brookline_milton_parcels_dummies.geojson",
+        );
 
         stations = stations.features.map((station) => {
             let newStation = {};
@@ -173,24 +206,6 @@
 
         return bounds;
     }
-
-    zoningData = await d3.csv(TRIP_DATA_URL).then((trips) => {
-				for (let trip of trips) {
-					trip.started_at = new Date(trip.started_at);
-					trip.ended_at = new Date(trip.ended_at);
-
-					let startMinutesIntoDay = minutesSinceMidnight(
-						trip.started_at,
-					);
-					let endMinutesIntoDay = minutesSinceMidnight(trip.ended_at);
-
-					departuresByMinute[startMinutesIntoDay].push(trip);
-					arrivalsByMinute[endMinutesIntoDay].push(trip);
-				}
-				return trips;
-			});
-
-
 </script>
 
 <div>
@@ -205,7 +220,11 @@
 <br />
 <div>
     <h2>Housing Mix Treemap Viz (Dummy data)</h2>
-    <Treemap data={zoningData} />
+    {#if transformedCCData != undefined}
+        <Treemap data={transformedCCData} />
+    {:else}
+        <p>Loading...</p>
+    {/if}
 </div>
 <div>
     {#if suggestions.length}

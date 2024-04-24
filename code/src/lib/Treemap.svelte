@@ -1,14 +1,10 @@
+<!-- Treemap.svelte -->
+
 <script>
     import { onMount } from "svelte";
     import * as d3 from "d3";
-    export let data = [];
 
-    let data = [
-        { name: "A", value: 10 },
-        { name: "B", value: 20 },
-        { name: "C", value: 30 },
-        { name: "D", value: 40 },
-    ];
+    export let data = [];
 
     onMount(() => {
         drawTreemap();
@@ -23,12 +19,21 @@
             .attr("width", width)
             .attr("height", height);
 
+        console.log('treemap data', data)
+
+        // Transform data into hierarchy
         const root = d3.hierarchy({ children: data }).sum((d) => d.value);
 
+        console.log("Data being passed to TreeMap component:", data); // Add console log here
+
+
+        // Create treemap layout
         const treemap = d3.treemap().size([width, height]).padding(1);
 
+        // Compute treemap layout
         treemap(root);
 
+        // Create cells for each data point
         const cell = svg
             .selectAll("g")
             .data(root.leaves())
@@ -36,13 +41,15 @@
             .append("g")
             .attr("transform", (d) => `translate(${d.x0},${d.y0})`);
 
+        // Append rectangle for each cell
         cell.append("rect")
             .attr("width", (d) => d.x1 - d.x0)
             .attr("height", (d) => d.y1 - d.y0)
-            .attr("fill", "steelblue")
+            .attr("fill", (d) => getColorByCategory(d.data))
             .on("mouseover", handleMouseOver)
             .on("mouseout", handleMouseOut);
 
+        // Append text for each cell
         cell.append("text")
             .attr("x", 5)
             .attr("y", 15)
@@ -54,9 +61,27 @@
         }
 
         function handleMouseOut() {
-            d3.select(this).attr("fill", "steelblue");
+            d3.select(this).attr("fill", (d) => getColorByCategory(d.data));
+        }
+    }
+
+
+    function getColorByCategory(d) {
+        switch (d.category1) {
+            case "pctZonedAsSF":
+                return "steelblue";
+            case "pctZonedAsComm":
+                return "darkorange";
+            case "pctZonedAsMulti":
+                return "green";
+            default:
+                return "gray";
         }
     }
 </script>
 
 <svg></svg>
+
+<style>
+    /* Add any custom styles here */
+</style>
