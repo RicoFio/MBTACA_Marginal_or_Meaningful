@@ -7,6 +7,9 @@
     import { point } from "@turf/helpers";
     import Treemap from "$lib/Treemap.svelte";
 
+    let mapHeight = 0;
+    let treeMapHeight = 0;
+
     mapboxgl.accessToken =
         "pk.eyJ1IjoicmZpb3Jpc3RhIiwiYSI6ImNsdWQwcDd0aDFkengybG85eW00eDJqdzEifQ.smRFd5P2IKrDHr5HGsfrGw";
 
@@ -33,6 +36,16 @@
             zoom: 8,
             style: "mapbox://styles/smpeter/cluqd5hft05en01qqc4mxa1kd",
         });
+
+        mapHeight = document.getElementById('map').clientHeight;
+        treeMapHeight = document.getElementById('treeMap').clientHeight;
+
+        // Calculate the total height required
+        const totalHeight = (mapHeight + treeMapHeight)*2;
+
+        // Set the body height to accommodate both components
+        document.body.style.height = `${totalHeight}px`;
+
         // Assuming 'map' is your Mapbox GL JS map instance
         // map.scrollZoom.disable();  // Disable scroll zoom
         // map.boxZoom.disable();     // Disable box zoom
@@ -220,7 +233,7 @@
     />
 </div>
 <br />
-<div>
+<div id="treeMap">
     <h2>{treeMapHeaderText}</h2>
     {#if transformedStopZoneDataForMunicipality != undefined}
         <Treemap data={transformedStopZoneDataForMunicipality} />
