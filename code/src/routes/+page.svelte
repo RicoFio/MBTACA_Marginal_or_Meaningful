@@ -22,8 +22,9 @@
     let stopZoneData;
     let brooklineStopZoneData;
     let coolidgeCornerStopZoneData;
-    let transformedCCData;
+    let transformedStopZoneDataForMunicipality;
     let parcelData;
+    let treeMapHeaderText;
 
     onMount(async () => {
         map = new mapboxgl.Map({
@@ -78,11 +79,9 @@
         let coolidgeCornerStopZoneData = stopZoneData.features.filter(
             (feature) => feature.properties.stop_name === "Coolidge Corner",
         );
-        transformedCCData = transformStopZoneData(
+        transformedStopZoneDataForMunicipality = transformStopZoneData(
             coolidgeCornerStopZoneData,
         );
-
-        console.log('transformedCCData', transformedCCData)
 
         parcelData = await d3.json(
             "/data/brookline_milton_parcels_dummies.geojson",
@@ -149,6 +148,8 @@
         // Calculate the bounding box of the selected municipality
         const bounds = calculateBoundingBox(suggestion.PolygonCoordinates);
 
+        treeMapHeaderText = `Zoning Breakdown for: ${suggestion.Name}`
+
         // Update the map view to fit the bounding box with some padding
         map.fitBounds(bounds, { padding: 20 });
     }
@@ -206,6 +207,7 @@
 
         return bounds;
     }
+    
 </script>
 
 <div>
@@ -219,11 +221,11 @@
 </div>
 <br />
 <div>
-    <h2>Housing Mix Treemap Viz (Dummy data)</h2>
-    {#if transformedCCData != undefined}
-        <Treemap data={transformedCCData} />
+    <h2>{treeMapHeaderText}</h2>
+    {#if transformedStopZoneDataForMunicipality != undefined}
+        <Treemap data={transformedStopZoneDataForMunicipality} />
     {:else}
-        <p>Loading...</p>
+        <p>Select A Municipality to View Zoning Breakdown</p>
     {/if}
 </div>
 <div>
