@@ -1,13 +1,8 @@
 import geopandas as gpd
 from pathlib import Path
 import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-import numpy as np
 import json
-import timeit
 
-start_time = time.time()
 
 PREPROCESSED_DATA_PATH = Path(
     "/Users/ameliabaum/Library/Mobile Documents/com~apple~CloudDocs/MIT/6.C35/6.C85_FP/data/preprocessed_data"
@@ -31,8 +26,6 @@ def get_parcel_data_filtered_by_municipalities(municipalities):
     #                                 "brookline_milton_parcels.geojson",
     #                                 driver='GeoJSON')
 
-
-# Assign zoning by parcel
 
 
 def assign_zoning_by_parcel(parcel_data: pd.DataFrame) -> pd.DataFrame:
