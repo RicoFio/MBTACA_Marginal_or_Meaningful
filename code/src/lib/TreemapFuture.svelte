@@ -1,21 +1,21 @@
-<!-- Treemap.svelte -->
+<!-- TreemapFuture.svelte -->
 
 <script>
-    import { onMount } from "svelte";
-    import * as d3 from "d3";
+  import { onMount } from "svelte";
+  import * as d3 from "d3";
 
-    export let data = [];
+  export let data = [];
+  let svgId = 'treemap-future-svg'; // Unique ID for the SVG
 
-    onMount(() => {
-        drawTreemap();
-    });
-
-    function drawTreemap() {
+  onMount(() => {
+      drawTreemap();
+  });
+function drawTreemap() {
         const width = 400;
         const height = 250;
 
         const svg = d3
-            .select("svg")
+            .select(`#${svgId}`) // Use the unique ID for selection
             .attr("width", width)
             .attr("height", height);
 
@@ -23,7 +23,7 @@
         // Transform data into hierarchy
         const root = d3.hierarchy({ children: data }).sum((d) => d.value);
 
-        console.log("Data o being passed to TreeMap component:", data); // Add console log here
+        console.log("Data future being passed to TreeMap component:", data); // Add console log here
 
         // Create treemap layout
         const treemap = d3.treemap().size([width, height]).padding(1);
@@ -71,12 +71,14 @@
 
     function getColorByCategory(d) {
         switch (d.category1) {
-            case "pctZonedAsSF":
-                return "steelblue";
-            case "pctZonedAsComm":
-                return "darkorange";
-            case "pctZonedAsMulti":
-                return "green";
+            case "pctNhAsian":
+                return "teal";
+            case "pctNhBlack":
+                return "lightorange";
+            case "pctNhWhite":
+                return "magenta";
+            case "pctHispanic":
+                return "blue";
             default:
                 return "gray";
         }
@@ -85,5 +87,6 @@
 
 <svg></svg>
 
-
-
+<div>
+  <svg id="{svgId}"></svg>
+</div>

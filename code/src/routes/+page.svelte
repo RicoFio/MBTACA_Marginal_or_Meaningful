@@ -6,9 +6,13 @@
     import buffer from "@turf/buffer";
     import { point } from "@turf/helpers";
     import Treemap from "$lib/Treemap.svelte";
+    import TreemapUsage from "$lib/TreemapUsage.svelte";
+    import TreemapFuture from "$lib/TreemapFuture.svelte";
 
     let mapHeight = 0;
     let treeMapHeight = 0;
+    let treeMapUsageHeight = 0;
+    let treeMapFutureHeight = 0;
 
     mapboxgl.accessToken =
         "pk.eyJ1IjoicmZpb3Jpc3RhIiwiYSI6ImNsdWQwcDd0aDFkengybG85eW00eDJqdzEifQ.smRFd5P2IKrDHr5HGsfrGw";
@@ -26,8 +30,12 @@
     let brooklineStopZoneData;
     let coolidgeCornerStopZoneData;
     let transformedStopZoneDataForMunicipality;
+    let transformedStopZoneUsageDataForMunicipality;
+    let transformedStopZoneFutureDataForMunicipality;
     let parcelData;
     let treeMapHeaderText;
+    let treeMapUsageHeaderText;
+    let treeMapFutureHeaderText;
 
     onMount(async () => {
         map = new mapboxgl.Map({
@@ -39,9 +47,12 @@
 
         mapHeight = document.getElementById('map').clientHeight;
         treeMapHeight = document.getElementById('treeMap').clientHeight;
+        treeMapUsageHeight = document.getElementById('treeMapUsage').clientHeight;
+
+        //console.log("treeMapUsageHeight:", treeMapUsageHeight); 
 
         // Calculate the total height required
-        const totalHeight = (mapHeight + treeMapHeight)*2;
+        const totalHeight = (mapHeight + treeMapHeight)*4;
 
         // Set the body height to accommodate both components
         document.body.style.height = `${totalHeight}px`;
@@ -79,6 +90,25 @@
             ];
         }
 
+        function transformStopZoneUsageData(originalData) {
+            return [
+                { name: "Single Family Usage", value: originalData[0].properties.pctUsedAsSF, category1: "pctUsedAsSF" },
+                { name: "Commerical Usage", value: originalData[0].properties.pctUsedAsComm, category1: "pctUsedAsComm" },
+                { name: "Multi Family Usage", value: originalData[0].properties.pctUsedAsMulti, category1: "pctUsedAsMulti" },
+                { name: "Duplex Usage", value: originalData[0].properties.pctUsedAsDuplex, category1: "pctUsedAsDuplex" },
+                { name: "Triplex Usage", value: originalData[0].properties.pctUsedAsTriplex, category1: "pctUsedAsTriplex" }
+            ];
+        }
+
+        function transformStopZoneFutureData(originalData) {
+            return [
+                { name: "Asian", value: originalData[0].properties.pctNhAsian, category1: "pctNhAsian" },
+                { name: "Black", value: originalData[0].properties.pctNhBlack, category1: "pctNhBlack" },
+                { name: "White", value: originalData[0].properties.pctNhWhite, category1: "pctNhWhite" },
+                { name: "Hispanic", value: originalData[0].properties.pctHispanic, category1: "pctHispanic" }
+            ];
+        }
+
         municipalities = await d3.json("/data/mbta_municipalities.geojson");
         stations = await d3.json("/data/mbta_community_stops.geojson");
 
@@ -93,6 +123,14 @@
             (feature) => feature.properties.stop_name === "Coolidge Corner",
         );
         transformedStopZoneDataForMunicipality = transformStopZoneData(
+            coolidgeCornerStopZoneData,
+        );
+
+        transformedStopZoneUsageDataForMunicipality = transformStopZoneUsageData(
+            coolidgeCornerStopZoneData,
+        );
+
+        transformedStopZoneFutureDataForMunicipality = transformStopZoneFutureData(
             coolidgeCornerStopZoneData,
         );
 
@@ -162,6 +200,7 @@
         const bounds = calculateBoundingBox(suggestion.PolygonCoordinates);
 
         treeMapHeaderText = `Zoning Breakdown for: ${suggestion.Name}`
+        treeMapUsageHeaderText = `Usage Breakdown for: ${suggestion.Name}`
 
         // Update the map view to fit the bounding box with some padding
         map.fitBounds(bounds, { padding: 20 });
@@ -241,6 +280,23 @@
         <p>Select A Municipality to View Zoning Breakdown</p>
     {/if}
 </div>
+
+<div id="treeMapUsage">
+    <h2>{treeMapUsageHeaderText}</h2>
+    {#if transformedStopZoneDataForMunicipality != undefined}
+        <TreemapUsage data={transformedStopZoneUsageDataForMunicipality} />
+    {:else}
+    {/if}
+</div>
+
+<div id="treeMapFuture">
+    <h2>{treeMapFutureHeaderText}</h2>
+    {#if transformedStopZoneDataForMunicipality != undefined}
+        <TreemapFuture data={transformedStopZoneFutureDataForMunicipality} />
+    {:else}
+    {/if}
+</div>
+
 <div>
     {#if suggestions.length}
         <ul>

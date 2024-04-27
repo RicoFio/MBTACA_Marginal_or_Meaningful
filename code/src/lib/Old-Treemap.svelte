@@ -11,8 +11,8 @@
     });
 
     function drawTreemap() {
-        const width = 400;
-        const height = 250;
+        const width = 600;
+        const height = 400;
 
         const svg = d3
             .select("svg")
@@ -23,7 +23,7 @@
         // Transform data into hierarchy
         const root = d3.hierarchy({ children: data }).sum((d) => d.value);
 
-        console.log("Data o being passed to TreeMap component:", data); // Add console log here
+        console.log("Data being passed to TreeMap component:", data); // Add console log here
 
         // Create treemap layout
         const treemap = d3.treemap().size([width, height]).padding(1);
@@ -85,5 +85,6 @@
 
 <svg></svg>
 
-
-
+<style>
+    /* Add any custom styles here */
+</style>

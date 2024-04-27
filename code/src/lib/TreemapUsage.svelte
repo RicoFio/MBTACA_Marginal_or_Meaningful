@@ -1,21 +1,21 @@
-<!-- Treemap.svelte -->
+<!-- TreemapUsage.svelte -->
 
 <script>
-    import { onMount } from "svelte";
-    import * as d3 from "d3";
+  import { onMount } from "svelte";
+  import * as d3 from "d3";
 
-    export let data = [];
+  export let data = [];
+  let svgId = 'treemap-usage-svg'; // Unique ID for the SVG
 
-    onMount(() => {
-        drawTreemap();
-    });
-
-    function drawTreemap() {
+  onMount(() => {
+      drawTreemap();
+  });
+function drawTreemap() {
         const width = 400;
         const height = 250;
 
         const svg = d3
-            .select("svg")
+            .select(`#${svgId}`) // Use the unique ID for selection
             .attr("width", width)
             .attr("height", height);
 
@@ -71,12 +71,16 @@
 
     function getColorByCategory(d) {
         switch (d.category1) {
-            case "pctZonedAsSF":
+            case "pctUsedAsSF":
                 return "steelblue";
-            case "pctZonedAsComm":
+            case "pctUsedAsComm":
                 return "darkorange";
-            case "pctZonedAsMulti":
+            case "pctUsedAsMulti":
                 return "green";
+            case "pctUsedAsDuplex":
+                return "blue";
+            case "pctUsedAsTriplex":
+                return "red";
             default:
                 return "gray";
         }
@@ -85,5 +89,6 @@
 
 <svg></svg>
 
-
-
+<div>
+  <svg id="{svgId}"></svg>
+</div>
