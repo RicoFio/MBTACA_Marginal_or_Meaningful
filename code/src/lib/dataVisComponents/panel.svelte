@@ -1,6 +1,9 @@
 <script>
 
     import Scrolly from "../panelComponents/Scrolly.svelte";
+    import Slide1 from "../../slides/Slide1.svelte"
+    import Slide2 from "../../slides/Slide2.svelte"
+    import Slide3 from "../../slides/Slide3.svelte"
     let value;
     // $: console.log({ value });
     let colors = [
@@ -18,15 +21,15 @@
 </script>
 
 <div class="panel" style="position: absolute; top: 0; left: 0; width: 40%; height: 100%; background-color: rgba(0, 0, 0, 0.6); padding: 20px; color: {colors[3]};">
-    <h1>MARGINAL OR MEANINGFUL?</h1>
-    <h2>An immersive tool for exploring the impacts of the MBTA Communities Act</h2>
-    <p>- Amelia Baum, Riccardo Fiorista, Simone Peter, Ravi Tejwani -</p>
     <Scrolly bind:value> <!-- 3. This is what updates value -->
-        {#each ['MARGINAL', 'OR', 'World!'] as text, i}
-            <div class="step" class:active={value === i}> <!-- 4. Dynamically applies the active class -->
+        <!-- {#each ['MARGINAL', 'OR', 'World!'] as text, i}
+            <div class="step" class:active={value === i}>
                 <p>{text}</p> 
             </div>
-        {/each}
+        {/each} -->
+        <Slide1 active={value === 0} />
+        <Slide2 active={value === 1} />
+        <Slide3 active={value === 2} />
     </Scrolly>
 </div>
 
@@ -69,6 +72,7 @@
 	.step.active {
 		opacity: 1;
 	}
+
 </style>
 
   

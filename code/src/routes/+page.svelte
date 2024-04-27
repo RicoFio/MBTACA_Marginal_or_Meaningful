@@ -321,7 +321,7 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
-        /* gap: 1em; Adjust based on your design */
+        gap: 1em; /* Adjust based on your design */
         margin-block-start: 1rem;
         margin-block-end: 1rem;
         margin-block: 1em; /* Space above and below the legend */
