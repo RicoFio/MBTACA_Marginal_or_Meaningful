@@ -1,7 +1,8 @@
 <script>
     import mapboxgl from "mapbox-gl";
     import "../../../node_modules/mapbox-gl/dist/mapbox-gl.css";
-    import {onMount} from "svelte";
+    import { onMount } from "svelte";
+    import {calculateBoundingBox} from "$lib/mapComponents/mapUtils.js";
 
     mapboxgl.accessToken = "pk.eyJ1IjoicmZpb3Jpc3RhIiwiYSI6ImNsdWQwcDd0aDFkengybG85eW00eDJqdzEifQ.smRFd5P2IKrDHr5HGsfrGw";
 
@@ -10,8 +11,10 @@
     export let bounds = [];
     export let stations = [];
     export let municipalities = [];
-    export let selectedStationIdxs = [];
-    export let municipalitySelected = false;
+    export let selectedStations = [];
+    export let selectedMunicipality = null;
+    export let guidedMode = true;
+    export let parcelFiles = [];
 
     onMount(async () => {
         map = new mapboxgl.Map({
@@ -49,8 +52,13 @@
 
     $: map?.on("move", evt => mapViewChanged++);
 
-    export function fitBounds(bounds, padding) {
-        map.fitBounds(bounds, { padding: 20 });
+    // /**
+    //  * Fits the map bounds with specified padding.
+    //  * @param {Object} bounds - The bounds to fit the map to.
+    //  * @param {(number|Object)} padding - The padding as a number or an object with optional top, bottom, left, and right properties.
+    //  */
+    export function fitBounds(bounds, padding = { padding: 20 }) {
+        map.fitBounds(bounds, padding);
     }
 
     function projectPolygonCoordinates(coordinates) {
@@ -75,20 +83,50 @@
         return {cx: x, cy: y};
     }
 
-    function toggleStation(index) {
-        const idx = selectedStationIdxs.indexOf(index);
-        if (idx === -1) {
-            selectedStationIdxs = [...selectedStationIdxs, index];
-        } else {
-            selectedStationIdxs = selectedStationIdxs.filter(i => i !== index);
+    function toggleStation(station) {
+        if (!selectedStations.some(s => s.Name === station.Name)) {
+            if ((guidedMode && selectedStations.length < 1) || (!guidedMode && selectedStations.length < 2)) {
+                selectedStations = [...selectedStations, station];
+            } else {
+                console.log("Toggle station not possible");
+            }
+        } else if (guidedMode) {
+
+        }
+        else {
+            selectedStations = selectedStations.filter(s => s.Name !== station.Name);
         }
     }
+
+    $: {
+
+    }
+
+    $: {
+        if (guidedMode && selectedStations.length > 0) {
+            const station = selectedStations[0];
+            let bounds = calculateBoundingBox({type:'Polygon', coordinates: [station.getBuffer(0.5)]});
+
+            fitBounds(bounds, {
+                padding: {top: 20, bottom: 20, left: 1000, right: 20}
+            });
+        }
+    }
+
+    $: filteredMunicipalities = selectedMunicipality ? municipalities.filter(m => {
+        return m.Name == selectedMunicipality.Name
+    }) : municipalities;
+
+    $: filteredStations = selectedMunicipality ? stations.filter(s => {
+        return s.Community == selectedMunicipality.Name
+    }) : stations;
+
 </script>
 
 <div id="map">
     <svg>
         {#key mapViewChanged}
-            {#each municipalities as municipality, index}
+            {#each filteredMunicipalities as municipality, index}
                 {#if municipality.Geometries.type === "Polygon"}
                     <polygon
                             id={ `polygon-${index}` }
@@ -121,21 +159,25 @@
                     {/each}
                 {/if}
             {/each}
-            {#each stations as station, index (station.Name)}
+            {#each filteredStations as station, index (station.Name)}
                 <polygon
                         class:station
-                        class:selected={selectedStationIdxs.includes(index)}
+                        class:selected={selectedStations.some(s => s.Name === station.Name)}
                         data-station-name={station.Name}
-                        points={projectPolygonCoordinates(station.WithBuffer)}
-                        fill={selectedStationIdxs.includes(index) ? 'red' : '#DD8155'}
+                        points={projectPolygonCoordinates(station.getBuffer(
+                            selectedStations.some(s => s.Name === station.Name) ?
+                            0.5 :
+                            0.1
+                        ))}
+                        fill={selectedStations.some(s => s.Name === station.Name) ? 'red' : '#DD8155'}
                         stroke="black"
                         stroke-width="1"
-                        opacity={selectedStationIdxs.includes(index) ? '0.8' : '0.5'}
+                        opacity={selectedStations.some(s => s.Name === station.Name) ? '0.8' : '0.5'}
                         role="button"
                         tabindex="0"
                         aria-label={`Select station ${station.Name}`}
-                        on:click={() => toggleStation(index)}
-                        on:keyup={event => event.key === 'Enter' && toggleStation(index)}
+                        on:click={() => toggleStation(station)}
+                        on:keyup={event => event.key === 'Enter' && toggleStation(station)}
                 >
                     <title>{station.Name}</title>
                 </polygon>

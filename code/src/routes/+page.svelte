@@ -16,31 +16,43 @@
 
     let baseMap;
     let stations = [];
+    let parcelFiles = [];
     let bounds = [];
     let mapViewChanged = 0;
+    let searchItems;
+    let searchSelectedMunicipality;
+    let selectedMunicipality;
     let query = "";
     let municipalities = [];
     let municipalitiesFilter = -1;
-    let filteredStations = [];
+    // let filteredStations = [];
     let input = "";
     let suggestions = [];
-    let selectedStationIdxs = [];
+    let selectedStations = [];
     let municipalitySelected = false;
+    let guidedMode = true;
+
+    // $: console.log(parcelFiles);
 
     onMount(async () => {
         municipalities = await d3.json("/data/mbta_municipalities.geojson");
         stations = await d3.json("/data/mbta_community_stops.geojson");
+        parcelFiles = await d3.csv("/data/parcels/per_station/file_name_reference.csv");
 
         stations = stations.features.map(station => {
-            let newStation = {};
-            newStation.Lat = station.geometry.coordinates[1];
-            newStation.Long = station.geometry.coordinates[0];
-            newStation.WithBuffer = buffer(point([newStation.Long, newStation.Lat]), 0.5, {units: 'miles'}).geometry.coordinates[0];
-            newStation.Community = station.properties.community;
-            newStation.Name = station.properties.stop_name;
-            newStation.Routes = station.properties.routes;
-            newStation.RouteColors = station.properties.route_colors;
-            newStation.Type = station.properties.mbta_comm_type;
+            let newStation = {
+                Lat: station.geometry.coordinates[1],
+                Long: station.geometry.coordinates[0],
+                Community: station.properties.community,
+                Name: station.properties.stop_name,
+                Routes: station.properties.routes,
+                RouteColors: station.properties.route_colors,
+                Type: station.properties.mbta_comm_type,
+                getBuffer: function(radius) {
+                    return buffer(point([this.Long, this.Lat]), radius, { units: 'miles' }).geometry.coordinates[0];
+                }
+            };
+
             return newStation;
         });
 
@@ -61,23 +73,12 @@
         })
     })
 
-    // Reactive statement to update suggestions based on input
-    $: if (input) {
-        suggestions = municipalities.filter(m =>
-            m.Name && typeof m.Name === 'string' && m.Name.toLowerCase().startsWith(input.toLowerCase())
-        );
-    } else {
-        suggestions = [];
-    }
-
-    function selectSuggestion(suggestion) {
-        query = suggestion.Name; // Set the query to the selected municipality name
-        suggestions = []; // Clear suggestions
-
-        // Calculate the bounding box of the selected municipality
-        bounds = calculateBoundingBox(suggestion.Geometries);
-
-        baseMap.fitBounds(bounds, { padding: 20 });
+    $: if (searchSelectedMunicipality) {
+        selectedMunicipality = municipalities.filter(m => {
+            return m.Name == searchSelectedMunicipality;
+        })[0];
+        bounds = calculateBoundingBox(selectedMunicipality?.Geometries);
+        baseMap.fitBounds(bounds, {padding: 20});
     }
 
     $: filteredMunicipalities = query ?
@@ -89,21 +90,36 @@
 
     $: municipalitySelected = !!query
 
-    $: {
-        if (query && !!selectedStationIdxs) {
-            filteredStations = stations.filter(m =>
-                m.Community && typeof m.Community === 'string' &&
-                m.Community.toLowerCase().includes(query.toLowerCase())
-            );
-            // filteredStations = filteredStations.map(station => {
-            //     let newStation = {...station};
-            //     newStation.WithBuffer = buffer(point([newStation.Long, newStation.Lat]), 0.1, {units: 'miles'}).geometry.coordinates[0];
-            //     return newStation;
-            // });
-        } else {
-            filteredStations = stations;
-        }
-    }
+    $: firstSelectedStationName = selectedStations[0]?.Name;
+
+    // $: {
+    //     if (selectedMunicipality && !!selectedStations) {
+    //         filteredStations = stations.filter(m =>
+    //             m.Community && typeof m.Community === 'string' &&
+    //             m.Community.toLowerCase().includes(selectedMunicipality?.Name.toLowerCase())
+    //         );
+    //         filteredStations = filteredStations.map(station => {
+    //             let newStation = {...station};
+    //             let factor = firstSelectedStationName && newStation.Name == firstSelectedStationName ? 0.5 : 0.1
+    //             newStation.WithBuffer = buffer(point([newStation.Long, newStation.Lat]), factor, {units: 'miles'}).geometry.coordinates[0];
+    //             return newStation;
+    //         });
+    //     } else {
+    //         filteredStations = stations;
+    //     }
+    // }
+
+    // $: {
+    //     if (firstSelectedStationName) {
+    //         filteredStations = filteredStations.map(station => {
+    //             let newStation = {...station};
+    //             let factor = newStation.Name == firstSelectedStationName ? 0.5 : 0.1
+    //             newStation.WithBuffer = buffer(point([newStation.Long, newStation.Lat]), factor, {units: 'miles'}).geometry.coordinates[0];
+    //             return newStation;
+    //         });
+    //     }
+    // }
+
     const data = {
                     "age": [
                         {label: 'age group 1', value: 20},
@@ -139,37 +155,28 @@
                     ]
                 }
     let activeSelection = "mode of transit/work commute"
+
     $: current_data = data[activeSelection]
 
 </script>
 
 <!--TODO replace with https://github.com/rob-balfre/svelte-select?tab=readme-ov-file component-->
-<!--<div>-->
-<!--    <h1>Search</h1>-->
-<!--    <input type="search" bind:value={input}-->
-<!--           aria-label="Municipality search" placeholder="🔍 Find your municipality" />-->
-<!--</div>-->
-<!--<div>-->
-<!--    {#if suggestions.length}-->
-<!--        <ul>-->
-<!--            {#each suggestions as suggestion}-->
-<!--                <li on:click={() => selectSuggestion(suggestion)}>-->
-<!--                    {suggestion.Name}-->
-<!--                </li>-->
-<!--            {/each}-->
-<!--        </ul>-->
-<!--    {/if}-->
-<!--</div>-->
-
 <BaseMap
         class="baseMap"
         bind:this={baseMap}
         bind:municipalities={filteredMunicipalities}
-        bind:stations={filteredStations}
-        bind:selectedStationIdxs={selectedStationIdxs}
-        bind:municipalitySelected={municipalitySelected}
+        bind:stations={stations}
+        bind:selectedStations={selectedStations}
+        bind:selectedMunicipality={selectedMunicipality}
+        bind:guidedMode={guidedMode}
+        bind:parcelFiles={parcelFiles}
 />
-<PanelComponent />
+<PanelComponent
+        bind:municipalities={municipalities}
+        bind:stations={stations}
+        bind:searchSelectedMunicipality={searchSelectedMunicipality}
+        bind:selectedStation={firstSelectedStationName}
+/>
 
 <style>
     @import url("$lib/global.css");

@@ -25,7 +25,6 @@ export function projectPolygonCoordinates(coordinates, project) {
 
 export function calculateBoundingBox(polygon) {
     let bounds = new mapboxgl.LngLatBounds();
-
     polygon.coordinates.forEach(geometry => {
         if (polygon.type.toString() == 'Polygon') {
             geometry.forEach(coord => {
