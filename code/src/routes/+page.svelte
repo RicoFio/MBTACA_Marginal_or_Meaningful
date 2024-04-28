@@ -15,6 +15,7 @@
     let treeMapFutureHeight = 0;
     let selectedComponent = 'zoning'; // Start with no component selected
 
+    let updateKey = 0;
     mapboxgl.accessToken =
         "pk.eyJ1IjoicmZpb3Jpc3RhIiwiYSI6ImNsdWQwcDd0aDFkengybG85eW00eDJqdzEifQ.smRFd5P2IKrDHr5HGsfrGw";
 
@@ -28,6 +29,7 @@
     let input = "";
     let suggestions = [];
     let stopZoneData;
+    let stopData;
     let brooklineStopZoneData;
     let coolidgeCornerStopZoneData;
     let transformedStopZoneDataForMunicipality;
@@ -37,6 +39,34 @@
     let treeMapHeaderText;
     let treeMapUsageHeaderText;
     let treeMapFutureHeaderText;
+    let stopName = ''; 
+
+    function transformStopZoneData(originalData) {
+            return [
+                { name: "Single Family Zoning", value: originalData[0].properties.pctZonedAsSF, category1: "pctZonedAsSF" },
+                { name: "Commerical Zoning", value: originalData[0].properties.pctZonedAsComm, category1: "pctZonedAsComm" },
+                { name: "MultiFamily Zoning", value: originalData[0].properties.pctZonedAsMulti, category1: "pctZonedAsMulti" },
+            ];
+    }
+
+    function transformStopZoneUsageData(originalData) {
+            return [
+                { name: "Single Family Usage", value: originalData[0].properties.pctUsedAsSF, category1: "pctUsedAsSF" },
+                { name: "Commerical Usage", value: originalData[0].properties.pctUsedAsComm, category1: "pctUsedAsComm" },
+                { name: "Multi Family Usage", value: originalData[0].properties.pctUsedAsMulti, category1: "pctUsedAsMulti" },
+                { name: "Duplex Usage", value: originalData[0].properties.pctUsedAsDuplex, category1: "pctUsedAsDuplex" },
+                { name: "Triplex Usage", value: originalData[0].properties.pctUsedAsTriplex, category1: "pctUsedAsTriplex" }
+            ];
+        }
+
+    function transformStopZoneFutureData(originalData) {
+            return [
+                { name: "Asian", value: originalData[0].properties.pctNhAsian, category1: "pctNhAsian" },
+                { name: "Black", value: originalData[0].properties.pctNhBlack, category1: "pctNhBlack" },
+                { name: "White", value: originalData[0].properties.pctNhWhite, category1: "pctNhWhite" },
+                { name: "Hispanic", value: originalData[0].properties.pctHispanic, category1: "pctHispanic" }
+            ];
+    }
 
     onMount(async () => {
         map = new mapboxgl.Map({
@@ -83,32 +113,6 @@
             },
         });
 
-        function transformStopZoneData(originalData) {
-            return [
-                { name: "Single Family Zoning", value: originalData[0].properties.pctZonedAsSF, category1: "pctZonedAsSF" },
-                { name: "Commerical Zoning", value: originalData[0].properties.pctZonedAsComm, category1: "pctZonedAsComm" },
-                { name: "MultiFamily Zoning", value: originalData[0].properties.pctZonedAsMulti, category1: "pctZonedAsMulti" },
-            ];
-        }
-
-        function transformStopZoneUsageData(originalData) {
-            return [
-                { name: "Single Family Usage", value: originalData[0].properties.pctUsedAsSF, category1: "pctUsedAsSF" },
-                { name: "Commerical Usage", value: originalData[0].properties.pctUsedAsComm, category1: "pctUsedAsComm" },
-                { name: "Multi Family Usage", value: originalData[0].properties.pctUsedAsMulti, category1: "pctUsedAsMulti" },
-                { name: "Duplex Usage", value: originalData[0].properties.pctUsedAsDuplex, category1: "pctUsedAsDuplex" },
-                { name: "Triplex Usage", value: originalData[0].properties.pctUsedAsTriplex, category1: "pctUsedAsTriplex" }
-            ];
-        }
-
-        function transformStopZoneFutureData(originalData) {
-            return [
-                { name: "Asian", value: originalData[0].properties.pctNhAsian, category1: "pctNhAsian" },
-                { name: "Black", value: originalData[0].properties.pctNhBlack, category1: "pctNhBlack" },
-                { name: "White", value: originalData[0].properties.pctNhWhite, category1: "pctNhWhite" },
-                { name: "Hispanic", value: originalData[0].properties.pctHispanic, category1: "pctHispanic" }
-            ];
-        }
 
         municipalities = await d3.json("/data/mbta_municipalities.geojson");
         stations = await d3.json("/data/mbta_community_stops.geojson");
@@ -123,13 +127,18 @@
         let coolidgeCornerStopZoneData = stopZoneData.features.filter(
             (feature) => feature.properties.stop_name === "Coolidge Corner",
         );
-        transformedStopZoneDataForMunicipality = transformStopZoneData(
-            coolidgeCornerStopZoneData,
-        );
 
-        transformedStopZoneUsageDataForMunicipality = transformStopZoneUsageData(
-            coolidgeCornerStopZoneData,
+        let stopData = stopZoneData.features.filter(
+            (feature) => feature.properties.stop_name === "Coolidge Corner",
         );
+        
+        // transformedStopZoneDataForMunicipality = transformStopZoneData(
+        //    coolidgeCornerStopZoneData,
+        //);
+
+        //transformedStopZoneUsageDataForMunicipality = transformStopZoneUsageData(
+        //    coolidgeCornerStopZoneData,
+        //);
 
         transformedStopZoneFutureDataForMunicipality = transformStopZoneFutureData(
             coolidgeCornerStopZoneData,
@@ -183,19 +192,25 @@
 
     // Reactive statement to update suggestions based on input
     $: if (input) {
+        console.log('input = ', input);
         suggestions = municipalities.filter(
             (m) =>
                 m.Name &&
                 typeof m.Name === "string" &&
                 m.Name.toLowerCase().startsWith(input.toLowerCase()),
         );
+        console.log('suggestions = ', suggestions);
     } else {
         suggestions = [];
     }
+    
 
     $: treeMapVisibility = selectedComponent === 'zoning' ? 'visible' : 'hidden';
     $: treeMapUsageVisibility = selectedComponent === 'usage' ? 'visible' : 'hidden';
 
+    $: if (stopName) {
+        handleDropdownChange();
+    }
 
     function selectSuggestion(suggestion) {
         query = suggestion.Name; // Set the query to the selected municipality name
@@ -209,6 +224,20 @@
 
         // Update the map view to fit the bounding box with some padding
         map.fitBounds(bounds, { padding: 20 });
+    }
+
+    function handleDropdownChange() {
+        console.log('Selected stopName = ', stopName);
+        let stopData = stopZoneData.features.filter(
+            (feature) => feature.properties.stop_name === stopName
+        );
+        
+        // Check the data transformation here
+        console.log("Filtered Stop Data", stopData);
+
+        transformedStopZoneDataForMunicipality = transformStopZoneData(stopData);
+        transformedStopZoneUsageDataForMunicipality = transformStopZoneUsageData(stopData);
+        transformedStopZoneFutureDataForMunicipality = transformStopZoneFutureData(stopData);
     }
 
     function projectPolygonCoordinates(coordinates) {
@@ -264,64 +293,37 @@
 
         return bounds;
     }
+
+    
     
 </script>
-
-<div>
-    <h1>Search</h1>
-    <input
-        type="search"
-        bind:value={input}
-        aria-label="Municipality search"
-        placeholder="🔍 Find your municipality"
-    />
-</div>
-<br />
-
-
-
-
-
+        <h1>Search</h1>
 <div style="display: flex; align-items: center; gap: 10px;">
-  <label style="cursor: pointer;">
-    <input type="radio" value="zoning" bind:group={selectedComponent} />
-    Zoning
-  </label>
-  <label style="cursor: pointer;">
-    <input type="radio" value="usage" bind:group={selectedComponent} />
-    Usage
-  </label>
-</div>
-
-<div style="display: flex; align-items: center; gap: 100px;">
     <div>
-        <div id="treeMap" class={treeMapVisibility}>
-            <h2>{treeMapHeaderText}</h2>
-            {#if transformedStopZoneDataForMunicipality != undefined}
-                <Treemap data={transformedStopZoneDataForMunicipality} />
-            {:else}
-                <p>Select A Municipality to View Zoning Breakdown</p>
-            {/if}
-        </div>
 
-        <div id="treeMapUsage" class={treeMapUsageVisibility}>
-            <h2>{treeMapUsageHeaderText}</h2>
-            {#if transformedStopZoneUsageDataForMunicipality != undefined}
-                <TreemapUsage data={transformedStopZoneUsageDataForMunicipality} />
-            {:else}
-                <p>Select A Municipality to View Usage Breakdown</p>
-            {/if}
-        </div>
+        <input
+            type="search"
+            bind:value={input}
+            aria-label="Municipality search"
+            placeholder="🔍 Find your municipality"
+        />
     </div>
+    <br />
 
-    <div id="treeMapFuture">
-        <h2>{treeMapFutureHeaderText}</h2>
-        {#if transformedStopZoneDataForMunicipality != undefined}
-            <TreemapFuture data={transformedStopZoneFutureDataForMunicipality} />
-        {:else}
-        {/if}
+
+    <div>
+        <select bind:value={stopName} on:change={handleDropdownChange}>
+            <option value="">Select an option</option>
+            <option value="Beaconsfield">Beaconsfield</option>
+            <option value="Brandon Hall">Brandon Hall</option>
+            <option value="Brookline Hills">Brookline Hills</option>
+            <option value="Brookline Village">Brookline Village</option>
+        </select>
     </div>
+    
 </div>
+
+<br /> <br />
 
 <div>
     {#if suggestions.length}
@@ -334,6 +336,78 @@
         </ul>
     {/if}
 </div>
+
+{#key stopName}
+  <div>
+    {#if stopName}
+        <div style="display: flex; align-items: center; gap: 100px;">
+            <div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <label style="cursor: pointer;">
+                        <input type="radio" value="zoning" bind:group={selectedComponent} />
+                        Zoning
+                    </label>
+                    <label style="cursor: pointer;">
+                        <input type="radio" value="usage" bind:group={selectedComponent} />
+                        Usage
+                    </label>
+                </div>
+            
+                <div id="treeMap" class={treeMapVisibility}>
+                    <h2>{treeMapHeaderText}</h2>
+                    <Treemap data={transformedStopZoneDataForMunicipality} />
+                </div>
+
+                <div id="treeMapUsage" class={treeMapUsageVisibility}>
+                    <h2>{treeMapUsageHeaderText}</h2>
+                    <TreemapUsage data={transformedStopZoneUsageDataForMunicipality} />
+                </div>
+            </div>
+
+            <div id="treeMapFuture">
+                <h2>{treeMapFutureHeaderText}</h2>
+                <TreemapFuture data={transformedStopZoneFutureDataForMunicipality} />
+            </div>
+        </div>
+    {:else}
+      <p></p>
+    {/if}
+  </div>
+{/key}
+
+
+
+
+    <div>
+        <div id="treeMap" class={treeMapVisibility}>
+            <h2></h2>
+            {#if transformedStopZoneDataForMunicipality != undefined}
+                
+            {:else}
+                
+            {/if}
+        </div>
+
+        <div id="treeMapUsage" class={treeMapUsageVisibility}>
+            <h2></h2>
+            {#if transformedStopZoneUsageDataForMunicipality != undefined}
+                
+            {:else}
+              
+            {/if}
+        </div>
+    </div>
+
+    <div id="treeMapFuture">
+        
+        {#if transformedStopZoneFutureDataForMunicipality != undefined}
+           
+        {:else}
+        {/if}
+    </div>
+
+
+
 
 <br />
 <div id="map">
@@ -372,6 +446,8 @@
         {/key}
     </svg>
 </div>
+
+
 
 <br />
 

@@ -6,6 +6,7 @@
 
     export let data = [];
 
+
     onMount(() => {
         drawTreemap();
     });
@@ -23,7 +24,7 @@
         // Transform data into hierarchy
         const root = d3.hierarchy({ children: data }).sum((d) => d.value);
 
-        console.log("T: Data being passed to TreeMap component:", data); // Add console log here
+        console.log("T: Data recieved to TreeMap component:", data); // Add console log here
 
         // Create treemap layout
         const treemap = d3.treemap().size([width, height]).padding(1);
@@ -81,6 +82,12 @@
                 return "gray";
         }
     }
+
+    $: if (data) {
+        console.log('Treemap data updated:', data);
+        drawTreemap(data);
+    }
+
 </script>
 
 <svg></svg>
