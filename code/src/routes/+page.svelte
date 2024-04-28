@@ -13,6 +13,7 @@
     let treeMapHeight = 0;
     let treeMapUsageHeight = 0;
     let treeMapFutureHeight = 0;
+    let selectedComponent = 'zoning'; // Start with no component selected
 
     mapboxgl.accessToken =
         "pk.eyJ1IjoicmZpb3Jpc3RhIiwiYSI6ImNsdWQwcDd0aDFkengybG85eW00eDJqdzEifQ.smRFd5P2IKrDHr5HGsfrGw";
@@ -192,6 +193,10 @@
         suggestions = [];
     }
 
+    $: treeMapVisibility = selectedComponent === 'zoning' ? 'visible' : 'hidden';
+    $: treeMapUsageVisibility = selectedComponent === 'usage' ? 'visible' : 'hidden';
+
+
     function selectSuggestion(suggestion) {
         query = suggestion.Name; // Set the query to the selected municipality name
         suggestions = []; // Clear suggestions
@@ -272,29 +277,50 @@
     />
 </div>
 <br />
-<div id="treeMap">
-    <h2>{treeMapHeaderText}</h2>
-    {#if transformedStopZoneDataForMunicipality != undefined}
-        <Treemap data={transformedStopZoneDataForMunicipality} />
-    {:else}
-        <p>Select A Municipality to View Zoning Breakdown</p>
-    {/if}
+
+
+
+
+
+<div style="display: flex; align-items: center; gap: 10px;">
+  <label style="cursor: pointer;">
+    <input type="radio" value="zoning" bind:group={selectedComponent} />
+    Zoning
+  </label>
+  <label style="cursor: pointer;">
+    <input type="radio" value="usage" bind:group={selectedComponent} />
+    Usage
+  </label>
 </div>
 
-<div id="treeMapUsage">
-    <h2>{treeMapUsageHeaderText}</h2>
-    {#if transformedStopZoneDataForMunicipality != undefined}
-        <TreemapUsage data={transformedStopZoneUsageDataForMunicipality} />
-    {:else}
-    {/if}
-</div>
+<div style="display: flex; align-items: center; gap: 100px;">
+    <div>
+        <div id="treeMap" class={treeMapVisibility}>
+            <h2>{treeMapHeaderText}</h2>
+            {#if transformedStopZoneDataForMunicipality != undefined}
+                <Treemap data={transformedStopZoneDataForMunicipality} />
+            {:else}
+                <p>Select A Municipality to View Zoning Breakdown</p>
+            {/if}
+        </div>
 
-<div id="treeMapFuture">
-    <h2>{treeMapFutureHeaderText}</h2>
-    {#if transformedStopZoneDataForMunicipality != undefined}
-        <TreemapFuture data={transformedStopZoneFutureDataForMunicipality} />
-    {:else}
-    {/if}
+        <div id="treeMapUsage" class={treeMapUsageVisibility}>
+            <h2>{treeMapUsageHeaderText}</h2>
+            {#if transformedStopZoneUsageDataForMunicipality != undefined}
+                <TreemapUsage data={transformedStopZoneUsageDataForMunicipality} />
+            {:else}
+                <p>Select A Municipality to View Usage Breakdown</p>
+            {/if}
+        </div>
+    </div>
+
+    <div id="treeMapFuture">
+        <h2>{treeMapFutureHeaderText}</h2>
+        {#if transformedStopZoneDataForMunicipality != undefined}
+            <TreemapFuture data={transformedStopZoneFutureDataForMunicipality} />
+        {:else}
+        {/if}
+    </div>
 </div>
 
 <div>
@@ -438,4 +464,13 @@
     .legend > div:nth-child(3)::before {
         background-color: darkorange;
     }
+
+    .hidden {
+        display: none;
+    }
+    
+    .visible {
+        display: block;
+    }
+    
 </style>

@@ -23,7 +23,7 @@ function drawTreemap() {
         // Transform data into hierarchy
         const root = d3.hierarchy({ children: data }).sum((d) => d.value);
 
-        console.log("Data future being passed to TreeMap component:", data); // Add console log here
+        console.log("F: Data future being passed to TreeMap component:", data); // Add console log here
 
         // Create treemap layout
         const treemap = d3.treemap().size([width, height]).padding(1);
@@ -72,13 +72,13 @@ function drawTreemap() {
     function getColorByCategory(d) {
         switch (d.category1) {
             case "pctNhAsian":
-                return "teal";
+                return "#999624";
             case "pctNhBlack":
-                return "lightorange";
+                return "#3e5719";
             case "pctNhWhite":
-                return "magenta";
+                return "#05515e";
             case "pctHispanic":
-                return "blue";
+                return "#a9987a";
             default:
                 return "gray";
         }

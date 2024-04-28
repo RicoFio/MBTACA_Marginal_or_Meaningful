@@ -23,7 +23,7 @@
         // Transform data into hierarchy
         const root = d3.hierarchy({ children: data }).sum((d) => d.value);
 
-        console.log("Data o being passed to TreeMap component:", data); // Add console log here
+        console.log("T: Data being passed to TreeMap component:", data); // Add console log here
 
         // Create treemap layout
         const treemap = d3.treemap().size([width, height]).padding(1);
@@ -72,11 +72,11 @@
     function getColorByCategory(d) {
         switch (d.category1) {
             case "pctZonedAsSF":
-                return "steelblue";
+                return "#dd8155";
             case "pctZonedAsComm":
-                return "darkorange";
+                return "#f39034";
             case "pctZonedAsMulti":
-                return "green";
+                return "#97340b";
             default:
                 return "gray";
         }
