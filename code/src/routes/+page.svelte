@@ -5,6 +5,9 @@
     import {onMount} from "svelte";
     import buffer from '@turf/buffer';
     import { point } from '@turf/helpers';
+    import ForceGraphTest from "../lib/dataVisComponents/force-graph-test.svelte";
+    import ForceGraphSelector from "../lib/dataVisComponents/force-graph-selector.svelte"
+    import PanelComponent from '../lib/dataVisComponents/panel.svelte';
 
     mapboxgl.accessToken = "pk.eyJ1IjoicmZpb3Jpc3RhIiwiYSI6ImNsdWQwcDd0aDFkengybG85eW00eDJqdzEifQ.smRFd5P2IKrDHr5HGsfrGw";
 
@@ -23,18 +26,19 @@
     onMount(async () => {
         map = new mapboxgl.Map({
             container: 'map',
-            center: [-71.09451, 42.36027],
+            center: [-71.09451-1.2, 42.36027],
             zoom: 8,
             style: 'mapbox://styles/smpeter/cluqd5hft05en01qqc4mxa1kd',
+            attributionControl: false,
         });
         // Assuming 'map' is your Mapbox GL JS map instance
-        // map.scrollZoom.disable();  // Disable scroll zoom
-        // map.boxZoom.disable();     // Disable box zoom
-        // map.dragPan.disable();     // Disable drag pan
-        // map.dragRotate.disable();  // Disable drag rotate
-        // map.keyboard.disable();    // Disable keyboard control
-        // map.doubleClickZoom.disable(); // Disable double click zoom
-        // map.touchZoomRotate.disable(); // Disable touch zoom and rotate
+        map.scrollZoom.disable();  // Disable scroll zoom
+        map.boxZoom.disable();     // Disable box zoom
+        map.dragPan.disable();     // Disable drag pan
+        map.dragRotate.disable();  // Disable drag rotate
+        map.keyboard.disable();    // Disable keyboard control
+        map.doubleClickZoom.disable(); // Disable double click zoom
+        map.touchZoomRotate.disable(); // Disable touch zoom and rotate
         await new Promise(resolve => map.on("load", resolve));
 
         map.addSource("MBTALines", {
@@ -154,15 +158,61 @@
 
         return bounds;
     }
+    const data = {
+                    "age": [
+                        {label: 'age group 1', value: 20},
+                        {label: 'age group 2', value: 80},
+                        {label: 'age group 3', value: 40},
+                    ],
+                    "race": [
+                        {label: 'race group 1', value: 30},
+                        {label: 'race group 2', value: 60},
+                        {label: 'race group 3', value: 50},
+                    ],
+                    "gender": [
+                        {label: 'male', value: 50},
+                        {label: 'female', value: 90},
+                    ],
+                    "income": [
+                        {label: 'income group 1', value: 80},
+                        {label: 'income group 2', value: 20},
+                        {label: 'income group 3', value: 40},
+                        {label: 'income group 4', value: 50},
+                    ],
+                    "cars per household": [
+                        {label: 'none', value: 20},
+                        {label: 'one', value: 50},
+                        {label: 'two or more', value: 90},
+                    ],
+                    "mode of transit/work commute": [
+                        {label: 'car', value: 90},
+                        {label: 'train', value: 60},
+                        {label: 'bike', value: 20},
+                        {label: 'walk', value: 10},
+                        {label: 'other', value: 10}
+                    ]
+                }
+    let activeSelection = "mode of transit/work commute"
+    $: current_data = data[activeSelection]
 
 </script>
 
-<div>
+<!-- <ForceGraphSelector bind:activeSelection></ForceGraphSelector> -->
+
+<!-- {#key current_data} forcing visualization to re-render when data is updated
+<ForceGraphTest
+                cssHeight=70
+                cssWidth=70
+                data={ current_data }
+            />
+{/key} -->
+
+<!-- <div>
     <h1>Search</h1>
     <input type="search" bind:value={input}
            aria-label="Municipality search" placeholder="🔍 Find your municipality" />
-</div>
-<div>
+</div> -->
+<!-- <div>
     {#if suggestions.length}
         <ul>
             {#each suggestions as suggestion}
@@ -172,9 +222,9 @@
             {/each}
         </ul>
     {/if}
-</div>
+</div> -->
 
-<br>
+<!-- <br> -->
 <div id="map">
     <svg>
         {#key mapViewChanged}
@@ -210,6 +260,7 @@
         {/key}
     </svg>
 </div>
+<PanelComponent />
 
 <style>
     @import url("$lib/global.css");

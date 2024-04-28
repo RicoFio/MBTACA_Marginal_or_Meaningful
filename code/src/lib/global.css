@@ -1,4 +1,4 @@
-body {
+/* body {
     font: 100%/1.5 system-ui, sans-serif;
     display: flex;
     flex-flow: column;
@@ -7,4 +7,22 @@ body {
     box-sizing: border-box;
     margin: auto;
     padding: 1em;
+} */
+
+body {
+    /* font: 100%/1.5 system-ui, sans-serif; */
+    margin: 0; /* No margin */
+    padding: 0; /* No padding */
+    display: flex;
+    flex-direction: column; /* Stacks children vertically */
+    align-items: stretch; /* Stretches children to fill the width */
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+    box-sizing: border-box; /* Content box includes padding and border */
+    overflow: hidden; /* Hide overflow */
+    font-family: 'Montserrat', sans-serif;
+}
+
+.mapboxgl-ctrl-logo {
+    display: none !important;
 }
