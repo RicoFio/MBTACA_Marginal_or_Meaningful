@@ -12,6 +12,10 @@
     export let fcollide = 0.6;
     export let flink = 0.3;
     export let legend=true;
+    export let selectedCategory;
+
+    let legendWidth = 170;
+    let legendMargin = 100;
     
 
     let paddings = {
@@ -27,32 +31,41 @@
     let g;
 
     let filters = [
-        "invert(48%) sepia(79%) saturate(2476%) hue-rotate(200deg) brightness(70%) contrast(119%)", // blue
-        "invert(48%) sepia(79%) saturate(2476%) hue-rotate(80deg) brightness(70%) contrast(119%)", // green
-        "invert(48%) sepia(79%) saturate(3076%) hue-rotate(-10deg) brightness(90%) contrast(119%)", // orange
-        "invert(48%) sepia(79%) saturate(2476%) hue-rotate(0deg) brightness(150%) contrast(119%)", // yellow
-        "invert(48%) sepia(79%) saturate(2476%) hue-rotate(200deg) brightness(130%) contrast(80%)", // light blue
-        "invert(48%) sepia(79%) saturate(3076%) hue-rotate(-30deg) brightness(100%) contrast(119%)", // red
-        "invert(48%) sepia(79%) saturate(3076%) hue-rotate(-70deg) brightness(70%) contrast(119%)", // purple
-        "invert(48%) sepia(79%) saturate(2476%) hue-rotate(80deg) brightness(130%) contrast(119%)", // light green
-        "invert(48%) sepia(79%) saturate(3076%) hue-rotate(-10deg) brightness(60%) contrast(119%)", // brown
-        "invert(48%) sepia(79%) saturate(3076%) hue-rotate(-30deg) brightness(170%) contrast(119%)", // pink
-        "invert(48%) sepia(79%) saturate(3076%) hue-rotate(-220deg) brightness(100%) contrast(119%)", // teal
+        "saturate(100%) invert(24%) sepia(10%) saturate(7275%) hue-rotate(153deg) brightness(93%) contrast(96%)", // #05515e
+        "saturate(100%) invert(37%) sepia(7%) saturate(3561%) hue-rotate(42deg) brightness(80%) contrast(99%)", // #3e5719
+        "saturate(100%) invert(91%) sepia(2%) saturate(4416%) hue-rotate(349deg) brightness(67%) contrast(97%)", // #a9987a
+        "saturate(100%) invert(22%) sepia(85%) saturate(1384%) hue-rotate(353deg) brightness(92%) contrast(99%)", // #97340b
+        "saturate(100%) invert(58%) sepia(15%) saturate(776%) hue-rotate(104deg) brightness(91%) contrast(81%)", // #629681
+        "saturate(100%) invert(87%) sepia(12%) saturate(130%) hue-rotate(47deg) brightness(80%) contrast(84%)", // #abafa7
+        "saturate(100%) invert(59%) sepia(53%) saturate(576%) hue-rotate(331deg) brightness(92%) contrast(88%)", // #dd8155
+        "saturate(100%) invert(79%) sepia(28%) saturate(6443%) hue-rotate(338deg) brightness(100%) contrast(91%)", // #f39034
+        "saturate(100%) invert(64%) sepia(1%) saturate(2277%) hue-rotate(314deg) brightness(93%) contrast(84%)", // #9f9090
+        "saturate(100%) invert(56%) sepia(38%) saturate(695%) hue-rotate(20deg) brightness(92%) contrast(99%)", // #999624
+        // "invert(48%) sepia(79%) saturate(2476%) hue-rotate(200deg) brightness(70%) contrast(119%)", // blue
+        // "invert(48%) sepia(79%) saturate(2476%) hue-rotate(80deg) brightness(70%) contrast(119%)", // green
+        // "invert(48%) sepia(79%) saturate(3076%) hue-rotate(-10deg) brightness(90%) contrast(119%)", // orange
+        // "invert(48%) sepia(79%) saturate(2476%) hue-rotate(0deg) brightness(150%) contrast(119%)", // yellow
+        // "invert(48%) sepia(79%) saturate(2476%) hue-rotate(200deg) brightness(130%) contrast(80%)", // light blue
+        // "invert(48%) sepia(79%) saturate(3076%) hue-rotate(-30deg) brightness(100%) contrast(119%)", // red
+        // "invert(48%) sepia(79%) saturate(3076%) hue-rotate(-70deg) brightness(70%) contrast(119%)", // purple
+        // "invert(48%) sepia(79%) saturate(2476%) hue-rotate(80deg) brightness(130%) contrast(119%)", // light green
+        // "invert(48%) sepia(79%) saturate(3076%) hue-rotate(-10deg) brightness(60%) contrast(119%)", // brown
+        // "invert(48%) sepia(79%) saturate(3076%) hue-rotate(-30deg) brightness(170%) contrast(119%)", // pink
+        // "invert(48%) sepia(79%) saturate(3076%) hue-rotate(-220deg) brightness(100%) contrast(119%)", // teal
     ]
 
     let colors = [
-        '#225bbc',
-        '#008000',
-        '#f95101',
-        '#ffb300',
-        '#62a9e5',
-        '#ff4c47',
-        '#bc2591',
-        '#0ee004',
-        '#f34945',
-        '#ff9289',
-        '#00c09b',
-    ]
+        '#05515e',
+        '#3e5719',
+        '#a9987a',
+        '#97340b',
+        '#629681',
+        '#abafa7',
+        '#dd8155',
+        '#f39034',
+        '#9f9090',
+        '#999624',
+    ];
 
 
     onMount(() => {
@@ -94,7 +107,7 @@
             .force("collide", d3.forceCollide().strength(fcollide).radius(fig_size/2).iterations(1))
             .force("link", d3.forceLink().strength(flink).id(d => d.id))
             .force("bound", () => {data2.forEach(node => {
-                node.x = Math.min(width - fig_size, Math.max(0, node.x));
+                node.x = Math.min(width - fig_size - legendWidth - legendMargin, Math.max(0, node.x));
                 node.y = Math.min(height - fig_size, Math.max(node.y, paddings.top));
             })})
 
@@ -185,7 +198,7 @@
                     <text
                         x={width-154}
                         y={20 * (index - data.length/2) + 10 + height/2}
-                        fill='#000000'
+                        fill='#a9987a'
                     >{d.label}</text>
                 {/each}
             {/if}
@@ -197,7 +210,21 @@
             class={mousePosition.x === null ? "tooltip-hidden" : "tooltip-visible"}
             style="left: {pageMousePosition.x + 10}px; top: {pageMousePosition.y + 10}px"
         >
-            About {currentHoveredPoint.value.toFixed(2)}% of migrants experience violence as a result of {currentHoveredPoint.label}
+
+        {#if selectedCategory == "age"}
+            About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area are of age {currentHoveredPoint.label}.
+        {:else if selectedCategory == "race"}
+            About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area are {currentHoveredPoint.label}.
+        {:else if selectedCategory == "gender"}
+            About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area are {currentHoveredPoint.label}.
+        {:else if selectedCategory == "income"}
+            About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area have a median income of {currentHoveredPoint.label}.
+        {:else if selectedCategory == "cars per household"}
+            About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area own {currentHoveredPoint.label}.
+        {:else if selectedCategory == "mode of transportation"}
+            About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area commute to work by {currentHoveredPoint.label}.
+        {/if}
+            <!-- About {currentHoveredPoint.value.toFixed(2)}% of migrants experience violence as a result of {currentHoveredPoint.label} -->
         </div>
     {/if}
 </div>
@@ -210,21 +237,22 @@
 
     .tooltip-hidden {
         visibility: hidden;
-        font-family: "Nunito", sans-serif;
+        font-family: 'Montserrat', sans-serif;
         width: 200px;
         position: absolute;
     }
 
     .tooltip-visible {
+        z-index: 100;
         font: 18px sans-serif;
-        font-family: "Nunito", sans-serif;
+        font-family: 'Montserrat', sans-serif;
         visibility: visible;
-        background-color: rgba(255, 255, 255, 0.4);
+        background-color: rgba(10, 0, 0, 0.4);
         backdrop-filter: blur(8px);
         border-radius: 10px;
         width: 200px;
-        color: black;
-        position: absolute;
+        color: #a9987a;
+        position: fixed;
         padding: 10px;
     }
 

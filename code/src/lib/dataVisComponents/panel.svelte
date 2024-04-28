@@ -13,8 +13,8 @@
         '#9f9090',
         '#abafa7',
         '#dd8155',
-        '#dd8155',
-        '#dd8155',
+        '#f39034',
+        '#97340b',
         '#999624',
         '#3e5719',
     ];
@@ -59,7 +59,7 @@
         font-weight: normal;
     }
 
-    .step {
+    /* .step {
 		height: 80vh;
 		opacity: .3;
 		background: plum;
@@ -71,7 +71,7 @@
 	
 	.step.active {
 		opacity: 1;
-	}
+	} */
 
 </style>
 
