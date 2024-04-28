@@ -5,8 +5,8 @@
     import {onMount} from "svelte";
     import buffer from '@turf/buffer';
     import { point } from '@turf/helpers';
-    import ForceGraphTest from "../lib/dataVisComponents/force-graph-test.svelte";
-    import ForceGraphSelector from "../lib/dataVisComponents/force-graph-selector.svelte"
+    // import ForceGraphTest from "../lib/dataVisComponents/ForceGraph.svelte";
+    // import ForceGraphSelector from "../lib/dataVisComponents/ForceGraphSelector.svelte"
     import PanelComponent from '../lib/dataVisComponents/panel.svelte';
 
     mapboxgl.accessToken = "pk.eyJ1IjoicmZpb3Jpc3RhIiwiYSI6ImNsdWQwcDd0aDFkengybG85eW00eDJqdzEifQ.smRFd5P2IKrDHr5HGsfrGw";
