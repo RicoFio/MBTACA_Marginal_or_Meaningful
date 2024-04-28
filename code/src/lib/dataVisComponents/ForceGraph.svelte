@@ -15,7 +15,7 @@
     export let selectedCategory;
 
     let legendWidth = 170;
-    let legendMargin = 100;
+    let legendMargin = 50;
     
 
     let paddings = {
@@ -108,10 +108,8 @@
             .force("link", d3.forceLink().strength(flink).id(d => d.id))
             .force("bound", () => {data2.forEach(node => {
                 node.x = Math.min(width - fig_size - legendWidth - legendMargin, Math.max(0, node.x));
-                node.y = Math.min(height - fig_size, Math.max(node.y, paddings.top));
+                node.y = Math.min(height - fig_size - legendMargin, Math.max(node.y, paddings.top));
             })})
-
-
 
         simulation
             .nodes(data2)
@@ -123,8 +121,6 @@
             .force("link").links(links)
 
     })
-
-
 
     const idContainer = "svg-container-" + Math.random() * 1000000;
     let mousePosition = { x: null, y: null };
