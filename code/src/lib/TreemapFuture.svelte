@@ -71,14 +71,12 @@ function drawTreemap() {
 
     function getColorByCategory(d) {
         switch (d.category1) {
-            case "pctNhAsian":
+            case "pctFutureZonedAsSF":
                 return "#999624";
-            case "pctNhBlack":
+            case "pctZonedAsCommercial":
                 return "#3e5719";
-            case "pctNhWhite":
+            case "pctFutureZonedAsMulti":
                 return "#05515e";
-            case "pctHispanic":
-                return "#a9987a";
             default:
                 return "gray";
         }

@@ -73,9 +73,9 @@ function drawTreemap() {
         switch (d.category1) {
             case "pctUsedAsSF":
                 return "#05515e";
-            case "pctUsedAsComm":
+            case "pctUsedAsCommerical":
                 return "#629681";
-            case "pctUsedAsMulti":
+            case "pctUsedAsMultiBuildings1Lot":
                 return "#a9987a";
             case "pctUsedAsDuplex":
                 return "#9f9090";

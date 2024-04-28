@@ -43,28 +43,27 @@
 
     function transformStopZoneData(originalData) {
             return [
-                { name: "Single Family Zoning", value: originalData[0].properties.pctZonedAsSF, category1: "pctZonedAsSF" },
-                { name: "Commerical Zoning", value: originalData[0].properties.pctZonedAsComm, category1: "pctZonedAsComm" },
-                { name: "MultiFamily Zoning", value: originalData[0].properties.pctZonedAsMulti, category1: "pctZonedAsMulti" },
+                { name: "Single Family", value: originalData[0].properties.pctZonedAsSF, category1: "pctZonedAsSF" },
+                { name: "Commerical", value: originalData[0].properties.pctUsedAsCommercial, category1: "pctZonedAsComm" },
+                { name: "Multi Family", value: originalData[0].properties.pctZonedAsMultifamily, category1: "pctZonedAsMultifamily" },
             ];
     }
 
     function transformStopZoneUsageData(originalData) {
             return [
-                { name: "Single Family Usage", value: originalData[0].properties.pctUsedAsSF, category1: "pctUsedAsSF" },
-                { name: "Commerical Usage", value: originalData[0].properties.pctUsedAsComm, category1: "pctUsedAsComm" },
-                { name: "Multi Family Usage", value: originalData[0].properties.pctUsedAsMulti, category1: "pctUsedAsMulti" },
-                { name: "Duplex Usage", value: originalData[0].properties.pctUsedAsDuplex, category1: "pctUsedAsDuplex" },
-                { name: "Triplex Usage", value: originalData[0].properties.pctUsedAsTriplex, category1: "pctUsedAsTriplex" }
+                { name: "Single Family", value: originalData[0].properties.pctUsedAsSF, category1: "pctUsedAsSF" },
+                { name: "Commerical", value: originalData[0].properties.pctUsedAsCommerical, category1: "pctUsedAsCommerical" },
+                { name: "Multiple Buildings on 1 Lot", value: originalData[0].properties.pctUsedAsMultiBuildings1Lot, category1: "pctUsedAsMultiBuildings1Lot" },
+                { name: "Duplex", value: originalData[0].properties.pctUsedAsDuplex, category1: "pctUsedAsDuplex" },
+                { name: "Triplex", value: originalData[0].properties.pctUsedAsTriplex, category1: "pctUsedAsTriplex" }
             ];
         }
 
     function transformStopZoneFutureData(originalData) {
             return [
-                { name: "Asian", value: originalData[0].properties.pctNhAsian, category1: "pctNhAsian" },
-                { name: "Black", value: originalData[0].properties.pctNhBlack, category1: "pctNhBlack" },
-                { name: "White", value: originalData[0].properties.pctNhWhite, category1: "pctNhWhite" },
-                { name: "Hispanic", value: originalData[0].properties.pctHispanic, category1: "pctHispanic" }
+                { name: "Single Family", value: originalData[0].properties.pctFutureZonedAsSF, category1: "pctFutureZonedAsSF" },
+                { name: "Commercial", value: originalData[0].properties.pctZonedAsCommercial, category1: "pctZonedAsCommercial" },
+                { name: "Multi Family", value: originalData[0].properties.pctFutureZonedAsMulti, category1: "pctFutureZonedAsMulti" }
             ];
     }
 
@@ -118,7 +117,7 @@
         stations = await d3.json("/data/mbta_community_stops.geojson");
 
         stopZoneData = await d3.json(
-            "/data/brookline_milton_stop_zone_dummies.geojson",
+            "/data/brookline_milton_stop_zone_zoning_usage_census.geojson",
         );
         let brooklineStopZoneData = stopZoneData.features.filter(
             (feature) => feature.properties.community === "Brookline",
@@ -140,9 +139,9 @@
         //    coolidgeCornerStopZoneData,
         //);
 
-        transformedStopZoneFutureDataForMunicipality = transformStopZoneFutureData(
-            coolidgeCornerStopZoneData,
-        );
+        //transformedStopZoneFutureDataForMunicipality = transformStopZoneFutureData(
+        //    coolidgeCornerStopZoneData,
+        //);
 
         parcelData = await d3.json(
             "/data/brookline_milton_parcels_dummies.geojson",
@@ -362,6 +361,7 @@
                     <h2>{treeMapUsageHeaderText}</h2>
                     <TreemapUsage data={transformedStopZoneUsageDataForMunicipality} />
                 </div>
+                
             </div>
 
             <div id="treeMapFuture">

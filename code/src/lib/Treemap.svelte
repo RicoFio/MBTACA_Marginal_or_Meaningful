@@ -74,9 +74,9 @@
         switch (d.category1) {
             case "pctZonedAsSF":
                 return "#dd8155";
-            case "pctZonedAsComm":
+            case "pctZonedAsCommerical":
                 return "#f39034";
-            case "pctZonedAsMulti":
+            case "pctZonedAsMultifamily":
                 return "#97340b";
             default:
                 return "gray";
