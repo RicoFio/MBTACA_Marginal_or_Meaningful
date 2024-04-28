@@ -18,8 +18,11 @@
     let query = "";
     let municipalities = [];
     let municipalitiesFilter = -1;
+    let filteredStations = [];
     let input = "";
     let suggestions = [];
+    let selectedStationIdxs = [];
+    let municipalitySelected = false;
 
     onMount(async () => {
         municipalities = await d3.json("/data/mbta_municipalities.geojson");
@@ -40,12 +43,11 @@
 
         municipalities = municipalities.features.map(municipality => {
             let newMunicipality = {};
-            newMunicipality.PolygonCoordinates = [];
+            newMunicipality.Geometries = {};
 
             if (municipality.geometry && Array.isArray(municipality.geometry.coordinates[0])) {
-                newMunicipality.PolygonCoordinates = municipality.geometry.coordinates[0];
+                newMunicipality.Geometries = municipality.geometry;
             } else {
-                console.log(municipality)
             }
             newMunicipality.Name = municipality.properties.community;
             newMunicipality.TotalHousingUnits = municipality.properties.housing_units_2020;
@@ -70,7 +72,9 @@
         suggestions = []; // Clear suggestions
 
         // Calculate the bounding box of the selected municipality
-        bounds = calculateBoundingBox(suggestion.PolygonCoordinates);
+        bounds = calculateBoundingBox(suggestion.Geometries);
+
+        baseMap.fitBounds(bounds, { padding: 20 });
     }
 
     $: filteredMunicipalities = query ?
@@ -80,16 +84,27 @@
         ) :
         municipalities;
 
-    $: filteredStations = query ?
-        stations.filter(m =>
-            m.Community && typeof m.Community === 'string' &&
-            m.Community.toLowerCase().includes(query.toLowerCase()) &&
-            m.Name === 'Coolidge Corner'
-        ) :
-        stations;
+    $: municipalitySelected = !!query
+
+    $: {
+        if (query && !!selectedStationIdxs) {
+            filteredStations = stations.filter(m =>
+                m.Community && typeof m.Community === 'string' &&
+                m.Community.toLowerCase().includes(query.toLowerCase())
+            );
+            // filteredStations = filteredStations.map(station => {
+            //     let newStation = {...station};
+            //     newStation.WithBuffer = buffer(point([newStation.Long, newStation.Lat]), 0.1, {units: 'miles'}).geometry.coordinates[0];
+            //     return newStation;
+            // });
+        } else {
+            filteredStations = stations;
+        }
+    }
 
 </script>
 
+<!--TODO replace with https://github.com/rob-balfre/svelte-select?tab=readme-ov-file component-->
 <div>
     <h1>Search</h1>
     <input type="search" bind:value={input}
@@ -108,9 +123,15 @@
 </div>
 
 <br>
-<BaseMap bind:bounds={bounds} bind:municipalities={filteredMunicipalities} bind:stations={filteredStations} />
+<BaseMap
+        class="baseMap"
+        bind:this={baseMap}
+        bind:municipalities={filteredMunicipalities}
+        bind:stations={filteredStations}
+        bind:selectedStationIdxs={selectedStationIdxs}
+        bind:municipalitySelected={municipalitySelected}
+/>
 
 <style>
     @import url("$lib/global.css");
-
 </style>

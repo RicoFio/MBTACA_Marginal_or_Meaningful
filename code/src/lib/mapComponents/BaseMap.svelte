@@ -10,6 +10,8 @@
     export let bounds = [];
     export let stations = [];
     export let municipalities = [];
+    export let selectedStationIdxs = [];
+    export let municipalitySelected = false;
 
     onMount(async () => {
         map = new mapboxgl.Map({
@@ -46,12 +48,6 @@
 
     $: map?.on("move", evt => mapViewChanged++);
 
-    $: {
-        if (bounds.length) {
-            map?.fitBounds(bounds, { padding: 10 });
-        }
-    }
-
     export function fitBounds(bounds, padding) {
         map.fitBounds(bounds, { padding: 20 });
     }
@@ -78,38 +74,69 @@
         return {cx: x, cy: y};
     }
 
+    function toggleStation(index) {
+        const idx = selectedStationIdxs.indexOf(index);
+        if (idx === -1) {
+            selectedStationIdxs = [...selectedStationIdxs, index];
+        } else {
+            selectedStationIdxs = selectedStationIdxs.filter(i => i !== index);
+        }
+    }
 </script>
 
 <div id="map">
     <svg>
         {#key mapViewChanged}
             {#each municipalities as municipality, index}
-                <polygon
-                        id={ `polygon-${index}` }
-                        points={
-                            municipality.PolygonCoordinates.length ?
-                            projectPolygonCoordinates(municipality.PolygonCoordinates) : ""
-                        }
-                        fill="steelblue"
-                        stroke="black"
-                        stroke-width="1"
-                        opacity="0.5"
-                >
-                    <title> { municipality.Name } </title>
-                </polygon>
+                {#if municipality.Geometries.type === "Polygon"}
+                    <polygon
+                            id={ `polygon-${index}` }
+                            points={
+                                municipality.Geometries.coordinates.length ?
+                                projectPolygonCoordinates(municipality.Geometries.coordinates[0]) : ""
+                            }
+                            fill="steelblue"
+                            stroke="black"
+                            stroke-width="1"
+                            opacity="0.5"
+                    >
+                        <title> { municipality.Name } </title>
+                    </polygon>
+                {:else if municipality.Geometries.type === 'MultiPolygon'}
+                    {#each municipality.Geometries.coordinates as geometry}
+                        <polygon
+                                id={ `polygon-${index}` }
+                                points={
+                                municipality.Geometries.coordinates.length ?
+                                projectPolygonCoordinates(geometry[0]) : ""
+                            }
+                                fill="steelblue"
+                                stroke="black"
+                                stroke-width="1"
+                                opacity="0.5"
+                        >
+                            <title> { municipality.Name } </title>
+                        </polygon>
+                    {/each}
+                {/if}
             {/each}
-            {#each stations as station}
+            {#each stations as station, index (station.Name)}
                 <polygon
+                        class:station
+                        class:selected={selectedStationIdxs.includes(index)}
                         data-station-name={station.Name}
-                        points= { projectPolygonCoordinates(station.WithBuffer) }
-                        fill="#DD8155"
+                        points={projectPolygonCoordinates(station.WithBuffer)}
+                        fill={selectedStationIdxs.includes(index) ? 'red' : '#DD8155'}
                         stroke="black"
                         stroke-width="1"
-                        opacity="0.5"
+                        opacity={selectedStationIdxs.includes(index) ? '0.8' : '0.5'}
+                        role="button"
+                        tabindex="0"
+                        aria-label={`Select station ${station.Name}`}
+                        on:click={() => toggleStation(index)}
+                        on:keyup={event => event.key === 'Enter' && toggleStation(index)}
                 >
-                    <title>
-                        {station.Name}
-                    </title>
+                    <title>{station.Name}</title>
                 </polygon>
             {/each}
         {/key}
@@ -134,9 +161,11 @@
         pointer-events: none;
         position: absolute;
         z-index: 1;
+        cursor: grab;
 
-        circle {
+        .station {
             pointer-events: auto;
+            cursor: pointer;
             fill-opacity: 60%;
             stroke: white;
 
@@ -146,6 +175,11 @@
                     var(--color-arrivals)
             );
             fill: var(--color);
+        }
+        .station.selected {
+            /* Styles for selected stations */
+            fill: red;
+            opacity: 0.8;
         }
     }
 </style>

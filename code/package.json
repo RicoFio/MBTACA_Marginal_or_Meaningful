@@ -20,6 +20,7 @@
 		"@turf/buffer": "^6.5.0",
 		"@turf/helpers": "^6.5.0",
 		"d3": "^7.9.0",
-		"mapbox-gl": "^3.2.0"
+		"mapbox-gl": "^3.2.0",
+		"svelte-select": "^5.8.3"
 	}
 }
