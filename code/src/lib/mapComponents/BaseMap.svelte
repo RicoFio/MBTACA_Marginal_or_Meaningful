@@ -16,18 +16,19 @@
     onMount(async () => {
         map = new mapboxgl.Map({
             container: 'map',
-            center: [-71.09451, 42.36027],
+            center: [-71.09451-1.2, 42.36027],
             zoom: 8,
             style: 'mapbox://styles/smpeter/cluqd5hft05en01qqc4mxa1kd',
+            attributionControl: false,
         });
         // Assuming 'map' is your Mapbox GL JS map instance
-        // map.scrollZoom.disable();  // Disable scroll zoom
-        // map.boxZoom.disable();     // Disable box zoom
-        // map.dragPan.disable();     // Disable drag pan
-        // map.dragRotate.disable();  // Disable drag rotate
-        // map.keyboard.disable();    // Disable keyboard control
-        // map.doubleClickZoom.disable(); // Disable double click zoom
-        // map.touchZoomRotate.disable(); // Disable touch zoom and rotate
+        map.scrollZoom.disable();  // Disable scroll zoom
+        map.boxZoom.disable();     // Disable box zoom
+        map.dragPan.disable();     // Disable drag pan
+        map.dragRotate.disable();  // Disable drag rotate
+        map.keyboard.disable();    // Disable keyboard control
+        map.doubleClickZoom.disable(); // Disable double click zoom
+        map.touchZoomRotate.disable(); // Disable touch zoom and rotate
         await new Promise(resolve => map.on("load", resolve));
 
         map.addSource("MBTALines", {
