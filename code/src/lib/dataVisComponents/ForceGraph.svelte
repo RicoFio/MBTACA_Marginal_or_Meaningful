@@ -213,12 +213,26 @@
             About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area are {currentHoveredPoint.label}.
         {:else if selectedCategory == "gender"}
             About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area are {currentHoveredPoint.label}.
-        {:else if selectedCategory == "income"}
-            About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area have a median income of {currentHoveredPoint.label}.
-        {:else if selectedCategory == "cars per household"}
-            About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area own {currentHoveredPoint.label}.
+        {:else if selectedCategory == "mean household income"}
+            {#if currentHoveredPoint.value == 5}
+            The top 5% of households in the selected area have a mean income of {currentHoveredPoint.label}.
+            {:else}
+            About {currentHoveredPoint.value.toFixed(2)}% of households in the selected area have a mean income of {currentHoveredPoint.label}.
+            {/if}
+        {:else if selectedCategory == "vehicles per household"}
+            {#if currentHoveredPoint.label == 'one'}
+            About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area own {currentHoveredPoint.label} vehicle.
+            {:else}
+            About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area own {currentHoveredPoint.label} vehicles.
+            {/if}
         {:else if selectedCategory == "mode of transportation"}
+            {#if currentHoveredPoint.label == "work_from_home"}
+            About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area work from home.
+            {:else if currentHoveredPoint.label == "public_transport"}
+            About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area commute to work by public transport.
+            {:else}
             About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area commute to work by {currentHoveredPoint.label}.
+            {/if}
         {/if}
             <!-- About {currentHoveredPoint.value.toFixed(2)}% of migrants experience violence as a result of {currentHoveredPoint.label} -->
         </div>
