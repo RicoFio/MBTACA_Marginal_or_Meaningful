@@ -3,7 +3,6 @@ from pathlib import Path
 import pandas as pd
 import json
 
-
 PREPROCESSED_DATA_PATH = Path(
     "/Users/ameliabaum/Library/Mobile Documents/com~apple~CloudDocs/MIT/6.C35/6.C85_FP/data/preprocessed_data"
 )
@@ -25,7 +24,6 @@ def get_parcel_data_filtered_by_municipalities(municipalities):
     # brookline_milton_parcels.to_file(PREPROCESSED_DATA_PATH /
     #                                 "brookline_milton_parcels.geojson",
     #                                 driver='GeoJSON')
-
 
 
 def assign_zoning_by_parcel(parcel_data: pd.DataFrame) -> pd.DataFrame:
@@ -148,7 +146,7 @@ def aggregate_statistics_by_stop_zone(
 
     stop_zone_data.rename(columns={
         'isZonedAsSF': 'pctZonedAsSF',
-        'isZonedAsComm': 'pctZonedAsComm',
+        'isZonedAsCommmercial': 'pctZonedAsCommercial',
         'isZonedAsMultifamily': 'pctZonedAsMultifamily',
         'isUsedAsSF': 'pctUsedAsSF',
         'isUsedAsCommercial': 'pctUsedAsCommercial',
@@ -164,8 +162,123 @@ def aggregate_statistics_by_stop_zone(
     },
                           inplace=True)
 
+    stop_zone_data['pctFutureZonedAsSF'] = stop_zone_data[
+        'pctZonedAsSF'] - stop_zone_data['pctMustUpzone']
+    stop_zone_data['pctFutureZonedAsMulti'] = stop_zone_data[
+        'pctZonedAsMultifamily'] + stop_zone_data['pctMustUpzone']
 
-# add in stop zone geographies
+    return stop_zone_data
+
+
+def combine_census_data_to_stop_name_level(
+        census_data: pd.DataFrame) -> pd.DataFrame:
+
+    rename_dict = {
+        'stop_name':
+        'stop_name',
+        'weighted_Total Population':
+        'weighted_total_population',
+        'weighted_Population Density (Per Sq. Mile)':
+        'weighted_total_population_density_permile',
+        'weighted_Total Population: Male':
+        'weighted_total_population_male',
+        'weighted_Total Population: Female':
+        'weighted_total_population_female',
+        'weighted_% Total Population: Male':
+        'weighted_pct_population_male',
+        'weighted_% Total Population: Female':
+        'weighted_pct_population_female',
+        'weighted_% Total Population: Not Hispanic or Latino':
+        'weighted_pct_not_hispanic_latino',
+        'weighted_% Total Population: Not Hispanic or Latino: White Alone':
+        'weighted_pct_not_hispanic_latino_white',
+        'weighted_% Total Population: Not Hispanic or Latino: Black or African American Alone':
+        'weighted_pct_not_hispanic_latino_black',
+        'weighted_% Total Population: Not Hispanic or Latino: American Indian and Alaska Native Alone':
+        'weighted_pct_not_hispanic_latino_native',
+        'weighted_% Total Population: Not Hispanic or Latino: Asian Alone':
+        'weighted_pct_not_hispanic_latino_asian',
+        'weighted_% Total Population: Not Hispanic or Latino: Native Hawaiian and Other Pacific Islander Alone':
+        'weighted_pct_not_hispanic_latino_pi',
+        'weighted_% Total Population: Not Hispanic or Latino: Some Other Race Alone':
+        'weighted_pct_not_hispanic_latino_other',
+        'weighted_% Total Population: Not Hispanic or Latino: Two or More Races':
+        'weighted_pct_not_hispanic_latino_2+',
+        'weighted_% Total Population: Hispanic or Latino':
+        'weighted_pct_hispanic_latino',
+        'weighted_% Total Population: Hispanic or Latino: White Alone':
+        'weighted_pct_hispanic_latino_white',
+        'weighted_% Total Population: Hispanic or Latino: Black or African American Alone':
+        'weighted_pct_hispanic_latino_black',
+        'weighted_% Total Population: Hispanic or Latino: American Indian and Alaska Native Alone':
+        'weighted_pct_hispanic_latino_native',
+        'weighted_% Total Population: Hispanic or Latino: Asian Alone':
+        'weighted_pct_hispanic_latino_asian',
+        'weighted_% Total Population: Hispanic or Latino: Native Hawaiian and Other Pacific Islander Alone':
+        'weighted_pct_hispanic_latino_pi',
+        'weighted_% Total Population: Hispanic or Latino: Some Other Race Alone':
+        'weighted_pct_hispanic_latino_other',
+        'weighted_% Total Population: Hispanic or Latino: Two or More Races':
+        'weighted_pct_hispanic_latino_2+',
+        'weighted_Median Household Income (In 2022 Inflation Adjusted Dollars)':
+        'weighted_median_hh_income',
+        'weighted_% Workers 16 Years and Over: Car, Truck, or Van':
+        'pct_workers_car_van',
+        'weighted_% Workers 16 Years and Over: Drove Alone':
+        'pct_workers_drive_alone',
+        'weighted_% Workers 16 Years and Over: Carpooled':
+        'pct_workers_drive_carpooled',
+        'weighted_% Workers 16 Years and Over: Public Transportation (Includes Taxicab)':
+        'pct_workers_public_transportation',
+        'weighted_% Workers 16 Years and Over: Motorcycle':
+        'pct_workers_motorcycle',
+        'weighted_% Workers 16 Years and Over: Bicycle':
+        'pct_workers_bicycle',
+        'weighted_% Workers 16 Years and Over: Walked':
+        'pct_workers_walked',
+        'weighted_% Workers 16 Years and Over: Other Means':
+        'pct_workers_other',
+        'weighted_% Workers 16 Years and Over: Worked At Home':
+        'pct_workers_wfh',
+        'weighted_% Occupied Housing Units: No Vehicle Available':
+        'pct_hh_0_vehs',
+        'weighted_% Occupied Housing Units: 1 Vehicle Available':
+        'pct_hh_1_vehs',
+        'weighted_% Occupied Housing Units: 2 Vehicles Available':
+        'pct_hh_2_vehs',
+        'weighted_% Occupied Housing Units: 3 Vehicles Available':
+        'pct_hh_3_vehs',
+        'weighted_% Occupied Housing Units: 4 Vehicles Available':
+        'pct_hh_4_vehs',
+        'weighted_% Occupied Housing Units: 5 or More Vehicles Available':
+        'pct_hh_5_vehs',
+        'geometry':
+        'geometry'
+    }
+
+    dataframe_columns = set(census_data.columns)
+    dictionary_keys = set(rename_dict.keys())
+    assert dictionary_keys.issubset(dataframe_columns)
+
+    census_data.rename(columns=rename_dict, inplace=True)
+
+    census_data = census_data[list(rename_dict.values())]
+
+    census_data_agg_by_stop_name = census_data.groupby('stop_name').agg({
+        col:
+        'mean' if census_data[col].dtype == 'float64'
+        or census_data[col].dtype == 'int64' else 'first'
+        for col in census_data.columns
+    })
+
+    census_data_agg_by_stop_name.drop('stop_name', axis=1, inplace=True)
+
+    census_data_agg_by_stop_name = census_data_agg_by_stop_name.reset_index()
+
+    census_data_agg_by_stop_name_gdf = gpd.GeoDataFrame(
+        census_data_agg_by_stop_name)
+
+    return census_data_agg_by_stop_name_gdf
 
 
 def generate_stop_zones_with_zoning_usage_census(parcel_data):
@@ -175,11 +288,24 @@ def generate_stop_zones_with_zoning_usage_census(parcel_data):
 
     station_buffer_census_cumulative = gpd.read_file(
         PREPROCESSED_DATA_PATH / 'station_buffer_census_cumulative.geojson')
+    modified_census_data = combine_census_data_to_stop_name_level(
+        station_buffer_census_cumulative)
+    print("num unique stop names census data",
+          len(modified_census_data["stop_name"].unique()))
 
-    stop_zone_census = station_buffer_census_cumulative.merge(
-        parcel_data_zoning_usage, on="stop_name")
+    stop_zone_data_zoning_usage = aggregate_statistics_by_stop_zone(
+        parcel_data_zoning_usage)
+    print("num unique stop names stop zone  data",
+          len(stop_zone_data_zoning_usage["stop_name"].unique()))
 
-    return stop_zone_census
+    stop_zone_census = modified_census_data.merge(stop_zone_data_zoning_usage,
+                                                  on="stop_name")
+
+    #TODO: need to better reconcile the stop names.
+    stop_zone_census_without_duplicate_stops = stop_zone_census.drop_duplicates(
+        subset=['stop_name'], keep='first')
+
+    return stop_zone_census_without_duplicate_stops
 
 
 if __name__ == "__main__":
