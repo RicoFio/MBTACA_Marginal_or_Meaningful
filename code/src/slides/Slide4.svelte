@@ -5,7 +5,9 @@
     import ForceGraph from "../lib/dataVisComponents/ForceGraph.svelte";
     import ForceGraphSelector from "../lib/dataVisComponents/ForceGraphSelector.svelte"
 
-    let FirstSelectedStationName = "Coolidge Corner"
+    export let municipality = {};
+    export let selectedStation = {};
+    
     let full_data;
     let station_data;
 
@@ -42,7 +44,7 @@
 
     $: {
         station_data = full_data?.features.filter(
-            (feature) => feature.properties.stop_name === FirstSelectedStationName,)[0];
+            (feature) => feature.properties.stop_name === selectedStation.Name,)[0];
 
         // extract demographic data by category in %
         //TODO age
@@ -77,8 +79,6 @@
         work_from_home = station_data?.properties.pct_workers_wfh
     }
 
-    console.log("male")
-    $: console.log(male)
 
     $: data = {
         "age": [
@@ -138,15 +138,13 @@
 </script>
 
 <div class="slide">
-    <h1>MUNICIPALITY: Station Name</h1>
-    <h2>Some explanations etc</h2>
-    <p>explanations blablabla</p>
-    <p>blablabla</p>
-    <p>blablabla</p>
-    <p>blablabla</p>
-    <p>blablabla</p>
-    <p>blablabla</p>
-    <p>blablabla</p>
+    {#if (municipality && selectedStation)}
+        <h1>{municipality.Name}: {selectedStation.Name}</h1>
+        <h3>
+        {selectedStation.Name} is located within {municipality.Name}, a {municipality.MBTACommunityType} community. It serves the following routes: {selectedStation.Routes}. The MBTA Communities Act stipulates that municipalities must create at least one by-right multifamily district within a 0.5-mile radius of a transit stop within their borders, which is visualized on the right. <br> <br>
+        Toggle the force diagrams to see relevant demographic statistics for the zone around the transit station. Racial, age, gender and income demographics, as well as behavioral characteristics like how much of the population uses transit to get to work, may influence the effect of upzoning on a certain location. <br> <br> </h3>
+        <p>Demographic data is sourced from the 2022 ACS 5-year rolling estimates (downloaded from Social Explorer).</p>
+    {/if}
     <h2>WHO LIVES HERE? - let's find out</h2>
     <ForceGraphSelector bind:activeSelection></ForceGraphSelector>
 

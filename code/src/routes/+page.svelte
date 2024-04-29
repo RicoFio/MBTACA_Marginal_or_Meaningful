@@ -98,6 +98,7 @@
     $: municipalitySelected = !!query
 
     $: firstSelectedStationName = selectedStations[0]?.Name;
+    $: firstSelectedStationObj = selectedStations[0];
 
     // $: {
     //     if (selectedMunicipality && !!selectedStations) {
@@ -183,6 +184,8 @@
         bind:stations={stations}
         bind:searchSelectedMunicipality={searchSelectedMunicipality}
         bind:selectedStation={firstSelectedStationName}
+        bind:selectedStationObj={firstSelectedStationObj}
+        bind:selectedMunicipality={selectedMunicipality}
 />
 
 <style>

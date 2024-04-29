@@ -6,6 +6,9 @@
     import TreemapFuture from "./../lib/dataVisComponents/TreemapFuture.svelte"
     import TreemapUsage from "./../lib/dataVisComponents/TreemapUsage.svelte"
 
+    export let municipality = {};
+    export let selectedStation = {};
+
     let mapHeight = 0;
     let treeMapHeight = 0;
     let treeMapUsageHeight = 0;
@@ -205,15 +208,21 @@
 </script>
 
 <div class="slide">
-    <h1>MUNICIPALITY: Station Name</h1>
-    <h2>Some explanations etc</h2>
-    <p>explanations blablabla</p>
-    <p>blablabla</p>
-    <p>blablabla</p>
-    <p>blablabla</p>
-    <p>blablabla</p>
-    <p>blablabla</p>
-    <p>blablabla</p>
+    {#if (municipality && selectedStation)}
+        <h1>{municipality.Name}: {selectedStation.Name}</h1>
+        <h3>
+            The visualizations below show the area's current zoning and usage breakdown within a 0.5-mile radius of {selectedStation.Name} station. Both usage and zoning information are defined at the parcel level, and parcels within the 0.5-mile buffer are aggregated. Notice that in many areas, the zoning and usage don't necessarily match- for example, some areas zoned for multifamily development may actually have exclusively single-family dwellings currently constructed. Recall that the MBTA Communities Act does not stipulate that any current development must be changed, only that certain areas must be upzoned (and thus, there development patterns might theoretically change in the future).
+
+            Toggle the treemap diagram to see how the current and future zoning mix differ. If a significant number of parcels around the station need to be upzoned to become compliant, this may be a big change, but in some areas, the current and future zoning mix might be very similar.
+            Under the MBTA Communities Act, municipalities get to decide where to site their multifamily districts, and can use these statistics to help make their decisions. 
+        </h3>
+        <ul>
+            <li>Parcel data, including parcel-level zoning and usage information, is sourced from</li>
+            <li>Zoning code designations for Brookline from</li>
+            <li>Usage code designations for the state of Massachusetts from <a href="https://cityofboston.gov" target="_blank">CityOfBoston.gov</a></li>
+        </ul>
+        
+    {/if}
     <h2>WHAT'S THE HOUSING MIX?</h2>
     <div style="display: flex; align-items: center; gap: 10px;">
         <label style="cursor: pointer;">
