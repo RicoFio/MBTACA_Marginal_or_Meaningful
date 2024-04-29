@@ -98,7 +98,31 @@
         }
     }
 
-    $: {
+    function toggleStationParcels (station) {
+        let isSourcePresent = false;
+        try{
+            isSourcePresent = map.isSourceLoaded(station.Name);
+        } catch (error) {
+            isSourcePresent = false;
+        }
+        if (!isSourcePresent) {
+            map.addSource(station.Name, {
+                type: "geojson",
+                data: parcelFiles.filter(e => e.StopName == station.Name)[0].FileName,
+            });
+
+            map.addLayer({
+                id: "MA" + station.Name,
+                type: "fill",  // Use 'fill' type for polygon layers
+                source: station.Name,
+                paint: {
+                    "fill-color": "white",  // Correct property for setting the fill color of polygons
+                    "fill-outline-color": "black"  // Sets the color of the outline
+                },
+            });
+        } else {
+            map.removeSource(station.Name);
+        }
 
     }
 
@@ -110,6 +134,8 @@
             fitBounds(bounds, {
                 padding: {top: 20, bottom: 20, left: 1000, right: 20}
             });
+
+            toggleStationParcels(station);
         }
     }
 
@@ -134,7 +160,7 @@
                                 municipality.Geometries.coordinates.length ?
                                 projectPolygonCoordinates(municipality.Geometries.coordinates[0]) : ""
                             }
-                            fill="steelblue"
+                            fill="#a9987a"
                             stroke="black"
                             stroke-width="1"
                             opacity="0.5"
@@ -149,7 +175,7 @@
                                 municipality.Geometries.coordinates.length ?
                                 projectPolygonCoordinates(geometry[0]) : ""
                             }
-                                fill="steelblue"
+                                fill="#a9987a"
                                 stroke="black"
                                 stroke-width="1"
                                 opacity="0.5"
@@ -165,14 +191,14 @@
                         class:selected={selectedStations.some(s => s.Name === station.Name)}
                         data-station-name={station.Name}
                         points={projectPolygonCoordinates(station.getBuffer(
-                            selectedStations.some(s => s.Name === station.Name) ?
+                            selectedStations.some(s => s.Name === station.Name) || !selectedMunicipality ?
                             0.5 :
                             0.1
                         ))}
-                        fill={selectedStations.some(s => s.Name === station.Name) ? 'red' : '#DD8155'}
+                        fill={selectedStations.some(s => s.Name === station.Name) ? '#629681' : '#05515e'}
                         stroke="black"
                         stroke-width="1"
-                        opacity={selectedStations.some(s => s.Name === station.Name) ? '0.8' : '0.5'}
+                        opacity={selectedStations.some(s => s.Name === station.Name) || (!selectedStations.length > 0) ? '0.8' : '0.5'}
                         role="button"
                         tabindex="0"
                         aria-label={`Select station ${station.Name}`}
@@ -188,11 +214,6 @@
 
 <style>
     @import url("$lib/global.css");
-
-    :root {
-        --color-departures: steelblue;
-        --color-arrivals: darkorange;
-    }
 
     #map {
         flex: 1;
@@ -212,16 +233,11 @@
             fill-opacity: 60%;
             stroke: white;
 
-            --color: color-mix(
-                    in oklch,
-                    var(--color-departures) calc(100% * var(--departure-ratio)),
-                    var(--color-arrivals)
-            );
-            fill: var(--color);
+            fill: #05515e;
         }
         .station.selected {
             /* Styles for selected stations */
-            fill: red;
+            fill: #629681;
             opacity: 0.8;
         }
     }

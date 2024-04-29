@@ -71,6 +71,13 @@
             newMunicipality.MinHousingCapacityRequirement = municipality.properties.min_rf1_cap_req;
             return newMunicipality;
         })
+
+        parcelFiles = parcelFiles.map(entry => {
+            let newParcelFile = {};
+            newParcelFile.StopName = entry.StopName;
+            newParcelFile.FileName = entry.FileName;
+            return newParcelFile;
+        });
     })
 
     $: if (searchSelectedMunicipality) {
