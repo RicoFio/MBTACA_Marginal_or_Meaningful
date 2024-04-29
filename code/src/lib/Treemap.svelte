@@ -6,6 +6,18 @@
 
     export let data = [];
 
+    function fitText(selection, width, height) {
+            selection.each(function(d) {
+            const textElement = d3.select(this);
+            let textLength = textElement.node().getComputedTextLength();
+            let text = textElement.text();
+            while (textLength > (width - 8) && text.length > 0) {
+            text = text.slice(0, -1);
+            textElement.text(text + '…');
+            textLength = textElement.node().getComputedTextLength();
+        }
+        });
+    }
 
     onMount(() => {
         drawTreemap();

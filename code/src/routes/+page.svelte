@@ -62,7 +62,7 @@
     function transformStopZoneFutureData(originalData) {
             return [
                 { name: "Single Family", value: originalData[0].properties.pctFutureZonedAsSF, category1: "pctFutureZonedAsSF" },
-                { name: "Commercial", value: originalData[0].properties.pctZonedAsCommercial, category1: "pctZonedAsCommercial" },
+                { name: "Commercial", value: originalData[0].properties.pctZonedAsCommercial, category1: "isZonedAsCommercial" },
                 { name: "Multi Family", value: originalData[0].properties.pctFutureZonedAsMulti, category1: "pctFutureZonedAsMulti" }
             ];
     }
@@ -117,7 +117,7 @@
         stations = await d3.json("/data/mbta_community_stops.geojson");
 
         stopZoneData = await d3.json(
-            "/data/brookline_milton_stop_zone_zoning_usage_census.geojson",
+            "/data/brookline_milton_stop_zone_zoning_usage_census_v2.geojson",
         );
         let brooklineStopZoneData = stopZoneData.features.filter(
             (feature) => feature.properties.community === "Brookline",

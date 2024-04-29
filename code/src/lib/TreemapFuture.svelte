@@ -73,7 +73,7 @@ function drawTreemap() {
         switch (d.category1) {
             case "pctFutureZonedAsSF":
                 return "#999624";
-            case "pctZonedAsCommercial":
+            case "isZonedAsCommercial":
                 return "#3e5719";
             case "pctFutureZonedAsMulti":
                 return "#05515e";
