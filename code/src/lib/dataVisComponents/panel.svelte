@@ -5,6 +5,7 @@
     import Slide2 from "../../slides/Slide2.svelte"
     import Slide3 from "../../slides/Slide3.svelte"
     import Slide4 from "../../slides/Slide4.svelte"
+    import Slide5 from "../../slides/Slide5.svelte"
     let value;
     export let municipalities;
     export let stations;
@@ -34,8 +35,9 @@
         {/each} -->
         <Slide1 active={value === 0} />
         <Slide2 active={value === 1} bind:municipalities={municipalities} bind:selectedMunicipality={searchSelectedMunicipality}/>
-        <Slide3 active={value === 3} bind:municipalityName={searchSelectedMunicipality} bind:selectedStation={selectedStation}/>
-        <Slide4 active={value === 2} />
+        <Slide3 active={value === 2} bind:municipalityName={searchSelectedMunicipality} bind:selectedStation={selectedStation}/>
+        <Slide4 active={value === 3} />
+        <Slide5 active={value === 4} />
     </Scrolly>
 </div>
 
