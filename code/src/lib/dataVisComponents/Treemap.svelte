@@ -1,90 +1,88 @@
 <!-- Treemap.svelte -->
 
 <script>
-    import { onMount } from "svelte";
-    import * as d3 from "d3";
+  import {onMount} from "svelte";
+  import * as d3 from "d3";
+  import {getTreemapColorByCategory} from "$lib/dataVisComponents/treemapUtils.js";
 
-    export let data = [];
-    let svgId = 'treemap-zoning-svg';
+  export let data = [];
+  let svgId = 'treemap-zoning-svg';
 
-    onMount(() => {
-        drawTreemap();
+  function fitText(selection, width, height) {
+    selection.each(function (d) {
+      const textElement = d3.select(this);
+      let textLength = textElement.node().getComputedTextLength();
+      let text = textElement.text();
+      while (textLength > (width - 8) && text.length > 0) {
+        text = text.slice(0, -1);
+        textElement.text(text + '…');
+        textLength = textElement.node().getComputedTextLength();
+      }
     });
+  }
 
-    function drawTreemap() {
-        const width = 400;
-        const height = 250;
+  function drawTreemap() {
+    if (data.length === 0) return; // Check if data is empty
 
-        const svg = d3
-            .select(`#${svgId}`)
+    const width = 400;
+    const height = 250;
+    const svg = d3.select(`#${svgId}`)
             .attr("width", width)
             .attr("height", height);
 
-
-        // Transform data into hierarchy
-        const root = d3.hierarchy({ children: data }).sum((d) => d.value);
-
-        // console.log("T: Data being passed to TreeMap component:", data); // Add console log here
-
-        // Create treemap layout
-        const treemap = d3.treemap().size([width, height]).padding(1);
-
-        // Compute treemap layout
-        treemap(root);
-
-        // Create cells for each data point
-        const cell = svg
+    // Transform data into hierarchy
+    const root = d3.hierarchy({children: data}).sum((d) => d.value);
+    console.log("T: Data recieved to TreeMap component:", data); // Add console log here
+    // Create treemap layout
+    const treemap = d3.treemap().size([width, height]).padding(1);
+    // Compute treemap layout
+    treemap(root);
+    // Create cells for each data point
+    let cell = svg
             .selectAll("g")
             .data(root.leaves())
             .enter()
             .append("g")
             .attr("transform", (d) => `translate(${d.x0},${d.y0})`);
-
-        // Append rectangle for each cell
-        cell.append("rect")
+    // Append rectangle for each cell
+    cell.append("rect")
             .attr("width", (d) => d.x1 - d.x0)
             .attr("height", (d) => d.y1 - d.y0)
-            .attr("fill", (d) => getColorByCategory(d.data))
+            .attr("fill", (d) => getTreemapColorByCategory(d.data))
             .on("mouseover", handleMouseOver)
             .on("mouseout", handleMouseOut);
-
-        // Append text for each cell
-        cell.append("text")
+    cell.append("title")
+            .text((d) => d.data.name);
+    // Append text for each cell
+    cell.append("text")
             .attr("x", 5)
             .attr("y", 15)
             .text((d) => d.data.name)
             .attr("fill", "white");
-
-        cell.append("text")
+    cell.append("text")
             .attr("x", 5)
             .attr("y", 40)
             .text((d) => `${((d.value / root.value) * 100).toFixed(1)}%`)
             .attr("fill", "white");
 
-        function handleMouseOver() {
-            d3.select(this).attr("fill", "orange");
-        }
-
-        function handleMouseOut() {
-            d3.select(this).attr("fill", (d) => getColorByCategory(d.data));
-        }
+    function handleMouseOver() {
+      d3.select(this).attr("fill", "orange");
     }
 
-    function getColorByCategory(d) {
-        switch (d.category1) {
-            case "pctZonedAsSF":
-                return "#dd8155";
-            case "pctZonedAsComm":
-                return "#f39034";
-            case "pctZonedAsMulti":
-                return "#97340b";
-            default:
-                return "gray";
-        }
+    function handleMouseOut() {
+      d3.select(this).attr("fill", (d) => getTreemapColorByCategory(d.data));
     }
+  }
+
+  onMount(() => {
+    if (data.length > 0) drawTreemap();
+  });
+
+  $: if (data.length > 0) {
+    drawTreemap();
+  }
 </script>
-<svg></svg>
-  
+
 <div>
-  <svg id="{svgId}"></svg>
+  <svg id={svgId}></svg>
 </div>

@@ -1,13 +1,15 @@
 <script>
 
     import Scrolly from "../panelComponents/Scrolly.svelte";
-    import Slide1 from "../../slides/Slide1.svelte"
-    import Slide11 from "../../slides/Slide1.1.svelte"
-    import Slide2 from "../../slides/Slide2.svelte"
-    import Slide21 from "../../slides/Slide2.1.svelte"
-    import Slide3 from "../../slides/Slide3.svelte"
-    import Slide4 from "../../slides/Slide4.svelte"
-    import Slide5 from "../../slides/Slide5.svelte"
+    import Slide1 from "../../slides/Slide1.svelte";
+    import Slide11 from "../../slides/Slide1.1.svelte";
+    import Slide2 from "../../slides/Slide2.svelte";
+    import Slide21 from "../../slides/Slide2.1.svelte";
+    import Slide3 from "../../slides/Slide3.svelte";
+    import Slide4 from "../../slides/Slide4.svelte";
+    import Slide5 from "../../slides/Slide5.svelte";
+    import Slide6 from "../../slides/Slide6.svelte";
+
     let value;
     export let municipalities;
     export let stations;
@@ -44,6 +46,7 @@
         <Slide3 active={value === 4} bind:municipalityName={searchSelectedMunicipality} bind:selectedStation={selectedStation}/>
         <Slide4 active={value === 5} bind:municipality={selectedMunicipality} bind:selectedStation={selectedStationObj}/>
         <Slide5 active={value === 6} bind:municipality={selectedMunicipality} bind:selectedStation={selectedStationObj}/>
+        <Slide6 active={value === 7} />
     </Scrolly>
 </div>
 
@@ -54,7 +57,8 @@
     }
 
     .panel {
-        overflow: scroll;
+        overflow-y: auto;  /* Allows vertical scrolling */
+        overflow-x: hidden; /* Disables horizontal scrolling */
     }
 
     .panel::-webkit-scrollbar {
