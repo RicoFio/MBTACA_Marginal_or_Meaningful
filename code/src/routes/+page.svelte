@@ -98,72 +98,7 @@
     $: municipalitySelected = !!query
 
     $: firstSelectedStationName = selectedStations[0]?.Name;
-
-    // $: {
-    //     if (selectedMunicipality && !!selectedStations) {
-    //         filteredStations = stations.filter(m =>
-    //             m.Community && typeof m.Community === 'string' &&
-    //             m.Community.toLowerCase().includes(selectedMunicipality?.Name.toLowerCase())
-    //         );
-    //         filteredStations = filteredStations.map(station => {
-    //             let newStation = {...station};
-    //             let factor = firstSelectedStationName && newStation.Name == firstSelectedStationName ? 0.5 : 0.1
-    //             newStation.WithBuffer = buffer(point([newStation.Long, newStation.Lat]), factor, {units: 'miles'}).geometry.coordinates[0];
-    //             return newStation;
-    //         });
-    //     } else {
-    //         filteredStations = stations;
-    //     }
-    // }
-
-    // $: {
-    //     if (firstSelectedStationName) {
-    //         filteredStations = filteredStations.map(station => {
-    //             let newStation = {...station};
-    //             let factor = newStation.Name == firstSelectedStationName ? 0.5 : 0.1
-    //             newStation.WithBuffer = buffer(point([newStation.Long, newStation.Lat]), factor, {units: 'miles'}).geometry.coordinates[0];
-    //             return newStation;
-    //         });
-    //     }
-    // }
-
-    const data = {
-                    "age": [
-                        {label: 'age group 1', value: 20},
-                        {label: 'age group 2', value: 80},
-                        {label: 'age group 3', value: 40},
-                    ],
-                    "race": [
-                        {label: 'race group 1', value: 30},
-                        {label: 'race group 2', value: 60},
-                        {label: 'race group 3', value: 50},
-                    ],
-                    "gender": [
-                        {label: 'male', value: 50},
-                        {label: 'female', value: 90},
-                    ],
-                    "income": [
-                        {label: 'income group 1', value: 80},
-                        {label: 'income group 2', value: 20},
-                        {label: 'income group 3', value: 40},
-                        {label: 'income group 4', value: 50},
-                    ],
-                    "cars per household": [
-                        {label: 'none', value: 20},
-                        {label: 'one', value: 50},
-                        {label: 'two or more', value: 90},
-                    ],
-                    "mode of transit/work commute": [
-                        {label: 'car', value: 90},
-                        {label: 'train', value: 60},
-                        {label: 'bike', value: 20},
-                        {label: 'walk', value: 10},
-                        {label: 'other', value: 10}
-                    ]
-                }
-    let activeSelection = "mode of transit/work commute"
-
-    $: current_data = data[activeSelection]
+    $: firstSelectedStationObj = selectedStations[0];
 
 </script>
 
@@ -183,6 +118,8 @@
         bind:stations={stations}
         bind:searchSelectedMunicipality={searchSelectedMunicipality}
         bind:selectedStation={firstSelectedStationName}
+        bind:selectedStationObj={firstSelectedStationObj}
+        bind:selectedMunicipality={selectedMunicipality}
 />
 
 <style>
