@@ -221,7 +221,6 @@
             <li>Zoning code designations for Brookline from</li>
             <li>Usage code designations for the state of Massachusetts from <a href="https://cityofboston.gov" target="_blank">CityOfBoston.gov</a></li>
         </ul>
-        
     {/if}
     <h2>WHAT'S THE HOUSING MIX?</h2>
     <div style="display: flex; align-items: center; gap: 10px;">
