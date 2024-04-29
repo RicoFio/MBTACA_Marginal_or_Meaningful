@@ -1,207 +1,140 @@
 <script>
+    import { onMount } from "svelte";
     export let active = false;
     import * as d3 from "d3";
-    import { onMount } from "svelte";
-    import Treemap from "./../lib/dataVisComponents/Treemap.svelte"
-    import TreemapFuture from "./../lib/dataVisComponents/TreemapFuture.svelte"
-    import TreemapUsage from "./../lib/dataVisComponents/TreemapUsage.svelte"
+    import ForceGraph from "../lib/dataVisComponents/ForceGraph.svelte";
+    import ForceGraphSelector from "../lib/dataVisComponents/ForceGraphSelector.svelte"
 
-    let mapHeight = 0;
-    let treeMapHeight = 0;
-    let treeMapUsageHeight = 0;
-    let treeMapFutureHeight = 0;
-    let selectedComponent = 'zoning'; // Start with no component selected
-    let suggestions = [];
-    let stopZoneData;
-    // let brooklineStopZoneData;
-    // let coolidgeCornerStopZoneData;
-    let transformedStopZoneDataForMunicipality;
-    let transformedStopZoneUsageDataForMunicipality;
-    let transformedStopZoneFutureDataForMunicipality;
-    let parcelData;
-    let treeMapHeaderText;
-    let treeMapUsageHeaderText;
-    let treeMapFutureHeaderText;
+    let FirstSelectedStationName = "Coolidge Corner"
+    let full_data;
+    let station_data;
+
+    let white;
+    let black;
+    let native;
+    let asian;
+    let pi;
+    let other_race;
+    let two_or_more;
+    let hispanic;
+    let male;
+    let female;
+    let zero;
+    let one;
+    let two;
+    let three;
+    let four;
+    let five;
+    let car;
+    let public_transport;
+    let motorcycle;
+    let bicycle;
+    let walking;
+    let other_mode_of_transportation;
+    let work_from_home;
 
     onMount(async () => {
-        // treeMapHeight = document.getElementById('treeMap').clientHeight;
-        // treeMapUsageHeight = document.getElementById('treeMapUsage').clientHeight;
-
-        //console.log("treeMapUsageHeight:", treeMapUsageHeight); 
-
-        // Calculate the total height required
-        // const totalHeight = (mapHeight + treeMapHeight)*4;
-
-        // Set the body height to accommodate both components
-
-        function transformStopZoneData(originalData) {
-            return [
-                { name: "Single Family Zoning", value: originalData[0].properties.pctZonedAsSF, category1: "pctZonedAsSF" },
-                { name: "Commerical Zoning", value: originalData[0].properties.pctZonedAsComm, category1: "pctZonedAsComm" },
-                { name: "MultiFamily Zoning", value: originalData[0].properties.pctZonedAsMulti, category1: "pctZonedAsMulti" },
-            ];
-        }
-
-        function transformStopZoneUsageData(originalData) {
-            return [
-                { name: "Single Family Usage", value: originalData[0].properties.pctUsedAsSF, category1: "pctUsedAsSF" },
-                { name: "Commerical Usage", value: originalData[0].properties.pctUsedAsComm, category1: "pctUsedAsComm" },
-                { name: "Multi Family Usage", value: originalData[0].properties.pctUsedAsMulti, category1: "pctUsedAsMulti" },
-                { name: "Duplex Usage", value: originalData[0].properties.pctUsedAsDuplex, category1: "pctUsedAsDuplex" },
-                { name: "Triplex Usage", value: originalData[0].properties.pctUsedAsTriplex, category1: "pctUsedAsTriplex" }
-            ];
-        }
-
-        function transformStopZoneFutureData(originalData) {
-            return [
-                { name: "Asian", value: originalData[0].properties.pctNhAsian, category1: "pctNhAsian" },
-                { name: "Black", value: originalData[0].properties.pctNhBlack, category1: "pctNhBlack" },
-                { name: "White", value: originalData[0].properties.pctNhWhite, category1: "pctNhWhite" },
-                { name: "Hispanic", value: originalData[0].properties.pctHispanic, category1: "pctHispanic" }
-            ];
-        }
-
-        // municipalities = await d3.json("/data/mbta_municipalities.geojson");
-        // stations = await d3.json("/data/mbta_community_stops.geojson");
-
-        stopZoneData = await d3.json(
-            "/data/brookline_milton_stop_zone_dummies.geojson"
-        );
-        let brooklineStopZoneData = stopZoneData.features.filter(
-            (feature) => feature.properties.community === "Brookline",
-        );
-
-        let coolidgeCornerStopZoneData = stopZoneData.features.filter(
-            (feature) => feature.properties.stop_name === "Coolidge Corner",
-        );
-        transformedStopZoneDataForMunicipality = [
-                { name: "Single Family Zoning", value: coolidgeCornerStopZoneData[0].properties.pctZonedAsSF, category1: "pctZonedAsSF" },
-                { name: "Commerical Zoning", value: coolidgeCornerStopZoneData[0].properties.pctZonedAsComm, category1: "pctZonedAsComm" },
-                { name: "MultiFamily Zoning", value: coolidgeCornerStopZoneData[0].properties.pctZonedAsMulti, category1: "pctZonedAsMulti" },
-            ];
-
-        transformedStopZoneUsageDataForMunicipality = transformStopZoneUsageData(
-            coolidgeCornerStopZoneData,
-        );
-
-        transformedStopZoneFutureDataForMunicipality = transformStopZoneFutureData(
-            coolidgeCornerStopZoneData,
-        );
-
-        parcelData = await d3.json(
-            "/data/brookline_milton_parcels_dummies.geojson",
-        );
-
-
-    //     municipalities = municipalities.features.map((municipality) => {
-    //         let newMunicipality = {};
-    //         newMunicipality.PolygonCoordinates = [];
-
-    //         if (
-    //             municipality.geometry &&
-    //             Array.isArray(municipality.geometry.coordinates[0])
-    //         ) {
-    //             newMunicipality.PolygonCoordinates =
-    //                 municipality.geometry.coordinates[0];
-    //         } else {
-    //             console.log(municipality);
-    //         }
-    //         newMunicipality.Name = municipality.properties.community;
-    //         newMunicipality.TotalHousingUnits =
-    //             municipality.properties.housing_units_2020;
-    //         newMunicipality.PopulationSize = municipality.properties.pop2020;
-    //         newMunicipality.MBTACommunityType =
-    //             municipality.properties.mbta_comm_type;
-    //         newMunicipality.MinHousingCapacityRequirement =
-    //             municipality.properties.min_rf1_cap_req;
-    //         return newMunicipality;
-    //     });// 
+        full_data = await d3.json("/data/brookline_milton_stop_zone_zoning_usage_census_v2.geojson");
+        // station_data = full_data.features.filter( (feature) => feature.properties.stop_name === "Coolidge Corner",);
     });
 
-    // Reactive statement to update suggestions based on input
-    // $: if (input) {
-    //     suggestions = municipalities.filter(
-    //         (m) =>
-    //             m.Name &&
-    //             typeof m.Name === "string" &&
-    //             m.Name.toLowerCase().startsWith(input.toLowerCase()),
-    //     );
-    // } else {
-    //     suggestions = [];
-    // }
+    // $: console.log(full_data)
 
-    // $: treeMapVisibility = selectedComponent === 'zoning' ? 'visible' : 'hidden';
-    // $: treeMapUsageVisibility = selectedComponent === 'usage' ? 'visible' : 'hidden';
+    $: {
+        station_data = full_data?.features.filter(
+            (feature) => feature.properties.stop_name === FirstSelectedStationName,)[0];
 
+        // extract demographic data by category in %
+        //TODO age
+        //////////////
+        white = station_data?.properties.weighted_pct_not_hispanic_latino_white;
+        black = station_data?.properties.weighted_pct_not_hispanic_latino_black;
+        native = station_data?.properties.weighted_pct_not_hispanic_latino_native;
+        asian = station_data?.properties.weighted_pct_not_hispanic_latino_asian;
+        pi = station_data?.properties.weighted_pct_not_hispanic_latino_pi;
+        other_race = station_data?.properties.weighted_pct_not_hispanic_latino_other;
+        two_or_more = 5;
+        hispanic = station_data?.properties.weighted_pct_hispanic_latino;
+        // Gender
+        female = station_data?.properties.weighted_pct_population_female;
+        male = station_data?.properties.weighted_pct_population_male;
+        // // Income
+        // ///// TODO income
+        // Vehicles
+        zero = station_data?.properties.pct_hh_0_vehs
+        one = station_data?.properties.pct_hh_1_vehs
+        two = station_data?.properties.pct_hh_2_vehs
+        three = station_data?.properties.pct_hh_3_vehs
+        four = station_data?.properties.pct_hh_4_vehs
+        five = station_data?.properties.pct_hh_5_vehs
+        // Mode of transportation
+        car = station_data?.properties.pct_workers_car_van
+        public_transport = station_data?.properties.pct_workers_public_transportation
+        motorcycle = station_data?.properties.pct_workers_motorcycle
+        bicycle = station_data?.properties.pct_workers_bicycle
+        walking = station_data?.properties.pct_workers_walked
+        other_mode_of_transportation = station_data?.properties.pct_workers_other
+        work_from_home = station_data?.properties.pct_workers_wfh
+    }
 
-    // function selectSuggestion(suggestion) {
-    //     query = suggestion.Name; // Set the query to the selected municipality name
-    //     suggestions = []; // Clear suggestions
+    console.log("male")
+    $: console.log(male)
 
-    //     // Calculate the bounding box of the selected municipality
-    //     const bounds = calculateBoundingBox(suggestion.PolygonCoordinates);
-
-    //     treeMapHeaderText = `Zoning Breakdown for: ${suggestion.Name}`
-    //     treeMapUsageHeaderText = `Usage Breakdown for: ${suggestion.Name}`
-
-    //     // Update the map view to fit the bounding box with some padding
-    //     // map.fitBounds(bounds, { padding: 20 });
-    // }
-
-    // function projectPolygonCoordinates(coordinates) {
-    //     return coordinates
-    //         .map((coord) => {
-    //             let { cx, cy } = getCoords({ Lat: coord[1], Long: coord[0] });
-    //             return `${cx},${cy}`;
-    //         })
-    //         .join(" ");
-    // }
-
-    // function getCoords(station) {
-    //     const longitude = parseFloat(station.Long);
-    //     const latitude = parseFloat(station.Lat);
-
-    //     if (isNaN(longitude) || isNaN(latitude)) {
-    //         console.error("Invalid coordinates for station:", station);
-    //         return { cx: 0, cy: 0 }; // You might want to handle this case differently
-    //     }
-
-    //     let point = new mapboxgl.LngLat(longitude, latitude);
-    //     let { x, y } = map.project(point);
-    //     return { cx: x, cy: y };
-    // }
-
-    // $: map?.on("move", (evt) => mapViewChanged++);
-
-    // $: filteredMunicipalities = query
-    //     ? municipalities.filter(
-    //           (m) =>
-    //               m.Name &&
-    //               typeof m.Name === "string" &&
-    //               m.Name.toLowerCase().includes(query.toLowerCase()),
-    //       )
-    //     : municipalities;
-
-    // $: filteredStations = query
-    //     ? stations.filter(
-    //           (m) =>
-    //               m.Community &&
-    //               typeof m.Community === "string" &&
-    //               m.Community.toLowerCase().includes(query.toLowerCase()) &&
-    //               m.Name === "Coolidge Corner",
-    //       )
-    //     : stations;
-
-    // function calculateBoundingBox(coordinates) {
-    //     let bounds = new mapboxgl.LngLatBounds();
-
-    //     coordinates.forEach((coord) => {
-    //         bounds.extend(coord);
-    //     });
-
-    //     return bounds;
-    // }
-
+    $: data = {
+        "age": [
+            {label: '0 to 9 years', value: 10.7},
+            {label: '9 to 17 years', value: 7.9},
+            {label: '18 to 24 years', value: 13.7},
+            {label: '25 to 34 years', value: 17.0},
+            {label: '35 to 44 years', value: 13.4},
+            {label: '45 to 54 years', value: 11.3},
+            {label: '55 to 64 years', value: 9.6},
+            {label: '65 to 74 years', value: 8.8},
+            {label: '75 to 84 years', value: 5.0},
+            {label: '85 years and over', value: 2.1},
+        ],
+        "race": [
+            {label: 'white', value: white},
+            {label: 'black', value: black},
+            {label: 'hispanic', value: hispanic},
+            {label: 'native', value: native},
+            {label: 'asian', value: asian},
+            {label: 'pi', value: pi},
+            {label: 'other_race', value: other_race},
+            {label: 'two_or_more', value: two_or_more},
+        ],
+        "gender": [
+            {label: 'male', value: male},
+            {label: 'female', value: female},
+        ],
+        "mean household income": [
+            {label: '22229 $', value: 20},
+            {label: '77063 $', value: 20},
+            {label: '132843 $', value: 20},
+            {label: '224746 $', value: 20},
+            {label: '599726 $', value: 20},
+            {label: '1099668 $', value: 5},
+        ],
+        "vehicles per household": [
+            {label: 'zero', value: zero},
+            {label: 'one', value: one},
+            {label: 'two', value: two},
+            {label: 'three', value: three},
+            {label: 'four', value: four},
+            {label: 'five', value: five},
+        ],
+        "mode of transportation": [
+            {label: 'car', value: car},
+            {label: 'public_transport', value: public_transport},
+            {label: 'motorcycle', value: motorcycle},
+            {label: 'bicycle', value: bicycle},
+            {label: 'walking', value: walking},
+            {label: 'other_mode_of_transportation', value: other_mode_of_transportation},
+            {label: 'work_from_home', value: work_from_home}
+        ]
+    }
+    let activeSelection = "age"
+    $: current_data = data[activeSelection]
 </script>
 
 <div class="slide">
@@ -214,65 +147,22 @@
     <p>blablabla</p>
     <p>blablabla</p>
     <p>blablabla</p>
-    <h2>WHAT'S THE HOUSING MIX?</h2>
-    <div style="display: flex; align-items: center; gap: 10px;">
-        <label style="cursor: pointer;">
-          <input type="radio" value="zoning" bind:group={selectedComponent} />
-          Zoning
-        </label>
-        <label style="cursor: pointer;">
-          <input type="radio" value="usage" bind:group={selectedComponent} />
-          Usage
-        </label>
-      </div>
-      
-      <div style="display: flex; align-items: center; gap: 10px;">
-        <div id="treeMap">
-            {#if selectedComponent == 'zoning'}
-                <!-- {console.log("HEREHEEE")}
-                {console.log(transformedStopZoneDataForMunicipality)} -->
-                <Treemap data={transformedStopZoneDataForMunicipality} />
-            {:else if selectedComponent == 'usage'}
-                <TreemapUsage data={transformedStopZoneUsageDataForMunicipality} />
-            {/if}
-        </div>
+    <h2>WHO LIVES HERE? - let's find out</h2>
+    <ForceGraphSelector bind:activeSelection></ForceGraphSelector>
 
-        <!-- <div id="treeMapUsage" class={treeMapUsageVisibility}>
-            <h2>{treeMapUsageHeaderText}</h2>
-            {#if transformedStopZoneUsageDataForMunicipality != undefined}
-                <TreemapUsage data={transformedStopZoneUsageDataForMunicipality} />
-            {:else}
-                <p>Select A Municipality to View Usage Breakdown</p>
-            {/if}
-        </div> -->
-      
-        <div id="treeMapFuture">
-            <h2>{treeMapFutureHeaderText}</h2>
-            {#if transformedStopZoneDataForMunicipality != undefined}
-                <TreemapFuture data={transformedStopZoneFutureDataForMunicipality} />
-            {/if}
-        </div>
-      </div>
-      
-      <!-- <div>
-          {#if suggestions.length}
-              <ul>
-                  {#each suggestions as suggestion}
-                      <li on:click={() => selectSuggestion(suggestion)}>
-                          {suggestion.Name}
-                      </li>
-                  {/each}
-              </ul>
-          {/if}
-      </div> -->
-      
-
-    
+    {#key current_data} <!--forcing visualization to re-render when data is updated -->
+        <ForceGraph
+                cssHeight=50
+                cssWidth=40
+                data={ current_data }
+                selectedCategory = { activeSelection }
+        />
+    {/key}
 </div>
 
 <style>
     .slide {
-        height: 100vh; 
+        height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -290,14 +180,4 @@
     h3 {
         font-weight: normal;
     }
-
-
-.hidden {
-    display: none;
-}
-
-.visible {
-    display: block;
-}
-
 </style>

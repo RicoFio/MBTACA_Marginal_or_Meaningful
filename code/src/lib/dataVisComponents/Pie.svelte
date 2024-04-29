@@ -6,9 +6,7 @@
     let sliceGenerator = d3.pie().value(d => d.value);
     let arcData;
     $: {
-        console.log("PASSED DATA", data)
         arcData = sliceGenerator(data);
-        console.log("ARC DATA", arcData)
     }
     $: arcs = arcData.map(d => arcGenerator(d));
     export let selectedIndex = -1;
@@ -16,7 +14,6 @@
     let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
     function toggleWedge (index, event) {
-        console.log(event)
         if (!event.key || event.key === "Enter") {
             selectedIndex = selectedIndex===index?-1:index
         }
