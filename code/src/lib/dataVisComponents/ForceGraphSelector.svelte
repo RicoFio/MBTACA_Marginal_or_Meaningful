@@ -8,7 +8,7 @@
 	</script>
 	
 	<div class="radio-container">
-		{#each ['age', 'race', 'gender', 'income', 'cars per household', 'mode of transportation'] as category}
+		{#each ['age', 'race', 'gender', 'mean household income', 'vehicles per household', 'mode of transportation'] as category}
 		<label class={isSelected(category)}>
 			<input type="radio" bind:group={activeSelection} name="selector" value={category}>
 			{category.replace(/_/g, ' ').toUpperCase()} <!-- Improved readability -->

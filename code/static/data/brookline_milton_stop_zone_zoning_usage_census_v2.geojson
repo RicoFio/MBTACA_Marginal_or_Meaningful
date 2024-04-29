@@ -1,0 +1,4205 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "stop_name": "Beaconsfield",
+                "weighted_total_population": 7826.0,
+                "weighted_total_population_density_permile": 26247.5,
+                "weighted_total_population_male": 3730.0,
+                "weighted_total_population_female": 4095.5,
+                "weighted_pct_population_male": 37.87063065896745,
+                "weighted_pct_population_female": 40.999161498274489,
+                "weighted_pct_not_hispanic_latino": 71.551400913917007,
+                "weighted_pct_not_hispanic_latino_white": 52.549343972603879,
+                "weighted_pct_not_hispanic_latino_black": 1.2121648616143632,
+                "weighted_pct_not_hispanic_latino_native": 0.16097439853314688,
+                "weighted_pct_not_hispanic_latino_asian": 10.933628312337067,
+                "weighted_pct_not_hispanic_latino_pi": 0.0,
+                "weighted_pct_not_hispanic_latino_other": 0.16084189956796896,
+                "weighted_pct_not_hispanic_latino_2+": 6.5307663941342131,
+                "weighted_pct_hispanic_latino": 7.3183912433249283,
+                "weighted_pct_hispanic_latino_white": 2.7066225869490856,
+                "weighted_pct_hispanic_latino_black": 0.14291453280399341,
+                "weighted_pct_hispanic_latino_native": 0.24278570875105232,
+                "weighted_pct_hispanic_latino_asian": 0.0,
+                "weighted_pct_hispanic_latino_pi": 0.0,
+                "weighted_pct_hispanic_latino_other": 0.42128376528468148,
+                "weighted_pct_hispanic_latino_2+": 3.8062454821443006,
+                "weighted_median_hh_income": 224853.0,
+                "pct_workers_car_van": 25.28838896067267,
+                "pct_workers_drive_alone": 22.860190769997658,
+                "pct_workers_drive_carpooled": 2.4281356561263681,
+                "pct_workers_public_transportation": 20.265454979726044,
+                "pct_workers_motorcycle": 0.0,
+                "pct_workers_bicycle": 3.0799699333020012,
+                "pct_workers_walked": 7.5868715973291607,
+                "pct_workers_other": 0.29546861308452482,
+                "pct_workers_wfh": 22.357168952022565,
+                "pct_hh_0_vehs": 16.571522628015419,
+                "pct_hh_1_vehs": 39.686078366619583,
+                "pct_hh_2_vehs": 18.872724383006059,
+                "pct_hh_3_vehs": 3.0203185052163777,
+                "pct_hh_4_vehs": 0.72054657244403697,
+                "pct_hh_5_vehs": 0.0,
+                "municipality": "Brookline",
+                "pctZonedAsSF": 22.296395193591458,
+                "isZonedAsCommercial": 1.2349799732977305,
+                "pctZonedAsMultifamily": 18.391188251001335,
+                "pctUsedAsSF": 21.094793057409881,
+                "pctUsedAsCommercial": 1.6355140186915886,
+                "pctUsedAsDuplex": 2.7703604806408544,
+                "pctUsedAsTriplex": 2.2696929238985315,
+                "pctUsedAsMultiBuildings1Lot": 0.40053404539385851,
+                "pctUsedAsAptUpTo30Units": 2.9372496662216285,
+                "pctUsedAsAptOver30Units": 0.0,
+                "pctUsedAsCoopApt": 0.0,
+                "pctUsedAsOtherMultifamily": 2.3364485981308412,
+                "pctMustUpzone": 22.296395193591458,
+                "pctWillChange": 16.7890520694259,
+                "pctFutureZonedAsSF": 0.0,
+                "pctFutureZonedAsMulti": 40.687583444592789
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            230464.884145401068963,
+                            898413.54684407718014
+                        ],
+                        [
+                            230448.542913256707834,
+                            898571.205712061841041
+                        ],
+                        [
+                            230402.569560711883241,
+                            898720.961022828123532
+                        ],
+                        [
+                            230326.98021107527893,
+                            898859.48109393985942
+                        ],
+                        [
+                            230226.744373947323766,
+                            898981.234369091456756
+                        ],
+                        [
+                            230103.534464232536266,
+                            899080.675184213090688
+                        ],
+                        [
+                            229963.956645930593368,
+                            899154.500575158046558
+                        ],
+                        [
+                            229812.968129946762929,
+                            899199.400215263594873
+                        ],
+                        [
+                            229655.516031888691941,
+                            899214.284937606309541
+                        ],
+                        [
+                            229498.195144803292351,
+                            899198.072083804057911
+                        ],
+                        [
+                            229346.766872359294211,
+                            899151.896483303629793
+                        ],
+                        [
+                            229207.816991367493756,
+                            899076.895908088888973
+                        ],
+                        [
+                            229086.274628379731439,
+                            898976.422349572647363
+                        ],
+                        [
+                            228986.245723130617989,
+                            898853.82416975137312
+                        ],
+                        [
+                            228912.652021620509913,
+                            898714.674567350768484
+                        ],
+                        [
+                            228867.119930544693489,
+                            898564.533257519244216
+                        ],
+                        [
+                            228852.933773891418241,
+                            898406.745491667767055
+                        ],
+                        [
+                            228868.410867768077878,
+                            898250.190334118320607
+                        ],
+                        [
+                            228915.178627818182576,
+                            898100.428517884109169
+                        ],
+                        [
+                            228990.748125652666204,
+                            897961.89346999314148
+                        ],
+                        [
+                            229090.976863698277157,
+                            897840.12281112826895
+                        ],
+                        [
+                            229213.369784935493954,
+                            897740.661062455270439
+                        ],
+                        [
+                            229353.791798565449426,
+                            897666.824411823181435
+                        ],
+                        [
+                            229504.810178407933563,
+                            897621.915043402230367
+                        ],
+                        [
+                            229662.297585392545443,
+                            897607.02699343522545
+                        ],
+                        [
+                            229819.653752069250913,
+                            897623.243472699541599
+                        ],
+                        [
+                            229970.287786673754454,
+                            897669.425612546969205
+                        ],
+                        [
+                            230109.257545577391284,
+                            897744.441057070158422
+                        ],
+                        [
+                            230230.806811646179995,
+                            897844.932064313208684
+                        ],
+                        [
+                            230330.828589654294774,
+                            897967.547713232343085
+                        ],
+                        [
+                            230404.402226094767684,
+                            898106.711958096711896
+                        ],
+                        [
+                            230449.90457169507863,
+                            898256.86308705364354
+                        ],
+                        [
+                            230464.884145401068963,
+                            898413.54684407718014
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "stop_name": "Brandon Hall",
+                "weighted_total_population": 11004.5,
+                "weighted_total_population_density_permile": 50638.0,
+                "weighted_total_population_male": 4970.0,
+                "weighted_total_population_female": 6035.0,
+                "weighted_pct_population_male": 28.27429780242192,
+                "weighted_pct_population_female": 34.696082886039434,
+                "weighted_pct_not_hispanic_latino": 59.544213269676831,
+                "weighted_pct_not_hispanic_latino_white": 46.62439102609337,
+                "weighted_pct_not_hispanic_latino_black": 0.38890726069896908,
+                "weighted_pct_not_hispanic_latino_native": 0.0032681520528203608,
+                "weighted_pct_not_hispanic_latino_asian": 9.7738735737362781,
+                "weighted_pct_not_hispanic_latino_pi": 0.0,
+                "weighted_pct_not_hispanic_latino_other": 0.19475006396238864,
+                "weighted_pct_not_hispanic_latino_2+": 2.5592641223535875,
+                "weighted_pct_hispanic_latino": 3.4261674187845221,
+                "weighted_pct_hispanic_latino_white": 0.57326949170788633,
+                "weighted_pct_hispanic_latino_black": 0.01397688362813008,
+                "weighted_pct_hispanic_latino_native": 0.47971178570258799,
+                "weighted_pct_hispanic_latino_asian": 0.0,
+                "weighted_pct_hispanic_latino_pi": 0.0,
+                "weighted_pct_hispanic_latino_other": 0.69718880915457115,
+                "weighted_pct_hispanic_latino_2+": 1.6623673916414297,
+                "weighted_median_hh_income": 295067.5,
+                "pct_workers_car_van": 16.309448668495712,
+                "pct_workers_drive_alone": 15.194114815898555,
+                "pct_workers_drive_carpooled": 1.1153338525971574,
+                "pct_workers_public_transportation": 16.803467706420747,
+                "pct_workers_motorcycle": 0.0,
+                "pct_workers_bicycle": 3.8044679780216835,
+                "pct_workers_walked": 11.095551698074612,
+                "pct_workers_other": 0.75498336093612495,
+                "pct_workers_wfh": 14.202220347291902,
+                "pct_hh_0_vehs": 20.085319578763521,
+                "pct_hh_1_vehs": 28.986493124481974,
+                "pct_hh_2_vehs": 11.806744844379446,
+                "pct_hh_3_vehs": 1.8772157577374617,
+                "pct_hh_4_vehs": 0.14741046280644687,
+                "pct_hh_5_vehs": 0.068719677838306237,
+                "municipality": "Brookline",
+                "pctZonedAsSF": 19.792814635221511,
+                "isZonedAsCommercial": 2.0718536477848799,
+                "pctZonedAsMultifamily": 14.216442583204762,
+                "pctUsedAsSF": 14.414811549482037,
+                "pctUsedAsCommercial": 2.6890015428697378,
+                "pctUsedAsDuplex": 5.5984130482697818,
+                "pctUsedAsTriplex": 1.9836896627727574,
+                "pctUsedAsMultiBuildings1Lot": 0.17632797002424511,
+                "pctUsedAsAptUpTo30Units": 2.733083535375799,
+                "pctUsedAsAptOver30Units": 0.044081992506061277,
+                "pctUsedAsCoopApt": 0.0,
+                "pctUsedAsOtherMultifamily": 1.2342957901697156,
+                "pctMustUpzone": 19.792814635221511,
+                "pctWillChange": 10.778047167731982,
+                "pctFutureZonedAsSF": 0.0,
+                "pctFutureZonedAsMulti": 34.009257218426271
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            231388.980575739813503,
+                            898909.685210357187316
+                        ],
+                        [
+                            231373.448649910686072,
+                            899066.23500610596966
+                        ],
+                        [
+                            231326.62974932056386,
+                            899217.091489866259508
+                        ],
+                        [
+                            231251.851390417141374,
+                            899355.605420074658468
+                        ],
+                        [
+                            231150.782495127554284,
+                            899477.341970618348569
+                        ],
+                        [
+                            231028.396950337104499,
+                            899575.659567709895782
+                        ],
+                        [
+                            230887.995163048966788,
+                            899649.463042043847963
+                        ],
+                        [
+                            230737.011264716740698,
+                            899694.342875267844647
+                        ],
+                        [
+                            230579.568200221459847,
+                            899709.206912015913986
+                        ],
+                        [
+                            230422.260444756626384,
+                            899692.973359844414517
+                        ],
+                        [
+                            230271.672810001531616,
+                            899646.781355724902824
+                        ],
+                        [
+                            230132.742550050606951,
+                            899571.762424439773895
+                        ],
+                        [
+                            230010.393235051247757,
+                            899472.380011567845941
+                        ],
+                        [
+                            229911.211520112148719,
+                            899349.772070013917983
+                        ],
+                        [
+                            229836.817353101709159,
+                            899210.609152333578095
+                        ],
+                        [
+                            229792.13701607476105,
+                            899059.354452632716857
+                        ],
+                        [
+                            229777.143953903694637,
+                            898902.671932002878748
+                        ],
+                        [
+                            229793.464706268365262,
+                            898746.122153614182025
+                        ],
+                        [
+                            229839.424904900224647,
+                            898596.362851417856291
+                        ],
+                        [
+                            229915.00740860417136,
+                            898457.837608022615314
+                        ],
+                        [
+                            230015.24521242431365,
+                            898336.080011687125079
+                        ],
+                        [
+                            230138.466827616328374,
+                            898236.6377939642407
+                        ],
+                        [
+                            230278.064637315284926,
+                            898162.816001973696984
+                        ],
+                        [
+                            230429.07837697933428,
+                            898117.926445712684654
+                        ],
+                        [
+                            230586.556725997332251,
+                            898103.059086394845508
+                        ],
+                        [
+                            230743.899735739862081,
+                            898119.296268057427369
+                        ],
+                        [
+                            230894.517126086459029,
+                            898165.498254527221434
+                        ],
+                        [
+                            231034.291374194115633,
+                            898240.535677570616826
+                        ],
+                        [
+                            231155.818846722017042,
+                            898341.042772968765348
+                        ],
+                        [
+                            231254.993313861166826,
+                            898463.668034021276981
+                        ],
+                        [
+                            231329.36750143324025,
+                            898602.845755466958508
+                        ],
+                        [
+                            231374.02274614124326,
+                            898752.999335418338887
+                        ],
+                        [
+                            231388.980575739813503,
+                            898909.685210357187316
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "stop_name": "Brookline Hills",
+                "weighted_total_population": 11263.0,
+                "weighted_total_population_density_permile": 46390.0,
+                "weighted_total_population_male": 5128.5,
+                "weighted_total_population_female": 6135.0,
+                "weighted_pct_population_male": 46.267473827380151,
+                "weighted_pct_population_female": 53.732526172619941,
+                "weighted_pct_not_hispanic_latino": 93.374403627316752,
+                "weighted_pct_not_hispanic_latino_white": 72.241351665918586,
+                "weighted_pct_not_hispanic_latino_black": 2.0629643790612731,
+                "weighted_pct_not_hispanic_latino_native": 0.041401093053646032,
+                "weighted_pct_not_hispanic_latino_asian": 13.872415426715229,
+                "weighted_pct_not_hispanic_latino_pi": 0.0,
+                "weighted_pct_not_hispanic_latino_other": 0.49373396809071884,
+                "weighted_pct_not_hispanic_latino_2+": 4.6642908988135234,
+                "weighted_pct_hispanic_latino": 6.6255963726833356,
+                "weighted_pct_hispanic_latino_white": 1.7716420075607462,
+                "weighted_pct_hispanic_latino_black": 0.34666464457343571,
+                "weighted_pct_hispanic_latino_native": 0.27277892202679899,
+                "weighted_pct_hispanic_latino_asian": 0.0,
+                "weighted_pct_hispanic_latino_pi": 0.0,
+                "weighted_pct_hispanic_latino_other": 1.0409069334322041,
+                "weighted_pct_hispanic_latino_2+": 3.1898026103382655,
+                "weighted_median_hh_income": 373850.0,
+                "pct_workers_car_van": 31.214436902947757,
+                "pct_workers_drive_alone": 28.29011721285989,
+                "pct_workers_drive_carpooled": 2.9243196900878705,
+                "pct_workers_public_transportation": 23.666432435058475,
+                "pct_workers_motorcycle": 0.0,
+                "pct_workers_bicycle": 8.3995038892573994,
+                "pct_workers_walked": 13.625014438806135,
+                "pct_workers_other": 1.4892835288303394,
+                "pct_workers_wfh": 21.607748396397533,
+                "pct_hh_0_vehs": 22.568250116401309,
+                "pct_hh_1_vehs": 49.904452420866093,
+                "pct_hh_2_vehs": 23.502646236037226,
+                "pct_hh_3_vehs": 3.7511294702666662,
+                "pct_hh_4_vehs": 0.25260280229431797,
+                "pct_hh_5_vehs": 0.016769424538660385,
+                "municipality": "Brookline",
+                "pctZonedAsSF": 34.296657381615596,
+                "isZonedAsCommercial": 4.5612813370473537,
+                "pctZonedAsMultifamily": 10.132311977715878,
+                "pctUsedAsSF": 26.532033426183844,
+                "pctUsedAsCommercial": 3.0988857938718661,
+                "pctUsedAsDuplex": 6.6155988857938723,
+                "pctUsedAsTriplex": 3.4818941504178276,
+                "pctUsedAsMultiBuildings1Lot": 0.4178272980501393,
+                "pctUsedAsAptUpTo30Units": 1.1838440111420612,
+                "pctUsedAsAptOver30Units": 0.034818941504178275,
+                "pctUsedAsCoopApt": 0.0,
+                "pctUsedAsOtherMultifamily": 1.8105849582172702,
+                "pctMustUpzone": 34.296657381615596,
+                "pctWillChange": 21.483286908077996,
+                "pctFutureZonedAsSF": 0.0,
+                "pctFutureZonedAsMulti": 44.428969359331475
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            231596.069446378503926,
+                            897937.575943103991449
+                        ],
+                        [
+                            231580.53095352058881,
+                            898094.124984886846505
+                        ],
+                        [
+                            231533.701315200072713,
+                            898244.979802853777073
+                        ],
+                        [
+                            231458.908695876365528,
+                            898383.491266286699101
+                        ],
+                        [
+                            231357.822373486065771,
+                            898505.224606948788278
+                        ],
+                        [
+                            231235.417110855516512,
+                            898603.538410562323406
+                        ],
+                        [
+                            231095.817877040943131,
+                            898677.341253063292243
+                        ],
+                        [
+                            230943.987734778260347,
+                            898722.212907035485841
+                        ],
+                        [
+                            230786.522453350335127,
+                            898737.072277598665096
+                        ],
+                        [
+                            230630.017446645128075,
+                            898720.837714079767466
+                        ],
+                        [
+                            230478.586198869365035,
+                            898674.637772230897099
+                        ],
+                        [
+                            230339.638823182904162,
+                            898599.614892838173546
+                        ],
+                        [
+                            230218.099471361289034,
+                            898500.232609408441931
+                        ],
+                        [
+                            230118.083393480017548,
+                            898377.618438252597116
+                        ],
+                        [
+                            230044.506983688770561,
+                            898238.457117010024376
+                        ],
+                        [
+                            229999.000607965048403,
+                            898087.197866391390562
+                        ],
+                        [
+                            229984.009895939205308,
+                            897930.515200891066343
+                        ],
+                        [
+                            230000.337329478614265,
+                            897773.966198649257421
+                        ],
+                        [
+                            230047.132317846961087,
+                            897624.212054456584156
+                        ],
+                        [
+                            230121.904998784913914,
+                            897485.68577429256402
+                        ],
+                        [
+                            230222.984344435011735,
+                            897363.934901205939241
+                        ],
+                        [
+                            230345.401595818024362,
+                            897264.49295500991866
+                        ],
+                        [
+                            230485.020812656846829,
+                            897190.675412151147611
+                        ],
+                        [
+                            230636.880976045475109,
+                            897145.793979142792523
+                        ],
+                        [
+                            230793.557288296229672,
+                            897130.927694163518026
+                        ],
+                        [
+                            230950.921618180465885,
+                            897147.169480249052867
+                        ],
+                        [
+                            231102.382800267369021,
+                            897193.379463740158826
+                        ],
+                        [
+                            231241.350029438413912,
+                            897268.417217976180837
+                        ],
+                        [
+                            231362.891487190849148,
+                            897368.927705723210238
+                        ],
+                        [
+                            231462.900435018178541,
+                            897491.559347513364628
+                        ],
+                        [
+                            231536.456777396291727,
+                            897630.735310262301937
+                        ],
+                        [
+                            231581.938146236323519,
+                            897780.89362580946181
+                        ],
+                        [
+                            231596.069446378503926,
+                            897937.575943103991449
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "stop_name": "Brookline Village",
+                "weighted_total_population": 13440.0,
+                "weighted_total_population_density_permile": 68134.0,
+                "weighted_total_population_male": 6152.5,
+                "weighted_total_population_female": 7288.0,
+                "weighted_pct_population_male": 40.883081634431235,
+                "weighted_pct_population_female": 50.747081307930458,
+                "weighted_pct_not_hispanic_latino": 85.358988756615446,
+                "weighted_pct_not_hispanic_latino_white": 56.457662894102022,
+                "weighted_pct_not_hispanic_latino_black": 7.5453435555801001,
+                "weighted_pct_not_hispanic_latino_native": 0.0,
+                "weighted_pct_not_hispanic_latino_asian": 17.230171319641734,
+                "weighted_pct_not_hispanic_latino_pi": 0.0,
+                "weighted_pct_not_hispanic_latino_other": 0.40765063201716922,
+                "weighted_pct_not_hispanic_latino_2+": 3.7183073831984572,
+                "weighted_pct_hispanic_latino": 6.2711741857462613,
+                "weighted_pct_hispanic_latino_white": 1.415804126181665,
+                "weighted_pct_hispanic_latino_black": 0.70627369266111417,
+                "weighted_pct_hispanic_latino_native": 0.16066489381469401,
+                "weighted_pct_hispanic_latino_asian": 0.0095400213480346472,
+                "weighted_pct_hispanic_latino_pi": 0.0,
+                "weighted_pct_hispanic_latino_other": 1.6495499710115686,
+                "weighted_pct_hispanic_latino_2+": 2.3264529103751759,
+                "weighted_median_hh_income": 351805.0,
+                "pct_workers_car_van": 23.197881236128993,
+                "pct_workers_drive_alone": 21.210488059193686,
+                "pct_workers_drive_carpooled": 1.9873931769353099,
+                "pct_workers_public_transportation": 20.644942267239593,
+                "pct_workers_motorcycle": 0.0,
+                "pct_workers_bicycle": 5.8072418215820445,
+                "pct_workers_walked": 19.516894975125982,
+                "pct_workers_other": 1.2277613389786119,
+                "pct_workers_wfh": 21.239005214251243,
+                "pct_hh_0_vehs": 29.29681405851823,
+                "pct_hh_1_vehs": 44.19185708671278,
+                "pct_hh_2_vehs": 13.831888555740484,
+                "pct_hh_3_vehs": 1.5589653670557566,
+                "pct_hh_4_vehs": 0.069888883397936585,
+                "pct_hh_5_vehs": 2.6750124980912604,
+                "municipality": "Brookline",
+                "pctZonedAsSF": 19.803868155815856,
+                "isZonedAsCommercial": 4.2222827567420325,
+                "pctZonedAsMultifamily": 10.051757014437483,
+                "pctUsedAsSF": 13.020975211114138,
+                "pctUsedAsCommercial": 3.4323072732225555,
+                "pctUsedAsDuplex": 4.7126123672023974,
+                "pctUsedAsTriplex": 2.5333696540452193,
+                "pctUsedAsMultiBuildings1Lot": 0.19068373740125305,
+                "pctUsedAsAptUpTo30Units": 1.2258240261509126,
+                "pctUsedAsAptOver30Units": 0.08172160174339417,
+                "pctUsedAsCoopApt": 0.0,
+                "pctUsedAsOtherMultifamily": 2.1247616453282485,
+                "pctMustUpzone": 19.803868155815856,
+                "pctWillChange": 11.195859438845002,
+                "pctFutureZonedAsSF": 0.0,
+                "pctFutureZonedAsMulti": 29.85562517025334
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            232391.533077626052545,
+                            898087.818242058972828
+                        ],
+                        [
+                            232375.153039539814927,
+                            898244.361773292999715
+                        ],
+                        [
+                            232329.131404160958482,
+                            898395.215129798860289
+                        ],
+                        [
+                            232253.50055437599076,
+                            898533.714387162472121
+                        ],
+                        [
+                            232153.226633977872552,
+                            898655.440104651497677
+                        ],
+                        [
+                            232029.983654974959791,
+                            898754.84708052885253
+                        ],
+                        [
+                            231890.384038804622833,
+                            898827.523412517621182
+                        ],
+                        [
+                            231739.371019342594082,
+                            898873.492388638667762
+                        ],
+                        [
+                            231581.912354935717303,
+                            898887.223193589947186
+                        ],
+                        [
+                            231424.583436416665791,
+                            898872.077983148046769
+                        ],
+                        [
+                            231273.989602235669736,
+                            898824.753825266612694
+                        ],
+                        [
+                            231134.224643407738768,
+                            898750.822303172666579
+                        ],
+                        [
+                            231012.704000175406691,
+                            898650.315501381759532
+                        ],
+                        [
+                            230913.527983929234324,
+                            898527.69361421756912
+                        ],
+                        [
+                            230839.144774183951085,
+                            898388.520312766195275
+                        ],
+                        [
+                            230794.480600099137519,
+                            898237.259486226714216
+                        ],
+                        [
+                            230779.507959689828567,
+                            898080.575080946087837
+                        ],
+                        [
+                            230795.8527963104425,
+                            897924.027883015223779
+                        ],
+                        [
+                            230841.839601958839921,
+                            897774.275376896024682
+                        ],
+                        [
+                            230917.450604062061757,
+                            897635.761135735665448
+                        ],
+                        [
+                            231017.717430150951259,
+                            897514.018030729377642
+                        ],
+                        [
+                            231140.967609469778836,
+                            897414.59354639146477
+                        ],
+                        [
+                            231280.592280527809635,
+                            897340.791782435378991
+                        ],
+                        [
+                            231431.630126957490575,
+                            897295.923836322734132
+                        ],
+                        [
+                            231589.129092017479707,
+                            897281.078961494844407
+                        ],
+                        [
+                            231746.488298271258827,
+                            897297.338558982592076
+                        ],
+                        [
+                            231897.116852529346943,
+                            897343.561954409815371
+                        ],
+                        [
+                            232036.072686279192567,
+                            897418.615437994594686
+                        ],
+                        [
+                            232157.600227798597189,
+                            897519.139692262280732
+                        ],
+                        [
+                            232257.593203739554156,
+                            897641.782672656467184
+                        ],
+                        [
+                            232331.956431958707981,
+                            897780.970778945251368
+                        ],
+                        [
+                            232376.595670215057908,
+                            897931.130486559588462
+                        ],
+                        [
+                            232391.533077626052545,
+                            898087.818242058972828
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "stop_name": "Capen Street",
+                "weighted_total_population": 6665.0,
+                "weighted_total_population_density_permile": 12352.5,
+                "weighted_total_population_male": 3001.0,
+                "weighted_total_population_female": 3664.0,
+                "weighted_pct_population_male": 45.941859217273617,
+                "weighted_pct_population_female": 54.058140782726412,
+                "weighted_pct_not_hispanic_latino": 89.26890531493018,
+                "weighted_pct_not_hispanic_latino_white": 41.291807095291283,
+                "weighted_pct_not_hispanic_latino_black": 38.930041153634249,
+                "weighted_pct_not_hispanic_latino_native": 0.0,
+                "weighted_pct_not_hispanic_latino_asian": 2.999656752452097,
+                "weighted_pct_not_hispanic_latino_pi": 0.0,
+                "weighted_pct_not_hispanic_latino_other": 0.66744149727665292,
+                "weighted_pct_not_hispanic_latino_2+": 5.384873262827357,
+                "weighted_pct_hispanic_latino": 10.731094685069868,
+                "weighted_pct_hispanic_latino_white": 2.6990120397915414,
+                "weighted_pct_hispanic_latino_black": 0.46200804324325395,
+                "weighted_pct_hispanic_latino_native": 0.015807882107716286,
+                "weighted_pct_hispanic_latino_asian": 0.70638067097558066,
+                "weighted_pct_hispanic_latino_pi": 0.0,
+                "weighted_pct_hispanic_latino_other": 3.4701323502894503,
+                "weighted_pct_hispanic_latino_2+": 3.3743946978706032,
+                "weighted_median_hh_income": 127378.0,
+                "pct_workers_car_van": 55.369969214212851,
+                "pct_workers_drive_alone": 49.996868964682854,
+                "pct_workers_drive_carpooled": 5.373100249529994,
+                "pct_workers_public_transportation": 18.082067306786371,
+                "pct_workers_motorcycle": 0.0,
+                "pct_workers_bicycle": 0.043032567959894338,
+                "pct_workers_walked": 3.2839376746127034,
+                "pct_workers_other": 2.9455644359359709,
+                "pct_workers_wfh": 20.275768528067807,
+                "pct_hh_0_vehs": 14.920147486971953,
+                "pct_hh_1_vehs": 36.521608254307274,
+                "pct_hh_2_vehs": 33.409663878984126,
+                "pct_hh_3_vehs": 10.912737510016699,
+                "pct_hh_4_vehs": 3.8923084377791675,
+                "pct_hh_5_vehs": 0.34365815399665628,
+                "municipality": "Milton",
+                "pctZonedAsSF": 0.0,
+                "isZonedAsCommercial": 0.0,
+                "pctZonedAsMultifamily": 0.0,
+                "pctUsedAsSF": 82.225237449118055,
+                "pctUsedAsCommercial": 0.27137042062415195,
+                "pctUsedAsDuplex": 12.483039348710991,
+                "pctUsedAsTriplex": 0.13568521031207598,
+                "pctUsedAsMultiBuildings1Lot": 0.13568521031207598,
+                "pctUsedAsAptUpTo30Units": 0.27137042062415195,
+                "pctUsedAsAptOver30Units": 0.0,
+                "pctUsedAsCoopApt": 0.0,
+                "pctUsedAsOtherMultifamily": 0.40705563093622793,
+                "pctMustUpzone": 0.0,
+                "pctWillChange": 0.0,
+                "pctFutureZonedAsSF": 0.0,
+                "pctFutureZonedAsMulti": 0.0
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            234866.77968317703926,
+                            890877.451685530133545
+                        ],
+                        [
+                            234850.329244305961765,
+                            891033.987351310905069
+                        ],
+                        [
+                            234804.208702925068792,
+                            891184.822475524852052
+                        ],
+                        [
+                            234729.277690365037415,
+                            891323.297307466855273
+                        ],
+                        [
+                            234628.039620941184694,
+                            891443.871268108254299
+                        ],
+                        [
+                            234505.460891489405185,
+                            891543.237549687968567
+                        ],
+                        [
+                            234365.687519482482458,
+                            891616.974462530110031
+                        ],
+                        [
+                            234214.509008812136017,
+                            891661.778894001734443
+                        ],
+                        [
+                            234056.878466644615401,
+                            891676.564792589982972
+                        ],
+                        [
+                            233899.398445298662409,
+                            891660.25364616792649
+                        ],
+                        [
+                            233748.660747189598624,
+                            891613.987832256942056
+                        ],
+                        [
+                            233609.60773388762027,
+                            891538.901299980701879
+                        ],
+                        [
+                            233487.996662261459278,
+                            891438.353052423102781
+                        ],
+                        [
+                            233388.755488515394973,
+                            891316.808621956733987
+                        ],
+                        [
+                            233314.343553906743182,
+                            891177.610995314782485
+                        ],
+                        [
+                            233269.68533128866693,
+                            891026.336469413596205
+                        ],
+                        [
+                            233254.751004957099212,
+                            890869.648890144308098
+                        ],
+                        [
+                            233271.166280847683083,
+                            890713.10954127239529
+                        ],
+                        [
+                            233317.256904919573572,
+                            890562.2644955040887
+                        ],
+                        [
+                            233392.993056108622113,
+                            890423.778728378587402
+                        ],
+                        [
+                            233493.399325460864929,
+                            890303.183288527885452
+                        ],
+                        [
+                            233615.985108269785997,
+                            890203.79959351522848
+                        ],
+                        [
+                            233755.778478613268817,
+                            890130.047972489148378
+                        ],
+                        [
+                            233907.811916551203467,
+                            890085.237782560288906
+                        ],
+                        [
+                            234064.652662874053931,
+                            890070.444594451691955
+                        ],
+                        [
+                            234222.167936146084685,
+                            890086.759396560955793
+                        ],
+                        [
+                            234372.93538439142867,
+                            890133.035232656402513
+                        ],
+                        [
+                            234512.008252710511442,
+                            890208.136666021542624
+                        ],
+                        [
+                            234633.626208792789839,
+                            890308.702394475461915
+                        ],
+                        [
+                            234732.86035063143936,
+                            890430.264165322761983
+                        ],
+                        [
+                            234807.252343167026993,
+                            890569.476606361800805
+                        ],
+                        [
+                            234851.880553830298595,
+                            890720.760763737838715
+                        ],
+                        [
+                            234866.77968317703926,
+                            890877.451685530133545
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "stop_name": "Central Avenue",
+                "weighted_total_population": 6213.5,
+                "weighted_total_population_density_permile": 12679.0,
+                "weighted_total_population_male": 3005.0,
+                "weighted_total_population_female": 3209.0,
+                "weighted_pct_population_male": 47.95507870460446,
+                "weighted_pct_population_female": 52.044921295395511,
+                "weighted_pct_not_hispanic_latino": 91.703445890718911,
+                "weighted_pct_not_hispanic_latino_white": 48.78464353993887,
+                "weighted_pct_not_hispanic_latino_black": 32.68247951998913,
+                "weighted_pct_not_hispanic_latino_native": 0.048870405617960452,
+                "weighted_pct_not_hispanic_latino_asian": 4.4909684545282289,
+                "weighted_pct_not_hispanic_latino_pi": 0.0,
+                "weighted_pct_not_hispanic_latino_other": 0.18124985418317832,
+                "weighted_pct_not_hispanic_latino_2+": 5.5198481548401475,
+                "weighted_pct_hispanic_latino": 8.296554109281054,
+                "weighted_pct_hispanic_latino_white": 2.4978647520555732,
+                "weighted_pct_hispanic_latino_black": 0.61755484114084458,
+                "weighted_pct_hispanic_latino_native": 0.063351698464445716,
+                "weighted_pct_hispanic_latino_asian": 0.16187080924345093,
+                "weighted_pct_hispanic_latino_pi": 0.0,
+                "weighted_pct_hispanic_latino_other": 2.576076310284702,
+                "weighted_pct_hispanic_latino_2+": 2.372451595600233,
+                "weighted_median_hh_income": 154400.0,
+                "pct_workers_car_van": 53.618899998539689,
+                "pct_workers_drive_alone": 47.172809324082252,
+                "pct_workers_drive_carpooled": 6.4466866550137478,
+                "pct_workers_public_transportation": 20.03037870505446,
+                "pct_workers_motorcycle": 0.0,
+                "pct_workers_bicycle": 0.33332600187272937,
+                "pct_workers_walked": 2.7802458819248193,
+                "pct_workers_other": 2.3457497387665893,
+                "pct_workers_wfh": 20.891474686826882,
+                "pct_hh_0_vehs": 12.079825998476416,
+                "pct_hh_1_vehs": 36.134934188240493,
+                "pct_hh_2_vehs": 33.252717624151003,
+                "pct_hh_3_vehs": 14.236874716933059,
+                "pct_hh_4_vehs": 4.2991670110025737,
+                "pct_hh_5_vehs": 0.0,
+                "municipality": "Milton",
+                "pctZonedAsSF": 0.0,
+                "isZonedAsCommercial": 0.0,
+                "pctZonedAsMultifamily": 0.0,
+                "pctUsedAsSF": 56.699346405228759,
+                "pctUsedAsCommercial": 4.2483660130718954,
+                "pctUsedAsDuplex": 7.8431372549019605,
+                "pctUsedAsTriplex": 0.98039215686274506,
+                "pctUsedAsMultiBuildings1Lot": 0.16339869281045752,
+                "pctUsedAsAptUpTo30Units": 0.49019607843137253,
+                "pctUsedAsAptOver30Units": 0.0,
+                "pctUsedAsCoopApt": 0.0,
+                "pctUsedAsOtherMultifamily": 1.3071895424836601,
+                "pctMustUpzone": 0.0,
+                "pctWillChange": 0.0,
+                "pctFutureZonedAsSF": 0.0,
+                "pctFutureZonedAsMulti": 0.0
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            235989.016234290204011,
+                            891156.348953419597819
+                        ],
+                        [
+                            235972.541408404620597,
+                            891312.882069003302604
+                        ],
+                        [
+                            235925.573623999807751,
+                            891463.705696847988293
+                        ],
+                        [
+                            235850.623399826232344,
+                            891602.168652787571773
+                        ],
+                        [
+                            235750.189246396505041,
+                            891723.841461509931833
+                        ],
+                        [
+                            235627.599411890929332,
+                            891823.188241435680538
+                        ],
+                        [
+                            235487.825305467587896,
+                            891895.792164165060967
+                        ],
+                        [
+                            235335.815062121691881,
+                            891941.679098172578961
+                        ],
+                        [
+                            235179.018721941683907,
+                            891955.333272976567969
+                        ],
+                        [
+                            235021.541896916227415,
+                            891940.107737963669933
+                        ],
+                        [
+                            234870.822979666758329,
+                            891892.707127394503914
+                        ],
+                        [
+                            234731.781888881028863,
+                            891818.709117319551297
+                        ],
+                        [
+                            234610.191634871531278,
+                            891718.141427001915872
+                        ],
+                        [
+                            234510.154306243668543,
+                            891595.466331279021688
+                        ],
+                        [
+                            234436.592419455992058,
+                            891456.260817438946106
+                        ],
+                        [
+                            234391.135176547191804,
+                            891304.975066109211184
+                        ],
+                        [
+                            234377.051417678507278,
+                            891148.289063652977347
+                        ],
+                        [
+                            234392.666105928801699,
+                            890991.748227465315722
+                        ],
+                        [
+                            234439.598593804170378,
+                            890842.02522726659663
+                        ],
+                        [
+                            234514.528921661403729,
+                            890703.547427802346647
+                        ],
+                        [
+                            234615.781027427612571,
+                            890581.861259357421659
+                        ],
+                        [
+                            234738.377937339333585,
+                            890482.497068938915618
+                        ],
+                        [
+                            234878.177668876887765,
+                            890408.76770869619213
+                        ],
+                        [
+                            235029.387317100830842,
+                            890363.97763809771277
+                        ],
+                        [
+                            235187.049385933903977,
+                            890349.213563469238579
+                        ],
+                        [
+                            235343.730884832883021,
+                            890365.549350319313817
+                        ],
+                        [
+                            235495.310128123412142,
+                            890411.853396138525568
+                        ],
+                        [
+                            235634.365588556596776,
+                            890486.977043704246171
+                        ],
+                        [
+                            235755.962743514362955,
+                            890587.562214397126809
+                        ],
+                        [
+                            235855.167937311285641,
+                            890710.250598919112235
+                        ],
+                        [
+                            235928.709780346398475,
+                            890849.470756584079936
+                        ],
+                        [
+                            235974.142734452470904,
+                            890999.655582340899855
+                        ],
+                        [
+                            235989.016234290204011,
+                            891156.348953419597819
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "stop_name": "Coolidge Corner",
+                "weighted_total_population": 11559.5,
+                "weighted_total_population_density_permile": 51714.0,
+                "weighted_total_population_male": 5014.5,
+                "weighted_total_population_female": 6545.0,
+                "weighted_pct_population_male": 28.886833598882493,
+                "weighted_pct_population_female": 38.312721191204332,
+                "weighted_pct_not_hispanic_latino": 62.881216407902151,
+                "weighted_pct_not_hispanic_latino_white": 44.916634748222364,
+                "weighted_pct_not_hispanic_latino_black": 1.2159265484618802,
+                "weighted_pct_not_hispanic_latino_native": 0.0,
+                "weighted_pct_not_hispanic_latino_asian": 13.005623236730976,
+                "weighted_pct_not_hispanic_latino_pi": 0.0,
+                "weighted_pct_not_hispanic_latino_other": 0.19577175183952403,
+                "weighted_pct_not_hispanic_latino_2+": 3.5458835626797427,
+                "weighted_pct_hispanic_latino": 4.3183383821846686,
+                "weighted_pct_hispanic_latino_white": 1.278280143261058,
+                "weighted_pct_hispanic_latino_black": 0.036670257453874013,
+                "weighted_pct_hispanic_latino_native": 0.20863735656342047,
+                "weighted_pct_hispanic_latino_asian": 0.0,
+                "weighted_pct_hispanic_latino_pi": 0.0,
+                "weighted_pct_hispanic_latino_other": 0.91195818467341805,
+                "weighted_pct_hispanic_latino_2+": 1.8818191102456989,
+                "weighted_median_hh_income": 276434.0,
+                "pct_workers_car_van": 15.936263577256019,
+                "pct_workers_drive_alone": 13.97961285576541,
+                "pct_workers_drive_carpooled": 1.9566507214906099,
+                "pct_workers_public_transportation": 16.3709301413299,
+                "pct_workers_motorcycle": 0.0,
+                "pct_workers_bicycle": 3.2738871198515627,
+                "pct_workers_walked": 15.890854573959075,
+                "pct_workers_other": 0.65342176319696921,
+                "pct_workers_wfh": 15.07857788046757,
+                "pct_hh_0_vehs": 21.381794196372397,
+                "pct_hh_1_vehs": 32.924289638094294,
+                "pct_hh_2_vehs": 11.324317800102914,
+                "pct_hh_3_vehs": 1.1698043601453891,
+                "pct_hh_4_vehs": 0.19591945692071555,
+                "pct_hh_5_vehs": 0.20357415403279977,
+                "municipality": "Brookline",
+                "pctZonedAsSF": 13.571428571428571,
+                "isZonedAsCommercial": 1.1498257839721253,
+                "pctZonedAsMultifamily": 10.871080139372822,
+                "pctUsedAsSF": 8.1881533101045285,
+                "pctUsedAsCommercial": 2.5435540069686411,
+                "pctUsedAsDuplex": 3.4320557491289199,
+                "pctUsedAsTriplex": 2.4564459930313589,
+                "pctUsedAsMultiBuildings1Lot": 0.20905923344947736,
+                "pctUsedAsAptUpTo30Units": 2.4390243902439024,
+                "pctUsedAsAptOver30Units": 0.03484320557491289,
+                "pctUsedAsCoopApt": 0.0,
+                "pctUsedAsOtherMultifamily": 1.6724738675958188,
+                "pctMustUpzone": 13.571428571428571,
+                "pctWillChange": 6.3066202090592345,
+                "pctFutureZonedAsSF": 0.0,
+                "pctFutureZonedAsMulti": 24.442508710801391
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            232043.797587719571311,
+                            899159.231942620826885
+                        ],
+                        [
+                            232027.427573106659111,
+                            899315.776611462119035
+                        ],
+                        [
+                            231980.596230769559043,
+                            899466.628811424248852
+                        ],
+                        [
+                            231905.80756357870996,
+                            899605.135850588674657
+                        ],
+                        [
+                            231804.730848992738174,
+                            899726.863055917434394
+                        ],
+                        [
+                            231682.335412076616194,
+                            899826.280066666076891
+                        ],
+                        [
+                            231542.7605993647594,
+                            899898.963457415928133
+                        ],
+                        [
+                            231390.948916654189816,
+                            899944.936319940956309
+                        ],
+                        [
+                            231234.338874515262432,
+                            899958.678622198756784
+                        ],
+                        [
+                            231077.033244649734115,
+                            899943.541160916443914
+                        ],
+                        [
+                            230925.636192361154826,
+                            899896.220725013059564
+                        ],
+                        [
+                            230786.712945191189647,
+                            899822.299584394320846
+                        ],
+                        [
+                            230665.206018940400099,
+                            899721.798580033937469
+                        ],
+                        [
+                            230565.215278676041635,
+                            899599.177755497628823
+                        ],
+                        [
+                            230491.660696129954886,
+                            899460.011423274641857
+                        ],
+                        [
+                            230446.172064889076864,
+                            899308.748918713885359
+                        ],
+                        [
+                            230431.194155958655756,
+                            899152.064927937230095
+                        ],
+                        [
+                            230447.528950493579032,
+                            898995.51659339456819
+                        ],
+                        [
+                            230494.325571936089545,
+                            898845.765071463771164
+                        ],
+                        [
+                            230569.094301619683392,
+                            898707.243220035219565
+                        ],
+                        [
+                            230670.164040546922479,
+                            898585.498488639248535
+                        ],
+                        [
+                            230792.566531443560962,
+                            898486.06409373274073
+                        ],
+                        [
+                            230932.166335530782817,
+                            898412.255256147822365
+                        ],
+                        [
+                            231084.003078634181293,
+                            898367.383374355034903
+                        ],
+                        [
+                            231241.477292736759409,
+                            898352.53067938471213
+                        ],
+                        [
+                            231397.989154402777785,
+                            898368.778846280183643
+                        ],
+                        [
+                            231549.421052245917963,
+                            898414.998567695613019
+                        ],
+                        [
+                            231688.359286185586825,
+                            898490.0453328267904
+                        ],
+                        [
+                            231809.873111615772359,
+                            898590.563783357618377
+                        ],
+                        [
+                            231909.856720715208212,
+                            898713.202071266015992
+                        ],
+                        [
+                            231983.391234885930317,
+                            898852.383037952473387
+                        ],
+                        [
+                            232028.85493006077013,
+                            899002.544599343673326
+                        ],
+                        [
+                            232043.797587719571311,
+                            899159.231942620826885
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "stop_name": "Dean Road",
+                "weighted_total_population": 8741.0,
+                "weighted_total_population_density_permile": 55784.0,
+                "weighted_total_population_male": 4117.0,
+                "weighted_total_population_female": 4623.0,
+                "weighted_pct_population_male": 33.851672872757909,
+                "weighted_pct_population_female": 37.300547581760128,
+                "weighted_pct_not_hispanic_latino": 64.442183934956503,
+                "weighted_pct_not_hispanic_latino_white": 47.69441731571137,
+                "weighted_pct_not_hispanic_latino_black": 1.3592117602714202,
+                "weighted_pct_not_hispanic_latino_native": 0.15123005804689948,
+                "weighted_pct_not_hispanic_latino_asian": 9.881613027769502,
+                "weighted_pct_not_hispanic_latino_pi": 0.0,
+                "weighted_pct_not_hispanic_latino_other": 0.17754759325046232,
+                "weighted_pct_not_hispanic_latino_2+": 5.1755845064985753,
+                "weighted_pct_hispanic_latino": 6.7100365195615455,
+                "weighted_pct_hispanic_latino_white": 2.4882577657814475,
+                "weighted_pct_hispanic_latino_black": 0.13636735770517133,
+                "weighted_pct_hispanic_latino_native": 0.20429730537968965,
+                "weighted_pct_hispanic_latino_asian": 0.00093901502290693641,
+                "weighted_pct_hispanic_latino_pi": 0.0,
+                "weighted_pct_hispanic_latino_other": 0.44869708514836848,
+                "weighted_pct_hispanic_latino_2+": 3.4329728716811774,
+                "weighted_median_hh_income": 251934.5,
+                "pct_workers_car_van": 22.707332633172264,
+                "pct_workers_drive_alone": 20.20037165396554,
+                "pct_workers_drive_carpooled": 2.5064199169896284,
+                "pct_workers_public_transportation": 20.3997832877862,
+                "pct_workers_motorcycle": 0.0,
+                "pct_workers_bicycle": 2.3871407478092066,
+                "pct_workers_walked": 6.4890981018565803,
+                "pct_workers_other": 0.2900774162109761,
+                "pct_workers_wfh": 18.881036204284939,
+                "pct_hh_0_vehs": 17.925958558128549,
+                "pct_hh_1_vehs": 34.94729661764466,
+                "pct_hh_2_vehs": 15.239073985379584,
+                "pct_hh_3_vehs": 2.4045517713839635,
+                "pct_hh_4_vehs": 0.63626612309465114,
+                "pct_hh_5_vehs": 0.0,
+                "municipality": "Brookline",
+                "pctZonedAsSF": 20.549450549450547,
+                "isZonedAsCommercial": 1.3553113553113554,
+                "pctZonedAsMultifamily": 19.26739926739927,
+                "pctUsedAsSF": 19.487179487179489,
+                "pctUsedAsCommercial": 1.7948717948717947,
+                "pctUsedAsDuplex": 2.9670329670329667,
+                "pctUsedAsTriplex": 2.4175824175824179,
+                "pctUsedAsMultiBuildings1Lot": 0.25641025641025639,
+                "pctUsedAsAptUpTo30Units": 3.1135531135531136,
+                "pctUsedAsAptOver30Units": 0.0,
+                "pctUsedAsCoopApt": 0.0,
+                "pctUsedAsOtherMultifamily": 1.5018315018315018,
+                "pctMustUpzone": 20.549450549450547,
+                "pctWillChange": 16.007326007326007,
+                "pctFutureZonedAsSF": 0.0,
+                "pctFutureZonedAsMulti": 39.816849816849818
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            230328.681316063739359,
+                            898656.217005629092455
+                        ],
+                        [
+                            230312.348446952441009,
+                            898812.765512650250457
+                        ],
+                        [
+                            230265.555494109983556,
+                            898962.518236653646454
+                        ],
+                        [
+                            230190.795431665610522,
+                            899101.043386370874941
+                        ],
+                        [
+                            230089.741360078041907,
+                            899222.795133752049878
+                        ],
+                        [
+                            229967.36160229210509,
+                            899322.241911162040196
+                        ],
+                        [
+                            229827.790001006243983,
+                            899396.070041605969891
+                        ],
+                        [
+                            229676.807543382281438,
+                            899440.972628467367031
+                        ],
+                        [
+                            229519.361153756879503,
+                            899455.860408404492773
+                        ],
+                        [
+                            229362.045377247733995,
+                            899439.650594745762646
+                        ],
+                        [
+                            229210.621440620074281,
+                            899393.47790586319752
+                        ],
+                        [
+                            229071.674915443523787,
+                            899318.47998674842529
+                        ],
+                        [
+                            228950.134822381776758,
+                            899218.008734980598092
+                        ],
+                        [
+                            228850.107023596618092,
+                            899095.412434691796079
+                        ],
+                        [
+                            228776.513201902096625,
+                            898956.264191980473697
+                        ],
+                        [
+                            228730.979814099671785,
+                            898806.123693187604658
+                        ],
+                        [
+                            228716.786597022117348,
+                            898649.446880740113556
+                        ],
+                        [
+                            228732.260167747968808,
+                            898492.891349399229512
+                        ],
+                        [
+                            228779.027999079495203,
+                            898342.017804300878197
+                        ],
+                        [
+                            228853.768120430642739,
+                            898203.477844847482629
+                        ],
+                        [
+                            228954.815212096116738,
+                            898081.708570332732052
+                        ],
+                        [
+                            229077.202019618736813,
+                            897982.244404278229922
+                        ],
+                        [
+                            229216.789006868610159,
+                            897909.512324631330557
+                        ],
+                        [
+                            229368.625468540471047,
+                            897864.60343483556062
+                        ],
+                        [
+                            229526.107142172608292,
+                            897849.71232672187034
+                        ],
+                        [
+                            229683.458173486695159,
+                            897865.925764828454703
+                        ],
+                        [
+                            229834.087876977573615,
+                            897912.105007680831477
+                        ],
+                        [
+                            229973.058994338294724,
+                            897986.007043909514323
+                        ],
+                        [
+                            230094.605990824406035,
+                            898086.495742924278602
+                        ],
+                        [
+                            230194.626662706839852,
+                            898209.109511098591611
+                        ],
+                        [
+                            230268.200419608619995,
+                            898348.272395518841222
+                        ],
+                        [
+                            230313.699271956458688,
+                            898499.533464844105765
+                        ],
+                        [
+                            230328.681316063739359,
+                            898656.217005629092455
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "stop_name": "Englewood Avenue",
+                "weighted_total_population": 9281.0,
+                "weighted_total_population_density_permile": 63539.0,
+                "weighted_total_population_male": 4333.0,
+                "weighted_total_population_female": 4948.0,
+                "weighted_pct_population_male": 39.393541273802001,
+                "weighted_pct_population_female": 43.253175376391454,
+                "weighted_pct_not_hispanic_latino": 75.001489609058453,
+                "weighted_pct_not_hispanic_latino_white": 55.142724192688632,
+                "weighted_pct_not_hispanic_latino_black": 2.3180137999768737,
+                "weighted_pct_not_hispanic_latino_native": 0.14249450439281447,
+                "weighted_pct_not_hispanic_latino_asian": 11.743694218498685,
+                "weighted_pct_not_hispanic_latino_pi": 0.0,
+                "weighted_pct_not_hispanic_latino_other": 0.36674802665881823,
+                "weighted_pct_not_hispanic_latino_2+": 5.2853768133648131,
+                "weighted_pct_hispanic_latino": 7.6452270411349961,
+                "weighted_pct_hispanic_latino_white": 2.7990130619328299,
+                "weighted_pct_hispanic_latino_black": 0.26336422526022979,
+                "weighted_pct_hispanic_latino_native": 0.095863582091136157,
+                "weighted_pct_hispanic_latino_asian": 0.0,
+                "weighted_pct_hispanic_latino_pi": 0.0,
+                "weighted_pct_hispanic_latino_other": 0.61706986535246977,
+                "weighted_pct_hispanic_latino_2+": 3.8708221516947336,
+                "weighted_median_hh_income": 259628.5,
+                "pct_workers_car_van": 28.482494225894868,
+                "pct_workers_drive_alone": 24.663560130599919,
+                "pct_workers_drive_carpooled": 3.8182446464262632,
+                "pct_workers_public_transportation": 23.467754592126369,
+                "pct_workers_motorcycle": 0.0,
+                "pct_workers_bicycle": 2.5813357680779854,
+                "pct_workers_walked": 7.380647446437469,
+                "pct_workers_other": 0.78268907953187583,
+                "pct_workers_wfh": 19.952865603673047,
+                "pct_hh_0_vehs": 22.684267417351293,
+                "pct_hh_1_vehs": 37.214466715949527,
+                "pct_hh_2_vehs": 19.20761051005859,
+                "pct_hh_3_vehs": 2.8527219557554151,
+                "pct_hh_4_vehs": 0.68786644740633884,
+                "pct_hh_5_vehs": 0.0,
+                "municipality": "Brookline",
+                "pctZonedAsSF": 25.430597771023304,
+                "isZonedAsCommercial": 1.1144883485309016,
+                "pctZonedAsMultifamily": 13.728470111448834,
+                "pctUsedAsSF": 23.556231003039514,
+                "pctUsedAsCommercial": 1.8743667679837892,
+                "pctUsedAsDuplex": 1.4690982776089159,
+                "pctUsedAsTriplex": 2.2796352583586628,
+                "pctUsedAsMultiBuildings1Lot": 0.3546099290780142,
+                "pctUsedAsAptUpTo30Units": 2.9888551165146908,
+                "pctUsedAsAptOver30Units": 0.0,
+                "pctUsedAsCoopApt": 0.0,
+                "pctUsedAsOtherMultifamily": 1.3171225937183384,
+                "pctMustUpzone": 25.430597771023304,
+                "pctWillChange": 21.93515704154002,
+                "pctFutureZonedAsSF": 0.0,
+                "pctFutureZonedAsMulti": 39.159067882472137
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            229989.564512684650254,
+                            898560.346333062159829
+                        ],
+                        [
+                            229974.063064609741559,
+                            898716.899113133782521
+                        ],
+                        [
+                            229927.271978585748002,
+                            898867.764814023626968
+                        ],
+                        [
+                            229852.517606698733289,
+                            899006.293536339071579
+                        ],
+                        [
+                            229751.468067419831641,
+                            899128.050124850706197
+                        ],
+                        [
+                            229629.091482772608288,
+                            899227.50277386198286
+                        ],
+                        [
+                            229489.526250936149154,
+                            899300.226854156586342
+                        ],
+                        [
+                            229337.715299145434983,
+                            899346.244013670948334
+                        ],
+                        [
+                            229180.272151155339088,
+                            899360.028632831992581
+                        ],
+                        [
+                            229022.948890910018235,
+                            899344.937166361953132
+                        ],
+                        [
+                            228872.349275687593035,
+                            899297.664422344649211
+                        ],
+                        [
+                            228733.392725253244862,
+                            899223.783958867308684
+                        ],
+                        [
+                            228611.846172097866656,
+                            899123.318575369776227
+                        ],
+                        [
+                            228511.811131489870604,
+                            899000.727112023625523
+                        ],
+                        [
+                            228438.209620412118966,
+                            898861.5824369948823
+                        ],
+                        [
+                            228392.67287218090496,
+                            898710.333403948345222
+                        ],
+                        [
+                            228377.647817589720944,
+                            898553.653976631583646
+                        ],
+                        [
+                            228393.938132452138234,
+                            898397.101056493353099
+                        ],
+                        [
+                            228440.694819589552935,
+                            898247.336040605325252
+                        ],
+                        [
+                            228515.429249673092272,
+                            898108.792509074904956
+                        ],
+                        [
+                            228616.471808188827708,
+                            897987.018393245525658
+                        ],
+                        [
+                            228738.855441736784996,
+                            897887.548354732920416
+                        ],
+                        [
+                            228878.445335725409677,
+                            897813.698818846838549
+                        ],
+                        [
+                            229029.457489238790004,
+                            897768.779226108337753
+                        ],
+                        [
+                            229186.940557571215322,
+                            897753.880522861494683
+                        ],
+                        [
+                            229344.294486032478744,
+                            897770.086366487899795
+                        ],
+                        [
+                            229495.752620698971441,
+                            897816.261791685828939
+                        ],
+                        [
+                            229634.724487130384659,
+                            897891.267876738449559
+                        ],
+                        [
+                            229756.277944546367507,
+                            897991.750707671046257
+                        ],
+                        [
+                            229856.305859092448372,
+                            898114.359639762435108
+                        ],
+                        [
+                            229929.887306086922763,
+                            898253.518957909313031
+                        ],
+                        [
+                            229975.398796237888746,
+                            898403.667058264953084
+                        ],
+                        [
+                            229989.564512684650254,
+                            898560.346333062159829
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "stop_name": "Fairbanks Street",
+                "weighted_total_population": 10224.5,
+                "weighted_total_population_density_permile": 47930.0,
+                "weighted_total_population_male": 4720.5,
+                "weighted_total_population_female": 5503.5,
+                "weighted_pct_population_male": 28.083696000639577,
+                "weighted_pct_population_female": 33.212328242406556,
+                "weighted_pct_not_hispanic_latino": 57.380388790673791,
+                "weighted_pct_not_hispanic_latino_white": 44.918313836396301,
+                "weighted_pct_not_hispanic_latino_black": 0.4670664754117354,
+                "weighted_pct_not_hispanic_latino_native": 0.028285169740490199,
+                "weighted_pct_not_hispanic_latino_asian": 8.9502964017477673,
+                "weighted_pct_not_hispanic_latino_pi": 0.0,
+                "weighted_pct_not_hispanic_latino_other": 0.14990721298312853,
+                "weighted_pct_not_hispanic_latino_2+": 2.8668492857745544,
+                "weighted_pct_hispanic_latino": 3.9156354523723449,
+                "weighted_pct_hispanic_latino_white": 0.81472742321098623,
+                "weighted_pct_hispanic_latino_black": 0.0074893046592646459,
+                "weighted_pct_hispanic_latino_native": 0.47950603953665838,
+                "weighted_pct_hispanic_latino_asian": 0.0073843144500885215,
+                "weighted_pct_hispanic_latino_pi": 0.0,
+                "weighted_pct_hispanic_latino_other": 0.71975702458061441,
+                "weighted_pct_hispanic_latino_2+": 1.8879044530045204,
+                "weighted_median_hh_income": 273041.5,
+                "pct_workers_car_van": 16.43005264053506,
+                "pct_workers_drive_alone": 15.380505280041373,
+                "pct_workers_drive_carpooled": 1.0496543795436892,
+                "pct_workers_public_transportation": 16.66187669339342,
+                "pct_workers_motorcycle": 0.0,
+                "pct_workers_bicycle": 3.4412153788633439,
+                "pct_workers_walked": 9.4906514425886073,
+                "pct_workers_other": 0.59227844653382622,
+                "pct_workers_wfh": 14.679406011651677,
+                "pct_hh_0_vehs": 18.925663151578917,
+                "pct_hh_1_vehs": 28.643054191279294,
+                "pct_hh_2_vehs": 11.532762093208365,
+                "pct_hh_3_vehs": 1.9571029582438682,
+                "pct_hh_4_vehs": 0.2024284471196853,
+                "pct_hh_5_vehs": 0.036822414574717841,
+                "municipality": "Brookline",
+                "pctZonedAsSF": 22.068647777009907,
+                "isZonedAsCommercial": 1.6125316747293248,
+                "pctZonedAsMultifamily": 14.627965906473161,
+                "pctUsedAsSF": 16.655148583275743,
+                "pctUsedAsCommercial": 1.8198571757659525,
+                "pctUsedAsDuplex": 5.9433310297166555,
+                "pctUsedAsTriplex": 1.8428933425478002,
+                "pctUsedAsMultiBuildings1Lot": 0.23036166781847503,
+                "pctUsedAsAptUpTo30Units": 2.626123013130615,
+                "pctUsedAsAptOver30Units": 0.046072333563695,
+                "pctUsedAsCoopApt": 0.0,
+                "pctUsedAsOtherMultifamily": 1.520387007601935,
+                "pctMustUpzone": 22.068647777009907,
+                "pctWillChange": 12.301313061506566,
+                "pctFutureZonedAsSF": 0.0,
+                "pctFutureZonedAsMulti": 36.696613683483065
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            231194.682953102281317,
+                            898868.832353624049574
+                        ],
+                        [
+                            231179.155274423421361,
+                            899025.382566417334601
+                        ],
+                        [
+                            231132.340285322628915,
+                            899176.240332502638921
+                        ],
+                        [
+                            231057.565337024541805,
+                            899314.756318870116957
+                        ],
+                        [
+                            230956.504130518005695,
+                            899435.384900441742502
+                        ],
+                        [
+                            230834.115719872032059,
+                            899534.816626047599129
+                        ],
+                        [
+                            230694.539142709545558,
+                            899608.627574218669906
+                        ],
+                        [
+                            230542.731663294689497,
+                            899653.507979023619555
+                        ],
+                        [
+                            230385.288114714086987,
+                            899668.376366847893223
+                        ],
+                        [
+                            230227.97901473211823,
+                            899652.14716449379921
+                        ],
+                        [
+                            230077.389244050544221,
+                            899605.959326819283888
+                        ],
+                        [
+                            229938.456116197106894,
+                            899530.944242024444975
+                        ],
+                        [
+                            229816.108065108623123,
+                            899430.454465252347291
+                        ],
+                        [
+                            229716.917678390978836,
+                            899308.96002912777476
+                        ],
+                        [
+                            229642.519234343897551,
+                            899169.799178978893906
+                        ],
+                        [
+                            229597.834454472817015,
+                            899018.545726335956715
+                        ],
+                        [
+                            229582.836968036339385,
+                            898861.863632487365976
+                        ],
+                        [
+                            229599.153477941901656,
+                            898705.313415208715014
+                        ],
+                        [
+                            229645.114475304842927,
+                            898554.442102032247931
+                        ],
+                        [
+                            229720.693584628490498,
+                            898415.914780411636457
+                        ],
+                        [
+                            229821.748009364324389,
+                            898295.268670655670576
+                        ],
+                        [
+                            229944.143452620337484,
+                            898195.819558145711198
+                        ],
+                        [
+                            230083.740011992427753,
+                            898121.993912895326503
+                        ],
+                        [
+                            230234.753367473138496,
+                            898077.100185559480451
+                        ],
+                        [
+                            230392.232200484053465,
+                            898062.228474147152156
+                        ],
+                        [
+                            230549.576554839091841,
+                            898078.461305059026927
+                        ],
+                        [
+                            230701.020220358856022,
+                            898124.662723688408732
+                        ],
+                        [
+                            230839.973202593624592,
+                            898199.692677796119824
+                        ],
+                        [
+                            230961.504149802989559,
+                            898300.196405980619602
+                        ],
+                        [
+                            231060.687485175905749,
+                            898421.708165080519393
+                        ],
+                        [
+                            231135.065962046646746,
+                            898560.883819487644359
+                        ],
+                        [
+                            231180.544769239873858,
+                            898712.150559973786585
+                        ],
+                        [
+                            231194.682953102281317,
+                            898868.832353624049574
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "stop_name": "Hawes Street",
+                "weighted_total_population": 12929.0,
+                "weighted_total_population_density_permile": 71212.0,
+                "weighted_total_population_male": 5317.0,
+                "weighted_total_population_female": 7611.0,
+                "weighted_pct_population_male": 32.852966186052271,
+                "weighted_pct_population_female": 48.640241288506402,
+                "weighted_pct_not_hispanic_latino": 73.239133407753769,
+                "weighted_pct_not_hispanic_latino_white": 46.290888219110514,
+                "weighted_pct_not_hispanic_latino_black": 5.9765919049781644,
+                "weighted_pct_not_hispanic_latino_native": 0.0047217478462981671,
+                "weighted_pct_not_hispanic_latino_asian": 16.697935289281752,
+                "weighted_pct_not_hispanic_latino_pi": 0.0,
+                "weighted_pct_not_hispanic_latino_other": 0.10410408978679314,
+                "weighted_pct_not_hispanic_latino_2+": 4.1691653583309076,
+                "weighted_pct_hispanic_latino": 8.2540740668049217,
+                "weighted_pct_hispanic_latino_white": 2.9977199844028317,
+                "weighted_pct_hispanic_latino_black": 0.24007607236746048,
+                "weighted_pct_hispanic_latino_native": 0.080191100375140323,
+                "weighted_pct_hispanic_latino_asian": 0.011053326205831215,
+                "weighted_pct_hispanic_latino_pi": 0.0,
+                "weighted_pct_hispanic_latino_other": 2.4528496115576175,
+                "weighted_pct_hispanic_latino_2+": 2.4721566432701372,
+                "weighted_median_hh_income": 222204.5,
+                "pct_workers_car_van": 18.610346020438449,
+                "pct_workers_drive_alone": 15.458773701621723,
+                "pct_workers_drive_carpooled": 3.1507456569589145,
+                "pct_workers_public_transportation": 15.331194373306847,
+                "pct_workers_motorcycle": 0.0,
+                "pct_workers_bicycle": 2.6291295468770679,
+                "pct_workers_walked": 29.107185231528518,
+                "pct_workers_other": 0.6472039830223546,
+                "pct_workers_wfh": 15.174175350455847,
+                "pct_hh_0_vehs": 33.626212559002482,
+                "pct_hh_1_vehs": 35.530739486079938,
+                "pct_hh_2_vehs": 9.751482499337337,
+                "pct_hh_3_vehs": 0.86810908727489167,
+                "pct_hh_4_vehs": 0.035076589794717575,
+                "pct_hh_5_vehs": 1.6812852298610999,
+                "municipality": "Brookline",
+                "pctZonedAsSF": 12.146529562982005,
+                "isZonedAsCommercial": 0.67480719794344468,
+                "pctZonedAsMultifamily": 17.609254498714652,
+                "pctUsedAsSF": 8.933161953727506,
+                "pctUsedAsCommercial": 2.8277634961439588,
+                "pctUsedAsDuplex": 1.2853470437017995,
+                "pctUsedAsTriplex": 1.8316195372750643,
+                "pctUsedAsMultiBuildings1Lot": 0.28920308483290486,
+                "pctUsedAsAptUpTo30Units": 2.506426735218509,
+                "pctUsedAsAptOver30Units": 0.032133676092544985,
+                "pctUsedAsCoopApt": 0.0,
+                "pctUsedAsOtherMultifamily": 2.4100257069408739,
+                "pctMustUpzone": 12.146529562982005,
+                "pctWillChange": 7.551413881748072,
+                "pctFutureZonedAsSF": 0.0,
+                "pctFutureZonedAsMulti": 29.755784061696659
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            232796.482968734140741,
+                            899439.286970629123971
+                        ],
+                        [
+                            232780.096776812803,
+                            899595.829970650491305
+                        ],
+                        [
+                            232734.080190109030809,
+                            899745.570321935345419
+                        ],
+                        [
+                            232658.455622510460671,
+                            899884.065588901285082
+                        ],
+                        [
+                            232558.193708565435372,
+                            900005.785852613975294
+                        ],
+                        [
+                            232434.968468577368185,
+                            900105.185992654878646
+                        ],
+                        [
+                            232295.386212871380849,
+                            900178.96522936807014
+                        ],
+                        [
+                            232144.404539008275606,
+                            900223.81487369001843
+                        ],
+                        [
+                            231986.970210974308429,
+                            900238.647397355758585
+                        ],
+                        [
+                            231829.677430152602028,
+                            900222.382327333558351
+                        ],
+                        [
+                            231678.286390437628143,
+                            900176.156406445195898
+                        ],
+                        [
+                            231539.381538944144268,
+                            900101.109593657893129
+                        ],
+                        [
+                            231417.890174450236373,
+                            900000.595522234798409
+                        ],
+                        [
+                            231317.916529059613822,
+                            899877.963923017960042
+                        ],
+                        [
+                            231244.37978271371685,
+                            899738.789638503920287
+                        ],
+                        [
+                            231198.904256285837619,
+                            899588.632934393943287
+                        ],
+                        [
+                            231184.767757652152795,
+                            899431.950911261956207
+                        ],
+                        [
+                            231200.294744158803951,
+                            899275.400586053729057
+                        ],
+                        [
+                            231247.110552324447781,
+                            899124.543243322521448
+                        ],
+                        [
+                            231322.715273038484156,
+                            898986.032997774425894
+                        ],
+                        [
+                            231422.965127937117359,
+                            898865.406105246627703
+                        ],
+                        [
+                            231545.37348606143496,
+                            898765.984766004839912
+                        ],
+                        [
+                            231685.799799777130829,
+                            898692.194554186193272
+                        ],
+                        [
+                            231836.811316944978898,
+                            898647.33519445930142
+                        ],
+                        [
+                            231994.280930202075979,
+                            898632.499355884152465
+                        ],
+                        [
+                            232151.608964610553812,
+                            898648.768061887938529
+                        ],
+                        [
+                            232302.205859493813477,
+                            898695.000255476916209
+                        ],
+                        [
+                            232441.130562008853303,
+                            898770.061939447885379
+                        ],
+                        [
+                            232563.452856069314294,
+                            898870.597274023108184
+                        ],
+                        [
+                            232662.600462704896927,
+                            898992.131765861064196
+                        ],
+                        [
+                            232736.941160051093902,
+                            899131.324519386980683
+                        ],
+                        [
+                            232781.557736039714655,
+                            899282.597943071043119
+                        ],
+                        [
+                            232796.482968734140741,
+                            899439.286970629123971
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "stop_name": "Kent Street",
+                "weighted_total_population": 11575.0,
+                "weighted_total_population_density_permile": 49641.0,
+                "weighted_total_population_male": 4775.0,
+                "weighted_total_population_female": 6799.0,
+                "weighted_pct_population_male": 31.235240492863838,
+                "weighted_pct_population_female": 45.799099539547164,
+                "weighted_pct_not_hispanic_latino": 70.029149294188585,
+                "weighted_pct_not_hispanic_latino_white": 45.201261412803746,
+                "weighted_pct_not_hispanic_latino_black": 4.6355048923502427,
+                "weighted_pct_not_hispanic_latino_native": 0.00013853711442236231,
+                "weighted_pct_not_hispanic_latino_asian": 15.917536027250021,
+                "weighted_pct_not_hispanic_latino_pi": 0.0,
+                "weighted_pct_not_hispanic_latino_other": 0.093044294959499008,
+                "weighted_pct_not_hispanic_latino_2+": 4.1841549300691945,
+                "weighted_pct_hispanic_latino": 7.0051907382224048,
+                "weighted_pct_hispanic_latino_white": 2.3926402007020897,
+                "weighted_pct_hispanic_latino_black": 0.21049760735027351,
+                "weighted_pct_hispanic_latino_native": 0.07533443256843772,
+                "weighted_pct_hispanic_latino_asian": 0.0033874089767098685,
+                "weighted_pct_hispanic_latino_pi": 0.0,
+                "weighted_pct_hispanic_latino_other": 2.0270964559562019,
+                "weighted_pct_hispanic_latino_2+": 2.295687498716946,
+                "weighted_median_hh_income": 224055.0,
+                "pct_workers_car_van": 18.387173960872293,
+                "pct_workers_drive_alone": 15.476191862668646,
+                "pct_workers_drive_carpooled": 2.9105568398472057,
+                "pct_workers_public_transportation": 16.328180218835534,
+                "pct_workers_motorcycle": 0.0,
+                "pct_workers_bicycle": 2.9412918550475142,
+                "pct_workers_walked": 23.24782279136442,
+                "pct_workers_other": 0.60470548102864052,
+                "pct_workers_wfh": 15.532020779778705,
+                "pct_hh_0_vehs": 28.068553779474534,
+                "pct_hh_1_vehs": 36.180452734090252,
+                "pct_hh_2_vehs": 10.675335364523207,
+                "pct_hh_3_vehs": 0.61726281948413542,
+                "pct_hh_4_vehs": 0.10013767067258578,
+                "pct_hh_5_vehs": 1.3921844282421389,
+                "municipality": "Brookline",
+                "pctZonedAsSF": 12.541886069889898,
+                "isZonedAsCommercial": 1.3403542364767831,
+                "pctZonedAsMultifamily": 14.696026807084731,
+                "pctUsedAsSF": 8.4250837721397804,
+                "pctUsedAsCommercial": 2.920057443752992,
+                "pctUsedAsDuplex": 1.6993776926759216,
+                "pctUsedAsTriplex": 1.7711823839157492,
+                "pctUsedAsMultiBuildings1Lot": 0.26328386787936814,
+                "pctUsedAsAptUpTo30Units": 2.537099090473911,
+                "pctUsedAsAptOver30Units": 0.023934897079942556,
+                "pctUsedAsCoopApt": 0.0,
+                "pctUsedAsOtherMultifamily": 1.9147917663954046,
+                "pctMustUpzone": 12.541886069889898,
+                "pctWillChange": 7.3480134035423657,
+                "pctFutureZonedAsSF": 0.0,
+                "pctFutureZonedAsMulti": 27.237912876974629
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            232604.824268570519052,
+                            899367.305580316926353
+                        ],
+                        [
+                            232588.442194633418694,
+                            899523.849005213356577
+                        ],
+                        [
+                            232541.605282682896359,
+                            899673.586775095900521
+                        ],
+                        [
+                            232466.807697384763742,
+                            899812.087899972451851
+                        ],
+                        [
+                            232365.724173223832622,
+                            899933.807086025364697
+                        ],
+                        [
+                            232243.324333684693556,
+                            900033.214366880943999
+                        ],
+                        [
+                            232103.742684982920764,
+                            900106.997399527812377
+                        ],
+                        [
+                            231951.936809861625079,
+                            900151.847408703411929
+                        ],
+                        [
+                            231794.501296959933825,
+                            900166.684241976821795
+                        ],
+                        [
+                            231637.206478120904649,
+                            900150.42348212597426
+                        ],
+                        [
+                            231486.636543660511961,
+                            900104.205405453103594
+                        ],
+                        [
+                            231347.728233648551395,
+                            900029.16239131859038
+                        ],
+                        [
+                            231226.23288995452458,
+                            899928.651647281832993
+                        ],
+                        [
+                            231126.254877857776592,
+                            899806.022791755967773
+                        ],
+                        [
+                            231051.889621424023062,
+                            899666.846891746041365
+                        ],
+                        [
+                            231007.233484593045432,
+                            899516.695089456276037
+                        ],
+                        [
+                            230992.268561682780273,
+                            899360.009840286104009
+                        ],
+                        [
+                            231008.61541581878555,
+                            899203.46274709678255
+                        ],
+                        [
+                            231055.427569679275621,
+                            899052.604148718295619
+                        ],
+                        [
+                            231130.205218644288834,
+                            898914.088210943038575
+                        ],
+                        [
+                            231231.281768539833138,
+                            898792.351499409181997
+                        ],
+                        [
+                            231353.688663446053397,
+                            898692.926836097962223
+                        ],
+                        [
+                            231493.285342686634976,
+                            898620.239864003146067
+                        ],
+                        [
+                            231644.297154276107904,
+                            898575.376374622108415
+                        ],
+                        [
+                            231801.767952307476662,
+                            898560.536225392716005
+                        ],
+                        [
+                            231959.098024825623725,
+                            898576.800620335736312
+                        ],
+                        [
+                            232110.521793726482429,
+                            898623.032447642064653
+                        ],
+                        [
+                            232249.455051346158143,
+                            898696.97958209994249
+                        ],
+                        [
+                            232370.957292833598331,
+                            898797.507771722157486
+                        ],
+                        [
+                            232470.928172371495748,
+                            898920.15408890217077
+                        ],
+                        [
+                            232544.449401084857527,
+                            899059.340980280190706
+                        ],
+                        [
+                            232589.894597211998189,
+                            899210.616981689934619
+                        ],
+                        [
+                            232604.824268570519052,
+                            899367.305580316926353
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "stop_name": "Longwood",
+                "weighted_total_population": 14870.0,
+                "weighted_total_population_density_permile": 75107.5,
+                "weighted_total_population_male": 6224.0,
+                "weighted_total_population_female": 8647.0,
+                "weighted_pct_population_male": 38.276746306493649,
+                "weighted_pct_population_female": 54.951410978951259,
+                "weighted_pct_not_hispanic_latino": 83.872832911380797,
+                "weighted_pct_not_hispanic_latino_white": 51.54114422414716,
+                "weighted_pct_not_hispanic_latino_black": 8.0428420881512217,
+                "weighted_pct_not_hispanic_latino_native": 0.0,
+                "weighted_pct_not_hispanic_latino_asian": 19.564221922798726,
+                "weighted_pct_not_hispanic_latino_pi": 0.0,
+                "weighted_pct_not_hispanic_latino_other": 0.16757416098503469,
+                "weighted_pct_not_hispanic_latino_2+": 4.5603835633842618,
+                "weighted_pct_hispanic_latino": 9.3553243740641161,
+                "weighted_pct_hispanic_latino_white": 2.8646036094936784,
+                "weighted_pct_hispanic_latino_black": 0.81826852045504106,
+                "weighted_pct_hispanic_latino_native": 0.070010360330556159,
+                "weighted_pct_hispanic_latino_asian": 0.0093221039573877767,
+                "weighted_pct_hispanic_latino_pi": 0.0,
+                "weighted_pct_hispanic_latino_other": 2.8274871940650672,
+                "weighted_pct_hispanic_latino_2+": 2.76529578475186,
+                "weighted_median_hh_income": 254170.5,
+                "pct_workers_car_van": 20.263334368847641,
+                "pct_workers_drive_alone": 16.993295725645037,
+                "pct_workers_drive_carpooled": 3.2685299286866982,
+                "pct_workers_public_transportation": 18.565555852905668,
+                "pct_workers_motorcycle": 0.0,
+                "pct_workers_bicycle": 2.8896939878554573,
+                "pct_workers_walked": 32.813313879180754,
+                "pct_workers_other": 0.83422772322313765,
+                "pct_workers_wfh": 17.868638625211997,
+                "pct_hh_0_vehs": 40.856643846659821,
+                "pct_hh_1_vehs": 38.083236697774552,
+                "pct_hh_2_vehs": 11.279966126814452,
+                "pct_hh_3_vehs": 0.50908160484452725,
+                "pct_hh_4_vehs": 0.06548207388252604,
+                "pct_hh_5_vehs": 2.4320817110803183,
+                "municipality": "Brookline",
+                "pctZonedAsSF": 14.162607718246534,
+                "isZonedAsCommercial": 0.037467216185837392,
+                "pctZonedAsMultifamily": 19.370550768077933,
+                "pctUsedAsSF": 11.05282877482203,
+                "pctUsedAsCommercial": 3.0348445110528286,
+                "pctUsedAsDuplex": 1.985762457849382,
+                "pctUsedAsTriplex": 1.5361558636193331,
+                "pctUsedAsMultiBuildings1Lot": 0.37467216185837393,
+                "pctUsedAsAptUpTo30Units": 2.510303484451105,
+                "pctUsedAsAptOver30Units": 0.037467216185837392,
+                "pctUsedAsCoopApt": 0.0,
+                "pctUsedAsOtherMultifamily": 1.423754215061821,
+                "pctMustUpzone": 14.162607718246534,
+                "pctWillChange": 9.4417384788310237,
+                "pctFutureZonedAsSF": 0.0,
+                "pctFutureZonedAsMulti": 33.533158486324467
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            232961.992627131548943,
+                            899112.38238518172875
+                        ],
+                        [
+                            232945.602053559647175,
+                            899268.924898446071893
+                        ],
+                        [
+                            232898.755873665184481,
+                            899418.660212258459069
+                        ],
+                        [
+                            232823.948566764011048,
+                            899557.157465669559315
+                        ],
+                        [
+                            232722.855208340130048,
+                            899678.871452859253623
+                        ],
+                        [
+                            232600.445882425556192,
+                            899778.272462895023637
+                        ],
+                        [
+                            232460.855413387937006,
+                            899852.048364644986577
+                        ],
+                        [
+                            232309.04173202929087,
+                            899896.890636536176316
+                        ],
+                        [
+                            232151.59972233659937,
+                            899911.719461863627657
+                        ],
+                        [
+                            231994.299981638847385,
+                            899895.450717195402831
+                        ],
+                        [
+                            231843.726883146213368,
+                            899849.225012828828767
+                        ],
+                        [
+                            231704.817290063627297,
+                            899774.174978352617472
+                        ],
+                        [
+                            231583.322584802110214,
+                            899673.658111805329099
+                        ],
+                        [
+                            231483.347113403375261,
+                            899551.024238370824605
+                        ],
+                        [
+                            231408.986168186878785,
+                            899411.844630246283486
+                        ],
+                        [
+                            231364.335981348034693,
+                            899261.690634887549095
+                        ],
+                        [
+                            231349.378422215493629,
+                            899105.004704484832473
+                        ],
+                        [
+                            231365.73377619223902,
+                            898948.458520864136517
+                        ],
+                        [
+                            231412.555254779639654,
+                            898797.602377054514363
+                        ],
+                        [
+                            231487.342626113560982,
+                            898659.090308521292172
+                        ],
+                        [
+                            231588.424019555182895,
+                            898538.469544852967374
+                        ],
+                        [
+                            231710.840382449241588,
+                            898439.05115098785609
+                        ],
+                        [
+                            231850.45083739690017,
+                            898365.260558296460658
+                        ],
+                        [
+                            232001.470425814535702,
+                            898320.40476503840182
+                        ],
+                        [
+                            232158.947720787284197,
+                            898305.572625259053893
+                        ],
+                        [
+                            232316.282714961969759,
+                            898321.845007088733837
+                        ],
+                        [
+                            232467.709677260369062,
+                            898368.084506276529282
+                        ],
+                        [
+                            232606.639120997657301,
+                            898443.149413945968263
+                        ],
+                        [
+                            232728.140703883895185,
+                            898543.683727982221171
+                        ],
+                        [
+                            232828.114213549415581,
+                            898665.224314180552028
+                        ],
+                        [
+                            232901.631100411876105,
+                            898804.414872001856565
+                        ],
+                        [
+                            232947.07031970488606,
+                            898955.693106827675365
+                        ],
+                        [
+                            232961.992627131548943,
+                            899112.38238518172875
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "stop_name": "Milton",
+                "weighted_total_population": 5641.5,
+                "weighted_total_population_density_permile": 10065.5,
+                "weighted_total_population_male": 2674.5,
+                "weighted_total_population_female": 2968.0,
+                "weighted_pct_population_male": 46.857334409927049,
+                "weighted_pct_population_female": 53.142665590072887,
+                "weighted_pct_not_hispanic_latino": 92.512447074722076,
+                "weighted_pct_not_hispanic_latino_white": 56.527604641471598,
+                "weighted_pct_not_hispanic_latino_black": 24.390836019736376,
+                "weighted_pct_not_hispanic_latino_native": 0.11850676860192716,
+                "weighted_pct_not_hispanic_latino_asian": 5.5647824875197296,
+                "weighted_pct_not_hispanic_latino_pi": 0.0,
+                "weighted_pct_not_hispanic_latino_other": 0.16857461345896979,
+                "weighted_pct_not_hispanic_latino_2+": 5.7469194606810419,
+                "weighted_pct_hispanic_latino": 7.4875529252778605,
+                "weighted_pct_hispanic_latino_white": 2.0408709317340819,
+                "weighted_pct_hispanic_latino_black": 0.84656942168238425,
+                "weighted_pct_hispanic_latino_native": 0.04198813671849469,
+                "weighted_pct_hispanic_latino_asian": 0.0,
+                "weighted_pct_hispanic_latino_pi": 0.0,
+                "weighted_pct_hispanic_latino_other": 1.3750830133242973,
+                "weighted_pct_hispanic_latino_2+": 3.1777284458033423,
+                "weighted_median_hh_income": 130396.5,
+                "pct_workers_car_van": 55.647484071209242,
+                "pct_workers_drive_alone": 49.426098813104218,
+                "pct_workers_drive_carpooled": 6.2228304626001716,
+                "pct_workers_public_transportation": 20.927620334679158,
+                "pct_workers_motorcycle": 0.0,
+                "pct_workers_bicycle": 0.59320364576280193,
+                "pct_workers_walked": 1.8809618289382113,
+                "pct_workers_other": 1.8158841739422742,
+                "pct_workers_wfh": 19.136642560462693,
+                "pct_hh_0_vehs": 12.876988894316106,
+                "pct_hh_1_vehs": 37.188182833222186,
+                "pct_hh_2_vehs": 35.158935934881285,
+                "pct_hh_3_vehs": 11.545212288057375,
+                "pct_hh_4_vehs": 3.2330127237851127,
+                "pct_hh_5_vehs": 0.0,
+                "municipality": "Milton",
+                "pctZonedAsSF": 0.0,
+                "isZonedAsCommercial": 0.0,
+                "pctZonedAsMultifamily": 0.0,
+                "pctUsedAsSF": 46.63677130044843,
+                "pctUsedAsCommercial": 5.8295964125560538,
+                "pctUsedAsDuplex": 7.1748878923766819,
+                "pctUsedAsTriplex": 1.1210762331838564,
+                "pctUsedAsMultiBuildings1Lot": 0.22421524663677131,
+                "pctUsedAsAptUpTo30Units": 0.67264573991031396,
+                "pctUsedAsAptOver30Units": 0.0,
+                "pctUsedAsCoopApt": 0.0,
+                "pctUsedAsOtherMultifamily": 0.89686098654708524,
+                "pctMustUpzone": 0.0,
+                "pctWillChange": 0.0,
+                "pctFutureZonedAsSF": 0.0,
+                "pctFutureZonedAsMulti": 0.0
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            236506.067576568282675,
+                            891196.778352711698972
+                        ],
+                        [
+                            236489.581328248430509,
+                            891353.310267722466961
+                        ],
+                        [
+                            236442.608457830356201,
+                            891503.019721491262317
+                        ],
+                        [
+                            236367.648442334524589,
+                            891641.477178597007878
+                        ],
+                        [
+                            236267.20586509630084,
+                            891763.142614853219129
+                        ],
+                        [
+                            236144.609364034171449,
+                            891862.48039289098233
+                        ],
+                        [
+                            236004.824963118531741,
+                            891936.184783053933643
+                        ],
+                        [
+                            235852.817821849312168,
+                            891980.949816217995249
+                        ],
+                        [
+                            235696.015659507131204,
+                            891995.703204285237007
+                        ],
+                        [
+                            235538.546410271374043,
+                            891979.355362506001256
+                        ],
+                        [
+                            235387.826177544309758,
+                            891933.054408051189966
+                        ],
+                        [
+                            235248.796839561720844,
+                            891857.935442073270679
+                        ],
+                        [
+                            235127.21461451536743,
+                            891757.358810738660395
+                        ],
+                        [
+                            235027.186828155448893,
+                            891634.67635638336651
+                        ],
+                        [
+                            234953.63556118455017,
+                            891495.465428370400332
+                        ],
+                        [
+                            234908.184169437969103,
+                            891345.287060780916363
+                        ],
+                        [
+                            234894.112008141237311,
+                            891188.600013408227824
+                        ],
+                        [
+                            234909.738123819581233,
+                            891032.060314630973153
+                        ],
+                        [
+                            234956.686887387331808,
+                            890881.230021084425971
+                        ],
+                        [
+                            235031.627007655857597,
+                            890742.757719163782895
+                        ],
+                        [
+                            235132.881988541426836,
+                            890622.189715352491476
+                        ],
+                        [
+                            235255.485547016141936,
+                            890522.834527256782167
+                        ],
+                        [
+                            235395.289949703175807,
+                            890449.115435039391741
+                        ],
+                        [
+                            235546.50207976042293,
+                            890404.336472701863386
+                        ],
+                        [
+                            235704.164387807308231,
+                            890389.583982339478098
+                        ],
+                        [
+                            235860.843844229297247,
+                            890405.931283349404112
+                        ],
+                        [
+                            236012.418868683569599,
+                            890452.246470280457288
+                        ],
+                        [
+                            236151.468058224243578,
+                            890527.380340509582311
+                        ],
+                        [
+                            236273.057163662771927,
+                            890627.974452618858777
+                        ],
+                        [
+                            236372.25854385033017,
+                            890749.559403475373983
+                        ],
+                        [
+                            236445.789765991852619,
+                            890888.784973667468876
+                        ],
+                        [
+                            236491.20567927492084,
+                            891040.083878730423748
+                        ],
+                        [
+                            236506.067576568282675,
+                            891196.778352711698972
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "stop_name": "Reservoir",
+                "weighted_total_population": 8279.0,
+                "weighted_total_population_density_permile": 55808.333333333336,
+                "weighted_total_population_male": 3916.3333333333335,
+                "weighted_total_population_female": 4362.666666666667,
+                "weighted_pct_population_male": 44.626728400192462,
+                "weighted_pct_population_female": 47.581333648964886,
+                "weighted_pct_not_hispanic_latino": 84.358235203376182,
+                "weighted_pct_not_hispanic_latino_white": 61.842449592985382,
+                "weighted_pct_not_hispanic_latino_black": 3.1016010392743278,
+                "weighted_pct_not_hispanic_latino_native": 0.11933743148182695,
+                "weighted_pct_not_hispanic_latino_asian": 13.21878941082489,
+                "weighted_pct_not_hispanic_latino_pi": 0.0,
+                "weighted_pct_not_hispanic_latino_other": 0.59250366234986485,
+                "weighted_pct_not_hispanic_latino_2+": 5.4810655169646694,
+                "weighted_pct_hispanic_latino": 7.8498268457811671,
+                "weighted_pct_hispanic_latino_white": 2.7401843276749358,
+                "weighted_pct_hispanic_latino_black": 0.41616956321409954,
+                "weighted_pct_hispanic_latino_native": 0.059458787096206112,
+                "weighted_pct_hispanic_latino_asian": 0.0,
+                "weighted_pct_hispanic_latino_pi": 0.0,
+                "weighted_pct_hispanic_latino_other": 0.84172503319395597,
+                "weighted_pct_hispanic_latino_2+": 3.7929712927622763,
+                "weighted_median_hh_income": 243109.33333333334,
+                "pct_workers_car_van": 33.876031596183147,
+                "pct_workers_drive_alone": 29.155744981991432,
+                "pct_workers_drive_carpooled": 4.719597043084593,
+                "pct_workers_public_transportation": 24.0974695507485,
+                "pct_workers_motorcycle": 0.0,
+                "pct_workers_bicycle": 3.0870223321004508,
+                "pct_workers_walked": 8.7841260881244949,
+                "pct_workers_other": 1.4167494670066878,
+                "pct_workers_wfh": 20.946579807508609,
+                "pct_hh_0_vehs": 25.116732808877615,
+                "pct_hh_1_vehs": 37.954502617703042,
+                "pct_hh_2_vehs": 24.982517312395373,
+                "pct_hh_3_vehs": 3.5410071727071251,
+                "pct_hh_4_vehs": 0.61221984723826084,
+                "pct_hh_5_vehs": 0.0010822902359404545,
+                "municipality": "Brookline",
+                "pctZonedAsSF": 33.757961783439491,
+                "isZonedAsCommercial": 0.0,
+                "pctZonedAsMultifamily": 11.528662420382165,
+                "pctUsedAsSF": 30.573248407643312,
+                "pctUsedAsCommercial": 1.5286624203821657,
+                "pctUsedAsDuplex": 1.1464968152866242,
+                "pctUsedAsTriplex": 2.4203821656050959,
+                "pctUsedAsMultiBuildings1Lot": 0.19108280254777071,
+                "pctUsedAsAptUpTo30Units": 2.0382165605095541,
+                "pctUsedAsAptOver30Units": 0.0,
+                "pctUsedAsCoopApt": 0.0,
+                "pctUsedAsOtherMultifamily": 1.2738853503184715,
+                "pctMustUpzone": 33.757961783439491,
+                "pctWillChange": 29.617834394904456,
+                "pctFutureZonedAsSF": 0.0,
+                "pctFutureZonedAsMulti": 45.28662420382166
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            229699.524974572850624,
+                            898354.732870485284366
+                        ],
+                        [
+                            229683.205480810807785,
+                            898511.282747704186477
+                        ],
+                        [
+                            229636.419314568483969,
+                            898662.150324485497549
+                        ],
+                        [
+                            229561.668535773496842,
+                            898800.682084603467956
+                        ],
+                        [
+                            229460.625782380840974,
+                            898921.332052537822165
+                        ],
+                        [
+                            229338.249760027683806,
+                            899020.789725194801576
+                        ],
+                        [
+                            229198.678860870626522,
+                            899094.630304848076776
+                        ],
+                        [
+                            229046.870000675786287,
+                            899139.542974007432349
+                        ],
+                        [
+                            228890.242276208708063,
+                            899154.448243637220003
+                        ],
+                        [
+                            228732.918355722737033,
+                            899138.252521037007682
+                        ],
+                        [
+                            228581.483832932368387,
+                            899092.093413672875613
+                        ],
+                        [
+                            228442.524661661329446,
+                            899017.107976323808543
+                        ],
+                        [
+                            228320.970373363903491,
+                            898916.647663295501843
+                        ],
+                        [
+                            228220.922845990979113,
+                            898795.17114275530912
+                        ],
+                        [
+                            228147.313403398205992,
+                            898656.029569338890724
+                        ],
+                        [
+                            228101.769035926728975,
+                            898504.782481210771948
+                        ],
+                        [
+                            228086.737023247755133,
+                            898348.103738144622184
+                        ],
+                        [
+                            228103.021295765560353,
+                            898191.550206105341204
+                        ],
+                        [
+                            228149.777556746470509,
+                            898040.672562603256665
+                        ],
+                        [
+                            228224.508404855238041,
+                            897902.125993484049104
+                        ],
+                        [
+                            228325.544372760807164,
+                            897781.458495994331315
+                        ],
+                        [
+                            228447.927424021705519,
+                            897681.983432106790133
+                        ],
+                        [
+                            228587.518302245502127,
+                            897608.128148716525175
+                        ],
+                        [
+                            228739.357180949591566,
+                            897563.205693765543401
+                        ],
+                        [
+                            228896.844209094095277,
+                            897548.300497934105806
+                        ],
+                        [
+                            229053.379180042975349,
+                            897564.496435916167684
+                        ],
+                        [
+                            229204.843639879312832,
+                            897610.66557551024016
+                        ],
+                        [
+                            229343.822668670938583,
+                            897685.665880339452997
+                        ],
+                        [
+                            229465.383842672716128,
+                            897786.143641791539267
+                        ],
+                        [
+                            229565.424440682749264,
+                            897907.637635515304282
+                        ],
+                        [
+                            229639.013831524265697,
+                            898046.793853590730578
+                        ],
+                        [
+                            229684.528211990604177,
+                            898198.050762260449119
+                        ],
+                        [
+                            229699.524974572850624,
+                            898354.732870485284366
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "stop_name": "Saint Mary's Street",
+                "weighted_total_population": 14111.0,
+                "weighted_total_population_density_permile": 90999.0,
+                "weighted_total_population_male": 5846.0,
+                "weighted_total_population_female": 8266.5,
+                "weighted_pct_population_male": 34.324801611420646,
+                "weighted_pct_population_female": 50.199484684075223,
+                "weighted_pct_not_hispanic_latino": 75.54328351715597,
+                "weighted_pct_not_hispanic_latino_white": 47.179530324180796,
+                "weighted_pct_not_hispanic_latino_black": 6.5863031274937569,
+                "weighted_pct_not_hispanic_latino_native": 0.013314696436790089,
+                "weighted_pct_not_hispanic_latino_asian": 17.493404911294675,
+                "weighted_pct_not_hispanic_latino_pi": 0.0073166942607024808,
+                "weighted_pct_not_hispanic_latino_other": 0.14510868848626857,
+                "weighted_pct_not_hispanic_latino_2+": 4.1233569415618287,
+                "weighted_pct_hispanic_latino": 8.9810027783399118,
+                "weighted_pct_hispanic_latino_white": 3.5540638260685755,
+                "weighted_pct_hispanic_latino_black": 0.15560474731732071,
+                "weighted_pct_hispanic_latino_native": 0.095807949088677791,
+                "weighted_pct_hispanic_latino_asian": 0.015111987811965662,
+                "weighted_pct_hispanic_latino_pi": 0.0,
+                "weighted_pct_hispanic_latino_other": 2.5683339572422339,
+                "weighted_pct_hispanic_latino_2+": 2.5923645880317636,
+                "weighted_median_hh_income": 225944.5,
+                "pct_workers_car_van": 18.447401307642448,
+                "pct_workers_drive_alone": 15.215696433473308,
+                "pct_workers_drive_carpooled": 3.2306631559788572,
+                "pct_workers_public_transportation": 14.112120378318092,
+                "pct_workers_motorcycle": 0.0,
+                "pct_workers_bicycle": 2.32703057452026,
+                "pct_workers_walked": 33.793910756084827,
+                "pct_workers_other": 0.68911963037554469,
+                "pct_workers_wfh": 15.159730353649717,
+                "pct_hh_0_vehs": 37.97165340104835,
+                "pct_hh_1_vehs": 34.408315329754444,
+                "pct_hh_2_vehs": 9.0032481383592504,
+                "pct_hh_3_vehs": 1.3402618008538416,
+                "pct_hh_4_vehs": 0.0041162592719984157,
+                "pct_hh_5_vehs": 1.7968483505288151,
+                "municipality": "Brookline",
+                "pctZonedAsSF": 17.165991902834008,
+                "isZonedAsCommercial": 0.80971659919028338,
+                "pctZonedAsMultifamily": 27.854251012145749,
+                "pctUsedAsSF": 16.761133603238868,
+                "pctUsedAsCommercial": 6.4777327935222671,
+                "pctUsedAsDuplex": 0.48582995951417007,
+                "pctUsedAsTriplex": 1.3765182186234819,
+                "pctUsedAsMultiBuildings1Lot": 0.72874493927125505,
+                "pctUsedAsAptUpTo30Units": 3.2388663967611335,
+                "pctUsedAsAptOver30Units": 0.080971659919028341,
+                "pctUsedAsCoopApt": 0.0,
+                "pctUsedAsOtherMultifamily": 2.42914979757085,
+                "pctMustUpzone": 17.165991902834008,
+                "pctWillChange": 13.684210526315791,
+                "pctFutureZonedAsSF": 0.0,
+                "pctFutureZonedAsMulti": 45.020242914979761
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            233131.258312039339216,
+                            899565.264090233366005
+                        ],
+                        [
+                            233114.864927436487051,
+                            899721.806347950128838
+                        ],
+                        [
+                            233068.012837159709306,
+                            899872.651419693371281
+                        ],
+                        [
+                            232993.206934145709965,
+                            900011.146995704970323
+                        ],
+                        [
+                            232892.117089155159192,
+                            900132.85865765879862
+                        ],
+                        [
+                            232769.713202301063575,
+                            900232.256809201091528
+                        ],
+                        [
+                            232630.135070615855511,
+                            900304.918661763891578
+                        ],
+                        [
+                            232478.32491419732105,
+                            900350.868071741657332
+                        ],
+                        [
+                            232320.897799627273344,
+                            900364.582364281639457
+                        ],
+                        [
+                            232163.603495110961376,
+                            900349.420570563292131
+                        ],
+                        [
+                            232013.046307093987707,
+                            900302.080443443381228
+                        ],
+                        [
+                            231874.142463669326389,
+                            900228.137749792775139
+                        ],
+                        [
+                            231751.834169281559298,
+                            900127.614143714075908
+                        ],
+                        [
+                            231652.692075062863296,
+                            900004.981474540312774
+                        ],
+                        [
+                            231578.339359349978622,
+                            899865.799950473476201
+                        ],
+                        [
+                            231533.70074075346929,
+                            899714.533991964999586
+                        ],
+                        [
+                            231518.748010158044053,
+                            899557.847561930306256
+                        ],
+                        [
+                            231535.106175220542355,
+                            899401.301633497350849
+                        ],
+                        [
+                            231581.92337397497613,
+                            899251.557236536405981
+                        ],
+                        [
+                            231656.709341755369678,
+                            899113.04684705263935
+                        ],
+                        [
+                            231757.792213787790388,
+                            898991.317660190165043
+                        ],
+                        [
+                            231880.203157310839742,
+                            898891.902127819485031
+                        ],
+                        [
+                            232019.806454814854078,
+                            898818.114833316067234
+                        ],
+                        [
+                            232170.817438068275806,
+                            898773.262638376443647
+                        ],
+                        [
+                            232328.284971604240127,
+                            898758.434278647648171
+                        ],
+                        [
+                            232485.609445711830631,
+                            898774.710464213043451
+                        ],
+                        [
+                            232637.025528059777571,
+                            898820.953650980023667
+                        ],
+                        [
+                            232775.944183814222924,
+                            898896.021970444591716
+                        ],
+                        [
+                            232897.435470544820419,
+                            898996.559298932668753
+                        ],
+                        [
+                            232997.394335046119522,
+                            899119.213150727329776
+                        ],
+                        [
+                            233070.903045263374224,
+                            899258.405602009850554
+                        ],
+                        [
+                            233116.34083325942629,
+                            899408.57431360532064
+                        ],
+                        [
+                            233131.258312039339216,
+                            899565.264090233366005
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "stop_name": "Saint Paul Street",
+                "weighted_total_population": 11461.0,
+                "weighted_total_population_density_permile": 47028.5,
+                "weighted_total_population_male": 4840.5,
+                "weighted_total_population_female": 6621.5,
+                "weighted_pct_population_male": 30.230940675892743,
+                "weighted_pct_population_female": 42.587289917949597,
+                "weighted_pct_not_hispanic_latino": 67.051048280793239,
+                "weighted_pct_not_hispanic_latino_white": 44.698368552965945,
+                "weighted_pct_not_hispanic_latino_black": 3.0505279795388609,
+                "weighted_pct_not_hispanic_latino_native": 0.0,
+                "weighted_pct_not_hispanic_latino_asian": 15.098623492214514,
+                "weighted_pct_not_hispanic_latino_pi": 0.0,
+                "weighted_pct_not_hispanic_latino_other": 0.11421207798674773,
+                "weighted_pct_not_hispanic_latino_2+": 4.0896284761510184,
+                "weighted_pct_hispanic_latino": 5.7671823130490916,
+                "weighted_pct_hispanic_latino_white": 1.9170954907060787,
+                "weighted_pct_hispanic_latino_black": 0.11460962436838035,
+                "weighted_pct_hispanic_latino_native": 0.11404355124249817,
+                "weighted_pct_hispanic_latino_asian": 0.0,
+                "weighted_pct_hispanic_latino_pi": 0.0,
+                "weighted_pct_hispanic_latino_other": 1.4970162958621864,
+                "weighted_pct_hispanic_latino_2+": 2.1238030906183596,
+                "weighted_median_hh_income": 243553.5,
+                "pct_workers_car_van": 17.354671386154902,
+                "pct_workers_drive_alone": 14.811154064685059,
+                "pct_workers_drive_carpooled": 2.5434415918898106,
+                "pct_workers_public_transportation": 16.513911937862481,
+                "pct_workers_motorcycle": 0.0,
+                "pct_workers_bicycle": 3.0404052339161165,
+                "pct_workers_walked": 19.567428351261071,
+                "pct_workers_other": 0.58209378084506813,
+                "pct_workers_wfh": 15.76621105594381,
+                "pct_hh_0_vehs": 24.225508002781822,
+                "pct_hh_1_vehs": 35.734927768988811,
+                "pct_hh_2_vehs": 11.028924271806805,
+                "pct_hh_3_vehs": 0.77798307209872131,
+                "pct_hh_4_vehs": 0.15835609129421915,
+                "pct_hh_5_vehs": 0.89246272436344354,
+                "municipality": "Brookline",
+                "pctZonedAsSF": 11.80541823215345,
+                "isZonedAsCommercial": 1.166699624283172,
+                "pctZonedAsMultifamily": 13.407158394304924,
+                "pctUsedAsSF": 7.7714059719201103,
+                "pctUsedAsCommercial": 3.0452837650781097,
+                "pctUsedAsDuplex": 2.3531738184694482,
+                "pctUsedAsTriplex": 2.155428119438402,
+                "pctUsedAsMultiBuildings1Lot": 0.27684397864346449,
+                "pctUsedAsAptUpTo30Units": 2.333399248566344,
+                "pctUsedAsAptOver30Units": 0.0,
+                "pctUsedAsCoopApt": 0.0,
+                "pctUsedAsOtherMultifamily": 1.6412893019576824,
+                "pctMustUpzone": 11.80541823215345,
+                "pctWillChange": 6.5256080680245203,
+                "pctFutureZonedAsSF": 0.0,
+                "pctFutureZonedAsMulti": 25.212576626458372
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            232372.033197199489223,
+                            899279.589017459889874
+                        ],
+                        [
+                            232355.656124290951993,
+                            899436.132958197151311
+                        ],
+                        [
+                            232308.818505535076838,
+                            899586.983006272814237
+                        ],
+                        [
+                            232234.024613206973299,
+                            899725.486585131962784
+                        ],
+                        [
+                            232132.948982962756418,
+                            899846.098345391219482
+                        ],
+                        [
+                            232010.550938462372869,
+                            899945.509663211647421
+                        ],
+                        [
+                            231870.970021307322895,
+                            900019.29730633716099
+                        ],
+                        [
+                            231719.163765396515373,
+                            900064.152335899882019
+                        ],
+                        [
+                            231561.726804789417656,
+                            900078.99438123870641
+                        ],
+                        [
+                            231404.429506446962478,
+                            900062.738834199612029
+                        ],
+                        [
+                            231253.856179774884367,
+                            900016.525752798421308
+                        ],
+                        [
+                            231114.94366335781524,
+                            899941.487352663418278
+                        ],
+                        [
+                            230993.443481552210869,
+                            899840.980650252313353
+                        ],
+                        [
+                            230893.455278932407964,
+                            899719.465881276526488
+                        ],
+                        [
+                            230819.084492304507876,
+                            899580.292468143976294
+                        ],
+                        [
+                            230774.427685681614093,
+                            899429.031417148886248
+                        ],
+                        [
+                            230759.457371077762218,
+                            899272.346690454753116
+                        ],
+                        [
+                            230775.799224071000936,
+                            899115.799082500860095
+                        ],
+                        [
+                            230822.60694133452489,
+                            898964.938959211111069
+                        ],
+                        [
+                            230897.380908560968237,
+                            898826.420568059431389
+                        ],
+                        [
+                            230998.449759958632058,
+                            898705.791280736098997
+                        ],
+                        [
+                            231120.854839978273958,
+                            898606.362579441862181
+                        ],
+                        [
+                            231260.455741814890644,
+                            898532.5602445009863
+                        ],
+                        [
+                            231411.467923584714299,
+                            898487.691760765970685
+                        ],
+                        [
+                            231568.940169205860002,
+                            898472.846398202236742
+                        ],
+                        [
+                            231726.272721341607394,
+                            898489.105579261435196
+                        ],
+                        [
+                            231877.699893062061165,
+                            898535.332383281667717
+                        ],
+                        [
+                            232016.63226139076869,
+                            898610.385654142941348
+                        ],
+                        [
+                            232138.139322291244753,
+                            898710.90980252053123
+                        ],
+                        [
+                            232238.120588905585464,
+                            898832.442036964348517
+                        ],
+                        [
+                            232311.647349876147928,
+                            898971.626469582784921
+                        ],
+                        [
+                            232357.098134031664813,
+                            899122.900940046994947
+                        ],
+                        [
+                            232372.033197199489223,
+                            899279.589017459889874
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "stop_name": "Summit Avenue",
+                "weighted_total_population": 11232.5,
+                "weighted_total_population_density_permile": 52203.5,
+                "weighted_total_population_male": 4987.5,
+                "weighted_total_population_female": 6243.5,
+                "weighted_pct_population_male": 27.97345278213292,
+                "weighted_pct_population_female": 35.357706816123127,
+                "weighted_pct_not_hispanic_latino": 59.979184333909579,
+                "weighted_pct_not_hispanic_latino_white": 45.483306986089588,
+                "weighted_pct_not_hispanic_latino_black": 0.51588671636355909,
+                "weighted_pct_not_hispanic_latino_native": 0.0,
+                "weighted_pct_not_hispanic_latino_asian": 10.889394507176776,
+                "weighted_pct_not_hispanic_latino_pi": 0.0,
+                "weighted_pct_not_hispanic_latino_other": 0.23942670144832315,
+                "weighted_pct_not_hispanic_latino_2+": 2.8498092413742011,
+                "weighted_pct_hispanic_latino": 3.3519752643464646,
+                "weighted_pct_hispanic_latino_white": 0.73523537394459526,
+                "weighted_pct_hispanic_latino_black": 0.021103959887629298,
+                "weighted_pct_hispanic_latino_native": 0.34726911618844869,
+                "weighted_pct_hispanic_latino_asian": 0.0,
+                "weighted_pct_hispanic_latino_pi": 0.0,
+                "weighted_pct_hispanic_latino_other": 0.59945515344827949,
+                "weighted_pct_hispanic_latino_2+": 1.6481465336305898,
+                "weighted_median_hh_income": 294842.0,
+                "pct_workers_car_van": 15.828420818031507,
+                "pct_workers_drive_alone": 14.443265090033039,
+                "pct_workers_drive_carpooled": 1.3851557279984661,
+                "pct_workers_public_transportation": 16.386374750606038,
+                "pct_workers_motorcycle": 0.0,
+                "pct_workers_bicycle": 3.6149741475460653,
+                "pct_workers_walked": 12.33726691571961,
+                "pct_workers_other": 0.75189325969409693,
+                "pct_workers_wfh": 14.413906345344387,
+                "pct_hh_0_vehs": 20.114452903223096,
+                "pct_hh_1_vehs": 29.609493122132498,
+                "pct_hh_2_vehs": 11.7125582978714,
+                "pct_hh_3_vehs": 1.5995429267380172,
+                "pct_hh_4_vehs": 0.18969224121282355,
+                "pct_hh_5_vehs": 0.10621367963520845,
+                "municipality": "Brookline",
+                "pctZonedAsSF": 15.915363385464582,
+                "isZonedAsCommercial": 1.3615455381784729,
+                "pctZonedAsMultifamily": 12.953081876724932,
+                "pctUsedAsSF": 10.229990800367986,
+                "pctUsedAsCommercial": 2.1343146274149034,
+                "pctUsedAsDuplex": 4.5814167433302666,
+                "pctUsedAsTriplex": 1.8767249310027601,
+                "pctUsedAsMultiBuildings1Lot": 0.12879484820607176,
+                "pctUsedAsAptUpTo30Units": 2.3551057957681691,
+                "pctUsedAsAptOver30Units": 0.036798528058877643,
+                "pctUsedAsCoopApt": 0.0,
+                "pctUsedAsOtherMultifamily": 1.2143514259429622,
+                "pctMustUpzone": 15.915363385464582,
+                "pctWillChange": 7.9300827966881329,
+                "pctFutureZonedAsSF": 0.0,
+                "pctFutureZonedAsMulti": 28.868445262189514
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            231653.788421649485826,
+                            899029.725609995308332
+                        ],
+                        [
+                            231637.42682207148755,
+                            899186.271147731225938
+                        ],
+                        [
+                            231591.42702119925525,
+                            899337.129611887969077
+                        ],
+                        [
+                            231515.820706643688027,
+                            899475.637062229448929
+                        ],
+                        [
+                            231415.577861216384917,
+                            899596.262775192852132
+                        ],
+                        [
+                            231292.361747202463448,
+                            899695.682868933072314
+                        ],
+                        [
+                            231152.783497341966722,
+                            899769.484739651787095
+                        ],
+                        [
+                            231001.80045472108759,
+                            899814.358895048964769
+                        ],
+                        [
+                            230844.359490569593618,
+                            899829.217003539321013
+                        ],
+                        [
+                            230687.055009439180139,
+                            899812.97752086550463
+                        ],
+                        [
+                            230535.647722077614162,
+                            899766.776252353913151
+                        ],
+                        [
+                            230396.722640367108397,
+                            899691.752085397718474
+                        ],
+                        [
+                            230275.207893559592776,
+                            899591.257849291199818
+                        ],
+                        [
+                            230175.203727269516094,
+                            899469.75335850357078
+                        ],
+                        [
+                            230101.640063235769048,
+                            899330.59114319155924
+                        ],
+                        [
+                            230056.142187429708429,
+                            899179.33120109536685
+                        ],
+                        [
+                            230041.979320397949778,
+                            899022.651603006757796
+                        ],
+                        [
+                            230057.48166600742843,
+                            898866.098879346391186
+                        ],
+                        [
+                            230104.275561199407093,
+                            898715.234045948833227
+                        ],
+                        [
+                            230179.037952327955281,
+                            898576.708080501179211
+                        ],
+                        [
+                            230280.097983568994096,
+                            898456.068522872286849
+                        ],
+                        [
+                            230402.497164879809134,
+                            898356.627360492246225
+                        ],
+                        [
+                            230542.095397913537454,
+                            898282.81079475057777
+                        ],
+                        [
+                            230693.932402671431191,
+                            898237.930498584639281
+                        ],
+                        [
+                            230851.408651481819106,
+                            898223.069068988901563
+                        ],
+                        [
+                            231008.748386758554261,
+                            898239.312182351946831
+                        ],
+                        [
+                            231159.361482888751198,
+                            898285.519853952224366
+                        ],
+                        [
+                            231298.30641801803722,
+                            898360.558890766580589
+                        ],
+                        [
+                            231419.828045696573099,
+                            898461.070573506643996
+                        ],
+                        [
+                            231519.825277767144144,
+                            898582.592531842645258
+                        ],
+                        [
+                            231594.192954929370899,
+                            898721.773087108391337
+                        ],
+                        [
+                            231638.836771998467157,
+                            898873.039135267143138
+                        ],
+                        [
+                            231653.788421649485826,
+                            899029.725609995308332
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "stop_name": "Tappan Street",
+                "weighted_total_population": 8308.0,
+                "weighted_total_population_density_permile": 37664.5,
+                "weighted_total_population_male": 3992.5,
+                "weighted_total_population_female": 4316.0,
+                "weighted_pct_population_male": 29.281150382343966,
+                "weighted_pct_population_female": 32.190641098545747,
+                "weighted_pct_not_hispanic_latino": 55.754115120297762,
+                "weighted_pct_not_hispanic_latino_white": 41.59900862987962,
+                "weighted_pct_not_hispanic_latino_black": 0.84458686689747031,
+                "weighted_pct_not_hispanic_latino_native": 0.11910173456050824,
+                "weighted_pct_not_hispanic_latino_asian": 8.4211845155050273,
+                "weighted_pct_not_hispanic_latino_pi": 0.0,
+                "weighted_pct_not_hispanic_latino_other": 0.056033693712466588,
+                "weighted_pct_not_hispanic_latino_2+": 4.7122874097288108,
+                "weighted_pct_hispanic_latino": 5.7176763605919483,
+                "weighted_pct_hispanic_latino_white": 1.9198680915642217,
+                "weighted_pct_hispanic_latino_black": 0.012607107956961749,
+                "weighted_pct_hispanic_latino_native": 0.31753045683462233,
+                "weighted_pct_hispanic_latino_asian": 0.014243341062260911,
+                "weighted_pct_hispanic_latino_pi": 0.0,
+                "weighted_pct_hispanic_latino_other": 0.50816588930718043,
+                "weighted_pct_hispanic_latino_2+": 2.9473675407036399,
+                "weighted_median_hh_income": 214199.5,
+                "pct_workers_car_van": 17.847134549992496,
+                "pct_workers_drive_alone": 16.403768640338999,
+                "pct_workers_drive_carpooled": 1.4435300580878851,
+                "pct_workers_public_transportation": 17.223559711098869,
+                "pct_workers_motorcycle": 0.0,
+                "pct_workers_bicycle": 2.2749586544009368,
+                "pct_workers_walked": 6.4371616989271345,
+                "pct_workers_other": 0.091874061412368507,
+                "pct_workers_wfh": 17.598590131481206,
+                "pct_hh_0_vehs": 15.849684626403164,
+                "pct_hh_1_vehs": 31.387825025618547,
+                "pct_hh_2_vehs": 11.738387001531478,
+                "pct_hh_3_vehs": 1.9735062195293462,
+                "pct_hh_4_vehs": 0.52424597261293249,
+                "pct_hh_5_vehs": 0.0,
+                "municipality": "Brookline",
+                "pctZonedAsSF": 20.942883046237533,
+                "isZonedAsCommercial": 1.1181625868842551,
+                "pctZonedAsMultifamily": 17.195527349652462,
+                "pctUsedAsSF": 20.187367784829256,
+                "pctUsedAsCommercial": 1.4808099123602296,
+                "pctUsedAsDuplex": 3.626473254759746,
+                "pctUsedAsTriplex": 2.2665457842248413,
+                "pctUsedAsMultiBuildings1Lot": 0.27198549410698097,
+                "pctUsedAsAptUpTo30Units": 2.7802961619824722,
+                "pctUsedAsAptOver30Units": 0.0,
+                "pctUsedAsCoopApt": 0.0,
+                "pctUsedAsOtherMultifamily": 1.3599274705349047,
+                "pctMustUpzone": 20.942883046237533,
+                "pctWillChange": 15.170746449078271,
+                "pctFutureZonedAsSF": 0.0,
+                "pctFutureZonedAsMulti": 38.138410395889991
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            230577.219041235977784,
+                            898733.937109263264574
+                        ],
+                        [
+                            230560.880799981066957,
+                            898890.485062099178322
+                        ],
+                        [
+                            230514.907079725904623,
+                            899040.239731420413591
+                        ],
+                        [
+                            230439.318889654707164,
+                            899178.758680983446538
+                        ],
+                        [
+                            230339.0856046336703,
+                            899300.510430361493491
+                        ],
+                        [
+                            230215.879654557618778,
+                            899399.949338652892038
+                        ],
+                        [
+                            230076.306957880326081,
+                            899473.77254510554485
+                        ],
+                        [
+                            229925.324554827966494,
+                            899518.669800136703998
+                        ],
+                        [
+                            229767.879354387609055,
+                            899533.552015141700394
+                        ],
+                        [
+                            229610.56586812727619,
+                            899517.336636450374499
+                        ],
+                        [
+                            229459.969200847146567,
+                            899471.162040134193376
+                        ],
+                        [
+                            229320.202868613385363,
+                            899396.155742828268558
+                        ],
+                        [
+                            229198.667662828433095,
+                            899295.68017832422629
+                        ],
+                        [
+                            229099.469317118695471,
+                            899173.083734204410575
+                        ],
+                        [
+                            229025.057214883941924,
+                            899033.929456845391542
+                        ],
+                        [
+                            228979.529646276758285,
+                            898883.787325563142076
+                        ],
+                        [
+                            228965.342138358420925,
+                            898727.109987900825217
+                        ],
+                        [
+                            228981.645177152968245,
+                            898570.558378168381751
+                        ],
+                        [
+                            229027.59376051358413,
+                            898419.683066695928574
+                        ],
+                        [
+                            229103.162099005188793,
+                            898281.149141540401615
+                        ],
+                        [
+                            229203.383670729119331,
+                            898160.490761731169187
+                        ],
+                        [
+                            229326.596797198231798,
+                            898061.034346477594227
+                        ],
+                        [
+                            229466.189483447262319,
+                            897987.196456923848018
+                        ],
+                        [
+                            229617.201726699538995,
+                            897942.289474867633544
+                        ],
+                        [
+                            229774.682211270352127,
+                            897927.403933022869751
+                        ],
+                        [
+                            229932.030952211876865,
+                            897943.622937322012149
+                        ],
+                        [
+                            230082.657376224990003,
+                            897989.807513085193932
+                        ],
+                        [
+                            230221.619583027932094,
+                            898064.825224783155136
+                        ],
+                        [
+                            230343.985806556011084,
+                            898165.321793923270889
+                        ],
+                        [
+                            230443.181701179099036,
+                            898286.824808481382206
+                        ],
+                        [
+                            230517.573825690225931,
+                            898425.99389273696579
+                        ],
+                        [
+                            230562.242715515894815,
+                            898577.253015457186848
+                        ],
+                        [
+                            230577.219041235977784,
+                            898733.937109263264574
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "stop_name": "Valley Road",
+                "weighted_total_population": 6303.5,
+                "weighted_total_population_density_permile": 11999.0,
+                "weighted_total_population_male": 2892.0,
+                "weighted_total_population_female": 3410.5,
+                "weighted_pct_population_male": 46.544166756722682,
+                "weighted_pct_population_female": 53.45583324327729,
+                "weighted_pct_not_hispanic_latino": 90.594226550265063,
+                "weighted_pct_not_hispanic_latino_white": 46.687655837721792,
+                "weighted_pct_not_hispanic_latino_black": 34.849491903011554,
+                "weighted_pct_not_hispanic_latino_native": 0.0,
+                "weighted_pct_not_hispanic_latino_asian": 3.491069749945523,
+                "weighted_pct_not_hispanic_latino_pi": 0.0,
+                "weighted_pct_not_hispanic_latino_other": 0.48091411782507476,
+                "weighted_pct_not_hispanic_latino_2+": 5.0910639359621408,
+                "weighted_pct_hispanic_latino": 9.4057734497348999,
+                "weighted_pct_hispanic_latino_white": 2.5626320511439409,
+                "weighted_pct_hispanic_latino_black": 0.35137689691483764,
+                "weighted_pct_hispanic_latino_native": 0.032666610737275684,
+                "weighted_pct_hispanic_latino_asian": 0.53188658192634986,
+                "weighted_pct_hispanic_latino_pi": 0.0,
+                "weighted_pct_hispanic_latino_other": 3.3542668357229148,
+                "weighted_pct_hispanic_latino_2+": 2.5673768614723018,
+                "weighted_median_hh_income": 139567.5,
+                "pct_workers_car_van": 54.272786771574616,
+                "pct_workers_drive_alone": 48.568125029552249,
+                "pct_workers_drive_carpooled": 5.7046617420223624,
+                "pct_workers_public_transportation": 18.046456881833524,
+                "pct_workers_motorcycle": 0.0,
+                "pct_workers_bicycle": 0.088925773673694919,
+                "pct_workers_walked": 3.2809985024184227,
+                "pct_workers_other": 2.727661446839853,
+                "pct_workers_wfh": 21.583170623659864,
+                "pct_hh_0_vehs": 13.084781807055817,
+                "pct_hh_1_vehs": 36.224605451710403,
+                "pct_hh_2_vehs": 34.14933297735309,
+                "pct_hh_3_vehs": 12.750924161601537,
+                "pct_hh_4_vehs": 3.7921704139867503,
+                "pct_hh_5_vehs": 0.0,
+                "municipality": "Milton",
+                "pctZonedAsSF": 0.0,
+                "isZonedAsCommercial": 0.0,
+                "pctZonedAsMultifamily": 0.0,
+                "pctUsedAsSF": 77.0,
+                "pctUsedAsCommercial": 1.0,
+                "pctUsedAsDuplex": 7.4285714285714288,
+                "pctUsedAsTriplex": 0.85714285714285721,
+                "pctUsedAsMultiBuildings1Lot": 0.2857142857142857,
+                "pctUsedAsAptUpTo30Units": 0.14285714285714285,
+                "pctUsedAsAptOver30Units": 0.0,
+                "pctUsedAsCoopApt": 0.0,
+                "pctUsedAsOtherMultifamily": 1.1428571428571428,
+                "pctMustUpzone": 0.0,
+                "pctWillChange": 0.0,
+                "pctFutureZonedAsSF": 0.0,
+                "pctFutureZonedAsMulti": 0.0
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            235331.627030973206274,
+                            890968.631136251613498
+                        ],
+                        [
+                            235315.166439395194175,
+                            891125.165739452699199
+                        ],
+                        [
+                            235268.211555445363047,
+                            891275.993705444969237
+                        ],
+                        [
+                            235193.27234043990029,
+                            891414.463617752073333
+                        ],
+                        [
+                            235092.852495095925406,
+                            891535.035035471548326
+                        ],
+                        [
+                            234969.443837402825011,
+                            891634.389135220670141
+                        ],
+                        [
+                            234830.492250435607275,
+                            891708.120926022995263
+                        ],
+                        [
+                            234678.48779791968991,
+                            891752.911311972187832
+                        ],
+                        [
+                            234521.683154169819318,
+                            891767.690865528653376
+                        ],
+                        [
+                            234364.206201495864661,
+                            891751.369313426548615
+                        ],
+                        [
+                            234213.473469408141682,
+                            891705.09353453386575
+                        ],
+                        [
+                            234074.427181980019668,
+                            891629.997804656508379
+                        ],
+                        [
+                            233952.82430103153456,
+                            891529.441507757874206
+                        ],
+                        [
+                            233852.767498537199572,
+                            891407.886533572804183
+                        ],
+                        [
+                            233779.190642763511278,
+                            891268.687938555958681
+                        ],
+                        [
+                            233733.718035511643393,
+                            891117.406484168604948
+                        ],
+                        [
+                            233719.619228359661065,
+                            890960.721849125809968
+                        ],
+                        [
+                            233735.219659979571588,
+                            890804.179605484940112
+                        ],
+                        [
+                            233782.144682583224494,
+                            890653.341536516323686
+                        ],
+                        [
+                            233857.064011613081675,
+                            890514.856782008660957
+                        ],
+                        [
+                            233958.302025527256774,
+                            890394.271926093380898
+                        ],
+                        [
+                            234080.892837844032329,
+                            890294.89631404587999
+                        ],
+                        [
+                            234220.689324004924856,
+                            890221.153916625771672
+                        ],
+                        [
+                            234371.898736940434901,
+                            890176.349733497248963
+                        ],
+                        [
+                            234529.563552564592101,
+                            890161.570933824637905
+                        ],
+                        [
+                            234686.250686286279233,
+                            890177.892077223863453
+                        ],
+                        [
+                            234837.013173280050978,
+                            890224.177862315904349
+                        ],
+                        [
+                            234976.07932355205412,
+                            890299.28847786935512
+                        ],
+                        [
+                            235097.689099594310392,
+                            890399.862241371767595
+                        ],
+                        [
+                            235197.738987215503585,
+                            890521.434700935729779
+                        ],
+                        [
+                            235271.295812330208719,
+                            890660.647942305309698
+                        ],
+                        [
+                            235316.738460539112566,
+                            890811.939206165145151
+                        ],
+                        [
+                            235331.627030973206274,
+                            890968.631136251613498
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "stop_name": "Washington Square",
+                "weighted_total_population": 9330.0,
+                "weighted_total_population_density_permile": 47300.5,
+                "weighted_total_population_male": 4493.0,
+                "weighted_total_population_female": 4837.0,
+                "weighted_pct_population_male": 28.051416833532272,
+                "weighted_pct_population_female": 31.086645542894885,
+                "weighted_pct_not_hispanic_latino": 54.346589457195734,
+                "weighted_pct_not_hispanic_latino_white": 41.774791888035253,
+                "weighted_pct_not_hispanic_latino_black": 0.62324578093913785,
+                "weighted_pct_not_hispanic_latino_native": 0.071202395670978025,
+                "weighted_pct_not_hispanic_latino_asian": 8.1942683300859294,
+                "weighted_pct_not_hispanic_latino_pi": 0.0,
+                "weighted_pct_not_hispanic_latino_other": 0.086015206212438369,
+                "weighted_pct_not_hispanic_latino_2+": 3.5966443788697857,
+                "weighted_pct_hispanic_latino": 4.7914729192314329,
+                "weighted_pct_hispanic_latino_white": 1.2930174238812657,
+                "weighted_pct_hispanic_latino_black": 0.0,
+                "weighted_pct_hispanic_latino_native": 0.4387025027278334,
+                "weighted_pct_hispanic_latino_asian": 0.024886162767929119,
+                "weighted_pct_hispanic_latino_pi": 0.0,
+                "weighted_pct_hispanic_latino_other": 0.71740850117545629,
+                "weighted_pct_hispanic_latino_2+": 2.3197537244801718,
+                "weighted_median_hh_income": 239626.0,
+                "pct_workers_car_van": 16.612323759913458,
+                "pct_workers_drive_alone": 15.557980467984418,
+                "pct_workers_drive_carpooled": 1.0547039609546607,
+                "pct_workers_public_transportation": 16.420761874717925,
+                "pct_workers_motorcycle": 0.0,
+                "pct_workers_bicycle": 2.6586042937164969,
+                "pct_workers_walked": 7.1952243271725216,
+                "pct_workers_other": 0.26094610028050796,
+                "pct_workers_wfh": 15.989902159957211,
+                "pct_hh_0_vehs": 17.263166589854144,
+                "pct_hh_1_vehs": 28.39135185822937,
+                "pct_hh_2_vehs": 11.141614426831943,
+                "pct_hh_3_vehs": 2.0167745256425373,
+                "pct_hh_4_vehs": 0.32744863633857557,
+                "pct_hh_5_vehs": 0.0,
+                "municipality": "Brookline",
+                "pctZonedAsSF": 25.091383812010442,
+                "isZonedAsCommercial": 1.2271540469973892,
+                "pctZonedAsMultifamily": 15.613577023498696,
+                "pctUsedAsSF": 19.895561357702348,
+                "pctUsedAsCommercial": 0.835509138381201,
+                "pctUsedAsDuplex": 5.6657963446475197,
+                "pctUsedAsTriplex": 1.5665796344647518,
+                "pctUsedAsMultiBuildings1Lot": 0.2349869451697128,
+                "pctUsedAsAptUpTo30Units": 2.5326370757180157,
+                "pctUsedAsAptOver30Units": 0.0,
+                "pctUsedAsCoopApt": 0.0,
+                "pctUsedAsOtherMultifamily": 1.4882506527415142,
+                "pctMustUpzone": 25.091383812010442,
+                "pctWillChange": 15.430809399477807,
+                "pctFutureZonedAsSF": 0.0,
+                "pctFutureZonedAsMulti": 40.704960835509141
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            230872.586026681470685,
+                            898842.973219492356293
+                        ],
+                        [
+                            230857.065472801419673,
+                            898999.524136193562299
+                        ],
+                        [
+                            230810.257238721766043,
+                            899150.384040191187523
+                        ],
+                        [
+                            230734.664379832684062,
+                            899288.899842984043062
+                        ],
+                        [
+                            230634.432356073957635,
+                            899409.536653103656135
+                        ],
+                        [
+                            230512.048079556232551,
+                            899508.973982274997979
+                        ],
+                        [
+                            230371.650433882576181,
+                            899582.787762137479149
+                        ],
+                        [
+                            230220.668452850251924,
+                            899627.67868211842142
+                        ],
+                        [
+                            230063.2250388104585,
+                            899642.554284098325297
+                        ],
+                        [
+                            229905.914647839090321,
+                            899626.332291284343228
+                        ],
+                        [
+                            229755.322235759609612,
+                            899580.151356720132753
+                        ],
+                        [
+                            229616.38518514772295,
+                            899505.142642291961238
+                        ],
+                        [
+                            229494.032100807555253,
+                            899404.658477123826742
+                        ],
+                        [
+                            229394.835798166372115,
+                            899283.168592421337962
+                        ],
+                        [
+                            229320.430714278947562,
+                            899144.011158449342474
+                        ],
+                        [
+                            229275.738843341736356,
+                            898992.759760916116647
+                        ],
+                        [
+                            229260.734120092994999,
+                            898836.078361990628764
+                        ],
+                        [
+                            229277.043508065398782,
+                            898679.527404625201598
+                        ],
+                        [
+                            229322.997746925015235,
+                            898528.653992594452575
+                        ],
+                        [
+                            229398.570766706368886,
+                            898390.123214240418747
+                        ],
+                        [
+                            229498.795888374996139,
+                            898269.469021002296358
+                        ],
+                        [
+                            229622.011318700970151,
+                            898170.017762921052054
+                        ],
+                        [
+                            229761.604977886920096,
+                            898096.185724161332473
+                        ],
+                        [
+                            229912.616799533396261,
+                            898051.285078748478554
+                        ],
+                        [
+                            230070.095497848436935,
+                            898036.406151533359662
+                        ],
+                        [
+                            230227.441143358417321,
+                            898052.631771319080144
+                        ],
+                        [
+                            230378.063311758509371,
+                            898098.822686247993261
+                        ],
+                        [
+                            230517.844359433249338,
+                            898173.849830730585381
+                        ],
+                        [
+                            230639.380337668844732,
+                            898274.347984890919179
+                        ],
+                        [
+                            230738.569589759194059,
+                            898395.855193026247434
+                        ],
+                        [
+                            230812.954707150405739,
+                            898535.027432288858108
+                        ],
+                        [
+                            230857.616535754379584,
+                            898686.288463598350063
+                        ],
+                        [
+                            230872.586026681470685,
+                            898842.973219492356293
+                        ]
+                    ]
+                ]
+            }
+        }
+    ]
+}
