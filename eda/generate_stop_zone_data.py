@@ -3,7 +3,6 @@ from pathlib import Path
 import pandas as pd
 import json
 
-
 PREPROCESSED_DATA_PATH = Path(
     "/Users/ameliabaum/Library/Mobile Documents/com~apple~CloudDocs/MIT/6.C35/6.C85_FP/data/preprocessed_data"
 )
@@ -25,7 +24,6 @@ def get_parcel_data_filtered_by_municipalities(municipalities):
     # brookline_milton_parcels.to_file(PREPROCESSED_DATA_PATH /
     #                                 "brookline_milton_parcels.geojson",
     #                                 driver='GeoJSON')
-
 
 
 def assign_zoning_by_parcel(parcel_data: pd.DataFrame) -> pd.DataFrame:
@@ -164,8 +162,17 @@ def aggregate_statistics_by_stop_zone(
     },
                           inplace=True)
 
-
-# add in stop zone geographies
+    stop_zone_data['pctOtherZoning'] = 100 - (
+        stop_zone_data['pctZonedAsSF'] + stop_zone_data['pctZonedAsComm'] +
+        stop_zone_data['pctZonedAsMultifamily'])
+    stop_zone_data['pctOtherUsage'] = 100 - (
+        stop_zone_data['pctUsedAsSF'] + stop_zone_data['pctUsedAsCommercial'] +
+        stop_zone_data['pctUsedAsDuplex'] + stop_zone_data['pctUsedAsTriplex']
+        + stop_zone_data['pctUsedAsMultiBuildings1Lot'] +
+        stop_zone_data['pctUsedAsAptUpTo30Units'] +
+        stop_zone_data['pctUsedAsAptOver30Units'] +
+        stop_zone_data['pctUsedAsCoopApt'] +
+        stop_zone_data['pctUsedAsOtherMultifamily'])
 
 
 def generate_stop_zones_with_zoning_usage_census(parcel_data):
