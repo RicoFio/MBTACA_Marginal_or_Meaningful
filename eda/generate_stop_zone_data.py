@@ -174,7 +174,7 @@ def generate_stop_zones_with_zoning_usage_census(parcel_data):
     parcel_data_zoning_usage = assign_usage_by_parcel(parcels_zoning)
 
     station_buffer_census_cumulative = gpd.read_file(
-        PREPROCESSED_DATA_PATH / 'station_buffer_census_cumulative.geojson')
+        PREPROCESSED_DATA_PATH / 'mbta_community_stops_with_buffer_and_census.geojson')
 
     stop_zone_census = station_buffer_census_cumulative.merge(
         parcel_data_zoning_usage, on="stop_name")
