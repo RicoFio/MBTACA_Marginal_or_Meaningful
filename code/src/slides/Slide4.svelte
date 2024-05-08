@@ -41,7 +41,6 @@
 
     onMount(async () => {
         full_data = await d3.json("/data/mbta_community_stops_with_buffer_and_census.geojson");
-        console.log(full_data);
         // station_data = full_data.features.filter( (feature) => feature.properties.stop_name === "Coolidge Corner",);
     });
 

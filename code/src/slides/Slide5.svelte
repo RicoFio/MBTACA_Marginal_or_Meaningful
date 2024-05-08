@@ -26,7 +26,6 @@
             { name: "Commercial", value: originalData[0].properties.pctUsedAsCommercial, category1: "pctZonedAsComm" },
             { name: "Multi Family", value: originalData[0].properties.pctZonedAsMultifamily, category1: "pctZonedAsMultifamily" },
         ];
-        console.log(out);
         return out;
     }
     function transformStopZoneUsageData(originalData) {
@@ -37,7 +36,6 @@
             { name: "Duplex", value: originalData[0].properties.pctUsedAsDuplex, category1: "pctUsedAsDuplex" },
             { name: "Triplex", value: originalData[0].properties.pctUsedAsTriplex, category1: "pctUsedAsTriplex" }
         ];
-        console.log(out);
         return out;
     }
     function transformStopZoneFutureData(originalData) {

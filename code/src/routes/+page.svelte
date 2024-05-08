@@ -17,10 +17,7 @@
     let selectedMunicipality;
     let municipalities = [];
     let selectedStations = [];
-    let municipalitySelected = false;
     let guidedMode = true;
-
-    // $: console.log(parcelFiles);
 
     onMount(async () => {
         let loadedStations = await d3.json("/data/mbta_community_stops.geojson");

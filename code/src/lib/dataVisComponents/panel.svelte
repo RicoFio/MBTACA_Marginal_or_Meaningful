@@ -15,7 +15,7 @@
     export let stations;
     export let selectedStation;
     export let selectedMunicipality;
-    // $: console.log({ value });
+
     let colors = [
         '#05515e',
         '#629681',

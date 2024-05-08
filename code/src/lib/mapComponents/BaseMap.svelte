@@ -193,7 +193,6 @@
                 showTooltip = false;
             }
             else if (evt.type === "click" || evt.type === "keyup" && evt.key === "Enter") {
-                // console.log(commits[index])
                 selectedMunicipality = municipalities[index]
                 showTooltip = false;
             }
