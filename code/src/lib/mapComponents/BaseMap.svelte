@@ -115,9 +115,6 @@
     let loadedSources = [];
 
     function toggleStationParcels (station) {
-        console.log(station.Name);
-        console.log(loadedSources);
-        console.log(loadedSources.indexOf(station.Name));
         if (loadedSources.indexOf(station.Name) == -1) {
             map.addSource(station.Name, {
                 type: "geojson",

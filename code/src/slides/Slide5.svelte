@@ -21,8 +21,6 @@
     $: stopName = selectedStation?.Name;
 
     function transformStopZoneData(originalData) {
-        console.log("transformStopZoneData")
-        console.log(originalData);
         let out = [
             { name: "Single Family", value: originalData[0].properties.pctZonedAsSF, category1: "pctZonedAsSF" },
             { name: "Commercial", value: originalData[0].properties.pctUsedAsCommercial, category1: "pctZonedAsComm" },
@@ -32,8 +30,6 @@
         return out;
     }
     function transformStopZoneUsageData(originalData) {
-        console.log("transformStopZoneUsageData")
-        console.log(originalData);
         let out = [
             { name: "Single Family", value: originalData[0].properties.pctUsedAsSF, category1: "pctUsedAsSF" },
             { name: "Commercial", value: originalData[0].properties.pctUsedAsCommercial, category1: "pctUsedAsCommercial" },
@@ -45,9 +41,6 @@
         return out;
     }
     function transformStopZoneFutureData(originalData) {
-        console.log("transformStopZoneFutureData")
-        console.log(originalData);
-
         const commercial = originalData[0].properties.pctZonedAsCommercial ?
             originalData[0].properties.pctZonedAsCommercial :
             originalData[0].properties.pctUsedAsCommercial
@@ -57,7 +50,6 @@
             { name: "Commercial", value: commercial, category1: "isZonedAsCommercial" },
             { name: "Multi Family", value: originalData[0].properties.pctFutureZonedAsMulti, category1: "pctFutureZonedAsMulti" }
         ];
-        console.log(out);
         return out;
     }
 
@@ -68,8 +60,6 @@
         stopZoneData = await d3.json(
             "/data/brookline_milton_stop_zone_zoning_usage_census_v2.geojson",
         );
-
-        console.log(stopZoneData);
     });
 
     $: {
@@ -79,14 +69,11 @@
         )
 
         if (stopData && stopData.length != 0) {
-            console.log(stopData);
             transformedStopZoneDataForMunicipality = transformStopZoneData(stopData);
             transformedStopZoneUsageDataForMunicipality = transformStopZoneUsageData(stopData);
             transformedStopZoneFutureDataForMunicipality = transformStopZoneFutureData(stopData);
         }
     }
-
-    $: console.log(transformedStopZoneDataForMunicipality);
 
     $: treeMapVisibility = selectedComponent == 'zoning' ? 'visible' : 'hidden';
     $: treeMapUsageVisibility = selectedComponent == 'usage' ? 'visible' : 'hidden';

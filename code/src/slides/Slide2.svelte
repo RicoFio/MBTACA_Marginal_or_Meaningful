@@ -5,10 +5,7 @@
     export let selectedMunicipality = {};
     let input = "";
 
-    $: console.log(`The search slide is active: ${active}`);
-
     function handleSelect(e) {
-        console.log("SELECTED");
         selectedMunicipality = e.detail.value;
     }
 
@@ -17,7 +14,6 @@
         'label': m.Name
     }));
 
-    $: console.log(items)
     const searchable = true;
 </script>
 
