@@ -11,117 +11,112 @@
     let full_data;
     let station_data;
 
-    let white;
-    let black;
-    let native;
-    let asian;
-    let pi;
-    let other_race;
-    let two_or_more;
-    let hispanic;
-    let male;
-    let female;
-    let zero;
-    let one;
-    let two;
-    let three;
-    let four;
-    let five;
-    let car;
-    let public_transport;
-    let motorcycle;
-    let bicycle;
-    let walking;
-    let other_mode_of_transportation;
-    let work_from_home;
+    let under_18 = 0;
+    let to_34 = 0;
+    let to_64 = 0;
+    let over_65 = 0;
+    let less_than_25000 = 0; 
+    let to_49999 = 0;
+    let to_74999 = 0;
+    let to_99999 = 0;
+    let more_than_100000 = 0;
+    let white = 0;
+    let black = 0;
+    let asian = 0;
+    let other_race = 0;
+    let hispanic = 0;
+    let male = 0;
+    let female = 0;
+    let zero = 0;
+    let one = 0;
+    let two = 0;
+    let three_or_more = 0;
+    let car = 0;
+    let public_transport = 0;
+    let motorcycle = 0;
+    let bicycle = 0;
+    let walking = 0;
+    let other_mode_of_transportation = 0;
+    let work_from_home = 0;
 
     onMount(async () => {
-        full_data = await d3.json("/data/brookline_milton_stop_zone_zoning_usage_census_v2.geojson");
+        full_data = await d3.json("/data/mbta_community_stops_with_buffer_and_census.geojson");
+        console.log(full_data);
         // station_data = full_data.features.filter( (feature) => feature.properties.stop_name === "Coolidge Corner",);
     });
 
-    // $: console.log(full_data)
 
     $: {
         station_data = full_data?.features.filter(
             (feature) => feature.properties.stop_name === selectedStation.Name,)[0];
+        console.log(station_data)
 
         // extract demographic data by category in %
-        //TODO age
-        //////////////
-        white = station_data?.properties.weighted_pct_not_hispanic_latino_white;
-        black = station_data?.properties.weighted_pct_not_hispanic_latino_black;
-        native = station_data?.properties.weighted_pct_not_hispanic_latino_native;
-        asian = station_data?.properties.weighted_pct_not_hispanic_latino_asian;
-        pi = station_data?.properties.weighted_pct_not_hispanic_latino_pi;
-        other_race = station_data?.properties.weighted_pct_not_hispanic_latino_other;
-        two_or_more = 5;
-        hispanic = station_data?.properties.weighted_pct_hispanic_latino;
+        // age
+        under_18 = (station_data?.properties.percentage_weighted_total_population_male_under_18_years + station_data?.properties.percentage_weighted_total_population_female_under_18_years) * 100;
+        to_34 = (station_data?.properties.percentage_weighted_total_population_male_18_to_34_years + station_data?.properties.percentage_weighted_total_population_female_18_to_34_years) * 100;
+        to_64 = (station_data?.properties.percentage_weighted_total_population_male_35_to_64_years + station_data?.properties.percentage_weighted_total_population_female_35_to_64_years) * 100;
+        over_65 = (station_data?.properties.percentage_weighted_total_population_male_65_years_and_over + station_data?.properties.percentage_weighted_total_population_female_65_years_and_over) * 100;
+        // race
+        white = (station_data?.properties.percentage_weighted_total_population_not_hispanic_or_latino_white_alone)*100;
+        black = (station_data?.properties.percentage_weighted_total_population_not_hispanic_or_latino_black_or_african_american_alone)*100;
+        asian = (station_data?.properties.percentage_weighted_total_population_not_hispanic_or_latino_asian_alone)*100;
+        other_race = (station_data?.properties.percentage_weighted_total_population_not_hispanic_or_latino_american_indian_and_alaska_native_alone + station_data?.properties.percentage_weighted_total_population_not_hispanic_or_latino_native_hawaiian_and_other_pacific_islander_alone + station_data?.properties.percentage_weighted_total_population_not_hispanic_or_latino_some_other_race_alone + station_data?.properties.percentage_weighted_total_population_not_hispanic_or_latino_two_or_more_races) *100;
+        hispanic = (station_data?.properties.percentage_weighted_total_population_hispanic_or_latino)*100;
         // Gender
-        female = station_data?.properties.weighted_pct_population_female;
-        male = station_data?.properties.weighted_pct_population_male;
-        // // Income
-        // ///// TODO income
+        female = (station_data?.properties.percentage_weighted_total_population_female)*100;
+        male = (station_data?.properties.percentage_weighted_total_population_male)*100;
+        // Income
+        less_than_25000 = station_data?.properties.percentage_weighted_households_less_than_25000 * 100;
+        to_49999 = station_data?.properties.percentage_weighted_households_25000_to_49999 * 100;
+        to_74999 = station_data?.properties.percentage_weighted_households_50000_to_74999 * 100; 
+        to_99999 = station_data?.properties.percentage_weighted_households_75000_to_99999 * 100;
+        more_than_100000 = station_data?.properties.percentage_weighted_households_100000_or_more * 100;
         // Vehicles
-        zero = station_data?.properties.pct_hh_0_vehs
-        one = station_data?.properties.pct_hh_1_vehs
-        two = station_data?.properties.pct_hh_2_vehs
-        three = station_data?.properties.pct_hh_3_vehs
-        four = station_data?.properties.pct_hh_4_vehs
-        five = station_data?.properties.pct_hh_5_vehs
+        zero = station_data?.properties.percentage_weighted_occupied_housing_units_no_vehicle_available * 100;
+        one = station_data?.properties.percentage_weighted_occupied_housing_units_1_vehicle_available * 100;
+        two = station_data?.properties.percentage_weighted_occupied_housing_units_2_vehicles_available * 100;
+        three_or_more = 100 - zero - one - two;
         // Mode of transportation
-        car = station_data?.properties.pct_workers_car_van
-        public_transport = station_data?.properties.pct_workers_public_transportation
-        motorcycle = station_data?.properties.pct_workers_motorcycle
-        bicycle = station_data?.properties.pct_workers_bicycle
-        walking = station_data?.properties.pct_workers_walked
-        other_mode_of_transportation = station_data?.properties.pct_workers_other
-        work_from_home = station_data?.properties.pct_workers_wfh
+        car = station_data?.properties.percentage_weighted_workers_16_years_and_over_car_truck_or_van * 100;
+        public_transport = station_data?.properties.percentage_weighted_workers_16_years_and_over_public_transportation_includes_taxicab * 100;
+        motorcycle = station_data?.properties.percentage_weighted_workers_16_years_and_over_motorcycle * 100;
+        bicycle = station_data?.properties.percentage_weighted_workers_16_years_and_over_bicycle * 100;
+        walking = station_data?.properties.percentage_weighted_workers_16_years_and_over_walked * 100;
+        other_mode_of_transportation = station_data?.properties.percentage_weighted_workers_16_years_and_over_other_means * 100;
+        work_from_home = station_data?.properties.percentage_weighted_workers_16_years_and_over_worked_at_home * 100;
     }
-
 
     $: data = {
         "age": [
-            {label: '0 to 9 years', value: 10.7},
-            {label: '9 to 17 years', value: 7.9},
-            {label: '18 to 24 years', value: 13.7},
-            {label: '25 to 34 years', value: 17.0},
-            {label: '35 to 44 years', value: 13.4},
-            {label: '45 to 54 years', value: 11.3},
-            {label: '55 to 64 years', value: 9.6},
-            {label: '65 to 74 years', value: 8.8},
-            {label: '75 to 84 years', value: 5.0},
-            {label: '85 years and over', value: 2.1},
+            {label: 'under 18 years', value: under_18},
+            {label: '18 to 34 years', value: to_34},
+            {label: '35 to 64 years', value: to_64},
+            {label: 'over 65 years', value: over_65},
         ],
         "race": [
             {label: 'white', value: white},
             {label: 'black', value: black},
             {label: 'hispanic', value: hispanic},
-            {label: 'native', value: native},
             {label: 'asian', value: asian},
-            {label: 'pi', value: pi},
             {label: 'other_race', value: other_race},
-            {label: 'two_or_more', value: two_or_more},
         ],
         "gender": [
             {label: 'male', value: male},
             {label: 'female', value: female},
         ],
         "mean household income": [
-            {label: '22229 $', value: 20},
-            {label: '77063 $', value: 20},
-            {label: '132843 $', value: 20},
-            {label: '224746 $', value: 20},
-            {label: '599726 $', value: 20},
-            {label: '1099668 $', value: 5},
+            {label: 'less than 25,000 $', value: less_than_25000},
+            {label: '25,000 to 49,999 $', value: to_49999},
+            {label: '50,000 to 74,999 $', value: to_74999},
+            {label: '75,000 to 99,999 $', value: to_99999},
+            {label: 'more than 100,000 $', value: more_than_100000},
         ],
         "vehicles per household": [
             {label: 'zero', value: zero},
             {label: 'one', value: one},
             {label: 'two', value: two},
-            {label: 'three', value: three},
-            {label: 'four', value: four},
-            {label: 'five', value: five},
+            {label: 'three or more', value: three_or_more},
         ],
         "mode of transportation": [
             {label: 'car', value: car},
@@ -134,7 +129,7 @@
         ]
     }
     let activeSelection = "age"
-    $: current_data = data[activeSelection]
+    $: current_data = data[activeSelection];
 </script>
 
 <div class="slide">
@@ -149,12 +144,14 @@
     <ForceGraphSelector bind:activeSelection></ForceGraphSelector>
 
     {#key current_data} <!--forcing visualization to re-render when data is updated -->
-        <ForceGraph
-                cssHeight=50
-                cssWidth=40
-                data={ current_data }
-                selectedCategory = { activeSelection }
-        />
+        {#if !isNaN(under_18)}
+            <ForceGraph
+                    cssHeight=50
+                    cssWidth=40
+                    data={ current_data }
+                    selectedCategory = { activeSelection }
+            />
+        {/if}
     {/key}
 </div>
 
