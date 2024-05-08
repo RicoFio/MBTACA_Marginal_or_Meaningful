@@ -66,9 +66,6 @@
             return newParcelFile;
         });
     })
-
-    $: firstSelectedStation = selectedStations[0];
-
 </script>
 
 <BaseMap
@@ -84,8 +81,8 @@
 <PanelComponent
         bind:municipalities={municipalities}
         bind:stations={stations}
-        bind:selectedStation={firstSelectedStation}
         bind:selectedMunicipality={selectedMunicipality}
+        bind:selectedStations={selectedStations}
 />
 
 <style>

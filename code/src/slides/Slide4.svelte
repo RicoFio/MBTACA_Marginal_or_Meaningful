@@ -6,7 +6,7 @@
     import ForceGraphSelector from "../lib/dataVisComponents/ForceGraphSelector.svelte"
 
     export let municipality = {};
-    export let selectedStation = {};
+    export let station = {};
     
     let full_data;
     let station_data;
@@ -47,7 +47,7 @@
 
     $: {
         station_data = full_data?.features.filter(
-            (feature) => feature.properties.stop_name === selectedStation?.Name,)[0];
+            (feature) => feature.properties.stop_name === station?.Name,)[0];
 
         // extract demographic data by category in %
         // age
@@ -131,10 +131,10 @@
 </script>
 
 <div class="slide">
-    {#if (municipality && selectedStation)}
-        <h1>{municipality.Name}: {selectedStation.Name}</h1>
+    {#if (municipality && station)}
+        <h1>{municipality.Name}: {station.Name}</h1>
         <h3>
-        {selectedStation.Name} is located within {municipality.Name}, a {municipality.MBTACommunityType} community. It serves the following routes: {selectedStation.Routes}. The MBTA Communities Act stipulates that municipalities must create at least one by-right multifamily district within a 0.5-mile radius of a transit stop within their borders, which is visualized on the right. <br> <br>
+        {station.Name} is located within {municipality.Name}, a {municipality.MBTACommunityType} community. It serves the following routes: {station.Routes}. The MBTA Communities Act stipulates that municipalities must create at least one by-right multifamily district within a 0.5-mile radius of a transit stop within their borders, which is visualized on the right. <br> <br>
         Toggle the force diagrams to see relevant demographic statistics for the zone around the transit station. Racial, age, gender and income demographics, as well as behavioral characteristics like how much of the population uses transit to get to work, may influence the effect of upzoning on a certain location. <br> <br> </h3>
         <p>Demographic data is sourced from the 2022 ACS 5-year rolling estimates (downloaded from Social Explorer).</p>
     {/if}

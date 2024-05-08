@@ -2,16 +2,15 @@
     import Select from 'svelte-select';
     import {calculateBoundingBox} from "$lib/mapComponents/mapUtils.js";
     export let active = false;
-    export let selectedMunicipality = "";
-    export let selectedStation = "";
-
+    export let municipality = {};
+    export let station = {};
 </script>
 
 <div class="slide">
-    {#if (selectedMunicipality && !selectedStation)}
-        <h1>Select a station in {selectedMunicipality.Name}</h1>
-    {:else}
-        <h1>Let's consider {selectedStation?.Name} in {selectedMunicipality.Name}</h1>
+    {#if (JSON.stringify(municipality) !== '{}' && JSON.stringify(station) === '{}')}
+        <h1>Select a station in {municipality?.Name}</h1>
+    {:else if (JSON.stringify(municipality) !== '{}' && JSON.stringify(station) !== '{}')}
+        <h1>Let's consider {station?.Name} in {municipality?.Name}</h1>
     {/if}
 </div>
 
