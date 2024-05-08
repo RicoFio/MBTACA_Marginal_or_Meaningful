@@ -3,7 +3,6 @@
     import {calculateBoundingBox} from "$lib/mapComponents/mapUtils.js";
     export let active = false;
     export let municipality = {};
-    export let selectedStation = "";
 
 </script>
 

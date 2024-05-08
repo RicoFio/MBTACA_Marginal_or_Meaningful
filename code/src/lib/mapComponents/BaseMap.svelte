@@ -3,6 +3,11 @@
     import "../../../node_modules/mapbox-gl/dist/mapbox-gl.css";
     import { onMount } from "svelte";
     import {calculateBoundingBox} from "$lib/mapComponents/mapUtils.js";
+    import {
+        computePosition,
+        autoPlacement,
+        offset,
+    } from '@floating-ui/dom';
 
     mapboxgl.accessToken = "pk.eyJ1IjoicmZpb3Jpc3RhIiwiYSI6ImNsdWQwcDd0aDFkengybG85eW00eDJqdzEifQ.smRFd5P2IKrDHr5HGsfrGw";
 
@@ -15,6 +20,15 @@
     export let selectedMunicipality = null;
     export let guidedMode = true;
     export let parcelFiles = [];
+
+    const mapContainerID = "svg-map-container";
+
+    // Tooltip stuff
+    let hoveredIndex = -1;
+    let showTooltip = false;
+    $: hoveredMunicipality = municipalities[hoveredIndex] ?? {};
+    let municipalityTooltip;
+    let tooltipPosition = {x: 0, y: 0};
 
     onMount(async () => {
         map = new mapboxgl.Map({
@@ -52,12 +66,12 @@
 
     $: map?.on("move", evt => mapViewChanged++);
 
-    // /**
-    //  * Fits the map bounds with specified padding.
-    //  * @param {Object} bounds - The bounds to fit the map to.
-    //  * @param {(number|Object)} padding - The padding as a number or an object with optional top, bottom, left, and right properties.
-    //  */
-    export function fitBounds(bounds, padding = { padding: 20 }) {
+    /**
+     * Fits the map bounds with specified padding.
+     * @param {Object} bounds - The bounds to fit the map to.
+     * @param {(number|Object)} padding - The padding as a number or an object with optional top, bottom, left, and right properties.
+     */
+    function fitBounds(bounds, padding = { padding: 20 }) {
         map.fitBounds(bounds, padding);
     }
 
@@ -84,7 +98,7 @@
     }
 
     function toggleStation(station) {
-        if (!selectedStations.some(s => s.Name === station.Name)) {
+        if (!selectedStations.some(s => s.Name === station.Name) && selectedMunicipality) {
             if ((guidedMode && selectedStations.length < 1) || (!guidedMode && selectedStations.length < 2)) {
                 selectedStations = [...selectedStations, station];
             } else {
@@ -98,21 +112,20 @@
         }
     }
 
+    let loadedSources = [];
+
     function toggleStationParcels (station) {
-        let isSourcePresent = false;
-        try{
-            isSourcePresent = map.isSourceLoaded(station.Name);
-        } catch (error) {
-            isSourcePresent = false;
-        }
-        if (!isSourcePresent) {
+        console.log(station.Name);
+        console.log(loadedSources);
+        console.log(loadedSources.indexOf(station.Name));
+        if (loadedSources.indexOf(station.Name) == -1) {
             map.addSource(station.Name, {
                 type: "geojson",
                 data: parcelFiles.filter(e => e.StopName == station.Name)[0].FileName,
             });
 
             map.addLayer({
-                id: "MA" + station.Name,
+                id: station.Name,
                 type: "fill",  // Use 'fill' type for polygon layers
                 source: station.Name,
                 paint: {
@@ -120,10 +133,24 @@
                     "fill-outline-color": "black"  // Sets the color of the outline
                 },
             });
-        } else {
-            map.removeSource(station.Name);
-        }
 
+            loadedSources.push(station.Name);
+        } else {
+            map.removeLayer(station.Name);
+            map.removeSource(station.Name);
+            loadedSources = loadedSources.filter(item => item !== station.Name)
+        }
+    }
+
+    $: {
+        if (selectedMunicipality) {
+            selectedStations = [];
+            loadedSources.forEach((s) => {
+                toggleStationParcels({Name: s})
+            });
+            bounds = calculateBoundingBox(selectedMunicipality?.Geometries);
+            fitBounds(bounds, {padding: {top: 20, bottom: 20, left: 1150, right: 20}});
+        }
     }
 
     $: {
@@ -147,10 +174,41 @@
         return s.Community == selectedMunicipality.Name
     }) : stations;
 
+    async function dotInteraction (index, evt) {
+        let hoveredDot = evt.target;
+        hoveredIndex = index;
+        if (!selectedMunicipality){
+            if (evt.type === "mouseenter" || evt.type === "focus") {
+                // dot hovered
+                // cursor = {x: evt.x, y: evt.y};
+                showTooltip = true;
+                tooltipPosition = await computePosition(hoveredDot, municipalityTooltip, {
+                    strategy: "fixed", // because we use position: fixed
+                    middleware: [
+                        offset(5), // spacing from tooltip to dot
+                        autoPlacement() // see https://floating-ui.com/docs/autoplacement
+                    ],
+                });
+            }
+            else if (evt.type === "mouseleave" || evt.type === "blur") {
+                // dot unhovered
+                // hoveredIndex = -1;
+                showTooltip = false;
+            }
+            else if (evt.type === "click" || evt.type === "keyup" && evt.key === "Enter") {
+                // console.log(commits[index])
+                selectedMunicipality = municipalities[index]
+                showTooltip = false;
+            }
+        }
+    }
+
 </script>
 
 <div id="map">
-    <svg>
+    <svg
+            id={mapContainerID}
+    >
         {#key mapViewChanged}
             {#each filteredMunicipalities as municipality, index}
                 {#if municipality.Geometries.type === "Polygon"}
@@ -164,23 +222,37 @@
                             stroke="black"
                             stroke-width="1"
                             opacity="0.5"
+                            class:municipality
+                            on:mouseenter={(evt) => dotInteraction(index, evt)}
+                            on:mouseleave={(evt) => dotInteraction(index, evt)}
+                            on:focus={(evt) => dotInteraction(index, evt)}
+                            on:blur={(evt) => dotInteraction(index, evt)}
+                            on:click={(evt) => dotInteraction(index, evt)}
+                            on:keyup={(evt) => dotInteraction(index, evt)}
                     >
-                        <title> { municipality.Name } </title>
+<!--                        <title> { municipality.Name } </title>-->
                     </polygon>
                 {:else if municipality.Geometries.type === 'MultiPolygon'}
                     {#each municipality.Geometries.coordinates as geometry}
                         <polygon
                                 id={ `polygon-${index}` }
                                 points={
-                                municipality.Geometries.coordinates.length ?
-                                projectPolygonCoordinates(geometry[0]) : ""
-                            }
+                                    municipality.Geometries.coordinates.length ?
+                                    projectPolygonCoordinates(geometry[0]) : ""
+                                }
                                 fill="#a9987a"
                                 stroke="black"
                                 stroke-width="1"
                                 opacity="0.5"
+                                class:municipality
+                                on:mouseenter={(evt) => dotInteraction(index, evt)}
+                                on:mouseleave={(evt) => dotInteraction(index, evt)}
+                                on:focus={(evt) => dotInteraction(index, evt)}
+                                on:blur={(evt) => dotInteraction(index, evt)}
+                                on:click={(evt) => dotInteraction(index, evt)}
+                                on:keyup={(evt) => dotInteraction(index, evt)}
                         >
-                            <title> { municipality.Name } </title>
+<!--                            <title> { municipality.Name } </title>-->
                         </polygon>
                     {/each}
                 {/if}
@@ -212,6 +284,15 @@
     </svg>
 </div>
 
+<dl class="info"
+    hidden={!showTooltip}
+    style="top: {tooltipPosition.y}px; left: {tooltipPosition.x}px"
+    bind:this={municipalityTooltip}
+    role="tooltip" >
+    <dt>Municipality</dt>
+    <dd>{ hoveredMunicipality.Name }</dd>
+</dl>
+
 <style>
     @import url("$lib/global.css");
 
@@ -224,15 +305,19 @@
         height: 100%;
         pointer-events: none;
         position: absolute;
-        z-index: 1;
+        z-index: 2;
         cursor: grab;
+
+        .municipality {
+            pointer-events: auto;
+            cursor: pointer;
+        }
 
         .station {
             pointer-events: auto;
             cursor: pointer;
             fill-opacity: 60%;
             stroke: white;
-
             fill: #05515e;
         }
         .station.selected {
@@ -240,5 +325,34 @@
             fill: #629681;
             opacity: 0.8;
         }
+    }
+
+    dl.info {
+        z-index: 2;
+        display: grid;
+        grid-template-columns: auto auto; /* Define two columns */
+        grid-auto-rows: auto; /* This will create a new row for each term/description pair */
+        gap: 0.5em; /* Adjust the gap between items */
+        align-items: start;
+        position: fixed; /* Ensure it's positioned in relation to the SVG or a relative container */
+        top: 10px;
+        left: 10px;
+        background: oklch(100% 0% 0 / 80%); /* Semi-transparent background */
+        backdrop-filter: blur(10px);
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow for better readability */
+        font-size: 0.9em;
+        padding: 1em;
+        transition-duration: 500ms;
+        transition-property: opacity, visibility;
+
+        &[hidden]:not(:hover, :focus-within) {
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+
+    dl.info dt {
+        font-weight: bold; /* Makes text bold */
     }
 </style>

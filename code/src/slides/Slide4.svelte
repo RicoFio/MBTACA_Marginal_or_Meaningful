@@ -44,7 +44,7 @@
 
     $: {
         station_data = full_data?.features.filter(
-            (feature) => feature.properties.stop_name === selectedStation.Name,)[0];
+            (feature) => feature.properties.stop_name === selectedStation?.Name,)[0];
 
         // extract demographic data by category in %
         //TODO age

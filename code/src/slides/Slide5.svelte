@@ -11,16 +11,11 @@
 
     let treeMapHeight = 0;
     let treeMapUsageHeight = 0;
-    let treeMapFutureHeight = 0;
     let selectedComponent = 'zoning';
     let stopZoneData;
     let transformedStopZoneDataForMunicipality;
     let transformedStopZoneUsageDataForMunicipality;
     let transformedStopZoneFutureDataForMunicipality;
-    let parcelData;
-    let treeMapHeaderText;
-    let treeMapUsageHeaderText;
-    let treeMapFutureHeaderText;
 
     let stopData = {};
     $: stopName = selectedStation?.Name;
@@ -83,7 +78,7 @@
             (feature) => feature.properties.stop_name == selectedStation?.Name,
         )
 
-        if (stopData) {
+        if (stopData && stopData.length != 0) {
             console.log(stopData);
             transformedStopZoneDataForMunicipality = transformStopZoneData(stopData);
             transformedStopZoneUsageDataForMunicipality = transformStopZoneUsageData(stopData);

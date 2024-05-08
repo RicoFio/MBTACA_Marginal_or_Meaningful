@@ -13,9 +13,7 @@
     let value;
     export let municipalities;
     export let stations;
-    export let searchSelectedMunicipality;
     export let selectedStation;
-    export let selectedStationObj;
     export let selectedMunicipality;
     // $: console.log({ value });
     let colors = [
@@ -33,19 +31,14 @@
 </script>
 
 <div class="panel" style="position: absolute; top: 0; left: 0; width: 40%; height: 100%; background-color: rgba(0, 0, 0, 0.6); padding: 20px; color: {colors[3]};">
-    <Scrolly bind:value> <!-- 3. This is what updates value -->
-        <!-- {#each ['MARGINAL', 'OR', 'World!'] as text, i}
-            <div class="step" class:active={value === i}>
-                <p>{text}</p> 
-            </div>
-        {/each} -->
+    <Scrolly bind:value>
         <Slide1 active={value === 0} />
         <Slide11 active={value === 1} />
-        <Slide2 active={value === 2} bind:municipalities={municipalities} bind:selectedMunicipality={searchSelectedMunicipality}/>
-        <Slide21 active={value === 3} bind:municipality={selectedMunicipality} bind:selectedMunicipality={selectedStationObj}/>
-        <Slide3 active={value === 4} bind:municipalityName={searchSelectedMunicipality} bind:selectedStation={selectedStation}/>
-        <Slide4 active={value === 5} bind:municipality={selectedMunicipality} bind:selectedStation={selectedStationObj}/>
-        <Slide5 active={value === 6} bind:municipality={selectedMunicipality} bind:selectedStation={selectedStationObj}/>
+        <Slide2 active={value === 2}  bind:municipalities={municipalities} bind:selectedMunicipality={selectedMunicipality}/>
+        <Slide21 active={value === 3} bind:municipality={selectedMunicipality}/>
+        <Slide3 active={value === 4}  bind:municipality={selectedMunicipality} bind:selectedStation={selectedStation}/>
+        <Slide4 active={value === 5}  bind:municipality={selectedMunicipality} bind:selectedStation={selectedStation}/>
+        <Slide5 active={value === 6}  bind:municipality={selectedMunicipality} bind:selectedStation={selectedStation}/>
         <Slide6 active={value === 7} />
     </Scrolly>
 </div>
