@@ -25,20 +25,22 @@
 
 </script>
 
-<div class="slide">
-    <div>
-        <h1>Search</h1>
-        <input type="search" bind:value={input}
-               aria-label="Municipality search" placeholder="🔍 Find your municipality" />
-        {#if suggestions.length}
-            {#each suggestions as suggestion}
-                <h2 on:click={() => selectSuggestion(suggestion)}>
-                    {suggestion.Name}
-                </h2>
-            {/each}
-        {/if}
+{#if (active)}
+    <div class="slide">
+        <div>
+            <h1>Search</h1>
+            <input type="search" bind:value={input}
+                aria-label="Municipality search" placeholder="🔍 Find your municipality" />
+            {#if suggestions.length}
+                {#each suggestions as suggestion}
+                    <h2 on:click={() => selectSuggestion(suggestion)}>
+                        {suggestion.Name}
+                    </h2>
+                {/each}
+            {/if}
+        </div>
     </div>
-</div>
+{/if}
 
 <style>
     .slide {
@@ -48,6 +50,7 @@
         justify-content: center;
         align-items: center;
     }
+
 
     h1 {
         font-weight: normal;

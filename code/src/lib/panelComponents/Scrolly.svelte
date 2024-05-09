@@ -1,6 +1,6 @@
 <script>
     /**
-       * By Russell Samora
+       * adapted from Russell Samora
      * This component manages which item is most in view for scroll triggering
      * example:
      * <Scrolly
@@ -31,6 +31,18 @@
     const update = () => {
       if (!nodes.length) return;
       nodes.forEach(createObserver);
+    };
+
+    export function scrollToIndex(index) {
+        // await tick(); // Ensure all updates are processed
+        console.log(`Attempting to scroll to index: ${index}`);
+        console.log('Available children:', container.children);
+        if (container && container.children && container.children[index]) {
+            console.log(`Scrolling to:`, container.children[index]);
+            container.children[index].scrollIntoView({ behavior: 'smooth' });
+        } else {
+            console.log('No valid element found for index:', index);
+        }
     };
   
     const mostInView = () => {

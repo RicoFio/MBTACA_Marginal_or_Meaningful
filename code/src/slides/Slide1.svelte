@@ -2,11 +2,13 @@
     export let active = false;
 </script>
 
-<div class="slide">
-    <h1>MARGINAL OR MEANINGFUL?</h1>
-    <h2>An immersive tool for exploring the impacts of the MBTA Communities Act</h2>
-    <p>- Amelia Baum, Riccardo Fiorista, Simone Peter, Ravi Tejwani -</p>
-</div>
+{#if (active)}
+    <div class="slide">
+        <h1>MARGINAL OR MEANINGFUL?</h1>
+        <h2>An immersive tool for exploring the impacts of the MBTA Communities Act</h2>
+        <p>- Amelia Baum, Riccardo Fiorista, Simone Peter, Ravi Tejwani -</p>
+    </div>
+{/if}
 
 <style>
     .slide {

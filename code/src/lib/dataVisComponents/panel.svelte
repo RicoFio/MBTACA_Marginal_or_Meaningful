@@ -9,14 +9,19 @@
     import Slide4 from "../../slides/Slide4.svelte";
     import Slide5 from "../../slides/Slide5.svelte";
     import Slide6 from "../../slides/Slide6.svelte";
+    import { tick } from "svelte";
+    import { onMount } from 'svelte';
 
-    let value;
+    let ready = false;
+
+    let value = 0;
     export let municipalities;
     export let stations;
     export let searchSelectedMunicipality;
     export let selectedStation;
     export let selectedStationObj;
     export let selectedMunicipality;
+    let container;
     // $: console.log({ value });
     let colors = [
         '#05515e',
@@ -30,18 +35,95 @@
         '#999624',
         '#3e5719',
     ];
+
+    export let scrollyComponent;
+
+    onMount(() => {
+      if (scrollyComponent) {
+          ready = true;
+      }
+    });
+
+    // Default to true to show Slide2 initially
+    let isSlide2Active = 'value === 2';
+    let isSlide1Active = 'value === 0';
+
+    // Reactive statement to handle changes in selectedMunicipality
+    $: if (ready && selectedMunicipality) {
+        console.log("Selected Municipality is set", selectedMunicipality);
+        value = 3; // Assuming this is the index for Slide21
+        // isSlide1Active = true;
+        scrollToSlide(value, () => {
+            // This callback is called after the scrolling animation completes
+            isSlide2Active = false;
+            console.log("Slide2 is now inactive.");
+        });
+        isSlide1Active = 'value === 0';
+    } else {
+        console.log("Selected Municipality is not set");
+    }
+
+    // Reactive statement to handle changes
+    // $: if (scrollyComponent) {
+      // Logic to move to the next slide, ensuring it does not exceed total slides
+    //   value = (value + 1) % 8; // Replace 'slides.length' with your total number of slides
+    //   scrollToSlide(value);
+    //   scrollyComponent = 0;
+    // }
+
+    // Function to scroll to a particular slide
+    function scrollToSlide(slideIndex, callback) {
+        console.log("Scrolling to slide called", slideIndex);
+        if (scrollyComponent && scrollyComponent.scrollToIndex) {
+            scrollyComponent.scrollToIndex(slideIndex);
+            if (callback) {
+                // Assuming scrollIntoView is not returning a Promise, we simulate callback execution
+                // after a set time that you estimate as the scroll duration
+                setTimeout(callback, 110); // adjust time based on your scroll duration
+            }
+        } else {
+            console.log('scrollToIndex method is undefined');
+            if (callback) {
+                callback();
+            }
+        }
+    }
+
+    $: console.log('Current slide index (value):', value);
+
+    // let value_slide2;
+    // $: {
+    //     if (!selectedMunicipality) {
+    //         value_slide2 = 2;
+    //     }
+    //     else {
+    //         value_slide2 = false;
+    //     }
+    // }
+    // $: showSlides = {
+    //     S1: false,
+    //     S11: false,
+    //     S2: false,
+    //     S21: false,
+    //     S3: false,
+    //     S4: false,
+    //     S6: false,
+    // }
+
+    
+
 </script>
 
 <div class="panel" style="position: absolute; top: 0; left: 0; width: 40%; height: 100%; background-color: rgba(0, 0, 0, 0.6); padding: 20px; color: {colors[3]};">
-    <Scrolly bind:value> <!-- 3. This is what updates value -->
+    <Scrolly bind:this={scrollyComponent} bind:value> <!-- 3. This is what updates value -->
         <!-- {#each ['MARGINAL', 'OR', 'World!'] as text, i}
             <div class="step" class:active={value === i}>
                 <p>{text}</p> 
             </div>
         {/each} -->
-        <Slide1 active={value === 0} />
+        <Slide1 active={isSlide1Active} />
         <Slide11 active={value === 1} />
-        <Slide2 active={value === 2} bind:municipalities={municipalities} bind:selectedMunicipality={searchSelectedMunicipality}/>
+        <Slide2 active={isSlide2Active} bind:municipalities={municipalities} bind:selectedMunicipality={searchSelectedMunicipality}/>
         <Slide21 active={value === 3} bind:municipality={selectedMunicipality} bind:selectedMunicipality={selectedStationObj}/>
         <Slide3 active={value === 4} bind:municipalityName={searchSelectedMunicipality} bind:selectedStation={selectedStation}/>
         <Slide4 active={value === 5} bind:municipality={selectedMunicipality} bind:selectedStation={selectedStationObj}/>

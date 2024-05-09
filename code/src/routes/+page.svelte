@@ -39,6 +39,11 @@
         stations = await d3.json("/data/mbta_community_stops.geojson");
         parcelFiles = await d3.csv("/data/parcels/per_station/file_name_reference.csv");
 
+        console.log("HEREHE");
+        console.log(municipalities);
+        console.log(stations);
+        console.log(parcelFiles);
+
         stations = stations.features.map(station => {
             let newStation = {
                 Lat: station.geometry.coordinates[1],
