@@ -144,8 +144,6 @@
 
     $: {
         if (selectedMunicipality) {
-            console.log("HERE")
-            console.log(selectedMunicipality)
             selectedStations = [];
             loadedSources.forEach((s) => {
                 toggleStationParcels({Name: s})
@@ -343,7 +341,7 @@
         position: fixed; /* Ensure it's positioned in relation to the SVG or a relative container */
         top: 10px;
         left: 10px;
-        background: oklch(100% 0% 0 / 80%); /* Semi-transparent background */
+        background-color: rgba(10, 0, 0, 0.4); /* Semi-transparent background */
         backdrop-filter: blur(10px);
         border-radius: 5px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow for better readability */
@@ -351,6 +349,11 @@
         padding: 1em;
         transition-duration: 500ms;
         transition-property: opacity, visibility;
+
+        font-family: 'Montserrat', sans-serif;
+        visibility: visible;
+        width: 250px;
+        color: #a9987a;
 
         &[hidden]:not(:hover, :focus-within) {
             opacity: 0;

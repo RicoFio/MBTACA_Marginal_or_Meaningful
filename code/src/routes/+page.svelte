@@ -85,7 +85,7 @@
 />
 
 <button on:click={deselectAll} class="floating-x">
-    <img src="/artwork/refresh-ccw.svg" alt="Reset and go back to the top                               " class="icon" />
+    <img src="/artwork/refresh-ccw.svg" alt="Reset and go back to the top" class="reset-icon" />
 </button>
 <PanelComponent
         bind:municipalities={municipalities}
@@ -121,8 +121,13 @@
         align-items: center;
     }
 
-    .icon {
+    .reset-icon {
         width: 60%;  /* Adjust this to fit the button */
         height: auto; /* Keeps the aspect ratio of the image */
+        transition: transform 0.3s ease; /* Smooth transition for transform */
+    }
+
+    .reset-icon:hover {
+        transform: rotate(-180deg); /* Rotate 180 degrees on hover */
     }
 </style>
