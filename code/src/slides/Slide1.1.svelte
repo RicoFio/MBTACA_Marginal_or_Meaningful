@@ -23,43 +23,22 @@
   </div>
 
 <style>
-    .slide {
-        height: 100vh; 
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        /* align-items: left; */
-    }
-
-    h1 {
-        font-weight: normal;
-        align-items: center;
-    }
-
-    h2 {
-        font-weight: normal;
-    }
-
-    h3 {
-        font-weight: normal;
-        text-align: left;
-    }
-
+    @import url("$lib/slide.css");
     .footnotes {
-  font-size: smaller;
-  border-top: 1px solid #ccc;
-  padding-top: 5px;
-}
+      font-size: smaller;
+      border-top: 1px solid #ccc;
+      padding-top: 5px;
+    }
 
-.footnotes ol {
-  padding-left: 0;
-}
+    .footnotes ol {
+      padding-left: 0;
+    }
 
-.footnotes li {
-  list-style: none; /* Removes default list styling */
-}
+    .footnotes li {
+      list-style: none; /* Removes default list styling */
+    }
 
-.footnotes sup a {
-  text-decoration: none;
-}
+    .footnotes sup a {
+      text-decoration: none;
+    }
 </style>

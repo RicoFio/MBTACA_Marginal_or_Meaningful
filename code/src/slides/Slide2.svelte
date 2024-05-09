@@ -12,6 +12,7 @@
     $: items = municipalities?.map(m => ({
         'value': m,
         'label': m.Name
+        // 'selectable': m.Selectable
     }));
 
     const searchable = true;
@@ -19,30 +20,30 @@
 
 
 <div class="slide">
-    <Select {items} {searchable} on:change={handleSelect} on:click={handleSelect}/>
+    <div class="select-container">
+        <Select {items} {searchable} on:change={handleSelect} on:click={handleSelect} class="searchbar"/>
+    </div>
 </div>
 
 <style>
     @import url("$lib/global.css");
-    .slide {
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        pointer-events: auto;
-        z-index: 0;
+    @import url("$lib/slide.css");
+
+    :global(.searchbar) {
+        z-index: 100;
+        font: 18px sans-serif;
+        font-family: 'Montserrat', sans-serif;
+        visibility: visible;
+        background-color: rgba(10, 0, 0, 0.4) !important;
+        backdrop-filter: blur(8px) !important;
+        border-radius: 10px;
+        width: 200px;
+        color: #a9987a;
+        position: fixed;
+        padding: 10px;
     }
 
-    h1 {
-        font-weight: normal;
-    }
-
-    h2 {
-        font-weight: normal;
-    }
-
-    h3 {
-        font-weight: normal;
+    .select-container {
+        width: 40%;
     }
 </style>

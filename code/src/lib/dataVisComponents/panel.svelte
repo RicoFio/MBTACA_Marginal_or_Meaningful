@@ -15,6 +15,7 @@
     export let stations;
     export let selectedMunicipality;
     export let selectedStations;
+    export let guidedMode;
 
     let colors = [
         '#05515e',

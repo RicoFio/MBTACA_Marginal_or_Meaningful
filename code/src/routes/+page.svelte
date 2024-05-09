@@ -66,6 +66,11 @@
             return newParcelFile;
         });
     })
+
+    function deselectAll(e) {
+        selectedMunicipality = null;
+        selectedStations = [];
+    }
 </script>
 
 <BaseMap
@@ -78,13 +83,51 @@
         bind:guidedMode={guidedMode}
         bind:parcelFiles={parcelFiles}
 />
+
+<button on:click={deselectAll} class="floating-x">
+    <img src="/artwork/refresh-ccw.svg" alt="Reset and go back to the top" class="reset-icon" />
+</button>
 <PanelComponent
         bind:municipalities={municipalities}
         bind:stations={stations}
         bind:selectedMunicipality={selectedMunicipality}
         bind:selectedStations={selectedStations}
+        bind:guidedMode={guidedMode}
 />
 
 <style>
     @import url("$lib/global.css");
+
+    .floating-x {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        z-index: 1000;
+
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+
+        padding: 0;
+        background-color: rgba(255, 255, 255, 0.8);
+        border: none;
+        cursor: pointer;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .reset-icon {
+        width: 60%;  /* Adjust this to fit the button */
+        height: auto; /* Keeps the aspect ratio of the image */
+        transition: transform 0.3s ease; /* Smooth transition for transform */
+    }
+
+    .reset-icon:hover {
+        transform: rotate(-180deg); /* Rotate 180 degrees on hover */
+    }
 </style>
