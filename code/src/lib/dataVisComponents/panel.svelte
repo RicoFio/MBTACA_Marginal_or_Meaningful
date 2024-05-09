@@ -53,9 +53,9 @@
     // Reactive statement to handle changes in selectedMunicipality
     $: if (ready && selectedMunicipality) {
         console.log("Selected Municipality is set", selectedMunicipality);
-        value = 3; // Assuming this is the index for Slide21
+        let value_scroll = 4; // Assuming this is the index for Slide21
         // isSlide1Active = true;
-        scrollToSlide(value, () => {
+        scrollToSlide(value_scroll, () => {
             // This callback is called after the scrolling animation completes
             isSlide2Active = false;
             console.log("Slide2 is now inactive.");
@@ -126,11 +126,11 @@
         <Slide1 active={isSlide1Active} />
         <Slide11 active={value === 1} />
         <Slide2 active={isSlide2Active}  bind:municipalities={municipalities} bind:selectedMunicipality={selectedMunicipality}/>
-        <Slide21 active={value === 3} bind:municipality={selectedMunicipality}/>
-        <Slide3 active={value === 4}  bind:municipality={selectedMunicipality} bind:station={firstStation}/>
-        <Slide4 active={value === 5}  bind:municipality={selectedMunicipality} bind:station={firstStation}/>
-        <Slide5 active={value === 6}  bind:municipality={selectedMunicipality} bind:station={firstStation}/>
-        <Slide6 active={value === 7} />
+        <Slide21 active={value === 3} bind:municipality={selectedMunicipality} bind:station={firstStation} bind:value/>
+        <!-- <Slide3 active={value === 4}  bind:municipality={selectedMunicipality} bind:station={firstStation}/> -->
+        <Slide4 active={value === 4}  bind:municipality={selectedMunicipality} bind:station={firstStation}/>
+        <Slide5 active={value === 5}  bind:municipality={selectedMunicipality} bind:station={firstStation}/>
+        <Slide6 active={value === 6} />
     </Scrolly>
 </div>
 
