@@ -11,23 +11,5 @@
 {/if}
 
 <style>
-    .slide {
-        height: 100vh; 
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    h1 {
-        font-weight: normal;
-    }
-
-    h2 {
-        font-weight: normal;
-    }
-
-    h3 {
-        font-weight: normal;
-    }
+    @import url("$lib/slide.css");
 </style>

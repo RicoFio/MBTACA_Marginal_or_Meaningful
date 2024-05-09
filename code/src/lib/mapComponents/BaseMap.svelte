@@ -30,11 +30,14 @@
     let municipalityTooltip;
     let tooltipPosition = {x: 0, y: 0};
 
+    const baseCenter = [-71.09451-1.2, 42.36027];
+    const baseZoom = 8;
+
     onMount(async () => {
         map = new mapboxgl.Map({
             container: 'map',
-            center: [-71.09451-1.2, 42.36027],
-            zoom: 8,
+            center: baseCenter,
+            zoom: baseZoom,
             style: 'mapbox://styles/smpeter/cluqd5hft05en01qqc4mxa1kd',
             attributionControl: false,
         });
@@ -115,7 +118,7 @@
     let loadedSources = [];
 
     function toggleStationParcels (station) {
-        if (loadedSources.indexOf(station.Name) == -1) {
+        if (loadedSources.indexOf(station.Name) === -1) {
             map.addSource(station.Name, {
                 type: "geojson",
                 data: parcelFiles.filter(e => e.StopName == station.Name)[0].FileName,
@@ -147,6 +150,11 @@
             });
             bounds = calculateBoundingBox(selectedMunicipality?.Geometries);
             fitBounds(bounds, {padding: {top: 20, bottom: 20, left: 1150, right: 20}});
+        } else {
+            map?.flyTo({
+                center: baseCenter,
+                zoom: baseZoom
+            })
         }
     }
 
@@ -333,7 +341,7 @@
         position: fixed; /* Ensure it's positioned in relation to the SVG or a relative container */
         top: 10px;
         left: 10px;
-        background: oklch(100% 0% 0 / 80%); /* Semi-transparent background */
+        background-color: rgba(10, 0, 0, 0.4); /* Semi-transparent background */
         backdrop-filter: blur(10px);
         border-radius: 5px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow for better readability */
@@ -341,6 +349,11 @@
         padding: 1em;
         transition-duration: 500ms;
         transition-property: opacity, visibility;
+
+        font-family: 'Montserrat', sans-serif;
+        visibility: visible;
+        width: 250px;
+        color: #a9987a;
 
         &[hidden]:not(:hover, :focus-within) {
             opacity: 0;
