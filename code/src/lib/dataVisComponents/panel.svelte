@@ -17,10 +17,9 @@
     let value = 0;
     export let municipalities;
     export let stations;
-    export let searchSelectedMunicipality;
-    export let selectedStation;
-    export let selectedStationObj;
     export let selectedMunicipality;
+    export let selectedStations;
+
     let container;
     // $: console.log({ value });
     let colors = [
@@ -35,6 +34,8 @@
         '#999624',
         '#3e5719',
     ];
+
+    $: firstStation = selectedStations[0];
 
     export let scrollyComponent;
 
@@ -123,11 +124,11 @@
         {/each} -->
         <Slide1 active={isSlide1Active} />
         <Slide11 active={value === 1} />
-        <Slide2 active={isSlide2Active} bind:municipalities={municipalities} bind:selectedMunicipality={searchSelectedMunicipality}/>
-        <Slide21 active={value === 3} bind:municipality={selectedMunicipality} bind:selectedMunicipality={selectedStationObj}/>
-        <Slide3 active={value === 4} bind:municipalityName={searchSelectedMunicipality} bind:selectedStation={selectedStation}/>
-        <Slide4 active={value === 5} bind:municipality={selectedMunicipality} bind:selectedStation={selectedStationObj}/>
-        <Slide5 active={value === 6} bind:municipality={selectedMunicipality} bind:selectedStation={selectedStationObj}/>
+        <Slide2 active={isSlide2Active}  bind:municipalities={municipalities} bind:selectedMunicipality={selectedMunicipality}/>
+        <Slide21 active={value === 3} bind:municipality={selectedMunicipality}/>
+        <Slide3 active={value === 4}  bind:municipality={selectedMunicipality} bind:station={firstStation}/>
+        <Slide4 active={value === 5}  bind:municipality={selectedMunicipality} bind:station={firstStation}/>
+        <Slide5 active={value === 6}  bind:municipality={selectedMunicipality} bind:station={firstStation}/>
         <Slide6 active={value === 7} />
     </Scrolly>
 </div>

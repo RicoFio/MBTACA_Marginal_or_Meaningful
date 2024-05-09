@@ -32,7 +32,6 @@
 
     // Transform data into hierarchy
     const root = d3.hierarchy({children: data}).sum((d) => d.value);
-    console.log("T: Data recieved to TreeMap component:", data); // Add console log here
     // Create treemap layout
     const treemap = d3.treemap().size([width, height]).padding(1);
     // Compute treemap layout
