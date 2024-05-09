@@ -30,11 +30,14 @@
     let municipalityTooltip;
     let tooltipPosition = {x: 0, y: 0};
 
+    const baseCenter = [-71.09451-1.2, 42.36027];
+    const baseZoom = 8;
+
     onMount(async () => {
         map = new mapboxgl.Map({
             container: 'map',
-            center: [-71.09451-1.2, 42.36027],
-            zoom: 8,
+            center: baseCenter,
+            zoom: baseZoom,
             style: 'mapbox://styles/smpeter/cluqd5hft05en01qqc4mxa1kd',
             attributionControl: false,
         });
@@ -115,7 +118,7 @@
     let loadedSources = [];
 
     function toggleStationParcels (station) {
-        if (loadedSources.indexOf(station.Name) == -1) {
+        if (loadedSources.indexOf(station.Name) === -1) {
             map.addSource(station.Name, {
                 type: "geojson",
                 data: parcelFiles.filter(e => e.StopName == station.Name)[0].FileName,
@@ -141,12 +144,19 @@
 
     $: {
         if (selectedMunicipality) {
+            console.log("HERE")
+            console.log(selectedMunicipality)
             selectedStations = [];
             loadedSources.forEach((s) => {
                 toggleStationParcels({Name: s})
             });
             bounds = calculateBoundingBox(selectedMunicipality?.Geometries);
             fitBounds(bounds, {padding: {top: 20, bottom: 20, left: 1150, right: 20}});
+        } else {
+            map?.flyTo({
+                center: baseCenter,
+                zoom: baseZoom
+            })
         }
     }
 
