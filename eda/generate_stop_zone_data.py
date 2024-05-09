@@ -184,15 +184,13 @@ def aggregate_zoning_usage_by_stop_zone(
     return stop_zone_data
 
 
-def generate_stop_zones_with_zoning_usage(parcel_data):
+def augment_parcels_for_upzone_viz(parcel_data_zoning_usage: gpd.GeoDataFrame):
 
-    parcels_zoning = assign_zoning_by_parcel(parcel_data)
-    parcel_data_zoning_usage = assign_usage_by_parcel(parcels_zoning)
+    selected_cols = parcel_data_zoning_usage[[
+        "municipality", "stop_name", "geometry", "mustUpzone", "willChange"
+    ]]
 
-    selected_stop_zones_usage_zoning = aggregate_zoning_usage_by_stop_zone(
-        parcel_data_zoning_usage)
-
-    return selected_stop_zones_usage_zoning
+    return selected_cols
 
 
 if __name__ == "__main__":
@@ -202,8 +200,18 @@ if __name__ == "__main__":
     selected_parcels = gpd.read_file(PREPROCESSED_DATA_PATH /
                                      f'{file_name}_parcels.geojson')
 
-    selected_stop_zones_usage_zoning = generate_stop_zones_with_zoning_usage(
-        selected_parcels)
+    selected_parcels_zoning = assign_zoning_by_parcel(selected_parcels)
+    parcel_data_zoning_usage = assign_usage_by_parcel(selected_parcels_zoning)
+
+    augemented_parcels = augment_parcels_for_upzone_viz(
+        parcel_data_zoning_usage)
+
+    augemented_parcels.to_file(STATIC_SITE_DATA_PATH /
+                               f"{file_name}_parcels_for_upzone_willchange_viz.geojson",
+                               driver='GeoJSON')
+
+    selected_stop_zones_usage_zoning = aggregate_zoning_usage_by_stop_zone(
+        parcel_data_zoning_usage)
 
     census_data_by_stop_zone = gpd.read_file(
         STATIC_SITE_DATA_PATH /
@@ -220,4 +228,7 @@ if __name__ == "__main__":
         STATIC_SITE_DATA_PATH / f"{file_name}_stop_zone_census.geojson",
         driver='GeoJSON')
     end = time.time()
-    print('Time elapsed:', end-start, f'to transform {len(selected_parcels)} parcels from {len(selected_communities)}')
+    print(
+        'Time elapsed:', end - start,
+        f'to transform {len(selected_parcels)} parcels from {len(selected_communities)}'
+    )
