@@ -188,15 +188,15 @@ if __name__ == "__main__":
     zoning_atlas = pd.read_csv(DATA_PATH / 'zoning_atlas.csv')
 
     file_name_reference = pd.read_csv(
-        f"{STATIC_SITE_DATA_PATH}/file_name_reference.csv")
+        f"{STATIC_SITE_DATA_PATH}/parcels/file_name_reference.csv")
 
-    for filename in os.listdir(f"{STATIC_SITE_DATA_PATH}/parcels/per_station"):
+    for filename in os.listdir(f"{DATA_PATH}/raw_parcels"):
 
         station = file_name_reference[file_name_reference["FileName"] ==
                                       filename]["StopName"]
 
         try:
-            actual_filename = f"{STATIC_SITE_DATA_PATH}/parcels/per_station/{filename}"
+            actual_filename = f"{DATA_PATH}/raw_parcels/{filename}"
             selected_parcels = gpd.read_file(actual_filename)
             print(f"SUCCESS for {actual_filename}")
 
@@ -221,7 +221,7 @@ if __name__ == "__main__":
 
         augemented_parcels.to_file(
             STATIC_SITE_DATA_PATH /
-            f"parcels/will_change/{municipality.lower()}_parcels_for_upzone_willchange_viz.geojson",
+            f"parcels/per_station/{municipality.lower()}_parcels_for_upzone_willchange_viz.geojson",
             driver='GeoJSON')
 
         selected_stop_zones_usage_zoning = aggregate_zoning_usage_by_stop_zone(
