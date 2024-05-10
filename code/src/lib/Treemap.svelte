@@ -4,7 +4,10 @@
 
   export let data = [];
 
+  let g;
+
   let svg, tooltip;
+  let svgId = 'treemap-svg';
 
   onMount(() => {
     if (data && data.length > 0) {
@@ -17,7 +20,7 @@
     const width = 400;
     const height = 400;
 
-    svg = d3.select('svg')
+    svg = d3.select(g)
       .attr('viewBox', `0 0 ${width} ${height}`)
       .attr('width', width)
       .attr('height', height)
@@ -80,8 +83,6 @@
              'gray';
     }
 
-    
-
     function showTooltip(event, d) {
       tooltip.style('left', (event.pageX + 10) + 'px')
         .style('top', (event.pageY - 10) + 'px')
@@ -119,7 +120,7 @@
 
 <div id="tooltip" style="position: absolute; display: none; background: lightsteelblue; padding: 5px; border-radius: 3px; pointer-events: none; font: 12px sans-serif;"></div>
 
-<svg bind:this={svg} width=400 height=400></svg>
+<svg bind:this={g}></svg>
 <div id="legend-main"></div>
 
 <style>

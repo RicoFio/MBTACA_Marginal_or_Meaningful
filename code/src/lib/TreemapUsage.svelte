@@ -5,6 +5,7 @@
   export let data = [];
   let svgId = 'treemap-usage-svg'; // Unique ID for the SVG
   let svg, tooltip;
+  let g;
 
   onMount(() => {
     if (data && data.length > 0) {
@@ -16,7 +17,7 @@
     const width = 400;
     const height = 400;
 
-    svg = d3.select(`#${svgId}`)
+    svg = d3.select(g)
       .attr('viewBox', `0 0 ${width} ${height}`)
       .attr('width', width)
       .attr('height', height)
@@ -118,7 +119,7 @@
 </script>
 
 <div id="tooltip-usage" style="position: absolute; display: none; background: lightsteelblue; padding: 5px; border-radius: 3px; pointer-events: none; font: 12px sans-serif;"></div>
-<svg id="{svgId}"></svg>
+<svg bind:this={g}></svg>
 <div id="legend-usage"></div>
 
 <style>

@@ -16,23 +16,17 @@
     let selectedComponent1 = 'zoning'; // Start with no component selected
     let selectedComponent2 = 'zoning';
 
-    let updateKey = 0;
     mapboxgl.accessToken =
         "pk.eyJ1IjoicmZpb3Jpc3RhIiwiYSI6ImNsdWQwcDd0aDFkengybG85eW00eDJqdzEifQ.smRFd5P2IKrDHr5HGsfrGw";
 
     let map;
     let stations = [];
     let mapViewChanged = 0;
-    let stationFlow = d3.scaleQuantize().domain([0, 1]).range([0, 0.5, 1]);
     let query = "";
     let municipalities = [];
-    let municipalitiesFilter = -1;
     let input = "";
     let suggestions = [];
     let stopZoneData;
-    let stopData;
-    let brooklineStopZoneData;
-    let coolidgeCornerStopZoneData;
     let transformedStopZoneDataForMunicipality1;
     let transformedStopZoneUsageDataForMunicipality;
     let transformedStopZoneFutureDataForMunicipality;
@@ -82,8 +76,8 @@
         });
 
         mapHeight = document.getElementById('map').clientHeight;
-        treeMapHeight = document.getElementById('treeMap1').clientHeight;
-        treeMapUsageHeight = document.getElementById('treeMapUsage1').clientHeight;
+        // treeMapHeight = document.getElementById('treeMap1').clientHeight;
+        // treeMapUsageHeight = document.getElementById('treeMapUsage1').clientHeight;
 
         //console.log("treeMapUsageHeight:", treeMapUsageHeight); 
 
@@ -125,29 +119,8 @@
         stopZoneData = await d3.json(
             "/data/brookline_milton_stop_zone_census.geojson",
         );
-        let brooklineStopZoneData = stopZoneData.features.filter(
-            (feature) => feature.properties.community === "Brookline",
-        );
-
-        let coolidgeCornerStopZoneData = stopZoneData.features.filter(
-            (feature) => feature.properties.stop_name === "Coolidge Corner",
-        );
-
-        let stopData = stopZoneData.features.filter(
-            (feature) => feature.properties.stop_name === "Coolidge Corner",
-        );
-        
-        // transformedStopZoneDataForMunicipality1 = transformStopZoneData(
-        //    coolidgeCornerStopZoneData,
-        //);
-
-        //transformedStopZoneUsageDataForMunicipality = transformStopZoneUsageData(
-        //    coolidgeCornerStopZoneData,
-        //);
-
-        //transformedStopZoneFutureDataForMunicipality = transformStopZoneFutureData(
-        //    coolidgeCornerStopZoneData,
-        //);
+        console.log("Loaded stopZoneData");
+        console.log(stopZoneData);
 
         parcelData = await d3.json(
             "/data/brookline_milton_parcels_dummies.geojson",
@@ -240,6 +213,7 @@
 
     function handleDropdownChange() {
         console.log('Selected stopName = ', stopName);
+        console.log(stopZoneData);
         let stopData = stopZoneData.features.filter(
             (feature) => feature.properties.stop_name === stopName
         );
@@ -377,6 +351,7 @@
   <div>
     <h3>{stopName}</h3>
     {#if stopName}
+        {console.log("Selected first station")}
         <div style="display: flex; align-items: center; gap: 100px;">
             <div>
                 <div style="display: flex; align-items: center; gap: 10px;">
@@ -417,6 +392,7 @@
   <div>
     <h3>{stopName2}</h3>
     {#if stopName2}
+        {console.log("Selected second station")}
         <div style="display: flex; align-items: center; gap: 100px;">
             <div>
                 <div style="display: flex; align-items: center; gap: 10px;">
@@ -431,7 +407,6 @@
                 </div>
             
                 <div id="treeMap2" class={treeMapVisibility2}>
-                    <h2>{transformedStopZoneDataForMunicipality2}</h2>
                     <Treemap id="treemap2" data={transformedStopZoneDataForMunicipality2} />
                 </div>
 
@@ -452,71 +427,6 @@
     {/if}
   </div>
 {/key}
-
-
-
-
-    <div>
-        <div id="treeMap1" class={treeMapVisibility}>
-            <h2></h2>
-            {#if transformedStopZoneDataForMunicipality1 != undefined}
-                
-            {:else}
-                
-            {/if}
-        </div>
-
-        <div id="treeMapUsage1" class={treeMapUsageVisibility}>
-            <h2></h2>
-            {#if transformedStopZoneUsageDataForMunicipality != undefined}
-                
-            {:else}
-              
-            {/if}
-        </div>
-    </div>
-
-    <div id="treeMapFuture1">
-        
-        {#if transformedStopZoneFutureDataForMunicipality != undefined}
-           
-        {:else}
-        {/if}
-    </div>
-
-    
-
-
-    <div>
-        <div id="treeMap2" class={treeMapVisibility2}>
-            <h2></h2>
-            {#if transformedStopZoneDataForMunicipality2 != undefined}
-                
-            {:else}
-                
-            {/if}
-        </div>
-
-        <div id="treeMapUsage2" class={treeMapUsageVisibility2}>
-            <h2></h2>
-            {#if transformedStopZoneUsageDataForMunicipality2 != undefined}
-                
-            {:else}
-              
-            {/if}
-        </div>
-    </div>
-
-    <div id="treeMapFuture2">
-        
-        {#if transformedStopZoneFutureDataForMunicipality2 != undefined}
-           
-        {:else}
-        {/if}
-    </div>
-
-
-
 
 <br />
 <div id="map">
