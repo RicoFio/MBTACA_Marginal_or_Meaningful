@@ -190,10 +190,17 @@ if __name__ == "__main__":
     file_name_reference = pd.read_csv(
         f"{STATIC_SITE_DATA_PATH}/parcels/file_name_reference.csv")
 
+    census_data_by_stop_zone = gpd.read_file(
+        STATIC_SITE_DATA_PATH /
+        'mbta_community_stops_with_buffer_and_census.geojson')
+
+    rows = []
+
     for filename in os.listdir(f"{DATA_PATH}/raw_parcels"):
 
-        station = file_name_reference[file_name_reference["FileName"] ==
-                                      filename]["StopName"]
+        station = file_name_reference[
+            file_name_reference["FileName"] ==
+            f'data/parcels/per_station/{filename}']["StopName"].values[0]
 
         try:
             actual_filename = f"{DATA_PATH}/raw_parcels/{filename}"
@@ -227,10 +234,6 @@ if __name__ == "__main__":
         selected_stop_zones_usage_zoning = aggregate_zoning_usage_by_stop_zone(
             parcel_data_zoning_usage)
 
-        census_data_by_stop_zone = gpd.read_file(
-            STATIC_SITE_DATA_PATH /
-            'mbta_community_stops_with_buffer_and_census.geojson')
-
         assert isinstance(
             census_data_by_stop_zone,
             gpd.GeoDataFrame), "census_data_by_stop_zone is not a GeoDataFrame"
@@ -238,13 +241,26 @@ if __name__ == "__main__":
         stop_zone_zoning_usage_census = pd.merge(
             census_data_by_stop_zone, selected_stop_zones_usage_zoning)
 
+        station_formatted = station.lower().replace(" ", "_")
+        rows.append({
+            'StopName':
+            station,
+            'FileName':
+            f"data/stop_zones/per_station/{station_formatted}_stop_zone.geojson"
+        })
+
         stop_zone_zoning_usage_census.to_file(
             STATIC_SITE_DATA_PATH /
-            f"stop_zones/{municipality.lower()}_stop_zone.geojson",
+            f"stop_zones/per_station/{station_formatted}_stop_zone.geojson",
             driver='GeoJSON')
+
         municipalities_count += 1
         stops_count += len(stop_zone_zoning_usage_census)
     end = time.time()
+    file_name_reference = pd.DataFrame(rows, columns=["StopName", "FileName"])
+    file_name_reference.to_csv(STATIC_SITE_DATA_PATH /
+                               'stop_zones/file_name_reference.csv',
+                               index=False)
     print(
         'Time elapsed:', end - start,
         f'to transform data from {municipalities_count} municipalities totaling {stops_count} stops'
