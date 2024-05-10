@@ -13,7 +13,8 @@
     let treeMapHeight = 0;
     let treeMapUsageHeight = 0;
     let treeMapFutureHeight = 0;
-    let selectedComponent = 'zoning'; // Start with no component selected
+    let selectedComponent1 = 'zoning'; // Start with no component selected
+    let selectedComponent2 = 'zoning';
 
     let updateKey = 0;
     mapboxgl.accessToken =
@@ -32,14 +33,20 @@
     let stopData;
     let brooklineStopZoneData;
     let coolidgeCornerStopZoneData;
-    let transformedStopZoneDataForMunicipality;
+    let transformedStopZoneDataForMunicipality1;
     let transformedStopZoneUsageDataForMunicipality;
     let transformedStopZoneFutureDataForMunicipality;
+
+    let transformedStopZoneDataForMunicipality2;
+    let transformedStopZoneUsageDataForMunicipality2;
+    let transformedStopZoneFutureDataForMunicipality2;
+
     let parcelData;
     let treeMapHeaderText;
     let treeMapUsageHeaderText;
     let treeMapFutureHeaderText;
     let stopName = ''; 
+    let stopName2 = ''; 
 
     function transformStopZoneData(originalData) {
             return [
@@ -53,7 +60,6 @@
             return [
                 { name: "Single Family", value: originalData[0].properties.pctUsedAsSF, category1: "pctUsedAsSF" },
                 { name: "Commerical", value: originalData[0].properties.pctUsedAsCommerical, category1: "pctUsedAsCommerical" },
-                { name: "Multiple Buildings on 1 Lot", value: originalData[0].properties.pctUsedAsMultiBuildings1Lot, category1: "pctUsedAsMultiBuildings1Lot" },
                 { name: "Duplex", value: originalData[0].properties.pctUsedAsDuplex, category1: "pctUsedAsDuplex" },
                 { name: "Triplex", value: originalData[0].properties.pctUsedAsTriplex, category1: "pctUsedAsTriplex" }
             ];
@@ -76,8 +82,8 @@
         });
 
         mapHeight = document.getElementById('map').clientHeight;
-        treeMapHeight = document.getElementById('treeMap').clientHeight;
-        treeMapUsageHeight = document.getElementById('treeMapUsage').clientHeight;
+        treeMapHeight = document.getElementById('treeMap1').clientHeight;
+        treeMapUsageHeight = document.getElementById('treeMapUsage1').clientHeight;
 
         //console.log("treeMapUsageHeight:", treeMapUsageHeight); 
 
@@ -117,7 +123,7 @@
         stations = await d3.json("/data/mbta_community_stops.geojson");
 
         stopZoneData = await d3.json(
-            "/data/brookline_milton_stop_zone_zoning_usage_census_v2.geojson",
+            "/data/brookline_milton_stop_zone_census.geojson",
         );
         let brooklineStopZoneData = stopZoneData.features.filter(
             (feature) => feature.properties.community === "Brookline",
@@ -131,7 +137,7 @@
             (feature) => feature.properties.stop_name === "Coolidge Corner",
         );
         
-        // transformedStopZoneDataForMunicipality = transformStopZoneData(
+        // transformedStopZoneDataForMunicipality1 = transformStopZoneData(
         //    coolidgeCornerStopZoneData,
         //);
 
@@ -204,11 +210,18 @@
     }
     
 
-    $: treeMapVisibility = selectedComponent === 'zoning' ? 'visible' : 'hidden';
-    $: treeMapUsageVisibility = selectedComponent === 'usage' ? 'visible' : 'hidden';
+    $: treeMapVisibility = selectedComponent1 === 'zoning' ? 'visible' : 'hidden';
+    $: treeMapUsageVisibility = selectedComponent1 === 'usage' ? 'visible' : 'hidden';
+
+    $: treeMapVisibility2 = selectedComponent2 === 'zoning' ? 'visible' : 'hidden';
+    $: treeMapUsageVisibility2 = selectedComponent2 === 'usage' ? 'visible' : 'hidden';
 
     $: if (stopName) {
         handleDropdownChange();
+    }
+
+    $: if (stopName2) {
+        handleDropdownChange2();
     }
 
     function selectSuggestion(suggestion) {
@@ -234,9 +247,23 @@
         // Check the data transformation here
         console.log("Filtered Stop Data", stopData);
 
-        transformedStopZoneDataForMunicipality = transformStopZoneData(stopData);
+        transformedStopZoneDataForMunicipality1 = transformStopZoneData(stopData);
         transformedStopZoneUsageDataForMunicipality = transformStopZoneUsageData(stopData);
         transformedStopZoneFutureDataForMunicipality = transformStopZoneFutureData(stopData);
+    }
+
+    function handleDropdownChange2() {
+        console.log('Selected stopName2 = ', stopName2);
+        let stopData2 = stopZoneData.features.filter(
+            (feature) => feature.properties.stop_name === stopName2
+        );
+        
+        // Check the data transformation here
+        console.log("Filtered Stop Data 2 ", stopData2);
+
+        transformedStopZoneDataForMunicipality2 = transformStopZoneData(stopData2);
+        transformedStopZoneUsageDataForMunicipality2 = transformStopZoneUsageData(stopData2);
+        transformedStopZoneFutureDataForMunicipality2 = transformStopZoneFutureData(stopData2);
     }
 
     function projectPolygonCoordinates(coordinates) {
@@ -319,6 +346,16 @@
             <option value="Brookline Village">Brookline Village</option>
         </select>
     </div>
+
+    <div>
+        <select bind:value={stopName2} on:change={handleDropdownChange2}>
+            <option value="">Select an option</option>
+            <option value="Beaconsfield">Beaconsfield</option>
+            <option value="Brandon Hall">Brandon Hall</option>
+            <option value="Brookline Hills">Brookline Hills</option>
+            <option value="Brookline Village">Brookline Village</option>
+        </select>
+    </div>
     
 </div>
 
@@ -338,35 +375,76 @@
 
 {#key stopName}
   <div>
+    <h3>{stopName}</h3>
     {#if stopName}
         <div style="display: flex; align-items: center; gap: 100px;">
             <div>
                 <div style="display: flex; align-items: center; gap: 10px;">
                     <label style="cursor: pointer;">
-                        <input type="radio" value="zoning" bind:group={selectedComponent} />
+                        <input type="radio" value="zoning" bind:group={selectedComponent1} />
                         Zoning
                     </label>
                     <label style="cursor: pointer;">
-                        <input type="radio" value="usage" bind:group={selectedComponent} />
+                        <input type="radio" value="usage" bind:group={selectedComponent1} />
                         Usage
                     </label>
                 </div>
             
-                <div id="treeMap" class={treeMapVisibility}>
+                <div id="treeMap1" class={treeMapVisibility}>
                     <h2>{treeMapHeaderText}</h2>
-                    <Treemap data={transformedStopZoneDataForMunicipality} />
+                    <Treemap id="treemap1" data={transformedStopZoneDataForMunicipality1} />
                 </div>
 
-                <div id="treeMapUsage" class={treeMapUsageVisibility}>
+                <div id="treeMapUsage1" class={treeMapUsageVisibility}>
                     <h2>{treeMapUsageHeaderText}</h2>
                     <TreemapUsage data={transformedStopZoneUsageDataForMunicipality} />
                 </div>
                 
             </div>
 
-            <div id="treeMapFuture">
+            <div id="treeMapFuture1">
                 <h2>{treeMapFutureHeaderText}</h2>
                 <TreemapFuture data={transformedStopZoneFutureDataForMunicipality} />
+            </div>
+        </div>
+    {:else}
+      <p></p>
+    {/if}
+  </div>
+{/key}
+
+{#key stopName2}
+  <div>
+    <h3>{stopName2}</h3>
+    {#if stopName2}
+        <div style="display: flex; align-items: center; gap: 100px;">
+            <div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <label style="cursor: pointer;">
+                        <input type="radio" value="zoning" bind:group={selectedComponent2} />
+                        Zoning
+                    </label>
+                    <label style="cursor: pointer;">
+                        <input type="radio" value="usage" bind:group={selectedComponent2} />
+                        Usage
+                    </label>
+                </div>
+            
+                <div id="treeMap2" class={treeMapVisibility2}>
+                    <h2>{transformedStopZoneDataForMunicipality2}</h2>
+                    <Treemap id="treemap2" data={transformedStopZoneDataForMunicipality2} />
+                </div>
+
+                <div id="treeMapUsage2" class={treeMapUsageVisibility2}>
+                    
+                    <TreemapUsage data={transformedStopZoneUsageDataForMunicipality2} />
+                </div>
+                
+            </div>
+
+            <div id="treeMapFuture2">
+                
+                <TreemapFuture data={transformedStopZoneFutureDataForMunicipality2} />
             </div>
         </div>
     {:else}
@@ -379,16 +457,16 @@
 
 
     <div>
-        <div id="treeMap" class={treeMapVisibility}>
+        <div id="treeMap1" class={treeMapVisibility}>
             <h2></h2>
-            {#if transformedStopZoneDataForMunicipality != undefined}
+            {#if transformedStopZoneDataForMunicipality1 != undefined}
                 
             {:else}
                 
             {/if}
         </div>
 
-        <div id="treeMapUsage" class={treeMapUsageVisibility}>
+        <div id="treeMapUsage1" class={treeMapUsageVisibility}>
             <h2></h2>
             {#if transformedStopZoneUsageDataForMunicipality != undefined}
                 
@@ -398,9 +476,40 @@
         </div>
     </div>
 
-    <div id="treeMapFuture">
+    <div id="treeMapFuture1">
         
         {#if transformedStopZoneFutureDataForMunicipality != undefined}
+           
+        {:else}
+        {/if}
+    </div>
+
+    
+
+
+    <div>
+        <div id="treeMap2" class={treeMapVisibility2}>
+            <h2></h2>
+            {#if transformedStopZoneDataForMunicipality2 != undefined}
+                
+            {:else}
+                
+            {/if}
+        </div>
+
+        <div id="treeMapUsage2" class={treeMapUsageVisibility2}>
+            <h2></h2>
+            {#if transformedStopZoneUsageDataForMunicipality2 != undefined}
+                
+            {:else}
+              
+            {/if}
+        </div>
+    </div>
+
+    <div id="treeMapFuture2">
+        
+        {#if transformedStopZoneFutureDataForMunicipality2 != undefined}
            
         {:else}
         {/if}

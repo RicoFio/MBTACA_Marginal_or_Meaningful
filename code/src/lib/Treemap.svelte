@@ -1,108 +1,141 @@
-<!-- Treemap.svelte -->
-
 <script>
-    import { onMount } from "svelte";
-    import * as d3 from "d3";
+  import { onMount } from 'svelte';
+  import * as d3 from 'd3';
 
-    export let data = [];
+  export let data = [];
 
-    function fitText(selection, width, height) {
-            selection.each(function(d) {
-            const textElement = d3.select(this);
-            let textLength = textElement.node().getComputedTextLength();
-            let text = textElement.text();
-            while (textLength > (width - 8) && text.length > 0) {
-            text = text.slice(0, -1);
-            textElement.text(text + '…');
-            textLength = textElement.node().getComputedTextLength();
-        }
-        });
+  let svg, tooltip;
+
+  onMount(() => {
+    if (data && data.length > 0) {
+      drawCirclePacking();
     }
+  });
 
-    onMount(() => {
-        drawTreemap();
-    });
+  function drawCirclePacking() {
+    
+    const width = 400;
+    const height = 400;
 
-    function drawTreemap() {
-        const width = 400;
-        const height = 250;
+    svg = d3.select('svg')
+      .attr('viewBox', `0 0 ${width} ${height}`)
+      .attr('width', width)
+      .attr('height', height)
+      .style('display', 'block')
+      .style('margin', '0 auto');
 
-        const svg = d3
-            .select("svg")
-            .attr("width", width)
-            .attr("height", height);
+    tooltip = d3.select('#tooltip');
 
+    const root = d3.hierarchy({ name: 'root', children: data })
+      .sum(d => d.value)
+      .sort((a, b) => b.value - a.value);
 
-        // Transform data into hierarchy
-        const root = d3.hierarchy({ children: data }).sum((d) => d.value);
+    const pack = d3.pack()
+      .size([width, height])
+      .padding(3);
 
-        console.log("T: Data recieved to TreeMap component:", data); // Add console log here
+    pack(root);
 
-        // Create treemap layout
-        const treemap = d3.treemap().size([width, height]).padding(1);
+    const zoom = d3.zoom()
+      .scaleExtent([1, 8])
+      .on('zoom', event => {
+        svg.attr('transform', event.transform);
+      });
 
-        // Compute treemap layout
-        treemap(root);
+    svg.call(zoom);
 
-        // Create cells for each data point
-        const cell = svg
-            .selectAll("g")
-            .data(root.leaves())
-            .enter()
-            .append("g")
-            .attr("transform", (d) => `translate(${d.x0},${d.y0})`);
+    const nodes = root.descendants();
+    createLegend();
+    const node = svg.selectAll('g')
+      .data(nodes)
+      .join('g')
+      .attr('transform', d => `translate(${d.x}, ${d.y})`);
 
-        // Append rectangle for each cell
-        cell.append("rect")
-            .attr("width", (d) => d.x1 - d.x0)
-            .attr("height", (d) => d.y1 - d.y0)
-            .attr("fill", (d) => getColorByCategory(d.data))
-            .on("mouseover", handleMouseOver)
-            .on("mouseout", handleMouseOut);
+    node.append('circle')
+      .attr('r', d => d.r)
+      .attr('fill', d => d.children ? '#abafa7' : getColorByCategory(d.data))
+      .attr('stroke', '#fff')
+      .attr('stroke-width', 2)
+      .on('mouseover', function (event, d) {
+        d3.select(this).attr('stroke', '#000');
+        showTooltip(event, d);
+      })
+      .on('mouseout', function () {
+        d3.select(this).attr('stroke', '#fff');
+        hideTooltip();
+      });
 
-        // Append text for each cell
-        cell.append("text")
-            .attr("x", 5)
-            .attr("y", 15)
-            .text((d) => d.data.name)
-            .attr("fill", "white");
-
-        cell.append("text")
-            .attr("x", 5)
-            .attr("y", 40)
-            .text((d) => `${((d.value / root.value) * 100).toFixed(1)}%`)
-            .attr("fill", "white");
-
-        function handleMouseOver() {
-            d3.select(this).attr("fill", "orange");
-        }
-
-        function handleMouseOut() {
-            d3.select(this).attr("fill", (d) => getColorByCategory(d.data));
-        }
-    }
+    node.filter(d => !d.children)
+      .append('text')
+      .attr('text-anchor', 'middle')
+      .attr('dy', '0.35em')
+      .attr('fill', 'white')
+      .style('font-size', '14px')
+      .text(d => d.data.name);
 
     function getColorByCategory(d) {
-        switch (d.category1) {
-            case "pctZonedAsSF":
-                return "#dd8155";
-            case "pctZonedAsCommerical":
-                return "#f39034";
-            case "pctZonedAsMultifamily":
-                return "#97340b";
-            default:
-                return "gray";
-        }
+      return d.category1 === 'pctZonedAsSF' ? '#dd8155' :
+             d.category1 === 'pctZonedAsComm' ? '#05515e' :
+             d.category1 === 'pctZonedAsMultifamily' ? '#97340b' :
+             'gray';
     }
 
-    $: if (data) {
-        console.log('Treemap data updated:', data);
-        drawTreemap(data);
+    
+
+    function showTooltip(event, d) {
+      tooltip.style('left', (event.pageX + 10) + 'px')
+        .style('top', (event.pageY - 10) + 'px')
+        .style('display', 'inline-block')
+        .html(`<strong>${d.data.name}</strong><br>Value: ${d.value}`);
     }
 
+    function hideTooltip() {
+      tooltip.style('display', 'none');
+    }
+
+    function createLegend() {
+      const legend = d3.select('#legend-main');
+
+      const categories = [
+        { name: 'Single Family', color: '#dd8155' },
+        { name: 'Commercial', color: '#05515e' },
+        { name: 'Multi Family', color: '#97340b' }
+      ];
+
+      legend.selectAll('div')
+        .data(categories)
+        .enter()
+        .append('div')
+        .style('display', 'flex')
+        .style('align-items', 'center')
+        .style('margin-bottom', '4px')
+        .html(d => `
+          <span style="display: inline-block; width: 15px; height: 15px; background: ${d.color}; margin-right: 8px;"></span>
+          ${d.name}
+        `);
+    }
+  }
 </script>
 
-<svg></svg>
+<div id="tooltip" style="position: absolute; display: none; background: lightsteelblue; padding: 5px; border-radius: 3px; pointer-events: none; font: 12px sans-serif;"></div>
 
+<svg bind:this={svg} width=400 height=400></svg>
+<div id="legend-main"></div>
 
-
+<style>
+  circle {
+    fill-opacity: 0.6;
+    transition: fill-opacity 0.3s, stroke-width 0.3s;
+  }
+  circle:hover {
+    fill-opacity: 50;
+    stroke-width: 3px;
+  }
+  text {
+    pointer-events: none;
+  }
+  #legend-main {
+    margin: 10px auto;
+    width: 200px;
+  }
+</style>
