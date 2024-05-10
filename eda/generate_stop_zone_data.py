@@ -4,6 +4,7 @@ import pandas as pd
 import time
 import data_generation_helpers as helpers
 from fiona.errors import FionaValueError
+import os
 
 PREPROCESSED_DATA_PATH = Path(
     "/Users/ameliabaum/Library/Mobile Documents/com~apple~CloudDocs/MIT/6.C35/6.C85_FP/data/preprocessed_data"
@@ -186,22 +187,30 @@ if __name__ == "__main__":
     stops_count = 0
     zoning_atlas = pd.read_csv(DATA_PATH / 'zoning_atlas.csv')
 
-    for municipality in zoning_atlas["muni"].unique()[:6]:
+    file_name_reference = pd.read_csv(
+        f"{STATIC_SITE_DATA_PATH}/file_name_reference.csv")
+
+    for filename in os.listdir(f"{STATIC_SITE_DATA_PATH}/parcels/per_station"):
+
+        station = file_name_reference[file_name_reference["FileName"] ==
+                                      filename]["StopName"]
 
         try:
+            actual_filename = f"{STATIC_SITE_DATA_PATH}/parcels/per_station/{filename}"
+            selected_parcels = gpd.read_file(actual_filename)
+            print(f"SUCCESS for {actual_filename}")
 
-            selected_parcels = gpd.read_file(
-                PREPROCESSED_DATA_PATH /
-                f'{municipality.lower()}_parcels.geojson')
         except FionaValueError:
-            print(
-                f"File for {municipality} not found. Moving on to the next municipality."
-            )
+            print(f"File for {actual_filename} not found.")
             continue
 
+        municipality = selected_parcels["TOWN_NAME"].unique()[0]
         zoning_atlas_for_municipality = zoning_atlas[zoning_atlas["muni"] ==
                                                      municipality]
 
+        if len(zoning_atlas_for_municipality) == 0:
+            print(f"Zoning atlas information for {municipality} not found.")
+            continue
         selected_parcels_zoning = assign_zoning_by_parcel(
             zoning_atlas_for_municipality, selected_parcels)
         parcel_data_zoning_usage = assign_usage_by_parcel(
@@ -212,7 +221,7 @@ if __name__ == "__main__":
 
         augemented_parcels.to_file(
             STATIC_SITE_DATA_PATH /
-            f"{municipality}_parcels_for_upzone_willchange_viz.geojson",
+            f"parcels/will_change/{municipality.lower()}_parcels_for_upzone_willchange_viz.geojson",
             driver='GeoJSON')
 
         selected_stop_zones_usage_zoning = aggregate_zoning_usage_by_stop_zone(
@@ -230,7 +239,8 @@ if __name__ == "__main__":
             census_data_by_stop_zone, selected_stop_zones_usage_zoning)
 
         stop_zone_zoning_usage_census.to_file(
-            STATIC_SITE_DATA_PATH / f"{municipality}_stop_zone_census.geojson",
+            STATIC_SITE_DATA_PATH /
+            f"stop_zones/{municipality.lower()}_stop_zone_census.geojson",
             driver='GeoJSON')
         municipalities_count += 1
         stops_count += len(stop_zone_zoning_usage_census)
