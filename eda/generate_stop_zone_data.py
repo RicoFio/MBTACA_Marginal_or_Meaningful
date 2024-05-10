@@ -221,7 +221,7 @@ if __name__ == "__main__":
 
         augemented_parcels.to_file(
             STATIC_SITE_DATA_PATH /
-            f"parcels/per_station/{municipality.lower()}_parcels_for_upzone_willchange_viz.geojson",
+            f"parcels/per_station/{municipality.lower()}_augmented_parcels.geojson",
             driver='GeoJSON')
 
         selected_stop_zones_usage_zoning = aggregate_zoning_usage_by_stop_zone(
@@ -240,7 +240,7 @@ if __name__ == "__main__":
 
         stop_zone_zoning_usage_census.to_file(
             STATIC_SITE_DATA_PATH /
-            f"stop_zones/{municipality.lower()}_stop_zone_census.geojson",
+            f"stop_zones/{municipality.lower()}_stop_zone.geojson",
             driver='GeoJSON')
         municipalities_count += 1
         stops_count += len(stop_zone_zoning_usage_census)
