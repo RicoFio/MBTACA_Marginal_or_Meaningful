@@ -1,11 +1,17 @@
 import geopandas as gpd
 from pathlib import Path
 import pandas as pd
-import json
 import time
+import data_generation_helpers as helpers
+from fiona.errors import FionaValueError
+import os
 
 PREPROCESSED_DATA_PATH = Path(
     "/Users/ameliabaum/Library/Mobile Documents/com~apple~CloudDocs/MIT/6.C35/6.C85_FP/data/preprocessed_data"
+)
+
+DATA_PATH = Path(
+    "/Users/ameliabaum/Library/Mobile Documents/com~apple~CloudDocs/MIT/6.C35/6.C85_FP/data"
 )
 
 STATIC_SITE_DATA_PATH = Path(
@@ -13,53 +19,35 @@ STATIC_SITE_DATA_PATH = Path(
 )
 
 
-def get_parcel_data_filtered_by_municipalities(municipalities):
+def assign_zoning_by_parcel(
+        zoning_atlas_for_municipality: str,
+        parcel_data_for_municipality: pd.DataFrame) -> pd.DataFrame:
 
-    parcels_within_station_buffer = gpd.read_file(
-        PREPROCESSED_DATA_PATH / 'station_only_parcels.geojson')
-    brookline_milton_parcels = parcels_within_station_buffer[
-        parcels_within_station_buffer["municipality"].isin(municipalities)]
-    brookline_milton_parcels['zone_id'] = brookline_milton_parcels[
-        'zone_id'].apply(json.dumps)
-    brookline_milton_parcels['routes'] = brookline_milton_parcels[
-        'routes'].apply(json.dumps)
-    brookline_milton_parcels['route_colors'] = brookline_milton_parcels[
-        'route_colors'].apply(json.dumps)
-    # write the brookline and milton parcels to a file so don't have to keep reading the big file in
-    # brookline_milton_parcels.to_file(PREPROCESSED_DATA_PATH /
-    #                                 "brookline_milton_parcels.geojson",
-    #                                 driver='GeoJSON')
+    sf_zoning_codes = helpers.get_zoning_codes_for_type_for_municipality(
+        zoning_atlas_for_municipality, ["Single"])
+    multifamily_zoning_codes = helpers.get_zoning_codes_for_type_for_municipality(
+        zoning_atlas_for_municipality, ['Multi Family', 'Multiple Family'])
+    commercial_zoning_codes = helpers.get_zoning_codes_for_type_for_municipality(
+        zoning_atlas_for_municipality, ["Commercial"])
 
+    sf_zoning_codes = list(
+        set(sf_zoning_codes) - set(multifamily_zoning_codes)
+    )  # the single family codes that do not include multifamily. some codes encompass multi and single and these should be considered multifamily for this analysis
 
-def assign_zoning_by_parcel(parcel_data: pd.DataFrame) -> pd.DataFrame:
+    commercial_zoning_codes = list(
+        set(commercial_zoning_codes) - set(multifamily_zoning_codes)
+    )  # similarly, decide that areas that are both multifamily and commercial are just multifamily
 
-    # these are for brookline, will need to see if they scale https://www.brooklinema.gov/DocumentCenter/View/19956/GIS---Zoning-Map-10CC-11x17pdf
-    #TODO: use some kind of fuzzy matching for these
-    sf_zoning_codes = [
-        'S-40', 'S-25', 'S-15', 'S-10', 'S-7', 'S-4', 'S-0.5P,'
-        'S-0.75P', 'SC-7', 'SC-10', 'T-6', 'T-5', 'SF', 'S10', 'S40', 'S25',
-        'S15', 'S7', 'S4', 'R1'
-    ]
-    multifamily_zoning_codes = [
-        'F10', 'M-0.5', 'M5', 'M10', 'M10(CAM)', 'M15', 'M20', 'M25'
-    ]  #the zoning code says M1.0, M1.5, but the data has it has M10, M15, etc.
-    commercial_zoning_codes = [
-        'L-0.5', 'L-0.5(CL)', 'L-1.0', 'G-1.0', 'G-(DP)', 'G-1.75(CC)',
-        'G-1.75(LSH)', 'G-1.75(WS)', 'G-2.0', 'G-2.0(CA)', 'GMR-2.0', 'O-1.0',
-        'O-2.0(CH)', 'G175(LSH', 'G10', 'G20', 'G175(WS)', 'G175(CC)', 'G(DP)',
-        'G', 'GU', 'GR', 'GB', 'GI', 'G RS', 'GC', 'GBD', 'GD', 'G20',
-        'G175(CC)', 'G175(WS)', 'G175(LSH', 'G10', 'GMR20', 'G(DP)', 'GRA',
-        'GRB'
-    ]
+    parcel_data_for_municipality['isZonedAsSF'] = parcel_data_for_municipality[
+        'ZONING'].apply(lambda zoning_code: zoning_code in sf_zoning_codes)
+    parcel_data_for_municipality[
+        'isZonedAsMultifamily'] = parcel_data_for_municipality['ZONING'].apply(
+            lambda zoning_code: zoning_code in multifamily_zoning_codes)
+    parcel_data_for_municipality[
+        'isZonedAsCommercial'] = parcel_data_for_municipality['ZONING'].apply(
+            lambda zoning_code: zoning_code in commercial_zoning_codes)
 
-    parcel_data['isZonedAsSF'] = parcel_data['ZONING'].apply(
-        lambda zoning_code: zoning_code in sf_zoning_codes)
-    parcel_data['isZonedAsMultifamily'] = parcel_data['ZONING'].apply(
-        lambda zoning_code: zoning_code in multifamily_zoning_codes)
-    parcel_data['isZonedAsCommercial'] = parcel_data['ZONING'].apply(
-        lambda zoning_code: zoning_code in commercial_zoning_codes)
-
-    return parcel_data
+    return parcel_data_for_municipality
 
 
 def assign_usage_by_parcel(parcel_data: pd.DataFrame) -> pd.DataFrame:
@@ -195,40 +183,69 @@ def augment_parcels_for_upzone_viz(parcel_data_zoning_usage: gpd.GeoDataFrame):
 
 if __name__ == "__main__":
     start = time.time()
-    selected_communities = ["Brookline", "Milton"]
-    file_name = '_'.join(selected_communities).lower()
-    selected_parcels = gpd.read_file(PREPROCESSED_DATA_PATH /
-                                     f'{file_name}_parcels.geojson')
+    municipalities_count = 0
+    stops_count = 0
+    zoning_atlas = pd.read_csv(DATA_PATH / 'zoning_atlas.csv')
 
-    selected_parcels_zoning = assign_zoning_by_parcel(selected_parcels)
-    parcel_data_zoning_usage = assign_usage_by_parcel(selected_parcels_zoning)
+    file_name_reference = pd.read_csv(
+        f"{STATIC_SITE_DATA_PATH}/file_name_reference.csv")
 
-    augemented_parcels = augment_parcels_for_upzone_viz(
-        parcel_data_zoning_usage)
+    for filename in os.listdir(f"{STATIC_SITE_DATA_PATH}/parcels/per_station"):
 
-    augemented_parcels.to_file(STATIC_SITE_DATA_PATH /
-                               f"{file_name}_parcels_for_upzone_willchange_viz.geojson",
-                               driver='GeoJSON')
+        station = file_name_reference[file_name_reference["FileName"] ==
+                                      filename]["StopName"]
 
-    selected_stop_zones_usage_zoning = aggregate_zoning_usage_by_stop_zone(
-        parcel_data_zoning_usage)
+        try:
+            actual_filename = f"{STATIC_SITE_DATA_PATH}/parcels/per_station/{filename}"
+            selected_parcels = gpd.read_file(actual_filename)
+            print(f"SUCCESS for {actual_filename}")
 
-    census_data_by_stop_zone = gpd.read_file(
-        STATIC_SITE_DATA_PATH /
-        'mbta_community_stops_with_buffer_and_census.geojson')
+        except FionaValueError:
+            print(f"File for {actual_filename} not found.")
+            continue
 
-    assert isinstance(
-        census_data_by_stop_zone,
-        gpd.GeoDataFrame), "census_data_by_stop_zone is not a GeoDataFrame"
+        municipality = selected_parcels["TOWN_NAME"].unique()[0]
+        zoning_atlas_for_municipality = zoning_atlas[zoning_atlas["muni"] ==
+                                                     municipality]
 
-    stop_zone_zoning_usage_census = pd.merge(census_data_by_stop_zone,
-                                             selected_stop_zones_usage_zoning)
+        if len(zoning_atlas_for_municipality) == 0:
+            print(f"Zoning atlas information for {municipality} not found.")
+            continue
+        selected_parcels_zoning = assign_zoning_by_parcel(
+            zoning_atlas_for_municipality, selected_parcels)
+        parcel_data_zoning_usage = assign_usage_by_parcel(
+            selected_parcels_zoning)
 
-    stop_zone_zoning_usage_census.to_file(
-        STATIC_SITE_DATA_PATH / f"{file_name}_stop_zone_census.geojson",
-        driver='GeoJSON')
+        augemented_parcels = augment_parcels_for_upzone_viz(
+            parcel_data_zoning_usage)
+
+        augemented_parcels.to_file(
+            STATIC_SITE_DATA_PATH /
+            f"parcels/will_change/{municipality.lower()}_parcels_for_upzone_willchange_viz.geojson",
+            driver='GeoJSON')
+
+        selected_stop_zones_usage_zoning = aggregate_zoning_usage_by_stop_zone(
+            parcel_data_zoning_usage)
+
+        census_data_by_stop_zone = gpd.read_file(
+            STATIC_SITE_DATA_PATH /
+            'mbta_community_stops_with_buffer_and_census.geojson')
+
+        assert isinstance(
+            census_data_by_stop_zone,
+            gpd.GeoDataFrame), "census_data_by_stop_zone is not a GeoDataFrame"
+
+        stop_zone_zoning_usage_census = pd.merge(
+            census_data_by_stop_zone, selected_stop_zones_usage_zoning)
+
+        stop_zone_zoning_usage_census.to_file(
+            STATIC_SITE_DATA_PATH /
+            f"stop_zones/{municipality.lower()}_stop_zone_census.geojson",
+            driver='GeoJSON')
+        municipalities_count += 1
+        stops_count += len(stop_zone_zoning_usage_census)
     end = time.time()
     print(
         'Time elapsed:', end - start,
-        f'to transform {len(selected_parcels)} parcels from {len(selected_communities)}'
+        f'to transform data from {municipalities_count} municipalities totaling {stops_count} stops'
     )
