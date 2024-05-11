@@ -196,6 +196,14 @@ if __name__ == "__main__":
 
     rows = []
 
+    # filenames = [f'data/parcels/per_station/{file}' for file in os.listdir(f"{DATA_PATH}/raw_parcels")]
+
+    # print([
+    #     file for file in filenames
+    #     if file not in
+    #     file_name_reference["FileName"].unique()
+    # ])
+
     for filename in os.listdir(f"{DATA_PATH}/raw_parcels"):
 
         station = file_name_reference[
@@ -241,7 +249,7 @@ if __name__ == "__main__":
         stop_zone_zoning_usage_census = pd.merge(
             census_data_by_stop_zone, selected_stop_zones_usage_zoning)
 
-        station_formatted = station.lower().replace(" ", "_")
+        station_formatted = station[0].lower().replace(" ", "_")
         rows.append({
             'StopName':
             station,
