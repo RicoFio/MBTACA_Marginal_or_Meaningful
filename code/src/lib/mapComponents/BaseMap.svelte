@@ -183,7 +183,12 @@
                 type: "fill",  // Use 'fill' type for polygon layers
                 source: station.Name,
                 paint: {
-                    "fill-color": "white",  // Correct property for setting the fill color of polygons
+                    "fill-color": [
+                        'case',
+                        ["to-boolean", ['get', 'mustUpzone']], '#f39034',  // true
+                        ['!', ["to-boolean", ['get', 'mustUpzone']]], '#abafa7',  // false
+                        '#ffffff'
+                    ],  // Correct property for setting the fill color of polygons
                     "fill-outline-color": "black"  // Sets the color of the outline
                 },
             });
