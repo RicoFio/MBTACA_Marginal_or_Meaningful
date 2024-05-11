@@ -2,67 +2,28 @@
      import { onMount } from 'svelte';
     import Select from 'svelte-select';
     import { calculateBoundingBox } from "$lib/mapComponents/mapUtils.js";
+    import { observerStore } from '../lib/panelComponents/Scrolly_slide';
+
     export let active = false;
     export let municipality = null;
     export let station = null;
   
     export let value = 0;
     let isVisible = false;
-    let observer;
-    let timeout;
-  
-    $: console.log(value)
-    // Reactive statement to monitor changes in value
-    $: if (value === 4) {
-        console.log("EHRHERHE")
-      startObservation();
-    }
-  
-    function startObservation() {
-      if (observer) {
-        observer.disconnect(); // Disconnect existing observer if any
-      }
 
-      const rootElement = document.querySelector('.slide');
-
-      observer = new IntersectionObserver(handleIntersect, {
-        root: rootElement,
-        threshold: 0.5, // Adjust threshold as needed
-        rootMargin: '0px'
-      });
-  
-      const firstParagraph = document.querySelector('.slide > p:first-of-type');
-      if (firstParagraph) {
-        observer.observe(firstParagraph);
-      }
-    }
-  
-    function handleIntersect(entries) {
-      const [entry] = entries;
-      clearTimeout(timeout);
-
-      if (entry.isIntersecting) {
-        // Set the isVisible to true after a delay of 5 seconds
-        timeout = setTimeout(() => {
-          isVisible = true;
-        }, 3000);  // 5000 milliseconds = 5 seconds
-      } else {
-        isVisible = false;
-      }
-      console.log("Intersection observed:", isVisible);
-      console.log("Bounding client rect:", entry.boundingClientRect);
-      console.log("Intersection ratio:", entry.intersectionRatio);
-      console.log("Intersection rect:", entry.intersectionRect);
-}
-  
-    onMount(() => {
-      // Disconnect the observer when the component is destroyed
-      return () => {
-        if (observer) {
-          observer.disconnect();
-        }
-      };
+    const unsubscribe = observerStore.subscribe(store => {
+        isVisible = store.isVisible;
     });
+    
+    // Reactive statement to monitor changes in value
+    $: if (value === 5) {
+        console.log(isVisible)
+        observerStore.startObservation();
+        console.log(isVisible)
+    }
+
+  
+    
   </script>
   
   <div class="slide">

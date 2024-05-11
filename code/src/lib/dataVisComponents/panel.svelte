@@ -3,6 +3,7 @@
     import Scrolly from "../panelComponents/Scrolly.svelte";
     import Slide1 from "../../slides/Slide1.svelte";
     import Slide11 from "../../slides/Slide1.1.svelte";
+    import Slide12 from "../../slides/Slide1.2.svelte";
     import Slide2 from "../../slides/Slide2.svelte";
     import Slide21 from "../../slides/Slide2.1.svelte";
     import Slide3 from "../../slides/Slide3.svelte";
@@ -47,13 +48,13 @@
     });
 
     // Default to true to show Slide2 initially
-    let isSlide2Active = 'value === 2';
+    let isSlide2Active = 'value === 3';
     let isSlide1Active = 'value === 0';
 
     // Reactive statement to handle changes in selectedMunicipality
     $: if (ready && selectedMunicipality) {
         console.log("Selected Municipality is set", selectedMunicipality);
-        let value_scroll = 4; // Assuming this is the index for Slide21
+        let value_scroll = 5; // Assuming this is the index for Slide21
         // isSlide1Active = true;
         scrollToSlide(value_scroll, () => {
             // This callback is called after the scrolling animation completes
@@ -61,8 +62,15 @@
             console.log("Slide2 is now inactive.");
         });
         isSlide1Active = 'value === 0';
-    } else {
+    } 
+    else {
         console.log("Selected Municipality is not set");
+    }
+
+    $: if (ready && firstStation) {
+        console.log("Selected station is set")
+        let value_scroll_station = 4;
+        scrollToSlide(value_scroll_station)
     }
 
     // Reactive statement to handle changes
@@ -124,13 +132,14 @@
             </div>
         {/each} -->
         <Slide1 active={isSlide1Active} />
-        <Slide11 active={value === 1} />
+        <Slide11 active={value === 1} bind:value/>
+        <Slide12 active={value === 2} bind:value/>
         <Slide2 active={isSlide2Active}  bind:municipalities={municipalities} bind:selectedMunicipality={selectedMunicipality}/>
-        <Slide21 active={value === 3} bind:municipality={selectedMunicipality} bind:station={firstStation} bind:value/>
+        <Slide21 active={value === 4} bind:municipality={selectedMunicipality} bind:station={firstStation} bind:value/>
         <!-- <Slide3 active={value === 4}  bind:municipality={selectedMunicipality} bind:station={firstStation}/> -->
-        <Slide4 active={value === 4}  bind:municipality={selectedMunicipality} bind:station={firstStation}/>
-        <Slide5 active={value === 5}  bind:municipality={selectedMunicipality} bind:station={firstStation}/>
-        <Slide6 active={value === 6} />
+        <Slide4 active={value === 5}  bind:municipality={selectedMunicipality} bind:station={firstStation} bind:value/>
+        <Slide5 active={value === 6}  bind:municipality={selectedMunicipality} bind:station={firstStation}/>
+        <Slide6 active={value === 7} />
     </Scrolly>
 </div>
 

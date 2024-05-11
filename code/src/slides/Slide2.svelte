@@ -20,8 +20,12 @@
 
 {#if (active)}
     <div class="slide">
+        <h2>Use this interactive map to explore the potential effects of siting multifamily districts near different transit stations within communities. In addition to providing detailed parcel-level information about current zoning and usage patterns and how these might change if upzoning were to occur, the tool provides relevant demographic statistics about the area surrounding each MBTA station. <br> </h2>
+        <br>
+        <br>
+        <br>
         <div class="select-container">
-            <Select {items} {searchable} on:change={handleSelect} on:click={handleSelect} class="searchbar"/>
+            <Select {items} {searchable} on:change={handleSelect} on:click={handleSelect} class="searchbar" placeholder="Please select a municipality"/>
         </div>
     </div>
 {/if}
