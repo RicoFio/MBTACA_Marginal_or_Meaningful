@@ -83,7 +83,10 @@
             return {source:`${i}-0`, target:`${i}-${e}`}
         })).flat()
 
-        fig_size = Math.min(width, height)/18
+        console.log("links")
+        console.log(links)
+
+        fig_size = Math.min(width, height)/23
 
         var node = d3.select(g)
             .selectAll("image")
@@ -99,17 +102,41 @@
                 .attr("onmouseout", d => `this.style.opacity=${d.dark ? 0.3 : 1}`)
                 .style("filter", d => d.protagonist ? filters[6] : filters[d.category])
                 .style("opacity", d => d.dark ? 0.3 : 1.0)
+                // Example of setting initial positions based on category
+                .attr("x", d => width / 2 - (d.category * 1000 - d.category % 2 * 2000))  // Provide a larger offset
+                .attr("y", d => height / 2 + (d.category % 2 * 100))  // Alternate vertically based on even/odd category
 
 
         var simulation = d3.forceSimulation(data2)
+            .alpha(0.3)
+            .alphaDecay(0.022)
+            .velocityDecay(0.6)
             .force("center", d3.forceCenter().strength(fcenter).x(width/2).y(height/2))
-            .force("charge", d3.forceManyBody().strength(fcharge))
-            .force("collide", d3.forceCollide().strength(fcollide).radius(fig_size/2).iterations(1))
-            .force("link", d3.forceLink().strength(flink).id(d => d.id))
+            .force("charge", d3.forceManyBody().strength(-5)) // Try adjusting strength
+            .force("collide", d3.forceCollide().radius(() => fig_size))
+            .force("link", d3.forceLink(links).id(d => d.id).distance(2).strength(0.5))
             .force("bound", () => {data2.forEach(node => {
                 node.x = Math.min(width - fig_size - legendWidth - legendMargin, Math.max(0, node.x));
                 node.y = Math.min(height - fig_size - legendMargin, Math.max(node.y, paddings.top));
             })})
+            .force("customSeparate", alpha => {
+            data2.forEach(d => {
+                data2.forEach(other => {
+                    if (d.category !== other.category) { // Assuming each node has a 'group' attribute
+                        let dx = d.x - other.x;
+                        let dy = d.y - other.y;
+                        let dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 10) { // Define a threshold for separation
+                            let force = alpha * 2 / dist**2; // Adjust force magnitude as needed
+                            d.vx += dx * force;
+                            d.vy += dy * force;
+                        }
+                    }
+                });
+            });
+        })
+
+
 
         simulation
             .nodes(data2)
@@ -210,10 +237,14 @@
         {#if selectedCategory == "age"}
             About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area are of age {currentHoveredPoint.label}.
         {:else if selectedCategory == "race"}
+            {#if currentHoveredPoint.value == 'other_race'}
+            About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area belong to another race.
+            {:else}
             About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area are {currentHoveredPoint.label}.
+            {/if}
         {:else if selectedCategory == "gender"}
             About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area are {currentHoveredPoint.label}.
-        {:else if selectedCategory == "mean household income"}
+        {:else if selectedCategory == "median household income"}
             {#if currentHoveredPoint.value == 5}
             The top 5% of households in the selected area have a mean income of {currentHoveredPoint.label}.
             {:else}
