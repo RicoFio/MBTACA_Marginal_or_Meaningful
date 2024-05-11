@@ -128,10 +128,10 @@ Bradford,data/parcels/per_station/bradford_parcels.geojson
 Oak Grove,data/parcels/per_station/oak_grove_parcels.geojson
 Wyoming Hill,data/parcels/per_station/wyoming_hill_parcels.geojson
 Melrose/Cedar Park,data/parcels/per_station/melrose_cedar_park_parcels.geojson
-Capen Street,data/parcels/per_station/upzone_willchange_parcels_capen_street.geojson
-Valley Road,data/parcels/per_station/upzone_willchange_parcels_valley_road.geojson
-Central Avenue,data/parcels/per_station/upzone_willchange_parcels_central_avenue.geojson
-Milton,data/parcels/per_station/upzone_willchange_parcels_milton.geojson
+Capen Street,data/parcels/per_station/capen_street_parcels.geojson
+Valley Road,data/parcels/per_station/valley_road_parcels.geojson
+Central Avenue,data/parcels/per_station/central_avenue_parcels.geojson
+Milton,data/parcels/per_station/milton_parcels.geojson
 Greenbush,data/parcels/per_station/greenbush_parcels.geojson
 Eastern Avenue,data/parcels/per_station/eastern_avenue_parcels.geojson
 Box District,data/parcels/per_station/box_district_parcels.geojson
@@ -142,23 +142,23 @@ Montello,data/parcels/per_station/montello_parcels.geojson
 Canton Center,data/parcels/per_station/canton_center_parcels.geojson
 Canton Junction,data/parcels/per_station/canton_junction_parcels.geojson
 Gilman Square,data/parcels/per_station/gilman_square_parcels.geojson
-Hawes Street,data/parcels/per_station/upzone_willchange_parcels_hawes_street.geojson
-Kent Street,data/parcels/per_station/upzone_willchange_parcels_kent_street.geojson
-Longwood,data/parcels/per_station/upzone_willchange_parcels_longwood.geojson
-Saint Mary's Street,data/parcels/per_station/upzone_willchange_parcels_saint_marys_street.geojson
-Saint Paul Street,data/parcels/per_station/upzone_willchange_parcels_saint_paul_street.geojson
-Coolidge Corner,data/parcels/per_station/upzone_willchange_parcels_coolidge_corner.geojson
-Summit Avenue,data/parcels/per_station/upzone_willchange_parcels_summit_avenue.geojson
-Brandon Hall,data/parcels/per_station/upzone_willchange_parcels_brandon_hall.geojson
-Fairbanks Street,data/parcels/per_station/upzone_willchange_parcels_fairbanks_street.geojson
-Washington Square,data/parcels/per_station/upzone_willchange_parcels_washington_square.geojson
-Dean Road,data/parcels/per_station/upzone_willchange_parcels_dean_road.geojson
-Tappan Street,data/parcels/per_station/upzone_willchange_parcels_tappan_street.geojson
-Beaconsfield,data/parcels/per_station/upzone_willchange_parcels_beaconsfield.geojson
-Englewood Avenue,data/parcels/per_station/upzone_willchange_parcels_englewood_avenue.geojson
-Reservoir,data/parcels/per_station/upzone_willchange_parcels_reservoir.geojson
-Brookline Village,data/parcels/per_station/upzone_willchange_parcels_brookline_village.geojson
-Brookline Hills,data/parcels/per_station/upzone_willchange_parcels_brookline_hills.geojson
+Hawes Street,data/parcels/per_station/hawes_street_parcels.geojson
+Kent Street,data/parcels/per_station/kent_street_parcels.geojson
+Longwood,data/parcels/per_station/longwood_parcels.geojson
+Saint Mary's Street,data/parcels/per_station/saint_marys_street_parcels.geojson
+Saint Paul Street,data/parcels/per_station/saint_paul_street_parcels.geojson
+Coolidge Corner,data/parcels/per_station/coolidge_corner_parcels.geojson
+Summit Avenue,data/parcels/per_station/summit_avenue_parcels.geojson
+Brandon Hall,data/parcels/per_station/brandon_hall_parcels.geojson
+Fairbanks Street,data/parcels/per_station/fairbanks_street_parcels.geojson
+Washington Square,data/parcels/per_station/washington_square_parcels.geojson
+Dean Road,data/parcels/per_station/dean_road_parcels.geojson
+Tappan Street,data/parcels/per_station/tappan_street_parcels.geojson
+Beaconsfield,data/parcels/per_station/beaconsfield_parcels.geojson
+Englewood Avenue,data/parcels/per_station/englewood_avenue_parcels.geojson
+Reservoir,data/parcels/per_station/reservoir_parcels.geojson
+Brookline Village,data/parcels/per_station/brookline_village_parcels.geojson
+Brookline Hills,data/parcels/per_station/brookline_hills_parcels.geojson
 Attleboro,data/parcels/per_station/attleboro_parcels.geojson.geojson
 South Attleboro,data/parcels/per_station/south_attleboro_parcels.geojson
 Framingham,data/parcels/per_station/framingham_parcels.geojson
