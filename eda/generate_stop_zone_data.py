@@ -188,7 +188,7 @@ if __name__ == "__main__":
     zoning_atlas = pd.read_csv(DATA_PATH / 'zoning_atlas.csv')
 
     file_name_reference = pd.read_csv(
-        f"{STATIC_SITE_DATA_PATH}/parcels/file_name_reference.csv")
+        f"{STATIC_SITE_DATA_PATH}/parcels/raw_parcels_file_name_reference.csv")
 
     census_data_by_stop_zone = gpd.read_file(
         STATIC_SITE_DATA_PATH /
@@ -206,14 +206,17 @@ if __name__ == "__main__":
 
     for filename in os.listdir(f"{DATA_PATH}/raw_parcels"):
 
-        station = file_name_reference[
-            file_name_reference["FileName"] ==
-            f'data/parcels/per_station/{filename}']["StopName"].values[0]
-
         try:
+            station = file_name_reference[
+                file_name_reference["FileName"] ==
+                f'data/parcels/per_station/{filename}']["StopName"].values[0]
             actual_filename = f"{DATA_PATH}/raw_parcels/{filename}"
             selected_parcels = gpd.read_file(actual_filename)
             print(f"SUCCESS for {actual_filename}")
+
+        except IndexError:
+            print(f"file_name_reference for {filename} not found.")
+            continue
 
         except FionaValueError:
             print(f"File for {actual_filename} not found.")
@@ -231,13 +234,13 @@ if __name__ == "__main__":
         parcel_data_zoning_usage = assign_usage_by_parcel(
             selected_parcels_zoning)
 
-        augemented_parcels = augment_parcels_for_upzone_viz(
-            parcel_data_zoning_usage)
+        # augemented_parcels = augment_parcels_for_upzone_viz(
+        #     parcel_data_zoning_usage)
 
-        augemented_parcels.to_file(
-            STATIC_SITE_DATA_PATH /
-            f"parcels/per_station/{municipality.lower()}_augmented_parcels.geojson",
-            driver='GeoJSON')
+        # augemented_parcels.to_file(
+        #     STATIC_SITE_DATA_PATH /
+        #     f"parcels/per_station/{municipality.lower()}_augmented_parcels.geojson",
+        #     driver='GeoJSON')
 
         selected_stop_zones_usage_zoning = aggregate_zoning_usage_by_stop_zone(
             parcel_data_zoning_usage)
@@ -249,7 +252,7 @@ if __name__ == "__main__":
         stop_zone_zoning_usage_census = pd.merge(
             census_data_by_stop_zone, selected_stop_zones_usage_zoning)
 
-        station_formatted = station[0].lower().replace(" ", "_")
+        station_formatted = station.lower().replace(" ", "_").replace("/", "_")
         rows.append({
             'StopName':
             station,
@@ -262,7 +265,6 @@ if __name__ == "__main__":
             f"stop_zones/per_station/{station_formatted}_stop_zone.geojson",
             driver='GeoJSON')
 
-        municipalities_count += 1
         stops_count += len(stop_zone_zoning_usage_census)
     end = time.time()
     file_name_reference = pd.DataFrame(rows, columns=["StopName", "FileName"])
@@ -271,5 +273,5 @@ if __name__ == "__main__":
                                index=False)
     print(
         'Time elapsed:', end - start,
-        f'to transform data from {municipalities_count} municipalities totaling {stops_count} stops'
+        f'to transform data for {stops_count} stops'
     )
