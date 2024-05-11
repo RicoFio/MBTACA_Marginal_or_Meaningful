@@ -2,9 +2,14 @@ import geopandas as gpd
 from pathlib import Path
 import pandas as pd
 import json
+import time
 
 PREPROCESSED_DATA_PATH = Path(
     "/Users/ameliabaum/Library/Mobile Documents/com~apple~CloudDocs/MIT/6.C35/6.C85_FP/data/preprocessed_data"
+)
+
+STATIC_SITE_DATA_PATH = Path(
+    "/Users/ameliabaum/Library/Mobile Documents/com~apple~CloudDocs/MIT/6.C35/6.C85_FP/code/static/data"
 )
 
 
@@ -108,8 +113,10 @@ def percentage_true(series):
     return (series.sum() / len(series)) * 100
 
 
-def aggregate_statistics_by_stop_zone(
-        parcel_data: pd.DataFrame) -> pd.DataFrame:
+def aggregate_zoning_usage_by_stop_zone(
+        parcel_data: gpd.GeoDataFrame) -> pd.DataFrame:
+
+    # parcel geography is eliminated in the agg, returns a dataframe
 
     stop_zone_data = parcel_data.groupby('stop_name').agg({
         'municipality':
@@ -146,7 +153,7 @@ def aggregate_statistics_by_stop_zone(
 
     stop_zone_data.rename(columns={
         'isZonedAsSF': 'pctZonedAsSF',
-        'isZonedAsComm': 'pctZonedAsComm',
+        'isZonedAsCommercial': 'pctZonedAsCommercial',
         'isZonedAsMultifamily': 'pctZonedAsMultifamily',
         'isUsedAsSF': 'pctUsedAsSF',
         'isUsedAsCommercial': 'pctUsedAsCommercial',
@@ -163,8 +170,8 @@ def aggregate_statistics_by_stop_zone(
                           inplace=True)
 
     stop_zone_data['pctOtherZoning'] = 100 - (
-        stop_zone_data['pctZonedAsSF'] + stop_zone_data['pctZonedAsComm'] +
-        stop_zone_data['pctZonedAsMultifamily'])
+        stop_zone_data['pctZonedAsSF'] + stop_zone_data['pctZonedAsCommercial']
+        + stop_zone_data['pctZonedAsMultifamily'])
     stop_zone_data['pctOtherUsage'] = 100 - (
         stop_zone_data['pctUsedAsSF'] + stop_zone_data['pctUsedAsCommercial'] +
         stop_zone_data['pctUsedAsDuplex'] + stop_zone_data['pctUsedAsTriplex']
@@ -174,27 +181,54 @@ def aggregate_statistics_by_stop_zone(
         stop_zone_data['pctUsedAsCoopApt'] +
         stop_zone_data['pctUsedAsOtherMultifamily'])
 
+    return stop_zone_data
 
-def generate_stop_zones_with_zoning_usage_census(parcel_data):
 
-    parcels_zoning = assign_zoning_by_parcel(parcel_data)
-    parcel_data_zoning_usage = assign_usage_by_parcel(parcels_zoning)
+def augment_parcels_for_upzone_viz(parcel_data_zoning_usage: gpd.GeoDataFrame):
 
-    station_buffer_census_cumulative = gpd.read_file(
-        PREPROCESSED_DATA_PATH / 'mbta_community_stops_with_buffer_and_census.geojson')
+    selected_cols = parcel_data_zoning_usage[[
+        "municipality", "stop_name", "geometry", "mustUpzone", "willChange"
+    ]]
 
-    stop_zone_census = station_buffer_census_cumulative.merge(
-        parcel_data_zoning_usage, on="stop_name")
-
-    return stop_zone_census
+    return selected_cols
 
 
 if __name__ == "__main__":
-    brookline_milton_parcels = gpd.read_file(
-        PREPROCESSED_DATA_PATH / 'brookline_milton_parcels.geojson')
-    stop_zone_census = generate_stop_zones_with_zoning_usage_census(
-        brookline_milton_parcels)
+    start = time.time()
+    selected_communities = ["Brookline", "Milton"]
+    file_name = '_'.join(selected_communities).lower()
+    selected_parcels = gpd.read_file(PREPROCESSED_DATA_PATH /
+                                     f'{file_name}_parcels.geojson')
 
-    stop_zone_census.to_file(PREPROCESSED_DATA_PATH /
-                             "brookline_milton_stop_zone_census.geojson",
-                             driver='GeoJSON')
+    selected_parcels_zoning = assign_zoning_by_parcel(selected_parcels)
+    parcel_data_zoning_usage = assign_usage_by_parcel(selected_parcels_zoning)
+
+    augemented_parcels = augment_parcels_for_upzone_viz(
+        parcel_data_zoning_usage)
+
+    augemented_parcels.to_file(STATIC_SITE_DATA_PATH /
+                               f"{file_name}_parcels_for_upzone_willchange_viz.geojson",
+                               driver='GeoJSON')
+
+    selected_stop_zones_usage_zoning = aggregate_zoning_usage_by_stop_zone(
+        parcel_data_zoning_usage)
+
+    census_data_by_stop_zone = gpd.read_file(
+        STATIC_SITE_DATA_PATH /
+        'mbta_community_stops_with_buffer_and_census.geojson')
+
+    assert isinstance(
+        census_data_by_stop_zone,
+        gpd.GeoDataFrame), "census_data_by_stop_zone is not a GeoDataFrame"
+
+    stop_zone_zoning_usage_census = pd.merge(census_data_by_stop_zone,
+                                             selected_stop_zones_usage_zoning)
+
+    stop_zone_zoning_usage_census.to_file(
+        STATIC_SITE_DATA_PATH / f"{file_name}_stop_zone_census.geojson",
+        driver='GeoJSON')
+    end = time.time()
+    print(
+        'Time elapsed:', end - start,
+        f'to transform {len(selected_parcels)} parcels from {len(selected_communities)}'
+    )
