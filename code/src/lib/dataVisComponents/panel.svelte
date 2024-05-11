@@ -10,6 +10,7 @@
     import Slide5 from "../../slides/Slide5.svelte";
     import Slide6 from "../../slides/Slide6.svelte";
     import Slide7 from "../../slides/Slide7.svelte";
+    import Slide8 from "../../slides/Slide8.svelte";
 
     let value;
     export let municipalities;
@@ -18,6 +19,7 @@
     export let selectedStations;
     export let guidedMode;
     export let comparisonMode;
+    export let explorationMode;
 
 
     let colors = [
@@ -40,13 +42,14 @@
     <Scrolly bind:value>
         <Slide1 active={value === 0} />
         <Slide11 active={value === 1} />
-        <Slide2 active={value === 2}  bind:municipalities={municipalities} bind:selectedMunicipality={selectedMunicipality}/>
-        <Slide21 active={value === 3} bind:municipality={selectedMunicipality}/>
-        <Slide3 active={value === 4}  bind:municipality={selectedMunicipality} bind:station={firstStation}/>
-        <Slide4 active={value === 5}  bind:municipality={selectedMunicipality} bind:station={firstStation}/>
-        <Slide5 active={value === 6}  bind:municipality={selectedMunicipality} bind:station={firstStation}/>
-        <Slide6 active={value === 7}  bind:municipality={selectedMunicipality} bind:stations={selectedStations} bind:comparisonMode={comparisonMode}/>
-        <Slide7 active={value === 8} />
+        <Slide2 active={value === 2}  bind:municipalities={municipalities}      bind:selectedMunicipality={selectedMunicipality}                                           />
+        <Slide21 active={value === 3} bind:municipality={selectedMunicipality}                                                                                             />
+        <Slide3 active={value === 4}  bind:municipality={selectedMunicipality}  bind:station={firstStation}                                                                />
+        <Slide4 active={value === 5}  bind:municipality={selectedMunicipality}  bind:station={firstStation}                                                                />
+        <Slide5 active={value === 6}  bind:municipality={selectedMunicipality}  bind:station={firstStation}                                                                />
+        <Slide6 active={value === 7}  bind:municipality={selectedMunicipality}  bind:stations={selectedStations}                    bind:comparisonMode={comparisonMode}   />
+        <Slide7 active={value === 8}  bind:guidedMode={guidedMode}              bind:comparisonMode={comparisonMode}                bind:explorationMode={explorationMode} />
+        <Slide8 active={value === 9} />
     </Scrolly>
 </div>
 

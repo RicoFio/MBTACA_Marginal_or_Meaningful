@@ -1,5 +1,8 @@
 <script>
+    import MultiPieChart from "$lib/dataVisComponents/MultiPieChart.svelte";
+
     export let active = false;
+
 </script>
 
 <div class="slide">

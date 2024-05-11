@@ -6,6 +6,7 @@
     import buffer from '@turf/buffer';
     import { point } from '@turf/helpers';
     import PanelComponent from '../lib/dataVisComponents/panel.svelte';
+    import FloatingTooltipComponent from '../lib/tooltipComponent/FloatingTooltipComponent.svelte';
 
     import BaseMap from "$lib/mapComponents/BaseMap.svelte";
 
@@ -19,6 +20,7 @@
     let selectedStations = [];
     let guidedMode = true;
     let comparisonMode = false;
+    let explorationMode = false;
 
     onMount(async () => {
         let loadedStations = await d3.json("/data/mbta_community_stops.geojson");
@@ -84,19 +86,35 @@
         bind:guidedMode={guidedMode}
         bind:parcelFiles={parcelFiles}
         bind:comparisonMode={comparisonMode}
+        bind:explorationMode={explorationMode}
 />
 
-<button on:click={deselectAll} class="floating-x">
-    <img src="/artwork/refresh-ccw.svg" alt="Reset and go back to the top" class="reset-icon" />
-</button>
-<PanelComponent
-        bind:municipalities={municipalities}
-        bind:stations={stations}
-        bind:selectedMunicipality={selectedMunicipality}
-        bind:selectedStations={selectedStations}
-        bind:guidedMode={guidedMode}
-        bind:comparisonMode={comparisonMode}
-/>
+{#key explorationMode}
+    {#if !explorationMode}
+        <button on:click={deselectAll} class="floating-x">
+            <img src="/artwork/refresh-ccw.svg" alt="Reset and go back to the top" class="reset-icon" />
+        </button>
+
+        <PanelComponent
+                bind:municipalities={municipalities}
+                bind:stations={stations}
+                bind:selectedMunicipality={selectedMunicipality}
+                bind:selectedStations={selectedStations}
+                bind:guidedMode={guidedMode}
+                bind:comparisonMode={comparisonMode}
+                bind:explorationMode={explorationMode}
+        />
+    {:else }
+        {#key selectedStations}
+            {#if selectedStations.length === 2}
+                <FloatingTooltipComponent
+                    bind:municipality={selectedMunicipality}
+                    bind:stations={selectedStations}
+                />
+            {/if}
+        {/key}
+    {/if}
+{/key}
 
 <style>
     @import url("$lib/global.css");
