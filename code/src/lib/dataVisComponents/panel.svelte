@@ -22,6 +22,11 @@
     export let selectedStations;
     export let guidedMode;
 
+    let visibility_slide12 = false;
+    let visibility_slide21 = false;
+    let visibility_slide4 = false;
+    let visibility_slide5 = false;
+
     let container;
     // $: console.log({ value });
     let colors = [
@@ -48,13 +53,15 @@
     });
 
     // Default to true to show Slide2 initially
-    let isSlide2Active = 'value === 3';
+    let isSlide2Active = false;
+    console.log("isSlide2Active", isSlide2Active)
     let isSlide1Active = 'value === 0';
 
     // Reactive statement to handle changes in selectedMunicipality
     $: if (ready && selectedMunicipality) {
         console.log("Selected Municipality is set", selectedMunicipality);
-        let value_scroll = 5; // Assuming this is the index for Slide21
+        visibility_slide21 = 'value === 4'
+        let value_scroll = 4; // Assuming this is the index for Slide21
         // isSlide1Active = true;
         scrollToSlide(value_scroll, () => {
             // This callback is called after the scrolling animation completes
@@ -69,7 +76,8 @@
 
     $: if (ready && firstStation) {
         console.log("Selected station is set")
-        let value_scroll_station = 4;
+        visibility_slide4 = 'value === 5'
+        let value_scroll_station = 5;
         scrollToSlide(value_scroll_station)
     }
 
@@ -132,13 +140,13 @@
             </div>
         {/each} -->
         <Slide1 active={isSlide1Active} />
-        <Slide11 active={value === 1} bind:value/>
-        <Slide12 active={value === 2} bind:value/>
+        <Slide11 active={value === 1} bind:value bind:visibility_slide12={visibility_slide12}/>
+        <Slide12 active={visibility_slide12} bind:value bind:isSlide2Active={isSlide2Active}/>
         <Slide2 active={isSlide2Active}  bind:municipalities={municipalities} bind:selectedMunicipality={selectedMunicipality}/>
-        <Slide21 active={value === 4} bind:municipality={selectedMunicipality} bind:station={firstStation} bind:value/>
+        <Slide21 active={visibility_slide21} bind:municipality={selectedMunicipality} bind:station={firstStation} bind:value/>
         <!-- <Slide3 active={value === 4}  bind:municipality={selectedMunicipality} bind:station={firstStation}/> -->
-        <Slide4 active={value === 5}  bind:municipality={selectedMunicipality} bind:station={firstStation} bind:value/>
-        <Slide5 active={value === 6}  bind:municipality={selectedMunicipality} bind:station={firstStation}/>
+        <Slide4 active={visibility_slide4}  bind:municipality={selectedMunicipality} bind:station={firstStation} bind:value bind:visibility_slide5={visibility_slide5}/>
+        <Slide5 active={visibility_slide5}  bind:municipality={selectedMunicipality} bind:station={firstStation}/>
         <Slide6 active={value === 7} />
     </Scrolly>
 </div>

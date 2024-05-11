@@ -76,6 +76,7 @@
     $: treeMapUsageVisibility = selectedComponent == 'usage' ? 'visible' : 'hidden';
 </script>
 
+{#if (active)}
 <div class="slide">
     {#if (municipality && station)}
         <h1>{municipality.Name}: {station.Name}</h1>
@@ -172,6 +173,7 @@
 
 
 </div>
+{/if}
 
 <style>
     @import url("$lib/slide.css");

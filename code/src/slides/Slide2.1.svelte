@@ -9,23 +9,22 @@
     export let station = null;
   
     export let value = 0;
-    let isVisible = false;
+    let isVisible_slide21 = false;
 
     const unsubscribe = observerStore.subscribe(store => {
-        isVisible = store.isVisible;
+        isVisible_slide21 = store.isVisible;
     });
     
     // Reactive statement to monitor changes in value
     $: if (value === 5) {
-        console.log(isVisible)
         observerStore.startObservation();
-        console.log(isVisible)
     }
 
   
     
   </script>
   
+  {#if (active)}
   <div class="slide">
     {#if (municipality)}
         <h1>{municipality.Name}</h1>
@@ -35,7 +34,7 @@
 
             Shapefiles for these MBTA communities come from the 2020 census, retrieved from Social Explorer. <br> <br>
         </h3>
-        {#if isVisible}
+        {#if isVisible_slide21}
         {#if (municipality && !station)}
                 <h2>SELECT a station in {municipality?.Name}</h2>
             {:else if (municipality && station)}
@@ -44,12 +43,8 @@
         {/if}
 
     {/if}
-
-    <!-- <p>This is the first paragraph.</p>
-    {#if isVisible}
-      <p>This is the second paragraph that appears when the condition is met.</p>
-    {/if} -->
   </div>
+  {/if}
   
   <style>
     @import url("$lib/slide.css");

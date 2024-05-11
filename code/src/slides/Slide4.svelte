@@ -8,6 +8,7 @@
 
     export let municipality = {};
     export let station = {};
+    export let visibility_slide5 = false;
     
     let full_data;
     let station_data;
@@ -41,14 +42,18 @@
     let work_from_home = 0;
     let median_income = 0;
 
-    let isVisible = false;
+    let isVisible_slide4 = false;
     observerStore.subscribe(store => {
-        isVisible = store.isVisible;
+        isVisible_slide4 = store.isVisible;
     });
+
+    $: if (isVisible_slide4) {
+        visibility_slide5 = 'value === 6'
+    }
 
     export let value = 0;
     $: if (value === 6) {
-        observerStore.resetVisibility();  // Reset visibility whenever checking this condition
+        // observerStore.resetVisibility();  // Reset visibility whenever checking this condition
         observerStore.startObservation();
     }
 
@@ -143,7 +148,9 @@
     let activeSelection = "age"
     $: current_data = data[activeSelection];
 </script>
-<!-- <ScrollySlide bind:value expectedValue={5}> -->
+
+
+{#if (active)}
 <div class="slide">
     {#if (municipality && station)}
         <h1>{municipality.Name}: {station.Name}</h1>
@@ -152,7 +159,7 @@
         Toggle the force diagrams to see relevant demographic statistics for the zone around the transit station. Racial, age, gender and income demographics, as well as behavioral characteristics like how much of the population uses transit to get to work, may influence the effect of upzoning on a certain location. <br> <br> </h3>
         <p>Demographic data is sourced from the 2022 ACS 5-year rolling estimates (downloaded from Social Explorer).</p>
     {/if}
-    {#if isVisible}
+    {#if isVisible_slide4}
     <h2>WHO LIVES HERE? - let's find out</h2>
     <ForceGraphSelector bind:activeSelection></ForceGraphSelector>
 
@@ -171,7 +178,7 @@
         <h3> The median household income in the selected area is {median_income} $.</h3>
     {/if}
 </div>
-<!-- </ScrollySlide> -->
+{/if}
 
 <style>
     @import url("$lib/slide.css");
