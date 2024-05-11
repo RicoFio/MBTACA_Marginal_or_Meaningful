@@ -10,6 +10,8 @@
     import Slide4 from "../../slides/Slide4.svelte";
     import Slide5 from "../../slides/Slide5.svelte";
     import Slide6 from "../../slides/Slide6.svelte";
+    import Slide7 from "../../slides/Slide7.svelte";
+
     import { tick } from "svelte";
     import { onMount } from 'svelte';
 
@@ -21,6 +23,8 @@
     export let selectedMunicipality;
     export let selectedStations;
     export let guidedMode;
+    export let comparisonMode;
+
 
     let container;
     // $: console.log({ value });
@@ -139,7 +143,8 @@
         <!-- <Slide3 active={value === 4}  bind:municipality={selectedMunicipality} bind:station={firstStation}/> -->
         <Slide4 active={value === 5}  bind:municipality={selectedMunicipality} bind:station={firstStation} bind:value/>
         <Slide5 active={value === 6}  bind:municipality={selectedMunicipality} bind:station={firstStation}/>
-        <Slide6 active={value === 7} />
+        <Slide6 active={value === 7}  bind:municipality={selectedMunicipality} bind:stations={selectedStations} bind:comparisonMode={comparisonMode}/>
+        <Slide7 active={value === 8} />
     </Scrolly>
 </div>
 
