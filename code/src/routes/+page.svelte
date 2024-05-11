@@ -18,6 +18,7 @@
     let municipalities = [];
     let selectedStations = [];
     let guidedMode = true;
+    let comparisonMode = false;
 
     onMount(async () => {
         let loadedStations = await d3.json("/data/mbta_community_stops.geojson");
@@ -82,6 +83,7 @@
         bind:selectedMunicipality={selectedMunicipality}
         bind:guidedMode={guidedMode}
         bind:parcelFiles={parcelFiles}
+        bind:comparisonMode={comparisonMode}
 />
 
 <button on:click={deselectAll} class="floating-x">
@@ -93,6 +95,7 @@
         bind:selectedMunicipality={selectedMunicipality}
         bind:selectedStations={selectedStations}
         bind:guidedMode={guidedMode}
+        bind:comparisonMode={comparisonMode}
 />
 
 <style>

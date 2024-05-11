@@ -1,19 +1,41 @@
 <script>
     import Select from 'svelte-select';
+    import {calculateBoundingBox} from "$lib/mapComponents/mapUtils.js";
+
     export let active = false;
+    export let municipality;
+    export let stations;
+    export let comparisonMode;
+
+
+    $: firstStation = (stations?.length > 0) ? stations[0] : undefined;
+    $: secondStation = (stations?.length > 1) ? stations[1] : undefined;
+
+    $: {
+        console.log("stations");
+        console.log(stations);
+        console.log("firstStation");
+        console.log(firstStation);
+        console.log("secondStation");
+        console.log(secondStation);
+    }
+
+    $: {
+        if (active) {
+            comparisonMode = true;
+        }
+    }
 
 </script>
 
 <div class="slide">
-    <h1>TO BE CONTINUED ...</h1>
-    <h2>
-        What you will find here soon:
-    </h2>
-    <ul>
-        <li>The ability to compare two stations</li>
-        <li>The ability to explore the map on your own</li>
-    </ul>
-    <h1>Made with ❤️</h1>
+    {#if (municipality && !firstStation)}
+        <h1>Select a station in {municipality?.Name}</h1>
+    {:else if (municipality && firstStation && !secondStation)}
+        <h1>Select a second station in {municipality?.Name}</h1>
+    {:else}
+        <h1>Let's consider {firstStation?.Name} and {secondStation?.Name} in {municipality?.Name}</h1>
+    {/if}
 </div>
 
 <style>

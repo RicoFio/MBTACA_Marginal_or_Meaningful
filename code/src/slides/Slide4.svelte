@@ -4,6 +4,7 @@
     import * as d3 from "d3";
     import ForceGraph from "../lib/dataVisComponents/ForceGraph.svelte";
     import ForceGraphSelector from "../lib/dataVisComponents/ForceGraphSelector.svelte"
+    import { observerStore } from '../lib/panelComponents/Scrolly_slide.js';
 
     export let municipality = {};
     export let station = {};
@@ -38,6 +39,17 @@
     let walking = 0;
     let other_mode_of_transportation = 0;
     let work_from_home = 0;
+
+    let isVisible = false;
+    observerStore.subscribe(store => {
+        isVisible = store.isVisible;
+    });
+
+    export let value = 0;
+    $: if (value === 6) {
+        observerStore.resetVisibility();  // Reset visibility whenever checking this condition
+        observerStore.startObservation();
+    }
 
     onMount(async () => {
         full_data = await d3.json("/data/mbta_community_stops_with_buffer_and_census.geojson");
@@ -129,7 +141,7 @@
     let activeSelection = "age"
     $: current_data = data[activeSelection];
 </script>
-
+<!-- <ScrollySlide bind:value expectedValue={5}> -->
 <div class="slide">
     {#if (municipality && station)}
         <h1>{municipality.Name}: {station.Name}</h1>
@@ -138,6 +150,7 @@
         Toggle the force diagrams to see relevant demographic statistics for the zone around the transit station. Racial, age, gender and income demographics, as well as behavioral characteristics like how much of the population uses transit to get to work, may influence the effect of upzoning on a certain location. <br> <br> </h3>
         <p>Demographic data is sourced from the 2022 ACS 5-year rolling estimates (downloaded from Social Explorer).</p>
     {/if}
+    {#if isVisible}
     <h2>WHO LIVES HERE? - let's find out</h2>
     <ForceGraphSelector bind:activeSelection></ForceGraphSelector>
 
@@ -151,8 +164,25 @@
             />
         {/if}
     {/key}
+    {/if}
 </div>
+<!-- </ScrollySlide> -->
 
 <style>
     @import url("$lib/slide.css");
-</style>
+
+    .slide {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    p {
+      margin: 0;
+      padding: 1em;
+      width: 100%;
+      text-align: center;
+    }
+  </style>
