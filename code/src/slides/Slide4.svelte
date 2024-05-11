@@ -39,6 +39,7 @@
     let walking = 0;
     let other_mode_of_transportation = 0;
     let work_from_home = 0;
+    let median_income = 0;
 
     let isVisible = false;
     observerStore.subscribe(store => {
@@ -82,6 +83,7 @@
         to_74999 = station_data?.properties.percentage_weighted_households_50000_to_74999 * 100; 
         to_99999 = station_data?.properties.percentage_weighted_households_75000_to_99999 * 100;
         more_than_100000 = station_data?.properties.percentage_weighted_households_100000_or_more * 100;
+        median_income = station_data?.properties.weighted_median_household_income_in_2022_inflation_adjusted_dollars;
         // Vehicles
         zero = station_data?.properties.percentage_weighted_occupied_housing_units_no_vehicle_available * 100;
         one = station_data?.properties.percentage_weighted_occupied_housing_units_1_vehicle_available * 100;
@@ -109,13 +111,13 @@
             {label: 'black', value: black},
             {label: 'hispanic', value: hispanic},
             {label: 'asian', value: asian},
-            {label: 'other_race', value: other_race},
+            {label: 'other race', value: other_race},
         ],
         "gender": [
             {label: 'male', value: male},
             {label: 'female', value: female},
         ],
-        "mean household income": [
+        "median household income": [
             {label: 'less than 25,000 $', value: less_than_25000},
             {label: '25,000 to 49,999 $', value: to_49999},
             {label: '50,000 to 74,999 $', value: to_74999},
@@ -130,12 +132,12 @@
         ],
         "mode of transportation": [
             {label: 'car', value: car},
-            {label: 'public_transport', value: public_transport},
+            {label: 'public transport', value: public_transport},
             {label: 'motorcycle', value: motorcycle},
             {label: 'bicycle', value: bicycle},
             {label: 'walking', value: walking},
-            {label: 'other_mode_of_transportation', value: other_mode_of_transportation},
-            {label: 'work_from_home', value: work_from_home}
+            {label: 'other mode', value: other_mode_of_transportation},
+            {label: 'work from home', value: work_from_home}
         ]
     }
     let activeSelection = "age"
@@ -155,15 +157,18 @@
     <ForceGraphSelector bind:activeSelection></ForceGraphSelector>
 
     {#key current_data} <!--forcing visualization to re-render when data is updated -->
-        {#if !isNaN(under_18)}
+        <!-- {#if !isNaN(under_18)} -->
             <ForceGraph
                     cssHeight=50
                     cssWidth=40
                     data={ current_data }
                     selectedCategory = { activeSelection }
             />
+        <!-- {/if} -->
+        {/key}
         {/if}
-    {/key}
+    {#if activeSelection == "median household income"} 
+        <h3> The median household income in the selected area is {median_income} $.</h3>
     {/if}
 </div>
 <!-- </ScrollySlide> -->

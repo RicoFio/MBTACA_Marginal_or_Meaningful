@@ -128,7 +128,7 @@
 
 </script>
 
-<div class="panel" style="position: absolute; top: 0; left: 0; width: 40%; height: 100%; background-color: rgba(0, 0, 0, 0.6); padding: 20px; color: {colors[3]};">
+<div class="panel" style="position: absolute; top: 0; left: 0; width: 40%; height: 100%; background-color: rgba(0, 0, 0, 0.8); padding: 20px; color: {colors[3]};">
     <Scrolly bind:this={scrollyComponent} bind:value> <!-- 3. This is what updates value -->
         <!-- {#each ['MARGINAL', 'OR', 'World!'] as text, i}
             <div class="step" class:active={value === i}>
