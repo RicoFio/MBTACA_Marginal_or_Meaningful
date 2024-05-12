@@ -157,6 +157,7 @@ def aggregate_zoning_usage_by_stop_zone(
     },
                           inplace=True)
 
+    #TODO: subtract actual categories from zoning so that it's not 100 
     stop_zone_data['pctOtherZoning'] = 100 - (
         stop_zone_data['pctZonedAsSF'] + stop_zone_data['pctZonedAsCommercial']
         + stop_zone_data['pctZonedAsMultifamily'])
@@ -188,7 +189,7 @@ if __name__ == "__main__":
     zoning_atlas = pd.read_csv(DATA_PATH / 'zoning_atlas.csv')
 
     file_name_reference = pd.read_csv(
-        f"{STATIC_SITE_DATA_PATH}/parcels/file_name_reference.csv")
+        f"{STATIC_SITE_DATA_PATH}/parcels/raw_parcels_file_name_reference.csv")
 
     census_data_by_stop_zone = gpd.read_file(
         STATIC_SITE_DATA_PATH /
@@ -210,35 +211,48 @@ if __name__ == "__main__":
             file_name_reference["FileName"] ==
             f'data/parcels/per_station/{filename}']["StopName"].values[0]
 
+        station_formatted = station.lower().replace(" ", "_")
+
         try:
+            # read in raw parcel data for station
             actual_filename = f"{DATA_PATH}/raw_parcels/{filename}"
-            selected_parcels = gpd.read_file(actual_filename)
+            parcels_for_station = gpd.read_file(actual_filename)
             print(f"SUCCESS for {actual_filename}")
 
         except FionaValueError:
             print(f"File for {actual_filename} not found.")
             continue
 
-        municipality = selected_parcels["TOWN_NAME"].unique()[0]
+        # get the city associated with the station so can look up zoning codes.
+        municipality = parcels_for_station["TOWN_NAME"].unique()[0]
+
         zoning_atlas_for_municipality = zoning_atlas[zoning_atlas["muni"] ==
                                                      municipality]
 
         if len(zoning_atlas_for_municipality) == 0:
             print(f"Zoning atlas information for {municipality} not found.")
             continue
-        selected_parcels_zoning = assign_zoning_by_parcel(
-            zoning_atlas_for_municipality, selected_parcels)
+
+        # assign zoning and usage to the parcel based on codes
+        parcels_for_station_zoning = assign_zoning_by_parcel(
+            zoning_atlas_for_municipality, parcels_for_station)
         parcel_data_zoning_usage = assign_usage_by_parcel(
-            selected_parcels_zoning)
+            parcels_for_station_zoning)
 
-        augemented_parcels = augment_parcels_for_upzone_viz(
+        augemented_parcels_for_station = augment_parcels_for_upzone_viz(
             parcel_data_zoning_usage)
+        
+        try:
+            # write out augmented parcels by station
+            augemented_parcels_for_station.to_file(
+                STATIC_SITE_DATA_PATH /
+                f"parcels/per_station/{station_formatted}_augmented_parcels.geojson",
+                driver='GeoJSON')
 
-        augemented_parcels.to_file(
-            STATIC_SITE_DATA_PATH /
-            f"parcels/per_station/{municipality.lower()}_augmented_parcels.geojson",
-            driver='GeoJSON')
-
+        except FionaValueError:
+            print(f"File for {actual_filename} not found.")
+            continue
+        
         selected_stop_zones_usage_zoning = aggregate_zoning_usage_by_stop_zone(
             parcel_data_zoning_usage)
 
@@ -249,18 +263,17 @@ if __name__ == "__main__":
         stop_zone_zoning_usage_census = pd.merge(
             census_data_by_stop_zone, selected_stop_zones_usage_zoning)
 
-        station_formatted = station[0].lower().replace(" ", "_")
-        rows.append({
-            'StopName':
-            station,
-            'FileName':
-            f"data/stop_zones/per_station/{station_formatted}_stop_zone.geojson"
-        })
+        # rows.append({
+        #     'StopName':
+        #     station,
+        #     'FileName':
+        #     f"data/stop_zones/per_station/{station_formatted}_stop_zone.geojson"
+        # })
 
-        stop_zone_zoning_usage_census.to_file(
-            STATIC_SITE_DATA_PATH /
-            f"stop_zones/per_station/{station_formatted}_stop_zone.geojson",
-            driver='GeoJSON')
+        # stop_zone_zoning_usage_census.to_file(
+        #     STATIC_SITE_DATA_PATH /
+        #     f"stop_zones/per_station/{station_formatted}_stop_zone.geojson",
+        #     driver='GeoJSON')
 
         municipalities_count += 1
         stops_count += len(stop_zone_zoning_usage_census)
