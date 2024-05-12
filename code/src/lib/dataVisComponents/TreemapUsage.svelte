@@ -1,72 +1,129 @@
-<!-- TreemapUsage.svelte -->
-
 <script>
-  import {onMount} from "svelte";
-  import * as d3 from "d3";
-  import {getTreemapColorByCategory} from "$lib/dataVisComponents/treemapUtils.js";
+    import {onMount} from 'svelte';
+    import * as d3 from 'd3';
+    import { getCirclePackingColorByCategory } from "$lib/dataVisComponents/circlePackingUtils.js";
 
-  export let data = [];
-  let svgId = 'treemap-usage-svg'; // Unique ID for the SVG
+    export let data = [];
+    let svgId = 'treemap-usage-svg'; // Unique ID for the SVG
+    let svg, tooltip;
+    let g;
 
-  function drawTreemap() {
-      const width = 400;
-      const height = 250;
-      const svg = d3
-          .select(`#${svgId}`) // Use the unique ID for selection
-          .attr("width", width)
-          .attr("height", height);
-      // Transform data into hierarchy
-      const root = d3.hierarchy({children: data}).sum((d) => d.value);
-      // Create treemap layout
-      const treemap = d3.treemap().size([width, height]).padding(1);
-      // Compute treemap layout
-      treemap(root);
-      // Create cells for each data point
-      const cell = svg
-          .selectAll("g")
-          .data(root.leaves())
-          .enter()
-          .append("g")
-          .attr("transform", (d) => `translate(${d.x0},${d.y0})`);
-      // Append rectangle for each cell
-      cell.append("rect")
-          .attr("width", (d) => d.x1 - d.x0)
-          .attr("height", (d) => d.y1 - d.y0)
-          .attr("fill", (d) => getTreemapColorByCategory(d.data))
-          .on("mouseover", handleMouseOver)
-          .on("mouseout", handleMouseOut);
-      cell.append("title")
-          .text((d) => d.data.name);
-      // Append text for each cell
-      cell.append("text")
-          .attr("x", 5)
-          .attr("y", 15)
-          .text((d) => d.data.name)
-          .attr("fill", "white");
-      cell.append("text")
-          .attr("x", 5)
-          .attr("y", 40)
-          .text((d) => `${((d.value / root.value) * 100).toFixed(1)}%`)
-          .attr("fill", "white");
+    onMount(() => {
+        if (data && data.length > 0) {
+            drawCirclePacking();
+        }
+    });
 
-      function handleMouseOver() {
-          d3.select(this).attr("fill", "orange");
-      }
+    function drawCirclePacking() {
+        const width = 400;
+        const height = 400;
 
-      function handleMouseOut() {
-          d3.select(this).attr("fill", (d) => getTreemapColorByCategory(d.data));
-      }
-  }
+        svg = d3.select(g)
+            .attr('viewBox', `0 0 ${width} ${height}`)
+            .attr('width', width)
+            .attr('height', height)
+            .style('display', 'block')
+            .style('margin', '0 auto');
 
-  onMount(() => {
-    if (data.length > 0) drawTreemap();
-  });
+        tooltip = d3.select('#tooltip-usage');
 
-  $: if (data.length > 0) {
-    drawTreemap();
-  }
+        const root = d3.hierarchy({name: 'root', children: data})
+            .sum(d => d.value)
+            .sort((a, b) => b.value - a.value);
+
+        const pack = d3.pack()
+            .size([width, height])
+            .padding(3);
+
+        pack(root);
+
+        const nodes = root.descendants();
+        createLegend();
+        const node = svg.selectAll('g')
+            .data(nodes)
+            .join('g')
+            .attr('transform', d => `translate(${d.x}, ${d.y})`);
+
+        node.append('circle')
+            .attr('r', d => d.r)
+            .attr('fill', d => d.children ? '#9f9090' : getCirclePackingColorByCategory(d.data))
+            .attr('stroke', '#fff')
+            .attr('stroke-width', 2)
+            .on('mouseover', function (event, d) {
+                d3.select(this).attr('stroke', '#000');
+                showTooltip(event, d);
+            })
+            .on('mouseout', function () {
+                d3.select(this).attr('stroke', null);
+                hideTooltip();
+            });
+
+        node.filter(d => !d.children)
+            .append('text')
+            .attr('text-anchor', 'middle')
+            .attr('dy', '0.35em')
+            .attr('fill', 'white')
+            .style('font-size', '14px')
+            .text(d => d.data.name);
+
+        function showTooltip(event, d) {
+            tooltip.style('left', (event.pageX + 10) + 'px')
+                .style('top', (event.pageY - 10) + 'px')
+                .style('display', 'inline-block')
+                .html(`<strong>${d.data.name}</strong><br>Value: ${d.value}`);
+        }
+
+        function hideTooltip() {
+            tooltip.style('display', 'none');
+        }
+
+        function createLegend() {
+            const legend = d3.select('#legend-usage');
+
+            const categories = [
+                {name: 'Single Family', color: '#05515e'},
+                {name: 'Commercial', color: '#629681'},
+                {name: 'Duplex', color: '#f39034'},
+                {name: 'Triplex', color: '#abafa7'}
+            ];
+
+            legend.selectAll('legend-usage')
+                .data(categories)
+                .enter()
+                .append('div')
+                .style('display', 'flex')
+                .style('align-items', 'center')
+                .style('margin-bottom', '4px')
+                .html(d => `
+          <span style="display: inline-block; width: 15px; height: 15px; background: ${d.color}; margin-right: 8px;"></span>
+          ${d.name}
+        `);
+        }
+
+        function getColorByCategory(d) {
+            switch (d.category1) {
+                case 'pctUsedAsSF':
+                    return '#05515e';
+                case 'pctUsedAsCommerical':
+                    return '#629681';
+                case 'pctUsedAsDuplex':
+                    return '#dd8155';
+                case 'pctUsedAsTriplex':
+                    return '#abafa7';
+                default:
+                    return 'gray';
+            }
+        }
+    }
 </script>
 
+<div id="tooltip" class="treemap-tooltip"></div>
+
 <div>
-  <svg id={svgId}></svg>
+    <svg bind:this={g} class="circle-packing"></svg>
+    <div id="legend-usage" class="treemap-legend"></div>
 </div>
+
+<style>
+    @import "treemap.css";
+</style>

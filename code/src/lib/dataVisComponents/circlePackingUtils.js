@@ -1,6 +1,6 @@
 
 
-export function getTreemapColorByCategory(d) {
+export function getCirclePackingColorByCategory(d) {
     switch (d.category1) {
         case "pctUsedAsCommercial":
             return "#abafa7";

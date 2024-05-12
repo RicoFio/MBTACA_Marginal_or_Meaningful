@@ -103,7 +103,7 @@
         </label>
     </div>
     <br/>
-    <div style="display: flex; align-items: center; gap: 10px;">
+    <div class="treemap-container">
         {#key stopName}
             <div>
                 {#if stopName}
@@ -127,50 +127,7 @@
                 {/if}
             </div>
         {/key}
-
-        <div>
-            <div id="treeMap" class={treeMapVisibility}>
-                <h2></h2>
-                {#if transformedStopZoneDataForMunicipality != undefined}
-
-                {:else}
-
-                {/if}
-            </div>
-
-            <div id="treeMapUsage" class={treeMapUsageVisibility}>
-                <h2></h2>
-                {#if transformedStopZoneUsageDataForMunicipality != undefined}
-
-                {:else}
-
-                {/if}
-            </div>
-        </div>
-
-        <div id="treeMapFuture">
-
-            {#if transformedStopZoneFutureDataForMunicipality != undefined}
-
-            {:else}
-            {/if}
-        </div>
     </div>
-
-    <!-- <div>
-        {#if suggestions.length}
-            <ul>
-                {#each suggestions as suggestion}
-                    <li on:click={() => selectSuggestion(suggestion)}>
-                        {suggestion.Name}
-                    </li>
-                {/each}
-            </ul>
-        {/if}
-    </div> -->
-
-
-
 </div>
 
 <style>
@@ -182,5 +139,14 @@
 
     .visible {
         display: block;
+    }
+
+    .treemap-container {
+        display: flex;
+        width: 100%; /* Ensures it takes up no more than 100% of its parent */
+        max-width: 100%; /* Ensures it does not exceed the width of the parent */
+        flex-wrap: wrap; /* Ensures contents wrap and do not overflow */
+        align-items: flex-start;
+        gap: 10px;
     }
 </style>
