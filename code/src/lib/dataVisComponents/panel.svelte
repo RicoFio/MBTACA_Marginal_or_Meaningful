@@ -147,10 +147,10 @@
         <!-- <Slide3 active={value === 4}  bind:municipality={selectedMunicipality} bind:station={firstStation}/> -->
         <Slide4 active={value === 5}  bind:municipality={selectedMunicipality} bind:station={firstStation} bind:value/>
         <Slide5 active={value === 6}  bind:municipality={selectedMunicipality} bind:station={firstStation}/>
-        <Slide51 active={value === 7}  bind:municipality={selectedMunicipality} bind:station={firstStation} zoningAndCensusFiles={zoningAndCensusFiles}/>
-        <Slide6 active={value === 8}  bind:municipality={selectedMunicipality} bind:stations={selectedStations} bind:comparisonMode={comparisonMode}/>
-        <Slide7 active={value === 9}  bind:guidedMode={guidedMode} bind:comparisonMode={comparisonMode} bind:explorationMode={explorationMode} />
-        <Slide8 active={value === 10} />
+<!--        <Slide51 active={value === 7}  bind:municipality={selectedMunicipality} bind:station={firstStation} zoningAndCensusFiles={zoningAndCensusFiles}/>-->
+        <Slide6 active={value === 7}  bind:municipality={selectedMunicipality} bind:stations={selectedStations} bind:comparisonMode={comparisonMode}/>
+        <Slide7 active={value === 8}  bind:guidedMode={guidedMode} bind:comparisonMode={comparisonMode} bind:explorationMode={explorationMode} />
+        <Slide8 active={value === 9} />
     </Scrolly>
 </div>
 

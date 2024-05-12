@@ -5,23 +5,23 @@
     export let active = false;
 
     export let municipality = {};
-    export let station = {};
+    export let station;
+    let loadedStation;
     export let zoningAndCensusFiles = {};
 
-    let stationData = {};
+    let stationData;
 
-    $: {
-        if (station) {
-            stationData = loadStationZoningAndUsageData(zoningAndCensusFiles, station);
+    $: station, (async () => {
+        if (station !== undefined && station?.Name !== loadedStation?.Name) {
+            stationData = await loadStationZoningAndUsageData(zoningAndCensusFiles, station);
         }
-    }
+    })();
 </script>
 
 <div class="slide">
     <div style="display: flex; align-items: center; gap: 10px;">
         <h1>LETS TALK</h1>
         {#key station}
-            <h2>ABOUT THIS</h2>
             {#if station}
                 <MultiPieChart bind:stationData={stationData} />
             {:else}
