@@ -19,6 +19,8 @@
     export let selectedStations = [];
     export let selectedMunicipality = null;
     export let guidedMode = true;
+    export let comparisonMode = false;
+    export let explorationMode = false;
     export let parcelFiles = [];
 
     const mapContainerID = "svg-map-container";
@@ -40,15 +42,9 @@
             zoom: baseZoom,
             style: 'mapbox://styles/smpeter/cluqd5hft05en01qqc4mxa1kd',
             attributionControl: false,
+            interactive: false
         });
-        // Assuming 'map' is your Mapbox GL JS map instance
-        map.scrollZoom.disable();  // Disable scroll zoom
-        map.boxZoom.disable();     // Disable box zoom
-        map.dragPan.disable();     // Disable drag pan
-        map.dragRotate.disable();  // Disable drag rotate
-        map.keyboard.disable();    // Disable keyboard control
-        map.doubleClickZoom.disable(); // Disable double click zoom
-        map.touchZoomRotate.disable(); // Disable touch zoom and rotate
+
         await new Promise(resolve => map.on("load", resolve));
 
         map.addSource("MBTALines", {
@@ -96,29 +92,85 @@
         }
 
         let point = new mapboxgl.LngLat(longitude, latitude);
-        let {x, y} = map.project(point);
+        let {x, y} = map?.project(point);
         return {cx: x, cy: y};
     }
 
-    function toggleStation(station) {
-        if (!selectedStations.some(s => s.Name === station.Name) && selectedMunicipality) {
-            if ((guidedMode && selectedStations.length < 1) || (!guidedMode && selectedStations.length < 2)) {
-                selectedStations = [...selectedStations, station];
-            } else {
-                console.log("Toggle station not possible");
-            }
-        } else if (guidedMode) {
+    function flushSelectedStations() {
+        selectedStations.forEach(station => {
+            toggleStation(station);
+        });
+        selectedStations = [];
+    }
 
-        }
-        else {
-            selectedStations = selectedStations.filter(s => s.Name !== station.Name);
+    function zoomToEntireMap() {
+        map?.flyTo({
+            center: baseCenter,
+            zoom: baseZoom
+        })
+    }
+
+    function zoomToMunicipality(municipality) {
+        const bounds = calculateBoundingBox(selectedMunicipality?.Geometries);
+        fitBounds(bounds, {padding: {top: 20, bottom: 20, left: 1150, right: 20}});
+    }
+
+    function zoomToStation(station) {
+        const bounds = calculateBoundingBox({type:'Polygon', coordinates: [station.getBuffer(0.5)]});
+
+        fitBounds(bounds, {
+            padding: {top: 20, bottom: 20, left: 1000, right: 20}
+        });
+    }
+
+    function shouldToggleStation(station) {
+        if (selectedMunicipality) {
+            console.log("Municipality is selected");
+            if (guidedMode && !comparisonMode) {
+                console.log("We are in guided mode without comparison");
+                console.log(!selectedStations.some(s => s.Name === station.Name));
+                console.log(selectedStations.length < 1)
+                return !selectedStations.some(s => s.Name === station.Name) && selectedStations.length < 1;
+            } else if (guidedMode && comparisonMode || explorationMode) {
+                console.log("We are in guided mode WITH comparison");
+                console.log(selectedStations.some(s => s.Name === station.Name));
+                console.log(selectedStations.length < 2);
+                return selectedStations.some(s => s.Name === station.Name) || selectedStations.length < 2;
+            } else {
+                return false
+            }
+        } else {
+            return false
         }
     }
 
-    let loadedSources = [];
+    function toggleStation(station) {
+        console.log(`Toggle station ${station}`);
+        if (shouldToggleStation(station)) {
+            console.log(`Toggling station ${station.Name}`);
+            if (selectedStations.some(s => s.Name === station.Name)) {
+                console.log(`Removing station ${station.Name} from selected stations`);
+                selectedStations = selectedStations.filter(s => s.Name !== station.Name);
+            } else {
+                console.log(`Adding station ${station.Name} to selected stations`);
+                selectedStations = [...selectedStations, station];
+
+                if (guidedMode && !comparisonMode && !explorationMode) {
+                    console.log(`Zooming to station ${station.Name}`);
+                    zoomToStation(station);
+                }
+            }
+            toggleStationParcels(station);
+        } else {
+            console.log("No toggling of station possible.");
+        }
+    }
+
+    let loadedParcels = [];
 
     function toggleStationParcels (station) {
-        if (loadedSources.indexOf(station.Name) === -1) {
+        if (!loadedParcels.some(s => s.Name === station.Name)) {
+            console.log(`Adding parcel layer for ${station.Name}`)
             map.addSource(station.Name, {
                 type: "geojson",
                 data: parcelFiles.filter(e => e.StopName == station.Name)[0].FileName,
@@ -138,41 +190,43 @@
                     "fill-outline-color": "black"  // Sets the color of the outline
                 },
             });
-
-            loadedSources.push(station.Name);
+            loadedParcels.push(station);
         } else {
+            console.log("Removing parcel layer")
             map.removeLayer(station.Name);
             map.removeSource(station.Name);
-            loadedSources = loadedSources.filter(item => item !== station.Name)
+            loadedParcels = loadedParcels.filter(s => s.Name !== station.Name);
         }
     }
 
+    //
     $: {
         if (selectedMunicipality) {
-            selectedStations = [];
-            loadedSources.forEach((s) => {
-                toggleStationParcels({Name: s})
-            });
-            bounds = calculateBoundingBox(selectedMunicipality?.Geometries);
-            fitBounds(bounds, {padding: {top: 20, bottom: 20, left: 1150, right: 20}});
+            flushSelectedStations();
+            zoomToMunicipality(selectedMunicipality);
         } else {
-            map?.flyTo({
-                center: baseCenter,
-                zoom: baseZoom
-            })
+
         }
     }
 
     $: {
-        if (guidedMode && selectedStations.length > 0) {
-            const station = selectedStations[0];
-            let bounds = calculateBoundingBox({type:'Polygon', coordinates: [station.getBuffer(0.5)]});
+        if (guidedMode && !comparisonMode && selectedStations.length > 0) {
+            if (selectedStations.length > 1) {
+                const last_station = selectedStations.pop();
+                console.log("TRALALALA")
+                console.log(selectedStations);
+                selectedStations.forEach(station => {
+                    toggleStationParcels(station);
+                });
+                selectedStations = [last_station];
+            }
+            zoomToStation(selectedStations[0]);
+        }
+    }
 
-            fitBounds(bounds, {
-                padding: {top: 20, bottom: 20, left: 1000, right: 20}
-            });
-
-            toggleStationParcels(station);
+    $: {
+        if (comparisonMode && selectedMunicipality) {
+            zoomToMunicipality(selectedMunicipality);
         }
     }
 

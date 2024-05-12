@@ -10,6 +10,8 @@
     import Slide4 from "../../slides/Slide4.svelte";
     import Slide5 from "../../slides/Slide5.svelte";
     import Slide6 from "../../slides/Slide6.svelte";
+    import Slide7 from "../../slides/Slide7.svelte";
+
     import { tick } from "svelte";
     import { onMount } from 'svelte';
 
@@ -21,6 +23,8 @@
     export let selectedMunicipality;
     export let selectedStations;
     export let guidedMode;
+    export let comparisonMode;
+
     export let reset_scroll = false;
     export let absolute_slide_value;
 
@@ -206,7 +210,8 @@ $: if (isVisible_slide1 && check_entered == 0 && value == 1) {
         <!-- <Slide3 active={value === 4}  bind:municipality={selectedMunicipality} bind:station={firstStation}/> -->
         <Slide4 active={visibility_slide4} bind:value bind:municipality={selectedMunicipality} bind:station={firstStation} bind:visibility_slide5={visibility_slide5} bind:absolute_slide_value/>
         <Slide5 active={visibility_slide5}  bind:value bind:municipality={selectedMunicipality} bind:station={firstStation} bind:absolute_slide_value/>
-        <Slide6 active={value === 7} bind:value bind:absolute_slide_value />
+        <Slide6 active={value === 7} bind:value bind:absolute_slide_value bind:municipality={selectedMunicipality} bind:stations={selectedStations} bind:comparisonMode={comparisonMode}/>
+        <Slide7 active={value === 8} />
     </Scrolly>
 </div>
 

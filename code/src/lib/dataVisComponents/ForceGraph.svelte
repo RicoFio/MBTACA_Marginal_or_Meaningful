@@ -271,5 +271,29 @@
 </div>
 
 <style>
-    @import url("$lib/dataVisComponents/tooltip.css");
+    .icon:hover {
+        padding: 2vh;
+        background-color: aqua;
+    }
+
+    .tooltip-hidden {
+        visibility: hidden;
+        font-family: 'Montserrat', sans-serif;
+        width: 200px;
+        position: absolute;
+    }
+
+    .tooltip-visible {
+        z-index: 100;
+        font: 18px sans-serif;
+        font-family: 'Montserrat', sans-serif;
+        visibility: visible;
+        background-color: rgba(10, 0, 0, 0.4);
+        backdrop-filter: blur(8px);
+        border-radius: 10px;
+        width: 200px;
+        color: #a9987a;
+        position: fixed;
+        padding: 10px;
+    }
 </style>

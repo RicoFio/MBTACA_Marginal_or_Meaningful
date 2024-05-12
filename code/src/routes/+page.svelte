@@ -19,6 +19,7 @@
     let municipalities = [];
     let selectedStations = [];
     let guidedMode = true;
+    let comparisonMode = false;
     
     $: reset_scroll = false;
 
@@ -90,6 +91,7 @@
         bind:selectedMunicipality={selectedMunicipality}
         bind:guidedMode={guidedMode}
         bind:parcelFiles={parcelFiles}
+        bind:comparisonMode={comparisonMode}
 />
 
 <button on:click={deselectAll} class="floating-x">
@@ -107,6 +109,7 @@
         bind:selectedMunicipality={selectedMunicipality}
         bind:selectedStations={selectedStations}
         bind:guidedMode={guidedMode}
+        bind:comparisonMode={comparisonMode}
         bind:reset_scroll={reset_scroll}
         bind:absolute_slide_value={absolute_slide_value}
         bind:value={value}
