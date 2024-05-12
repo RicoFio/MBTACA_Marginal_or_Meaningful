@@ -1,9 +1,23 @@
 <script>
     import Select from 'svelte-select';
+    import { observerStore } from '../lib/panelComponents/Scrolly_slide';
     export let active = false;
     export let municipalities = [];
     export let selectedMunicipality = {};
     let input = "";
+    export let value;
+    let isVisible_slide2 = false;
+    export let absolute_slide_value;
+
+    observerStore.subscribe(store => {
+        isVisible_slide2 = store.isVisible;
+    });
+
+    $: if (value === 3) {
+        // observerStore.resetVisibility();  // Reset visibility whenever checking this condition
+        console.log("observation started")
+        observerStore.startObservation();
+    }
 
     function handleSelect(e) {
         selectedMunicipality = e.detail.value;
@@ -16,6 +30,17 @@
     }));
 
     const searchable = true;
+
+    let entered = 0;
+    $: if (active && isVisible_slide2 && entered == 0 && absolute_slide_value == 2) {
+        console.log("LALAALAL")
+        setTimeout(() => {
+                value = 3;
+                absolute_slide_value = 3;
+            }, 10000);
+            console.log("new abs slide value", absolute_slide_value)
+            entered += 1;
+    }
 </script>
 
 {#if (active)}

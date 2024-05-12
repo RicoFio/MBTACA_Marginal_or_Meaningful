@@ -1,6 +1,14 @@
 <script>
     import Select from 'svelte-select';
     export let active = false;
+    export let absolute_slide_value;
+
+    let entered = 0;
+    if (active && entered == 0 && absolute_slide_value == 6) {
+        console.log("LAST SLIDE ENTERED")
+        absolute_slide_value = 7;
+        entered += 1;
+    }
 
 </script>
 

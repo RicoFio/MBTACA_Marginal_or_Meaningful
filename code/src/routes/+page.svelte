@@ -6,6 +6,7 @@
     import buffer from '@turf/buffer';
     import { point } from '@turf/helpers';
     import PanelComponent from '../lib/dataVisComponents/panel.svelte';
+    import Scrolly from '../lib/panelComponents/Scrolly.svelte';
 
     import BaseMap from "$lib/mapComponents/BaseMap.svelte";
 
@@ -18,6 +19,8 @@
     let municipalities = [];
     let selectedStations = [];
     let guidedMode = true;
+    
+    $: reset_scroll = false;
 
     onMount(async () => {
         let loadedStations = await d3.json("/data/mbta_community_stops.geojson");
@@ -70,7 +73,12 @@
     function deselectAll(e) {
         selectedMunicipality = null;
         selectedStations = [];
+        reset_scroll = true;
     }
+
+    $: absolute_slide_value = 0;
+    $: value = 0;
+    $: console.log("abs page", absolute_slide_value)
 </script>
 
 <BaseMap
@@ -87,12 +95,21 @@
 <button on:click={deselectAll} class="floating-x">
     <img src="/artwork/refresh-ccw.svg" alt="Reset and go back to the top" class="reset-icon" />
 </button>
+
+<div class="progress-bar" style="position: absolute;">
+    {#each [0, 1, 2, 3, 4, 5, 6, 7, 8] as slideIndex}
+    <div class="circle {absolute_slide_value === slideIndex ? 'active' : ''}"></div>
+    {/each}
+</div>
 <PanelComponent
         bind:municipalities={municipalities}
         bind:stations={stations}
         bind:selectedMunicipality={selectedMunicipality}
         bind:selectedStations={selectedStations}
         bind:guidedMode={guidedMode}
+        bind:reset_scroll={reset_scroll}
+        bind:absolute_slide_value={absolute_slide_value}
+        bind:value={value}
 />
 
 <style>
@@ -130,4 +147,5 @@
     .reset-icon:hover {
         transform: rotate(-180deg); /* Rotate 180 degrees on hover */
     }
+
 </style>

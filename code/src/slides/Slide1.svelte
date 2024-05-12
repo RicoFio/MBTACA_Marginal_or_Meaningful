@@ -1,5 +1,12 @@
 <script>
     export let active = false;
+    export let absolute_slide_value = 0;
+
+    let entered = 0;
+    $: if (active && entered == 0) {
+        absolute_slide_value = 0;
+        entered += 1;
+    }
 </script>
 
 {#if (active)}
