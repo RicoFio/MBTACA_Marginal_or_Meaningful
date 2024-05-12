@@ -1,0 +1,390 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:EPSG::26986"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "stop_name": "Alewife",
+        "zone_id": "\"[\\\"RapidTransit\\\"]\"",
+        "routes": "\"[\\\"Red Line\\\"]\"",
+        "route_colors": "\"[\\\"#DA291C\\\"]\"",
+        "municipality": "Cambridge",
+        "namelsad20": "Cambridge",
+        "housing20": 53907,
+        "sq_miles": 7.1,
+        "pop2020": 118403,
+        "area_acres": 4543.92,
+        "type": "C",
+        "aland20": 16558895,
+        "community": "Cambridge",
+        "mbta_comm_type": "subway or light rail",
+        "housing_units_2020": 53907,
+        "min_rf1_cap_req": 13476.75,
+        "weighted_total_population_female_under_18_years": 351,
+        "weighted_total_population_not_hispanic_or_latino_american_indian_and_alaska_native_alone": 14,
+        "weighted_workers_16_years_and_over_drove_alone": 920,
+        "weighted_median_household_income_in_2022_inflation_adjusted_dollars": 179193,
+        "weighted_households_less_than_25000": 100,
+        "weighted_total_population_not_hispanic_or_latino_some_other_race_alone": 30,
+        "weighted_total_population_not_hispanic_or_latino_asian_alone": 410,
+        "weighted_total_population_male": 1859,
+        "weighted_total_population_male_18_to_34_years": 604,
+        "weighted_total_population_female_18_to_34_years": 631,
+        "weighted_total_population_male_65_years_and_over": 200,
+        "weighted_workers_16_years_and_over_car_truck_or_van": 1002,
+        "weighted_total_population_not_hispanic_or_latino_two_or_more_races": 134,
+        "weighted_households_25000_to_49999": 154,
+        "weighted_occupied_housing_units_1_vehicle_available": 783,
+        "weighted_households": 1646,
+        "weighted_total_population_female_65_years_and_over": 279,
+        "weighted_workers_16_years_and_over_worked_at_home": 647,
+        "weighted_workers_16_years_and_over_public_transportation_includes_taxicab": 576,
+        "weighted_households_50000_to_74999": 118,
+        "weighted_total_population_not_hispanic_or_latino": 3669,
+        "weighted_households_100000_or_more": 1130,
+        "weighted_workers_16_years_and_over": 2510,
+        "weighted_occupied_housing_units": 1646,
+        "weighted_occupied_housing_units_2_vehicles_available": 482,
+        "weighted_total_population_male_35_to_64_years": 705,
+        "weighted_workers_16_years_and_over_motorcycle": 6,
+        "weighted_households_75000_to_99999": 144,
+        "weighted_total_population_male_under_18_years": 350,
+        "weighted_total_population_female": 2043,
+        "weighted_occupied_housing_units_no_vehicle_available": 238,
+        "weighted_total_population_not_hispanic_or_latino_white_alone": 2711,
+        "weighted_workers_16_years_and_over_walked": 67,
+        "weighted_workers_16_years_and_over_other_means": 18,
+        "weighted_total_population_not_hispanic_or_latino_native_hawaiian_and_other_pacific_islander_alone": 0,
+        "weighted_total_population": 3902,
+        "weighted_total_population_not_hispanic_or_latino_black_or_african_american_alone": 370,
+        "weighted_total_population_hispanic_or_latino": 232,
+        "weighted_workers_16_years_and_over_bicycle": 193,
+        "weighted_total_population_female_35_to_64_years": 782,
+        "percentage_weighted_households_less_than_25000": 0.06,
+        "percentage_weighted_households_25000_to_49999": 0.09,
+        "percentage_weighted_households_50000_to_74999": 0.07,
+        "percentage_weighted_households_75000_to_99999": 0.09,
+        "percentage_weighted_households_100000_or_more": 0.69,
+        "percentage_weighted_total_population_male": 0.48,
+        "percentage_weighted_total_population_male_under_18_years": 0.09,
+        "percentage_weighted_total_population_male_18_to_34_years": 0.15,
+        "percentage_weighted_total_population_male_35_to_64_years": 0.18,
+        "percentage_weighted_total_population_male_65_years_and_over": 0.05,
+        "percentage_weighted_total_population_female": 0.52,
+        "percentage_weighted_total_population_female_under_18_years": 0.09,
+        "percentage_weighted_total_population_female_18_to_34_years": 0.16,
+        "percentage_weighted_total_population_female_35_to_64_years": 0.2,
+        "percentage_weighted_total_population_female_65_years_and_over": 0.07,
+        "percentage_weighted_total_population_hispanic_or_latino": 0.06,
+        "percentage_weighted_total_population_not_hispanic_or_latino": 0.94,
+        "percentage_weighted_total_population_not_hispanic_or_latino_white_alone": 0.69,
+        "percentage_weighted_total_population_not_hispanic_or_latino_black_or_african_american_alone": 0.09,
+        "percentage_weighted_total_population_not_hispanic_or_latino_american_indian_and_alaska_native_alone": 0,
+        "percentage_weighted_total_population_not_hispanic_or_latino_asian_alone": 0.11,
+        "percentage_weighted_total_population_not_hispanic_or_latino_native_hawaiian_and_other_pacific_islander_alone": 0,
+        "percentage_weighted_total_population_not_hispanic_or_latino_some_other_race_alone": 0.01,
+        "percentage_weighted_total_population_not_hispanic_or_latino_two_or_more_races": 0.03,
+        "percentage_weighted_occupied_housing_units_no_vehicle_available": 0.14,
+        "percentage_weighted_occupied_housing_units_1_vehicle_available": 0.48,
+        "percentage_weighted_occupied_housing_units_2_vehicles_available": 0.29,
+        "percentage_weighted_workers_16_years_and_over_car_truck_or_van": 0.4,
+        "percentage_weighted_workers_16_years_and_over_drove_alone": 0.37,
+        "percentage_weighted_workers_16_years_and_over_public_transportation_includes_taxicab": 0.23,
+        "percentage_weighted_workers_16_years_and_over_motorcycle": 0,
+        "percentage_weighted_workers_16_years_and_over_bicycle": 0.08,
+        "percentage_weighted_workers_16_years_and_over_walked": 0.03,
+        "percentage_weighted_workers_16_years_and_over_other_means": 0.01,
+        "percentage_weighted_workers_16_years_and_over_worked_at_home": 0.26,
+        "pctZonedAsSF": 0,
+        "pctZonedAsCommercial": 0,
+        "pctZonedAsMultifamily": 0,
+        "pctUsedAsSF": 16.923842707814835,
+        "pctUsedAsCommercial": 3.0363364858138375,
+        "pctUsedAsDuplex": 19.16376306620209,
+        "pctUsedAsTriplex": 4.579392732702837,
+        "pctUsedAsMultiBuildings1Lot": 0.34843205574912894,
+        "pctUsedAsAptUpTo30Units": 1.3439522150323544,
+        "pctUsedAsAptOver30Units": 0,
+        "pctUsedAsCoopApt": 0,
+        "pctUsedAsOtherMultifamily": 0.7466401194624191,
+        "pctMustUpzone": 0,
+        "pctWillChange": 0,
+        "pctOtherZoning": 100,
+        "pctOtherUsage": 53.8576406172225
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              230446.6511521007,
+              905134.463079519
+            ],
+            [
+              230442.7764461119,
+              905055.5916272104
+            ],
+            [
+              230431.18964368128,
+              904977.479750104
+            ],
+            [
+              230412.00233205478,
+              904900.8797082722
+            ],
+            [
+              230385.39929552685,
+              904826.5292019988
+            ],
+            [
+              230351.63673588345,
+              904755.1442672978
+            ],
+            [
+              230311.03980503243,
+              904687.4123801165
+            ],
+            [
+              230263.9994736078,
+              904623.9858355499
+            ],
+            [
+              230210.96876571843,
+              904565.4754659014
+            ],
+            [
+              230152.4583960691,
+              904512.4447580114
+            ],
+            [
+              230089.03185150475,
+              904465.4044265872
+            ],
+            [
+              230021.29996432248,
+              904424.8074957366
+            ],
+            [
+              229949.91502962203,
+              904391.0449360933
+            ],
+            [
+              229875.564523347,
+              904364.4418995664
+            ],
+            [
+              229798.96448151727,
+              904345.2545879376
+            ],
+            [
+              229720.8526044094,
+              904333.6677855096
+            ],
+            [
+              229641.98115209973,
+              904329.7930795178
+            ],
+            [
+              229563.1096997914,
+              904333.6677855068
+            ],
+            [
+              229484.9978226844,
+              904345.2545879362
+            ],
+            [
+              229408.3977808539,
+              904364.441899565
+            ],
+            [
+              229334.0472745797,
+              904391.0449360947
+            ],
+            [
+              229262.66233987766,
+              904424.8074957366
+            ],
+            [
+              229194.93045269573,
+              904465.4044265858
+            ],
+            [
+              229131.50390813264,
+              904512.4447580085
+            ],
+            [
+              229072.99353848305,
+              904565.4754659
+            ],
+            [
+              229019.96283059378,
+              904623.9858355513
+            ],
+            [
+              228972.92249916855,
+              904687.4123801151
+            ],
+            [
+              228932.32556831746,
+              904755.1442672964
+            ],
+            [
+              228898.56300867395,
+              904826.5292019974
+            ],
+            [
+              228871.9599721475,
+              904900.8797082736
+            ],
+            [
+              228852.7726605183,
+              904977.479750104
+            ],
+            [
+              228841.1858580899,
+              905055.5916272104
+            ],
+            [
+              228837.31115210065,
+              905134.463079519
+            ],
+            [
+              228841.18585808843,
+              905213.3345318304
+            ],
+            [
+              228852.7726605183,
+              905291.4464089368
+            ],
+            [
+              228871.95997214722,
+              905368.0464507671
+            ],
+            [
+              228898.56300867454,
+              905442.3969570419
+            ],
+            [
+              228932.3255683175,
+              905513.7818917402
+            ],
+            [
+              228972.92249916887,
+              905581.5137789242
+            ],
+            [
+              229019.9628305929,
+              905644.940323488
+            ],
+            [
+              229072.9935384834,
+              905703.4506931351
+            ],
+            [
+              229131.50390813273,
+              905756.4814010251
+            ],
+            [
+              229194.93045269663,
+              905803.5217324493
+            ],
+            [
+              229262.66233987937,
+              905844.1186633041
+            ],
+            [
+              229334.04727457985,
+              905877.8812229447
+            ],
+            [
+              229408.3977808532,
+              905904.4842594729
+            ],
+            [
+              229484.99782268246,
+              905923.6715711002
+            ],
+            [
+              229563.1096997917,
+              905935.2583735297
+            ],
+            [
+              229641.9811521007,
+              905939.1330795201
+            ],
+            [
+              229720.8526044096,
+              905935.258373531
+            ],
+            [
+              229798.96448151694,
+              905923.6715711018
+            ],
+            [
+              229875.5645233469,
+              905904.4842594729
+            ],
+            [
+              229949.9150296216,
+              905877.8812229433
+            ],
+            [
+              230021.2999643221,
+              905844.1186633027
+            ],
+            [
+              230089.031851505,
+              905803.5217324493
+            ],
+            [
+              230152.45839606907,
+              905756.4814010265
+            ],
+            [
+              230210.96876571697,
+              905703.4506931351
+            ],
+            [
+              230263.99947360775,
+              905644.9403234852
+            ],
+            [
+              230311.03980503065,
+              905581.5137789213
+            ],
+            [
+              230351.6367358836,
+              905513.7818917388
+            ],
+            [
+              230385.39929552615,
+              905442.3969570405
+            ],
+            [
+              230412.00233205417,
+              905368.0464507657
+            ],
+            [
+              230431.18964368253,
+              905291.4464089354
+            ],
+            [
+              230442.77644611127,
+              905213.3345318262
+            ],
+            [
+              230446.6511521007,
+              905134.463079519
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

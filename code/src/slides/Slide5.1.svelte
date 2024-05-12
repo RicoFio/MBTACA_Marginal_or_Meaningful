@@ -1,38 +1,31 @@
 <script>
     import MultiPieChart from "$lib/dataVisComponents/MultiPieChart.svelte";
+    import {loadStationZoningAndUsageData} from "$lib/dataVisComponents/zoningData.js";
 
     export let active = false;
-    import {transformStopZoneData, transformStopZoneUsageData, transformStopZoneFutureData} from "$lib/dataVisComponents/zoningData.js";
 
     export let municipality = {};
     export let station = {};
+    export let zoningAndCensusFiles = {};
 
-    let stopData = {};
-    let transformedZoning;
-    let transformedUsage;
-    let transformedFuture;
-    $: stopName = station?.Name;
+    let stationData = {};
 
     $: {
-        // Check the data transformation here
-        stopData = stopZoneData?.features.filter(
-            (feature) => feature.properties.stop_name == stopName,
-        )
-        if (stopData) {
-            transformedZoning = transformStopZoneData(stopData);
-            transformedUsage = transformStopZoneUsageData(stopData);
-            transformedFuture = transformStopZoneFutureData(stopData);
+        if (station) {
+            stationData = loadStationZoningAndUsageData(zoningAndCensusFiles, station);
         }
     }
 </script>
 
 <div class="slide">
     <div style="display: flex; align-items: center; gap: 10px;">
-        {#key stopName}
-            {#if stopName}
-                < MultiPieChart bind:zoningData={transformedZoning} bind:usageData={transformedUsage} bind:futureZoningData={transformedFuture} />
+        <h1>LETS TALK</h1>
+        {#key station}
+            <h2>ABOUT THIS</h2>
+            {#if station}
+                <MultiPieChart bind:stationData={stationData} />
             {:else}
-                <p></p>
+
             {/if}
         {/key}
     </div>

@@ -9,6 +9,9 @@
     let radius = Math.min(width, height) / 2 - margin;
 
     // Create dummy data
+    export let stationData = undefined;
+
+    $: {console.log(stationData)}
     export let zoningData = { a: 9, b: 20, c: 30, d: 8, e: 12, f: 3, g: 7, h: 14 };
     export let usageData = { a: 29, b: 2, c: 3, d: 10, e: 5, f: 3, g: 7, h: 14 };
     export let futureZoningData = { a: 20, b: 2, c: 3, d: 10, e: 5, f: 30, g: 2, h: 14 };

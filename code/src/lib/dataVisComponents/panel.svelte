@@ -9,6 +9,7 @@
     import Slide3 from "../../slides/Slide3.svelte";
     import Slide4 from "../../slides/Slide4.svelte";
     import Slide5 from "../../slides/Slide5.svelte";
+    import Slide51 from "../../slides/Slide5.1.svelte";
     import Slide6 from "../../slides/Slide6.svelte";
     import Slide7 from "../../slides/Slide7.svelte";
     import Slide8 from "../../slides/Slide8.svelte";
@@ -22,6 +23,7 @@
     export let municipalities;
     export let stations;
     export let selectedMunicipality;
+    export let zoningAndCensusFiles;
     export let selectedStations;
     export let guidedMode;
     export let comparisonMode;
@@ -145,9 +147,10 @@
         <!-- <Slide3 active={value === 4}  bind:municipality={selectedMunicipality} bind:station={firstStation}/> -->
         <Slide4 active={value === 5}  bind:municipality={selectedMunicipality} bind:station={firstStation} bind:value/>
         <Slide5 active={value === 6}  bind:municipality={selectedMunicipality} bind:station={firstStation}/>
-        <Slide6 active={value === 7}  bind:municipality={selectedMunicipality} bind:stations={selectedStations} bind:comparisonMode={comparisonMode}/>
-        <Slide7 active={value === 8}  bind:guidedMode={guidedMode} bind:comparisonMode={comparisonMode} bind:explorationMode={explorationMode} />
-        <Slide8 active={value === 9} />
+        <Slide51 active={value === 7}  bind:municipality={selectedMunicipality} bind:station={firstStation} zoningAndCensusFiles={zoningAndCensusFiles}/>
+        <Slide6 active={value === 8}  bind:municipality={selectedMunicipality} bind:stations={selectedStations} bind:comparisonMode={comparisonMode}/>
+        <Slide7 active={value === 9}  bind:guidedMode={guidedMode} bind:comparisonMode={comparisonMode} bind:explorationMode={explorationMode} />
+        <Slide8 active={value === 10} />
     </Scrolly>
 </div>
 

@@ -1,6 +1,4 @@
 <script>
-    import MultiPieChart from "$lib/dataVisComponents/MultiPieChart.svelte";
-    import MultiPieChartWithText from "$lib/dataVisComponents/MultiPieChartWithText.svelte";
     export let active = false;
 
 </script>

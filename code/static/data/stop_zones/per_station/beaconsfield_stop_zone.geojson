@@ -1,0 +1,390 @@
+{
+    "type": "FeatureCollection",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "urn:ogc:def:crs:EPSG::26986"
+        }
+    },
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "stop_name": "Beaconsfield",
+                "zone_id": "\"[\\\"RapidTransit\\\"]\"",
+                "routes": "\"[\\\"D\\\"]\"",
+                "route_colors": "\"[\\\"#00843D\\\"]\"",
+                "municipality": "Brookline",
+                "namelsad20": "Brookline",
+                "housing20": 27961.0,
+                "sq_miles": 6.83,
+                "pop2020": 63191.0,
+                "area_acres": 4371.28,
+                "type": "T",
+                "aland20": 17507686.0,
+                "community": "Brookline",
+                "mbta_comm_type": "subway or light rail",
+                "housing_units_2020": 27961,
+                "min_rf1_cap_req": 6990.25,
+                "weighted_total_population_female_under_18_years": 484.0,
+                "weighted_total_population_not_hispanic_or_latino_american_indian_and_alaska_native_alone": 14.0,
+                "weighted_workers_16_years_and_over_drove_alone": 1447.0,
+                "weighted_median_household_income_in_2022_inflation_adjusted_dollars": 220768.0,
+                "weighted_households_less_than_25000": 118.0,
+                "weighted_total_population_not_hispanic_or_latino_some_other_race_alone": 11.0,
+                "weighted_total_population_not_hispanic_or_latino_asian_alone": 1041.0,
+                "weighted_total_population_male": 3678.0,
+                "weighted_total_population_male_18_to_34_years": 1459.0,
+                "weighted_total_population_female_18_to_34_years": 1522.0,
+                "weighted_total_population_male_65_years_and_over": 578.0,
+                "weighted_workers_16_years_and_over_car_truck_or_van": 1563.0,
+                "weighted_total_population_not_hispanic_or_latino_two_or_more_races": 590.0,
+                "weighted_households_25000_to_49999": 164.0,
+                "weighted_occupied_housing_units_1_vehicle_available": 1819.0,
+                "weighted_households": 3564.0,
+                "weighted_total_population_female_65_years_and_over": 722.0,
+                "weighted_workers_16_years_and_over_worked_at_home": 1495.0,
+                "weighted_workers_16_years_and_over_public_transportation_includes_taxicab": 1449.0,
+                "weighted_households_50000_to_74999": 375.0,
+                "weighted_total_population_not_hispanic_or_latino": 7023.0,
+                "weighted_households_100000_or_more": 2469.0,
+                "weighted_workers_16_years_and_over": 5301.0,
+                "weighted_occupied_housing_units": 3564.0,
+                "weighted_occupied_housing_units_2_vehicles_available": 718.0,
+                "weighted_total_population_male_35_to_64_years": 1140.0,
+                "weighted_workers_16_years_and_over_motorcycle": 0.0,
+                "weighted_households_75000_to_99999": 438.0,
+                "weighted_total_population_male_under_18_years": 503.0,
+                "weighted_total_population_female": 4035.0,
+                "weighted_occupied_housing_units_no_vehicle_available": 878.0,
+                "weighted_total_population_not_hispanic_or_latino_white_alone": 5268.0,
+                "weighted_workers_16_years_and_over_walked": 582.0,
+                "weighted_workers_16_years_and_over_other_means": 13.0,
+                "weighted_total_population_not_hispanic_or_latino_native_hawaiian_and_other_pacific_islander_alone": 0.0,
+                "weighted_total_population": 7713.0,
+                "weighted_total_population_not_hispanic_or_latino_black_or_african_american_alone": 99.0,
+                "weighted_total_population_hispanic_or_latino": 691.0,
+                "weighted_workers_16_years_and_over_bicycle": 199.0,
+                "weighted_total_population_female_35_to_64_years": 1306.0,
+                "percentage_weighted_households_less_than_25000": 0.03,
+                "percentage_weighted_households_25000_to_49999": 0.05,
+                "percentage_weighted_households_50000_to_74999": 0.11,
+                "percentage_weighted_households_75000_to_99999": 0.12,
+                "percentage_weighted_households_100000_or_more": 0.69,
+                "percentage_weighted_total_population_male": 0.48,
+                "percentage_weighted_total_population_male_under_18_years": 0.07,
+                "percentage_weighted_total_population_male_18_to_34_years": 0.19,
+                "percentage_weighted_total_population_male_35_to_64_years": 0.15,
+                "percentage_weighted_total_population_male_65_years_and_over": 0.07,
+                "percentage_weighted_total_population_female": 0.52,
+                "percentage_weighted_total_population_female_under_18_years": 0.06,
+                "percentage_weighted_total_population_female_18_to_34_years": 0.2,
+                "percentage_weighted_total_population_female_35_to_64_years": 0.17,
+                "percentage_weighted_total_population_female_65_years_and_over": 0.09,
+                "percentage_weighted_total_population_hispanic_or_latino": 0.09,
+                "percentage_weighted_total_population_not_hispanic_or_latino": 0.91,
+                "percentage_weighted_total_population_not_hispanic_or_latino_white_alone": 0.68,
+                "percentage_weighted_total_population_not_hispanic_or_latino_black_or_african_american_alone": 0.01,
+                "percentage_weighted_total_population_not_hispanic_or_latino_american_indian_and_alaska_native_alone": 0.0,
+                "percentage_weighted_total_population_not_hispanic_or_latino_asian_alone": 0.13,
+                "percentage_weighted_total_population_not_hispanic_or_latino_native_hawaiian_and_other_pacific_islander_alone": 0.0,
+                "percentage_weighted_total_population_not_hispanic_or_latino_some_other_race_alone": 0.0,
+                "percentage_weighted_total_population_not_hispanic_or_latino_two_or_more_races": 0.08,
+                "percentage_weighted_occupied_housing_units_no_vehicle_available": 0.25,
+                "percentage_weighted_occupied_housing_units_1_vehicle_available": 0.51,
+                "percentage_weighted_occupied_housing_units_2_vehicles_available": 0.2,
+                "percentage_weighted_workers_16_years_and_over_car_truck_or_van": 0.29,
+                "percentage_weighted_workers_16_years_and_over_drove_alone": 0.27,
+                "percentage_weighted_workers_16_years_and_over_public_transportation_includes_taxicab": 0.27,
+                "percentage_weighted_workers_16_years_and_over_motorcycle": 0.0,
+                "percentage_weighted_workers_16_years_and_over_bicycle": 0.04,
+                "percentage_weighted_workers_16_years_and_over_walked": 0.11,
+                "percentage_weighted_workers_16_years_and_over_other_means": 0.0,
+                "percentage_weighted_workers_16_years_and_over_worked_at_home": 0.28,
+                "pctZonedAsSF": 12.583444592790388,
+                "pctZonedAsCommercial": 0.0,
+                "pctZonedAsMultifamily": 0.0,
+                "pctUsedAsSF": 21.094793057409881,
+                "pctUsedAsCommercial": 1.6355140186915886,
+                "pctUsedAsDuplex": 2.7703604806408544,
+                "pctUsedAsTriplex": 2.2696929238985315,
+                "pctUsedAsMultiBuildings1Lot": 0.40053404539385851,
+                "pctUsedAsAptUpTo30Units": 2.9372496662216285,
+                "pctUsedAsAptOver30Units": 0.0,
+                "pctUsedAsCoopApt": 0.0,
+                "pctUsedAsOtherMultifamily": 2.3364485981308412,
+                "pctMustUpzone": 12.583444592790388,
+                "pctWillChange": 8.7449933244325759,
+                "pctOtherZoning": 87.416555407209614,
+                "pctOtherUsage": 66.55540720961281
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            230430.751514314644737,
+                            898426.456561974948272
+                        ],
+                        [
+                            230426.876808325760067,
+                            898347.58510966214817
+                        ],
+                        [
+                            230415.290005895512877,
+                            898269.4732325571822
+                        ],
+                        [
+                            230396.10269426839659,
+                            898192.873190725455061
+                        ],
+                        [
+                            230369.499657739885151,
+                            898118.522684450610541
+                        ],
+                        [
+                            230335.737098096928094,
+                            898047.137749750982039
+                        ],
+                        [
+                            230295.140167246077908,
+                            897979.40586256980896
+                        ],
+                        [
+                            230248.099835821834859,
+                            897915.979318004567176
+                        ],
+                        [
+                            230195.069127932161791,
+                            897857.468948353198357
+                        ],
+                        [
+                            230136.558758281404153,
+                            897804.438240464543924
+                        ],
+                        [
+                            230073.132213718519779,
+                            897757.397909038932994
+                        ],
+                        [
+                            230005.400326536066132,
+                            897716.800978189799935
+                        ],
+                        [
+                            229934.015391835768241,
+                            897683.038418545038439
+                        ],
+                        [
+                            229859.664885560108814,
+                            897656.435382018215023
+                        ],
+                        [
+                            229783.064843731262954,
+                            897637.248070389498025
+                        ],
+                        [
+                            229704.952966623823158,
+                            897625.661267962888815
+                        ],
+                        [
+                            229626.081514314137166,
+                            897621.786561972461641
+                        ],
+                        [
+                            229547.210062005760847,
+                            897625.661267961375415
+                        ],
+                        [
+                            229469.098184897331521,
+                            897637.248070390895009
+                        ],
+                        [
+                            229392.498143067554338,
+                            897656.435382018215023
+                        ],
+                        [
+                            229318.147636792971753,
+                            897683.038418546435423
+                        ],
+                        [
+                            229246.76270209235372,
+                            897716.800978189799935
+                        ],
+                        [
+                            229179.030814910249319,
+                            897757.397909041726962
+                        ],
+                        [
+                            229115.604270346171688,
+                            897804.438240464543924
+                        ],
+                        [
+                            229057.093900697102072,
+                            897857.468948354595341
+                        ],
+                        [
+                            229004.063192805915605,
+                            897915.979318003170192
+                        ],
+                        [
+                            228957.022861382516567,
+                            897979.405862568411976
+                        ],
+                        [
+                            228916.425930531375343,
+                            898047.137749750982039
+                        ],
+                        [
+                            228882.663370888127247,
+                            898118.522684449213557
+                        ],
+                        [
+                            228856.060334360896377,
+                            898192.873190724058077
+                        ],
+                        [
+                            228836.873022732819663,
+                            898269.473232555785216
+                        ],
+                        [
+                            228825.286220302630682,
+                            898347.585109663545154
+                        ],
+                        [
+                            228821.411514314677333,
+                            898426.456561973551288
+                        ],
+                        [
+                            228825.286220303009031,
+                            898505.32801428087987
+                        ],
+                        [
+                            228836.87302273279056,
+                            898583.439891390036792
+                        ],
+                        [
+                            228856.060334359266562,
+                            898660.039933220366947
+                        ],
+                        [
+                            228882.663370888709323,
+                            898734.390439492301084
+                        ],
+                        [
+                            228916.425930531724589,
+                            898805.77537419332657
+                        ],
+                        [
+                            228957.022861382225528,
+                            898873.507261376013048
+                        ],
+                        [
+                            229004.063192805537255,
+                            898936.933805939741433
+                        ],
+                        [
+                            229057.093900697305799,
+                            898995.444175588316284
+                        ],
+                        [
+                            229115.604270346317207,
+                            899048.474883478367701
+                        ],
+                        [
+                            229179.03081491071498,
+                            899095.515214902581647
+                        ],
+                        [
+                            229246.762702092528343,
+                            899136.112145757302642
+                        ],
+                        [
+                            229318.147636792884441,
+                            899169.874705397873186
+                        ],
+                        [
+                            229392.49814306688495,
+                            899196.477741926093586
+                        ],
+                        [
+                            229469.098184897535248,
+                            899215.665053556323983
+                        ],
+                        [
+                            229547.210062005091459,
+                            899227.251855984330177
+                        ],
+                        [
+                            229626.081514314719243,
+                            899231.126561973243952
+                        ],
+                        [
+                            229704.952966623241082,
+                            899227.25185598153621
+                        ],
+                        [
+                            229783.064843730651774,
+                            899215.665053554926999
+                        ],
+                        [
+                            229859.66488556083641,
+                            899196.47774192749057
+                        ],
+                        [
+                            229934.015391835477203,
+                            899169.874705396476202
+                        ],
+                        [
+                            230005.400326536095235,
+                            899136.112145754508674
+                        ],
+                        [
+                            230073.132213717763079,
+                            899095.515214903978631
+                        ],
+                        [
+                            230136.558758282160852,
+                            899048.474883479764685
+                        ],
+                        [
+                            230195.06912793169613,
+                            898995.444175588316284
+                        ],
+                        [
+                            230248.099835821951274,
+                            898936.933805939741433
+                        ],
+                        [
+                            230295.140167246310739,
+                            898873.507261377410032
+                        ],
+                        [
+                            230335.73709809727734,
+                            898805.77537419332657
+                        ],
+                        [
+                            230369.499657740583643,
+                            898734.390439492301084
+                        ],
+                        [
+                            230396.102694268309278,
+                            898660.039933218853548
+                        ],
+                        [
+                            230415.290005896385992,
+                            898583.439891388523392
+                        ],
+                        [
+                            230426.876808326051105,
+                            898505.32801428087987
+                        ],
+                        [
+                            230430.751514314644737,
+                            898426.456561974948272
+                        ]
+                    ]
+                ]
+            }
+        }
+    ]
+}
