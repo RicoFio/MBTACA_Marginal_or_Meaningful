@@ -9,8 +9,10 @@
     import Slide3 from "../../slides/Slide3.svelte";
     import Slide4 from "../../slides/Slide4.svelte";
     import Slide5 from "../../slides/Slide5.svelte";
+    import Slide51 from "../../slides/Slide5.1.svelte";
     import Slide6 from "../../slides/Slide6.svelte";
     import Slide7 from "../../slides/Slide7.svelte";
+    import Slide8 from "../../slides/Slide8.svelte";
 
     import { tick } from "svelte";
     import { onMount } from 'svelte';
@@ -21,9 +23,11 @@
     export let municipalities;
     export let stations;
     export let selectedMunicipality;
+    export let zoningAndCensusFiles;
     export let selectedStations;
     export let guidedMode;
     export let comparisonMode;
+    export let explorationMode;
 
 
     let container;
@@ -66,7 +70,7 @@
             console.log("Slide2 is now inactive.");
         });
         isSlide1Active = 'value === 0';
-    } 
+    }
     else {
         console.log("Selected Municipality is not set");
     }
@@ -124,7 +128,7 @@
     //     S6: false,
     // }
 
-    
+
 
 </script>
 
@@ -132,7 +136,7 @@
     <Scrolly bind:this={scrollyComponent} bind:value> <!-- 3. This is what updates value -->
         <!-- {#each ['MARGINAL', 'OR', 'World!'] as text, i}
             <div class="step" class:active={value === i}>
-                <p>{text}</p> 
+                <p>{text}</p>
             </div>
         {/each} -->
         <Slide1 active={isSlide1Active} />
@@ -143,8 +147,10 @@
         <!-- <Slide3 active={value === 4}  bind:municipality={selectedMunicipality} bind:station={firstStation}/> -->
         <Slide4 active={value === 5}  bind:municipality={selectedMunicipality} bind:station={firstStation} bind:value/>
         <Slide5 active={value === 6}  bind:municipality={selectedMunicipality} bind:station={firstStation}/>
+<!--        <Slide51 active={value === 7}  bind:municipality={selectedMunicipality} bind:station={firstStation} zoningAndCensusFiles={zoningAndCensusFiles}/>-->
         <Slide6 active={value === 7}  bind:municipality={selectedMunicipality} bind:stations={selectedStations} bind:comparisonMode={comparisonMode}/>
-        <Slide7 active={value === 8} />
+        <Slide7 active={value === 8}  bind:guidedMode={guidedMode} bind:comparisonMode={comparisonMode} bind:explorationMode={explorationMode} />
+        <Slide8 active={value === 9} />
     </Scrolly>
 </div>
 

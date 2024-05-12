@@ -4,8 +4,9 @@
     import "../../node_modules/mapbox-gl/dist/mapbox-gl.css";
     import {onMount} from "svelte";
     import buffer from '@turf/buffer';
-    import { point } from '@turf/helpers';
+    import {point} from '@turf/helpers';
     import PanelComponent from '../lib/dataVisComponents/panel.svelte';
+    import FloatingTooltipComponent from '../lib/tooltipComponent/FloatingTooltipComponent.svelte';
 
     import BaseMap from "$lib/mapComponents/BaseMap.svelte";
 
@@ -14,19 +15,22 @@
     let baseMap;
     let stations = [];
     let parcelFiles = [];
+    let zoningAndCensusFiles = [];
     let selectedMunicipality;
     let municipalities = [];
     let selectedStations = [];
     let guidedMode = true;
     let comparisonMode = false;
+    let explorationMode = false;
 
     onMount(async () => {
         let loadedStations = await d3.json("/data/mbta_community_stops.geojson");
         let loadedMunicipalities = await d3.json("/data/mbta_municipalities.geojson");
         let loadedParcelFiles = await d3.csv("/data/parcels/augmented_parcel_data_file_name_reference.csv");
+        let loadedZoningAndCensusData = await d3.csv("/data/stop_zones/file_name_reference.csv")
 
         stations = loadedStations.features.map(station => {
-            let newStation = {
+            return {
                 Lat: station.geometry.coordinates[1],
                 Long: station.geometry.coordinates[0],
                 Community: station.properties.community,
@@ -34,12 +38,10 @@
                 Routes: station.properties.routes,
                 RouteColors: station.properties.route_colors,
                 Type: station.properties.mbta_comm_type,
-                getBuffer: function(radius) {
-                    return buffer(point([this.Long, this.Lat]), radius, { units: 'miles' }).geometry.coordinates[0];
+                getBuffer: function (radius) {
+                    return buffer(point([this.Long, this.Lat]), radius, {units: 'miles'}).geometry.coordinates[0];
                 }
             };
-
-            return newStation;
         });
 
         municipalities = loadedMunicipalities.features.map(municipality => {
@@ -66,6 +68,13 @@
             newParcelFile.FileName = entry.FileName;
             return newParcelFile;
         });
+
+        zoningAndCensusFiles = loadedZoningAndCensusData.map(entry => {
+            let newParcelFile = {};
+            newParcelFile.StopName = entry.StopName;
+            newParcelFile.FileName = entry.FileName;
+            return newParcelFile;
+        });
     })
 
     function deselectAll(e) {
@@ -84,19 +93,36 @@
         bind:guidedMode={guidedMode}
         bind:parcelFiles={parcelFiles}
         bind:comparisonMode={comparisonMode}
+        bind:explorationMode={explorationMode}
 />
 
-<button on:click={deselectAll} class="floating-x">
-    <img src="/artwork/refresh-ccw.svg" alt="Reset and go back to the top" class="reset-icon" />
-</button>
-<PanelComponent
-        bind:municipalities={municipalities}
-        bind:stations={stations}
-        bind:selectedMunicipality={selectedMunicipality}
-        bind:selectedStations={selectedStations}
-        bind:guidedMode={guidedMode}
-        bind:comparisonMode={comparisonMode}
-/>
+{#key explorationMode}
+    {#if !explorationMode}
+        <button on:click={deselectAll} class="floating-x">
+            <img src="/artwork/refresh-ccw.svg" alt="Reset and go back to the top" class="reset-icon" />
+        </button>
+
+        <PanelComponent
+                bind:municipalities={municipalities}
+                bind:stations={stations}
+                bind:zoningAndCensusFiles={zoningAndCensusFiles}
+                bind:selectedMunicipality={selectedMunicipality}
+                bind:selectedStations={selectedStations}
+                bind:guidedMode={guidedMode}
+                bind:comparisonMode={comparisonMode}
+                bind:explorationMode={explorationMode}
+        />
+    {:else }
+        {#key selectedStations}
+            {#if selectedStations.length === 2}
+                <FloatingTooltipComponent
+                    bind:municipality={selectedMunicipality}
+                    bind:stations={selectedStations}
+                />
+            {/if}
+        {/key}
+    {/if}
+{/key}
 
 <style>
     @import url("$lib/global.css");

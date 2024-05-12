@@ -32,7 +32,10 @@
     let municipalityTooltip;
     let tooltipPosition = {x: 0, y: 0};
 
-    const baseCenter = [-71.09451-1.2, 42.36027];
+    const overallCenter = [-71.05672511293635, 42.35885643076469]
+    const overallZoom = 9
+
+    const baseCenter = [-72.29451, 42.36027];
     const baseZoom = 8;
 
     onMount(async () => {
@@ -103,16 +106,26 @@
         selectedStations = [];
     }
 
-    function zoomToEntireMap() {
-        map?.flyTo({
-            center: baseCenter,
-            zoom: baseZoom
-        })
+    function zoomToEntireMap(withSidePanel=true) {
+        if (withSidePanel) {
+            map?.flyTo({
+                center: baseCenter,
+                zoom: baseZoom
+            })
+        } else {
+            map?.flyTo({
+                center: overallCenter,
+                zoom: overallZoom
+            })
+        }
+
     }
 
     function zoomToMunicipality(municipality) {
         const bounds = calculateBoundingBox(selectedMunicipality?.Geometries);
-        fitBounds(bounds, {padding: {top: 20, bottom: 20, left: 1150, right: 20}});
+        fitBounds(bounds, {
+            padding: explorationMode ? 50 : {top: 20, bottom: 20, left: 1150, right: 20}
+        });
     }
 
     function zoomToStation(station) {
@@ -230,7 +243,23 @@
         }
     }
 
-    $: filteredMunicipalities = selectedMunicipality ? municipalities.filter(m => {
+    $: {
+        if (explorationMode) {
+            map.boxZoom.enable();
+            map.scrollZoom.enable();
+            map.dragPan.enable();
+            map.dragRotate.enable();
+            map.keyboard.enable();
+            map.doubleClickZoom.enable();
+            map.touchZoomRotate.enable();
+            map.addControl(new mapboxgl.NavigationControl());
+            flushSelectedStations();
+            selectedMunicipality = undefined;
+            zoomToEntireMap(false);
+        }
+    }
+
+    $: filteredMunicipalities = (selectedMunicipality && !explorationMode) ? municipalities.filter(m => {
         return m.Name == selectedMunicipality.Name
     }) : municipalities;
 
@@ -241,7 +270,8 @@
     async function dotInteraction (index, evt) {
         let hoveredDot = evt.target;
         hoveredIndex = index;
-        if (!selectedMunicipality){
+        if (!selectedMunicipality || explorationMode){
+            console.log("REGBVFTRGHFD")
             if (evt.type === "mouseenter" || evt.type === "focus") {
                 // dot hovered
                 // cursor = {x: evt.x, y: evt.y};
@@ -249,7 +279,7 @@
                 tooltipPosition = await computePosition(hoveredDot, municipalityTooltip, {
                     strategy: "fixed", // because we use position: fixed
                     middleware: [
-                        offset(5), // spacing from tooltip to dot
+                        offset(5), // spacing from tooltipComponent to dot
                         autoPlacement() // see https://floating-ui.com/docs/autoplacement
                     ],
                 });
@@ -260,8 +290,13 @@
                 showTooltip = false;
             }
             else if (evt.type === "click" || evt.type === "keyup" && evt.key === "Enter") {
-                selectedMunicipality = municipalities[index]
-                showTooltip = false;
+                if (explorationMode && selectedMunicipality && selectedMunicipality.Name === municipalities[index].Name) {
+                    selectedMunicipality = undefined;
+                    showTooltip = true;
+                } else {
+                    selectedMunicipality = municipalities[index];
+                    showTooltip = false;
+                }
             }
         }
     }
@@ -284,7 +319,7 @@
                             fill="#a9987a"
                             stroke="black"
                             stroke-width="1"
-                            opacity="0.5"
+                            opacity={municipality.Name == selectedMunicipality?.Name ? '0.6' : (!explorationMode ? '0.5' : '0.3')}
                             class:municipality
                             on:mouseenter={(evt) => dotInteraction(index, evt)}
                             on:mouseleave={(evt) => dotInteraction(index, evt)}
@@ -306,7 +341,7 @@
                                 fill="#a9987a"
                                 stroke="black"
                                 stroke-width="1"
-                                opacity="0.5"
+                                opacity={municipality.Name == selectedMunicipality?.Name ? '0.6' : (!explorationMode ? '0.5' : '0.3')}
                                 class:municipality
                                 on:mouseenter={(evt) => dotInteraction(index, evt)}
                                 on:mouseleave={(evt) => dotInteraction(index, evt)}

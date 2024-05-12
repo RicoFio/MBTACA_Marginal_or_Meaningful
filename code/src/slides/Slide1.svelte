@@ -1,5 +1,6 @@
 <script>
     export let active = false;
+
 </script>
 
 {#if (active)}
