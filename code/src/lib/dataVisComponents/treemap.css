@@ -31,4 +31,5 @@ text {
     border-radius: 3px;
     pointer-events: none;
     font: 12px sans-serif;
+    z-index: 1000;
 }

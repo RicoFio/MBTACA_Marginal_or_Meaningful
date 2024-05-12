@@ -9,8 +9,6 @@
     export let municipality = {};
     export let station = {};
 
-    let treeMapHeight = 0;
-    let treeMapUsageHeight = 0;
     let selectedComponent = 'zoning';
     let stopZoneData;
     let transformedStopZoneDataForMunicipality;
@@ -52,9 +50,6 @@
     }
 
     onMount(async () => {
-        treeMapHeight = document.getElementById('treeMap').clientHeight;
-        treeMapUsageHeight = document.getElementById('treeMapUsage').clientHeight;
-
         stopZoneData = await d3.json(
             "/data/brookline_milton_stop_zone_zoning_usage_census_v2.geojson",
         );
