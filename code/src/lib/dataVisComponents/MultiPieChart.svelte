@@ -80,9 +80,6 @@
     >
         <g class="chart-inner">
             {#each zoning_pie_data as slice, index}
-                {console.log("&&&&&&&&&&&&")}
-                {console.log(slice.data[0])}
-                {console.log("&&&&&&&&&&&&")}
                 <path d={arc(slice, 0.8, 1)} fill={color(slice.data[0])} stroke="white"
                       on:mouseenter={(evt) => dotInteraction(slice.data[1], index, evt)}
                       on:mouseleave={(evt) => dotInteraction(slice.data[1], index, evt)}
