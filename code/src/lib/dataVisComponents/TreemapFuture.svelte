@@ -82,9 +82,8 @@
             const legend = d3.select('#legend-future');
 
             const categories = [
-                {name: 'Future Single Family', color: '#999624'},
                 {name: 'Future Commercial', color: '#3e5719'},
-                {name: 'Future Multi Family', color: '#05515e'}
+                {name: 'Future Multi Family', color: '#a9987a'}
             ];
 
             legend.selectAll('div')
@@ -102,12 +101,10 @@
 
         function getColorByCategory(d) {
             switch (d.category1) {
-                case 'pctFutureZonedAsSF':
-                    return '#999624';
                 case 'isZonedAsCommercial':
                     return '#3e5719';
                 case 'pctFutureZonedAsMulti':
-                    return '#05515e';
+                    return '#a9987a';
                 default:
                     return 'gray';
             }

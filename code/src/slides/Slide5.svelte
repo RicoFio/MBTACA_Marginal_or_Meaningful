@@ -41,7 +41,6 @@
             originalData[0].properties.pctUsedAsCommercial
 
         let out = [
-            { name: "Single Family", value: originalData[0].properties.pctFutureZonedAsSF, category1: "pctFutureZonedAsSF" },
             { name: "Commercial", value: commercial, category1: "isZonedAsCommercial" },
             { name: "Multi Family", value: originalData[0].properties.pctFutureZonedAsMulti, category1: "pctFutureZonedAsMulti" }
         ];

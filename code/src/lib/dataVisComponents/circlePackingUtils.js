@@ -15,7 +15,7 @@ export function getCirclePackingColorByCategory(d) {
         case "pctFutureZonedAsSF":
             return "#05515e";
         case "pctFutureZonedAsMulti":
-            return "#999624";
+            return "#a9987a";
         case "pctZonedAsMultifamily":
             return "#999624";
         case "pctUsedAsMultiBuildings1Lot":
