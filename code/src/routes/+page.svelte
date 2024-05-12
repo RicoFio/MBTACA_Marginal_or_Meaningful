@@ -18,11 +18,12 @@
     let municipalities = [];
     let selectedStations = [];
     let guidedMode = true;
+    let comparisonMode = false;
 
     onMount(async () => {
         let loadedStations = await d3.json("/data/mbta_community_stops.geojson");
         let loadedMunicipalities = await d3.json("/data/mbta_municipalities.geojson");
-        let loadedParcelFiles = await d3.csv("/data/parcels/per_station/augmented_parcel_data_file_name_reference.csv");
+        let loadedParcelFiles = await d3.csv("/data/parcels/augmented_parcel_data_file_name_reference.csv");
 
         stations = loadedStations.features.map(station => {
             let newStation = {
@@ -82,6 +83,7 @@
         bind:selectedMunicipality={selectedMunicipality}
         bind:guidedMode={guidedMode}
         bind:parcelFiles={parcelFiles}
+        bind:comparisonMode={comparisonMode}
 />
 
 <button on:click={deselectAll} class="floating-x">
@@ -93,6 +95,7 @@
         bind:selectedMunicipality={selectedMunicipality}
         bind:selectedStations={selectedStations}
         bind:guidedMode={guidedMode}
+        bind:comparisonMode={comparisonMode}
 />
 
 <style>
