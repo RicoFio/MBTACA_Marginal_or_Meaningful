@@ -20,11 +20,17 @@
         console.log(secondStation);
     }
 
+    export let absolute_slide_value;
+
+    let entered = 0;
     $: {
-        if (active) {
-            comparisonMode = true;
-        }
+        if (active && entered == 0 && absolute_slide_value == 6) {
+        console.log("LAST SLIDE ENTERED")
+        absolute_slide_value = 7;
+        entered += 1;
+        comparisonMode = true;
     }
+}
 
 </script>
 

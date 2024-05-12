@@ -17,8 +17,20 @@
     let transformedStopZoneUsageDataForMunicipality;
     let transformedStopZoneFutureDataForMunicipality;
 
+    export let absolute_slide_value;
+
     let stopData = {};
     $: stopName = station?.Name;
+
+    export let value;
+
+    let entered = 0;
+    $: if (active && entered == 0 && absolute_slide_value == 5) {
+        setTimeout(() => {
+                absolute_slide_value = 6;
+            }, 10000);
+        entered += 1;
+    }
 
     function transformStopZoneData(originalData) {
         let out = [
@@ -76,6 +88,7 @@
     $: treeMapUsageVisibility = selectedComponent == 'usage' ? 'visible' : 'hidden';
 </script>
 
+{#if (active)}
 <div class="slide">
     {#if (municipality && station)}
         <h1>{municipality.Name}: {station.Name}</h1>
@@ -172,6 +185,7 @@
 
 
 </div>
+{/if}
 
 <style>
     @import url("$lib/slide.css");

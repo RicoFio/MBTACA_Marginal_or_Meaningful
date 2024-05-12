@@ -8,6 +8,16 @@
 
     export let municipality = {};
     export let station = {};
+    export let visibility_slide5 = false;
+    export let value;
+    export let absolute_slide_value;
+
+    let entered = 0;
+    $: if (active && entered == 0 && absolute_slide_value == 4) {
+        value = 5;
+        absolute_slide_value = 5;
+        entered += 1;
+    }
     
     let full_data;
     let station_data;
@@ -39,15 +49,19 @@
     let walking = 0;
     let other_mode_of_transportation = 0;
     let work_from_home = 0;
+    let median_income = 0;
 
-    let isVisible = false;
+    let isVisible_slide4 = false;
     observerStore.subscribe(store => {
-        isVisible = store.isVisible;
+        isVisible_slide4 = store.isVisible;
     });
 
-    export let value = 0;
+    $: if (isVisible_slide4) {
+        visibility_slide5 = 'value === 6'
+    }
+
     $: if (value === 6) {
-        observerStore.resetVisibility();  // Reset visibility whenever checking this condition
+        // observerStore.resetVisibility();  // Reset visibility whenever checking this condition
         observerStore.startObservation();
     }
 
@@ -82,6 +96,7 @@
         to_74999 = station_data?.properties.percentage_weighted_households_50000_to_74999 * 100; 
         to_99999 = station_data?.properties.percentage_weighted_households_75000_to_99999 * 100;
         more_than_100000 = station_data?.properties.percentage_weighted_households_100000_or_more * 100;
+        median_income = station_data?.properties.weighted_median_household_income_in_2022_inflation_adjusted_dollars;
         // Vehicles
         zero = station_data?.properties.percentage_weighted_occupied_housing_units_no_vehicle_available * 100;
         one = station_data?.properties.percentage_weighted_occupied_housing_units_1_vehicle_available * 100;
@@ -109,13 +124,13 @@
             {label: 'black', value: black},
             {label: 'hispanic', value: hispanic},
             {label: 'asian', value: asian},
-            {label: 'other_race', value: other_race},
+            {label: 'other race', value: other_race},
         ],
         "gender": [
             {label: 'male', value: male},
             {label: 'female', value: female},
         ],
-        "mean household income": [
+        "median household income": [
             {label: 'less than 25,000 $', value: less_than_25000},
             {label: '25,000 to 49,999 $', value: to_49999},
             {label: '50,000 to 74,999 $', value: to_74999},
@@ -130,18 +145,20 @@
         ],
         "mode of transportation": [
             {label: 'car', value: car},
-            {label: 'public_transport', value: public_transport},
+            {label: 'public transport', value: public_transport},
             {label: 'motorcycle', value: motorcycle},
             {label: 'bicycle', value: bicycle},
             {label: 'walking', value: walking},
-            {label: 'other_mode_of_transportation', value: other_mode_of_transportation},
-            {label: 'work_from_home', value: work_from_home}
+            {label: 'other mode', value: other_mode_of_transportation},
+            {label: 'work from home', value: work_from_home}
         ]
     }
     let activeSelection = "age"
     $: current_data = data[activeSelection];
 </script>
-<!-- <ScrollySlide bind:value expectedValue={5}> -->
+
+
+{#if (active)}
 <div class="slide">
     {#if (municipality && station)}
         <h1>{municipality.Name}: {station.Name}</h1>
@@ -150,23 +167,26 @@
         Toggle the force diagrams to see relevant demographic statistics for the zone around the transit station. Racial, age, gender and income demographics, as well as behavioral characteristics like how much of the population uses transit to get to work, may influence the effect of upzoning on a certain location. <br> <br> </h3>
         <p>Demographic data is sourced from the 2022 ACS 5-year rolling estimates (downloaded from Social Explorer).</p>
     {/if}
-    {#if isVisible}
+    {#if isVisible_slide4}
     <h2>WHO LIVES HERE? - let's find out</h2>
     <ForceGraphSelector bind:activeSelection></ForceGraphSelector>
 
     {#key current_data} <!--forcing visualization to re-render when data is updated -->
-        {#if !isNaN(under_18)}
+        <!-- {#if !isNaN(under_18)} -->
             <ForceGraph
                     cssHeight=50
                     cssWidth=40
                     data={ current_data }
                     selectedCategory = { activeSelection }
             />
+        <!-- {/if} -->
+        {/key}
         {/if}
-    {/key}
+    {#if activeSelection == "median household income"} 
+        <h3> The median household income in the selected area is {median_income} $.</h3>
     {/if}
 </div>
-<!-- </ScrollySlide> -->
+{/if}
 
 <style>
     @import url("$lib/slide.css");
