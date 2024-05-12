@@ -88,6 +88,16 @@
   });
 </script>
 
-<div bind:this={container}>
+<div bind:this={container} class="scrolly-container">
   <slot />
 </div>
+
+<style>
+  @import url("$lib/global.css");
+
+  .scrolly-container {
+    flex-grow: 1;
+    overflow: auto;
+    height: 100%;
+  }
+</style>

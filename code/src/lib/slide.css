@@ -1,6 +1,6 @@
 .slide {
     height: 100vh;
-    display: contents;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;

@@ -254,17 +254,17 @@ $: if (isVisible_slide1 && check_entered == 0 && value == 1) {
 	} */
 
     .panel {
-    position: relative; /* Confirms the panel is the positioned ancestor */
-    overflow-y: auto;  /* Allows vertical scrolling */
-    overflow-x: hidden; /* Disables horizontal scrolling */
-    width: 40%; /* Adjust as necessary */
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 20px;
-    color: var(--color); /* Use CSS variables for better management */
-    display: flex;
-    flex-direction: row; /* Makes the children lay out in a row */
-}
+        position: relative; /* Confirms the panel is the positioned ancestor */
+        overflow-y: auto;  /* Allows vertical scrolling */
+        overflow-x: hidden; /* Disables horizontal scrolling */
+        width: 40%; /* Adjust as necessary */
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        color: var(--color); /* Use CSS variables for better management */
+        display: flex;
+        flex-direction: row; /* Makes the children lay out in a row */
+    }
 
 </style>
 

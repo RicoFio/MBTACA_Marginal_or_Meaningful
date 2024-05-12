@@ -46,13 +46,6 @@ body {
     z-index: 1000; /* Ensures it stays on top */
 }
 
-.scrolly-container {
-    flex-grow: 1;
-    overflow-y: auto;
-    height: 100%;
-}
-
-
 .circle {
     z-index: 2000;
     width: 20px;

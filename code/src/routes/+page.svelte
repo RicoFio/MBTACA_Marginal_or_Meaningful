@@ -98,22 +98,24 @@
     <img src="/artwork/refresh-ccw.svg" alt="Reset and go back to the top" class="reset-icon" />
 </button>
 
-<div class="progress-bar" style="position: absolute;">
-    {#each [0, 1, 2, 3, 4, 5, 6, 7, 8] as slideIndex}
-    <div class="circle {absolute_slide_value === slideIndex ? 'active' : ''}"></div>
-    {/each}
+<div class="panel-container">
+    <div class="progress-bar" style="position: absolute;">
+        {#each [0, 1, 2, 3, 4, 5, 6, 7, 8] as slideIndex}
+        <div class="circle {absolute_slide_value === slideIndex ? 'active' : ''}"></div>
+        {/each}
+    </div>
+    <PanelComponent
+            bind:municipalities={municipalities}
+            bind:stations={stations}
+            bind:selectedMunicipality={selectedMunicipality}
+            bind:selectedStations={selectedStations}
+            bind:guidedMode={guidedMode}
+            bind:comparisonMode={comparisonMode}
+            bind:reset_scroll={reset_scroll}
+            bind:absolute_slide_value={absolute_slide_value}
+            bind:value={value}
+    />
 </div>
-<PanelComponent
-        bind:municipalities={municipalities}
-        bind:stations={stations}
-        bind:selectedMunicipality={selectedMunicipality}
-        bind:selectedStations={selectedStations}
-        bind:guidedMode={guidedMode}
-        bind:comparisonMode={comparisonMode}
-        bind:reset_scroll={reset_scroll}
-        bind:absolute_slide_value={absolute_slide_value}
-        bind:value={value}
-/>
 
 <style>
     @import url("$lib/global.css");
@@ -149,6 +151,11 @@
 
     .reset-icon:hover {
         transform: rotate(-180deg); /* Rotate 180 degrees on hover */
+    }
+
+    .panel-container {
+        display: flex;
+        width: 100%;
     }
 
 </style>
