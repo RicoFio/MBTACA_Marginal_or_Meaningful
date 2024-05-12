@@ -184,26 +184,30 @@
     function toggleStationParcels (station) {
         if (!loadedParcels.some(s => s.Name === station.Name)) {
             console.log(`Adding parcel layer for ${station.Name}`)
-            map.addSource(station.Name, {
-                type: "geojson",
-                data: parcelFiles.filter(e => e.StopName == station.Name)[0].FileName,
-            });
+            if (parcelFiles.filter(e => e.StopName == station.Name).length > 0) {
+                map.addSource(station.Name, {
+                    type: "geojson",
+                    data: parcelFiles.filter(e => e.StopName == station.Name)[0].FileName,
+                });
 
-            map.addLayer({
-                id: station.Name,
-                type: "fill",  // Use 'fill' type for polygon layers
-                source: station.Name,
-                paint: {
-                    "fill-color": [
-                        'case',
-                        ["to-boolean", ['get', 'mustUpzone']], '#f39034',  // true
-                        ['!', ["to-boolean", ['get', 'mustUpzone']]], '#abafa7',  // false
-                        '#ffffff'
-                    ],  // Correct property for setting the fill color of polygons
-                    "fill-outline-color": "black"  // Sets the color of the outline
-                },
-            });
-            loadedParcels.push(station);
+                map.addLayer({
+                    id: station.Name,
+                    type: "fill",  // Use 'fill' type for polygon layers
+                    source: station.Name,
+                    paint: {
+                        "fill-color": [
+                            'case',
+                            ["to-boolean", ['get', 'mustUpzone']], '#f39034',  // true
+                            ['!', ["to-boolean", ['get', 'mustUpzone']]], '#789f4f',  // false
+                            '#ffffff'
+                        ],  // Correct property for setting the fill color of polygons
+                        "fill-outline-color": "black"  // Sets the color of the outline
+                    },
+                });
+                loadedParcels.push(station);
+            } else {
+                console.log("Parcel data not available");
+            }
         } else {
             console.log("Removing parcel layer")
             map.removeLayer(station.Name);
