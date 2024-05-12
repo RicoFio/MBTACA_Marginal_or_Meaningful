@@ -9,9 +9,9 @@
     let radius = Math.min(width, height) / 2 - margin;
 
     // Create dummy data
-    const data1 = { a: 9, b: 20, c: 30, d: 8, e: 12, f: 3, g: 7, h: 14 };
-    const data2 = { a: 29, b: 2, c: 3, d: 10, e: 5, f: 3, g: 7, h: 14 };
-    const data3 = { a: 20, b: 2, c: 3, d: 10, e: 5, f: 30, g: 2, h: 14 };
+    export let zoningData = { a: 9, b: 20, c: 30, d: 8, e: 12, f: 3, g: 7, h: 14 };
+    export let usageData = { a: 29, b: 2, c: 3, d: 10, e: 5, f: 3, g: 7, h: 14 };
+    export let futureZoningData = { a: 20, b: 2, c: 3, d: 10, e: 5, f: 30, g: 2, h: 14 };
 
     // set the color scale
     const color = d3
@@ -24,31 +24,26 @@
         .pie()
         .sort(null) // Do not sort group by size
         .value((d) => d[1]);
-    const data_ready_1 = pie(Object.entries(data1));
-    const data_ready_2 = pie(Object.entries(data2));
-    const data_ready_3 = pie(Object.entries(data3));
+
+    const data_ready_1 = pie(Object.entries(zoningData));
+    const data_ready_2 = pie(Object.entries(usageData));
+    const data_ready_3 = pie(Object.entries(futureZoningData));
 
     // The arc generator
-    function arc (slice, innerRadius=0.5, outerRadius=0.8) {
+    function arc (slice, innerRadius, outerRadius) {
         return d3
             .arc()
             .innerRadius(radius * innerRadius) // This is the size of the donut hole
             .outerRadius(radius * outerRadius)(slice);
     }
-
-    // Another arc that won't be drawn. Just for labels positioning
-    const outerArc = d3
-        .arc()
-        .innerRadius(radius * 0.9)
-        .outerRadius(radius * 0.9);
 </script>
 
 <svg
-        {width}
-        {height}
-        viewBox="{-width / 2}, {-height / 2}, {width}, {height}"
-        style:max-width="100%"
-        style:height="auto"
+    {width}
+    {height}
+    viewBox="{-width / 2}, {-height / 2}, {width}, {height}"
+    style:max-width="100%"
+    style:height="auto"
 >
     <g class="chart-inner">
         {#each data_ready_1 as slice}
