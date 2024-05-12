@@ -97,7 +97,10 @@
 
   .scrolly-container {
     flex-grow: 1;
-    overflow: auto;
+    overflow-x: hidden;
     height: 100%;
   }
+  .scrolly-container::-webkit-scrollbar {
+        display: none;
+    }
 </style>

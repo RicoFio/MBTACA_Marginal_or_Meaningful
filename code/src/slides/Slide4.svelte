@@ -162,9 +162,9 @@
 <div class="slide">
     {#if (municipality && station)}
         <h1>{municipality.Name}: {station.Name}</h1>
-        <h3>
+        <p>
         {station.Name} is located within {municipality.Name}, a {municipality.MBTACommunityType} community. It serves the following routes: {station.Routes}. The MBTA Communities Act stipulates that municipalities must create at least one by-right multifamily district within a 0.5-mile radius of a transit stop within their borders, which is visualized on the right. <br> <br>
-        Toggle the force diagrams to see relevant demographic statistics for the zone around the transit station. Racial, age, gender and income demographics, as well as behavioral characteristics like how much of the population uses transit to get to work, may influence the effect of upzoning on a certain location. <br> <br> </h3>
+        Toggle the force diagrams to see relevant demographic statistics for the zone around the transit station. Racial, age, gender and income demographics, as well as behavioral characteristics like how much of the population uses transit to get to work, may influence the effect of upzoning on a certain location. <br> <br> </p>
         <p>Demographic data is sourced from the 2022 ACS 5-year rolling estimates (downloaded from Social Explorer).</p>
     {/if}
     {#if isVisible_slide4}
@@ -183,7 +183,7 @@
         {/key}
         {/if}
     {#if activeSelection == "median household income"} 
-        <h3> The median household income in the selected area is {median_income} $.</h3>
+        <p> The median household income in the selected area is {median_income} $.</p>
     {/if}
 </div>
 {/if}

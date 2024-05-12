@@ -92,12 +92,12 @@
 <div class="slide">
     {#if (municipality && station)}
         <h1>{municipality.Name}: {station.Name}</h1>
-        <h3>
+        <p>
             The visualizations below show the area's current zoning and usage breakdown within a 0.5-mile radius of {station.Name} station. Both usage and zoning information are defined at the parcel level, and parcels within the 0.5-mile buffer are aggregated. Notice that in many areas, the zoning and usage don't necessarily match- for example, some areas zoned for multifamily development may actually have exclusively single-family dwellings currently constructed. Recall that the MBTA Communities Act does not stipulate that any current development must be changed, only that certain areas must be upzoned (and thus, there development patterns might theoretically change in the future).
 
             Toggle the treemap diagram to see how the current and future zoning mix differ. If a significant number of parcels around the station need to be upzoned to become compliant, this may be a big change, but in some areas, the current and future zoning mix might be very similar.
             Under the MBTA Communities Act, municipalities get to decide where to site their multifamily districts, and can use these statistics to help make their decisions. 
-        </h3>
+        </p>
         <ul>
             <li>Parcel data, including parcel-level zoning and usage information, is sourced from</li>
             <li>Zoning code designations for Brookline from</li>

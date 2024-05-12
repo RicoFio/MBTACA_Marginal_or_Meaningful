@@ -261,6 +261,8 @@
             About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area work from home.
             {:else if currentHoveredPoint.label == "public_transport"}
             About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area commute to work by public transport.
+            {:else if currentHoveredPoint.label == "other_mode_of_transportation"}
+            About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area commute to work by another mode of transportation.
             {:else}
             About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area commute to work by {currentHoveredPoint.label}.
             {/if}

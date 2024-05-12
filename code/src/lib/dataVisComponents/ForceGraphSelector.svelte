@@ -9,7 +9,7 @@
   
   <div class="radio-container">
 	<div class="row">
-	  {#each ['age', 'race', 'gender'] as category}
+	  {#each ['age', 'race', 'gender', 'median household income'] as category}
 	  <label class={isSelected(category)}>
 		<input type="radio" bind:group={activeSelection} name="selector" value={category}>
 		{category.replace(/_/g, ' ').toUpperCase()} <!-- Improved readability -->
@@ -17,7 +17,7 @@
 	  {/each}
 	</div>
 	<div class="row">
-	  {#each ['median household income', 'vehicles per household', 'mode of transportation'] as category}
+	  {#each ['vehicles per household', 'mode of transportation'] as category}
 	  <label class={isSelected(category)}>
 		<input type="radio" bind:group={activeSelection} name="selector" value={category}>
 		{category.replace(/_/g, ' ').toUpperCase()} <!-- Improved readability -->
