@@ -2,7 +2,7 @@
 
 export function getCirclePackingColorByCategory(d) {
     switch (d.category1) {
-        case "pctUsedAsCommercial":
+        case "pctUsedAsCommerical":
             return "#abafa7";
         case "isZonedAsCommercial":
             return "#abafa7";

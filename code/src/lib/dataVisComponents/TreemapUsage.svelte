@@ -82,9 +82,9 @@
 
             const categories = [
                 {name: 'Single Family', color: '#05515e'},
-                {name: 'Commercial', color: '#629681'},
-                {name: 'Duplex', color: '#f39034'},
-                {name: 'Triplex', color: '#abafa7'}
+                {name: 'Duplex', color: '#629681'},
+                {name: 'Triplex', color: '#97340b'},
+                {name: 'Commercial', color: '#abafa7'}
             ];
 
             legend.selectAll('legend-usage')
@@ -105,11 +105,11 @@
                 case 'pctUsedAsSF':
                     return '#05515e';
                 case 'pctUsedAsCommerical':
-                    return '#629681';
-                case 'pctUsedAsDuplex':
-                    return '#dd8155';
-                case 'pctUsedAsTriplex':
                     return '#abafa7';
+                case 'pctUsedAsDuplex':
+                    return '#629681';
+                case 'pctUsedAsTriplex':
+                    return '#97340b';
                 default:
                     return 'gray';
             }

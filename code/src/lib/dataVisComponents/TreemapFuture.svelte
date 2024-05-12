@@ -83,7 +83,7 @@
 
             const categories = [
                 {name: 'Future Single Family', color: '#999624'},
-                {name: 'Commercial', color: '#3e5719'},
+                {name: 'Future Commercial', color: '#3e5719'},
                 {name: 'Future Multi Family', color: '#05515e'}
             ];
 
