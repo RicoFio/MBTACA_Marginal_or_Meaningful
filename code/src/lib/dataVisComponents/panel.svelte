@@ -9,7 +9,7 @@
     import Slide3 from "../../slides/Slide3.svelte";
     import Slide4 from "../../slides/Slide4.svelte";
     import Slide5 from "../../slides/Slide5.svelte";
-    import Slide51 from "../../slides/Slide5.1.svelte";
+    // import Slide51 from "../../slides/Slide5.1.svelte";
     import Slide6 from "../../slides/Slide6.svelte";
     import Slide7 from "../../slides/Slide7.svelte";
     import Slide8 from "../../slides/Slide8.svelte";
