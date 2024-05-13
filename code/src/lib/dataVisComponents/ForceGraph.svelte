@@ -213,11 +213,11 @@
             About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area are {currentHoveredPoint.label}.
         {:else if selectedCategory == "gender"}
             About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area are {currentHoveredPoint.label}.
-        {:else if selectedCategory == "mean household income"}
+        {:else if selectedCategory == "median household income"}
             {#if currentHoveredPoint.value == 5}
-            The top 5% of households in the selected area have a mean income of {currentHoveredPoint.label}.
+            The top 5% of households in the selected area have a median income of {currentHoveredPoint.label}.
             {:else}
-            About {currentHoveredPoint.value.toFixed(2)}% of households in the selected area have a mean income of {currentHoveredPoint.label}.
+            About {currentHoveredPoint.value.toFixed(2)}% of households in the selected area have a median income of {currentHoveredPoint.label}.
             {/if}
         {:else if selectedCategory == "vehicles per household"}
             {#if currentHoveredPoint.label == 'one'}
