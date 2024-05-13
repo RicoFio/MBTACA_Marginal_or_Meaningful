@@ -2,7 +2,7 @@
     import {loadStationZoningAndUsageDataDict} from "./../lib/dataVisComponents/zoningData"
 
     export let active = false;
-    export let value = 0;
+    export let value;
     export let municipality;
     export let stations;
     export let comparisonMode;

@@ -2,7 +2,7 @@
     export let active = false;
     import {observerStore} from '../lib/panelComponents/Scrolly_slide';
 
-    export let value = 0;
+    export let value;
     let isVisible = false;
     let isVisibleSecond = false;
 
@@ -18,7 +18,7 @@
     $: if (isVisible) {
         setTimeout(() => {
             isVisibleSecond = true;
-        }, 15000);
+        }, 8000);
     }
 </script>
 

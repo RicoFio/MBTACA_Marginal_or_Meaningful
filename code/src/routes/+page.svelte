@@ -7,7 +7,6 @@
     import {point} from '@turf/helpers';
     import PanelComponent from '../lib/dataVisComponents/panel.svelte';
     import FloatingTooltipComponent from '../lib/tooltipComponent/FloatingTooltipComponent.svelte';
-
     import BaseMap from "$lib/mapComponents/BaseMap.svelte";
 
     mapboxgl.accessToken = "pk.eyJ1IjoicmZpb3Jpc3RhIiwiYSI6ImNsdWQwcDd0aDFkengybG85eW00eDJqdzEifQ.smRFd5P2IKrDHr5HGsfrGw";
@@ -22,6 +21,9 @@
     let guidedMode = true;
     let comparisonMode = false;
     let explorationMode = false;
+
+    let resetScroll = false;
+    let value = 0;
 
     onMount(async () => {
         let loadedStations = await d3.json("/data/mbta_community_stops.geojson");
@@ -80,6 +82,7 @@
     function deselectAll(e) {
         selectedMunicipality = null;
         selectedStations = [];
+        resetScroll = true;
     }
 </script>
 
@@ -102,16 +105,28 @@
             <img src="/artwork/refresh-ccw.svg" alt="Reset and go back to the top" class="reset-icon" />
         </button>
 
-        <PanelComponent
-                bind:municipalities={municipalities}
-                bind:stations={stations}
-                bind:zoningAndCensusFiles={zoningAndCensusFiles}
-                bind:selectedMunicipality={selectedMunicipality}
-                bind:selectedStations={selectedStations}
-                bind:guidedMode={guidedMode}
-                bind:comparisonMode={comparisonMode}
-                bind:explorationMode={explorationMode}
-        />
+        <div class="panel-container">
+            <button on:click={deselectAll} class="floating-x">
+                <img src="/artwork/refresh-ccw.svg" alt="Reset and go back to the top" class="reset-icon" />
+            </button>
+            <div class="progress-bar" style="position: absolute;">
+                {#each [0, 1, 2, 3, 4, 5, 6, 7, 8] as slideIndex}
+                    <div class="circle {value === slideIndex ? 'active' : ''}"></div>
+                {/each}
+            </div>
+            <PanelComponent
+                    bind:municipalities={municipalities}
+                    bind:stations={stations}
+                    bind:zoningAndCensusFiles={zoningAndCensusFiles}
+                    bind:selectedMunicipality={selectedMunicipality}
+                    bind:selectedStations={selectedStations}
+                    bind:guidedMode={guidedMode}
+                    bind:comparisonMode={comparisonMode}
+                    bind:explorationMode={explorationMode}
+                    bind:resetScroll={resetScroll}
+                    bind:value={value}
+            />
+        </div>
     {:else }
         {#key selectedStations}
             {#if selectedStations.length === 2}
@@ -150,6 +165,11 @@
         justify-content: center;
         align-items: center;
     }
+
+    /*.panel-container {*/
+    /*    display: flex;*/
+    /*    width: 100%;*/
+    /*}*/
 
     .reset-icon {
         width: 60%;  /* Adjust this to fit the button */

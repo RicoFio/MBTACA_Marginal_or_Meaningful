@@ -5,7 +5,6 @@
     export let guidedMode, comparisonMode, explorationMode;
 
     function handleExploreButton(e) {
-        console.log("CALLING")
         guidedMode = false;
         comparisonMode = false;
         explorationMode = true;

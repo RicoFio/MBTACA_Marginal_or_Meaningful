@@ -203,7 +203,7 @@
     </VisualizationWrapper>
     {#if mousePosition.x != null && currentHoveredPoint}
         <div
-            class={mousePosition.x === null ? "tooltip-hidden" : "tooltip-visible"}
+            class={mousePosition.x === null ? "tooltip-forcegraph-hidden" : "tooltip-forcegraph-visible"}
             style="left: {pageMousePosition.x + 10}px; top: {pageMousePosition.y + 10}px"
         >
 
@@ -246,17 +246,17 @@
 <style>
     .icon:hover {
         padding: 2vh;
-        background-color: aqua;
+        background-color: #000000;
     }
 
-    .tooltip-hidden {
+    .tooltip-forcegraph-hidden {
         visibility: hidden;
         font-family: 'Montserrat', sans-serif;
         width: 200px;
         position: absolute;
     }
 
-    .tooltip-visible {
+    .tooltip-forcegraph-visible {
         z-index: 100;
         font: 18px sans-serif;
         font-family: 'Montserrat', sans-serif;

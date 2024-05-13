@@ -19,7 +19,8 @@
 
     let ready = false;
 
-    let value = 0;
+    export let value;
+    export let resetScroll;
     export let municipalities;
     export let stations;
     export let selectedMunicipality;
@@ -28,6 +29,10 @@
     export let guidedMode;
     export let comparisonMode;
     export let explorationMode;
+
+    $: if (value === 0) {
+        resetScroll = false;
+    }
 
 
     let container;
@@ -62,7 +67,7 @@
     // Reactive statement to handle changes in selectedMunicipality
     $: if (ready && selectedMunicipality) {
         console.log("Selected Municipality is set", selectedMunicipality);
-        let value_scroll = 5; // Assuming this is the index for Slide21
+        let value_scroll = 3; // Assuming this is the index for Slide21
         // isSlide1Active = true;
         scrollToSlide(value_scroll, () => {
             // This callback is called after the scrolling animation completes
@@ -74,7 +79,7 @@
         console.log("Selected Municipality is not set");
     }
 
-    $: if (ready && firstStation) {
+    $: if (ready && firstStation && value == 4) {
         console.log("Selected station is set")
         let value_scroll_station = 4;
         scrollToSlide(value_scroll_station)
@@ -130,28 +135,27 @@
 
 </script>
 
-<div class="panel"
-     style="position: absolute; top: 0; left: 0; width: 40%; height: 100%; background-color: rgba(0, 0, 0, 0.6); padding: 20px; color: {colors[3]};">
-    <Scrolly bind:this={scrollyComponent} bind:value> <!-- 3. This is what updates value -->
+<div class="main-panel-container">
+    <Scrolly bind:this={scrollyComponent} bind:value={value}> <!-- 3. This is what updates value -->
         <!-- {#each ['MARGINAL', 'OR', 'World!'] as text, i}
             <div class="step" class:active={value === i}>
                 <p>{text}</p>
             </div>
         {/each} -->
         <Slide1 active={isSlide1Active}/>
-        <Slide11 active={value === 1} bind:value/>
-        <Slide12 active={value === 2} bind:value/>
+        <Slide11 active={value === 1} bind:value={value}/>
+        <Slide12 active={value === 2} bind:value={value}/>
         <Slide2 active={isSlide2Active} bind:municipalities={municipalities}
                 bind:selectedMunicipality={selectedMunicipality}/>
-        <Slide21 active={value === 4} bind:municipality={selectedMunicipality} bind:station={firstStation} bind:value/>
+        <Slide21 active={value === 4} bind:municipality={selectedMunicipality} bind:station={firstStation} bind:value={value}/>
         <!-- <Slide3 active={value === 4}  bind:municipality={selectedMunicipality} bind:station={firstStation}/> -->
-        <Slide4 active={value === 5} bind:municipality={selectedMunicipality} bind:station={firstStation} bind:value/>
-        <Slide5 active={value === 6} bind:municipality={selectedMunicipality} bind:station={firstStation}/>
+        <Slide4 active={value === 5} bind:municipality={selectedMunicipality} bind:station={firstStation} bind:value={value}/>
+        <Slide5 active={value === 6} bind:municipality={selectedMunicipality} bind:station={firstStation} bind:value={value}/>
         <!--        <Slide51 active={value === 7}  bind:municipality={selectedMunicipality} bind:station={firstStation} zoningAndCensusFiles={zoningAndCensusFiles}/>-->
         <Slide6 active={value === 7} bind:municipality={selectedMunicipality} bind:stations={selectedStations}
-                bind:comparisonMode={comparisonMode} zoningAndCensusFiles={zoningAndCensusFiles}/>
+                bind:comparisonMode={comparisonMode} zoningAndCensusFiles={zoningAndCensusFiles} bind:value={value}/>
         <Slide7 active={value === 8} bind:guidedMode={guidedMode} bind:comparisonMode={comparisonMode}
-                bind:explorationMode={explorationMode}/>
+                bind:explorationMode={explorationMode} bind:value={value}/>
         <!--        <Slide8 active={value === 9} />-->
     </Scrolly>
 </div>
@@ -162,12 +166,21 @@
         text-align: center;
     }
 
-    .panel {
+    .main-panel-container {
         overflow-y: auto; /* Allows vertical scrolling */
         overflow-x: hidden; /* Disables horizontal scrolling */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 40%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        padding: 20px;
+        color: #9f9090;
+        /*backdrop-filter: blur(8px);*/
     }
 
-    .panel::-webkit-scrollbar {
+    .main-panel-container::-webkit-scrollbar {
         display: none;
     }
 
