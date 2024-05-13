@@ -107,7 +107,9 @@
         let average_cars = (parseFloat(stationData?.percentage_weighted_occupied_housing_units_no_vehicle_available) * 0 +
             parseFloat(stationData?.percentage_weighted_occupied_housing_units_1_vehicle_available) * 1 +
             parseFloat(stationData?.percentage_weighted_occupied_housing_units_2_vehicles_available) * 2 +
-            (1 - parseFloat(stationData?.percentage_weighted_occupied_housing_units_no_vehicle_available) - parseFloat(stationData?.percentage_weighted_occupied_housing_units_1_vehicle_available) - parseFloat(stationData?.percentage_weighted_occupied_housing_units_2_vehicles_available)) * 3)
+            (1 - parseFloat(stationData?.percentage_weighted_occupied_housing_units_no_vehicle_available) -
+                parseFloat(stationData?.percentage_weighted_occupied_housing_units_1_vehicle_available) -
+                parseFloat(stationData?.percentage_weighted_occupied_housing_units_2_vehicles_available)) * 3)
 
         return parseFloat(average_cars).toFixed(2)
     }
@@ -169,8 +171,6 @@
             to comply with the MBTA communities Act, and {String(firstStationData?.pctWillChange).slice(0, 5)}% will
             likely actually change their use.
         </p>
-        <br>
-        <br>
         <p>
             In comparison, in the area surrounding {secondStation?.Name}, there are
             currently {String(secondStationData?.pctZonedAsSF).slice(0, 5)}% parcels zoned for single-family residency,

@@ -17,12 +17,14 @@
     <p>
         The main takeaway from this analysis is that the
         impacts of siting a by-right multifamily district vary significantly between municipalities and stations
-        within the same municipality. <br>
+        within the same municipality.
+        <br>
         We can also see that the population living near Rapid Transit stops are
         much more likely to take transit to work than those living near the commuter tail. This has implications
         for the MBTA Communities Act because it speaks to the differences in behavioral patterns of residents
-        living near different communities. <br> <br>
-
+        living near different communities.
+        <br>
+        <br>
         And how is the situation in other municipalities or for other stations?
     </p>
 
