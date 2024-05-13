@@ -33,7 +33,7 @@
             {municipality.Name} is a {municipality.MBTACommunityType} community with a population of {municipality.PopulationSize} and 
             {municipality.TotalHousingUnits} housing units. {municipality.Name} is currently compliant with the MBTA Communities Act as of April 2024, because they have submitted an acceptable action plan to the state. <br> <br>
 
-            Shapefiles for these MBTA communities come from the 2020 census, retrieved from Social Explorer. <br> <br>
+             <br> <br>
         </h3>
         {#if isVisible}
         {#if (municipality && !station)}
@@ -45,9 +45,9 @@
 
     {/if}
 
-    <!-- <p>This is the first paragraph.</p>
+    <!--  <h3>This is the first paragraph. </h3>
     {#if isVisible}
-      <p>This is the second paragraph that appears when the condition is met.</p>
+       <h3>This is the second paragraph that appears when the condition is met. </h3>
     {/if} -->
   </div>
   

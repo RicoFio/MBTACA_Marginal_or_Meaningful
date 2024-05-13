@@ -35,6 +35,8 @@
     <h2>
       Though critics have claimed that upzoning these suburban communities would significantly change the urban form of low-density communities in culturally incompatible ways, it is essential to understand that the MBTA Communities Act does not directly dictate what type of housing is built in these communities. It simply requires a single district within the municipality where some form of multifamily housing is allowed by right. This gives local governments significant influence on the location and nature of their multifamily districts. <br>
         </h2>
+        <br>
+        <div class="scroll-indicator"></div>
     {/if}
 </div>
 
@@ -66,4 +68,26 @@
     .footnotes sup a {
       text-decoration: none;
     }
+
+    .slide .scroll-indicator {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 15px solid white; /* Adjust color to match your slide's theme */
+    margin: 20px auto; /* Centers the arrow and adds space above it */
+    animation: bounce 2s infinite; /* Adds a bouncing animation to catch attention */
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
 </style>

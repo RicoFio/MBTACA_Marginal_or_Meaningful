@@ -148,7 +148,6 @@
         <h3>
         {station.Name} is located within {municipality.Name}, a {municipality.MBTACommunityType} community. It serves the following routes: {station.Routes}. The MBTA Communities Act stipulates that municipalities must create at least one by-right multifamily district within a 0.5-mile radius of a transit stop within their borders, which is visualized on the right. <br> <br>
         Toggle the force diagrams to see relevant demographic statistics for the zone around the transit station. Racial, age, gender and income demographics, as well as behavioral characteristics like how much of the population uses transit to get to work, may influence the effect of upzoning on a certain location. <br> <br> </h3>
-        <p>Demographic data is sourced from the 2022 ACS 5-year rolling estimates (downloaded from Social Explorer).</p>
     {/if}
     {#if isVisible}
     <h2>WHO LIVES HERE? - let's find out</h2>

@@ -5,7 +5,7 @@
 </script>
 
 <div class="slide">
-    <h1>TO BE CONTINUED ...</h1>
+    <h1>TAKEAWAYS</h1>
     <h2>
         What you will find here soon:
     </h2>

@@ -9,6 +9,7 @@ function createObserverStore() {
 
     const startObservation = (timeout_time=5000) => {
         update(state => {
+            
             // Disconnect previous observers and clear timeouts
             if (state.observer) {
                 state.observer.disconnect();
@@ -17,7 +18,6 @@ function createObserverStore() {
                 clearTimeout(state.timeout);
                 state.timeout = null;
             }
-
             // Setup a new observer
             state.observer = new IntersectionObserver(entries => {
                 const [entry] = entries;

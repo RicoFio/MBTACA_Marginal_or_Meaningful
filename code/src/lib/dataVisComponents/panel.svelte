@@ -136,7 +136,7 @@
     <Scrolly bind:this={scrollyComponent} bind:value> <!-- 3. This is what updates value -->
         <!-- {#each ['MARGINAL', 'OR', 'World!'] as text, i}
             <div class="step" class:active={value === i}>
-                <p>{text}</p>
+                 <h3>{text} </h3>
             </div>
         {/each} -->
         <Slide1 active={isSlide1Active} />
@@ -146,11 +146,11 @@
         <Slide21 active={value === 4} bind:municipality={selectedMunicipality} bind:station={firstStation} bind:value/>
         <!-- <Slide3 active={value === 4}  bind:municipality={selectedMunicipality} bind:station={firstStation}/> -->
         <Slide4 active={value === 5}  bind:municipality={selectedMunicipality} bind:station={firstStation} bind:value/>
-        <Slide5 active={value === 6}  bind:municipality={selectedMunicipality} bind:station={firstStation}/>
+        <Slide5 active={value === 6}  bind:value bind:municipality={selectedMunicipality} bind:station={firstStation} bind:zoningAndCensusFiles={zoningAndCensusFiles}/>
 <!--        <Slide51 active={value === 7}  bind:municipality={selectedMunicipality} bind:station={firstStation} zoningAndCensusFiles={zoningAndCensusFiles}/>-->
-        <Slide6 active={value === 7}  bind:municipality={selectedMunicipality} bind:stations={selectedStations} bind:comparisonMode={comparisonMode}/>
-        <Slide7 active={value === 8}  bind:guidedMode={guidedMode} bind:comparisonMode={comparisonMode} bind:explorationMode={explorationMode} />
-        <Slide8 active={value === 9} />
+        <Slide6 active={value === 7}  bind:value bind:municipality={selectedMunicipality} bind:stations={selectedStations} bind:comparisonMode={comparisonMode} bind:zoningAndCensusFiles={zoningAndCensusFiles}/>
+        <Slide7 active={value === 8}  bind:value bind:guidedMode={guidedMode} bind:comparisonMode={comparisonMode} bind:explorationMode={explorationMode} />
+        <!-- <Slide8 active={value === 9} /> -->
     </Scrolly>
 </div>
 

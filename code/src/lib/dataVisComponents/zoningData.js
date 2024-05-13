@@ -76,8 +76,11 @@ export function transformStopZoneFutureData(originalData) {
 export async function loadStationZoningAndUsageData (zoningAndCensusFiles, station) {
     const fileName = zoningAndCensusFiles.filter(e => e.StopName == station.Name)[0].FileName;
     const loadedData = await d3.json(fileName);
-    console.log("==================")
-    console.log(loadedData);
-    console.log("==================")
     return generateStopZoneData(loadedData.features);
+}
+
+export async function loadStationZoningAndUsageDataDict (zoningAndCensusFiles, station) {
+    const fileName = zoningAndCensusFiles.filter(e => e.StopName == station.Name)[0].FileName;
+    const loadedData = await d3.json(fileName);
+    return loadedData.features[0].properties
 }
