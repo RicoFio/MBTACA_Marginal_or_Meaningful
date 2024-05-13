@@ -210,7 +210,11 @@
         {#if selectedCategory == "age"}
             About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area are of age {currentHoveredPoint.label}.
         {:else if selectedCategory == "race"}
-            About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area are {currentHoveredPoint.label}.
+            {#if currentHoveredPoint.value == 'other_race'}
+                About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area belong to another race.
+            {:else}
+                About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area are {currentHoveredPoint.label}.
+            {/if}
         {:else if selectedCategory == "gender"}
             About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area are {currentHoveredPoint.label}.
         {:else if selectedCategory == "median household income"}

@@ -116,7 +116,7 @@
             {label: 'male', value: male},
             {label: 'female', value: female},
         ],
-        "mean household income": [
+        "median household income": [
             {label: 'less than 25,000 $', value: less_than_25000},
             {label: '25,000 to 49,999 $', value: to_49999},
             {label: '50,000 to 74,999 $', value: to_74999},
