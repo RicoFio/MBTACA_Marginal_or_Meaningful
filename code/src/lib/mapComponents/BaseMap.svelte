@@ -275,7 +275,6 @@
         let hoveredDot = evt.target;
         hoveredIndex = index;
         if (!selectedMunicipality || explorationMode){
-            console.log("REGBVFTRGHFD")
             if (evt.type === "mouseenter" || evt.type === "focus") {
                 // dot hovered
                 // cursor = {x: evt.x, y: evt.y};

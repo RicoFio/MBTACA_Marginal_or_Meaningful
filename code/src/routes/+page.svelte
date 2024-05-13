@@ -118,6 +118,7 @@
                 <FloatingTooltipComponent
                     bind:municipality={selectedMunicipality}
                     bind:stations={selectedStations}
+                    bind:zoningAndCensusFiles={zoningAndCensusFiles}
                 />
             {/if}
         {/key}

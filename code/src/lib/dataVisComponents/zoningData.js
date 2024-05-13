@@ -5,26 +5,30 @@ function generateStopZoneData(data) {
     const commercial = zoningData.pctZonedAsCommercial ?
         zoningData.pctZonedAsCommercial :
         zoningData.pctUsedAsCommercial;
+    const multiSum = zoningData.pctUsedAsDuplex +
+        zoningData.pctUsedAsTriplex +
+        zoningData.pctUsedAsMultiBuildings1Lot +
+        zoningData.pctUsedAsAptUpTo30Units +
+        zoningData.pctUsedAsAptOver30Units +
+        zoningData.pctUsedAsCoopApt +
+        zoningData.pctUsedAsOtherMultifamily;
     return {
         'currentZoning': {
-            singeFamily: {name: 'Single Family Zoning', value: zoningData.pctZonedAsSF},
-            commercial: {name: 'Commercial Zoning', value: commercial},
-            multiFamily: {name: 'Multi Family Zoning', value: zoningData.pctZonedAsMultifamily}
+            other: {name: 'Other Current Zoning', value: 100 - zoningData.pctZonedAsSF - commercial - zoningData.pctZonedAsMultifamily},
+            singeFamily: {name: 'Current Single Family Zoning', value: zoningData.pctZonedAsSF},
+            commercial: {name: 'Current Commercial Zoning', value: commercial},
+            multiFamily: {name: 'Current Multi Family Zoning', value: zoningData.pctZonedAsMultifamily}
         },
         'currentUsage': {
-            singeFamily: {name: 'Single Family Usage', value: zoningData.pctUsedAsSF},
-            commercial: {name: 'Commercial Usage', value: zoningData.pctUsedAsCommercial},
-            multiFamily: {name: 'Multi Family Usage', value: zoningData.pctUsedAsDuplex +
-                zoningData.pctUsedAsTriplex +
-                zoningData.pctUsedAsMultiBuildings1Lot +
-                zoningData.pctUsedAsAptUpTo30Units +
-                zoningData.pctUsedAsAptOver30Units +
-                zoningData.pctUsedAsCoopApt +
-                zoningData.pctUsedAsOtherMultifamily}
+            other: {name: 'Other Current Usage', value: 100 - zoningData.pctUsedAsSF - commercial - zoningData.pctUsedAsCommercial - multiSum},
+            singeFamily: {name: 'Current Single Family Usage', value: zoningData.pctUsedAsSF},
+            commercial: {name: 'Current Commercial Usage', value: zoningData.pctUsedAsCommercial},
+            multiFamily: {name: 'Current Multi Family Usage', value: multiSum}
         },
         'futureZoning': {
+            other: {name: 'Other Future Zoning', value: 100 - commercial - zoningData.pctZonedAsMultifamily - zoningData.pctZonedAsSF},
             singeFamily: {name: 'Future Single Family', value: 0},
-            commercial: {name: 'Future Commercial', commercial},
+            commercial: {name: 'Future Commercial', value: commercial},
             multiFamily: {name: 'Future Multi Family', value: zoningData.pctZonedAsMultifamily + zoningData.pctZonedAsSF }
         }
     }
@@ -76,8 +80,11 @@ export function transformStopZoneFutureData(originalData) {
 export async function loadStationZoningAndUsageData (zoningAndCensusFiles, station) {
     const fileName = zoningAndCensusFiles.filter(e => e.StopName == station.Name)[0].FileName;
     const loadedData = await d3.json(fileName);
-    console.log("==================")
-    console.log(loadedData);
-    console.log("==================")
     return generateStopZoneData(loadedData.features);
+}
+
+export async function loadStationZoningAndUsageDataDict (zoningAndCensusFiles, station) {
+    const fileName = zoningAndCensusFiles.filter(e => e.StopName == station.Name)[0].FileName;
+    const loadedData = await d3.json(fileName);
+    return loadedData.features[0].properties
 }

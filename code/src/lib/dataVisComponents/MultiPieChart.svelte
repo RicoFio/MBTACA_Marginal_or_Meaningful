@@ -2,9 +2,9 @@
     import * as d3 from "d3";
     import {autoPlacement, computePosition, offset} from "@floating-ui/dom";
 
-    let width = 450;
-    let height = 450;
-    let margin = 40;
+    let width = 280;
+    let height = 280;
+    let margin = 35;
 
     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
     let radius = Math.min(width, height) / 2 - margin;
@@ -14,7 +14,6 @@
 
     // Create dummy data
     export let stationData = undefined;
-
 
     $: {
         if (stationData !== undefined) {
@@ -29,9 +28,8 @@
 
     // set the color scale
     const color = d3
-        .scaleOrdinal()
-        .domain(["singleFamily", "commercial", "multiFamily"])
-        .range(d3.schemeDark2);
+        .scaleOrdinal(['#f39034', '#97340b', '#999624', '#abafa7'])
+        .domain(["singleFamily", "commercial", "multiFamily", "other"]);
 
     // Compute the position of each group on the pie:
     const pie = d3
@@ -47,8 +45,9 @@
             .outerRadius(radius * outerRadius)(slice);
     }
 
-    let donutTooltip, showTooltip, tooltipPosition;
-    let hoveredSlice;
+    let donutTooltip, showTooltip;
+    let tooltipPosition = {x: 0, y: 0};
+    let hoveredSlice = {};
 
     async function dotInteraction(data, index, event) {
         let hoveredDot = event.target;
@@ -68,19 +67,21 @@
             showTooltip = false;
         }
     }
+
+    const idContainer = Math.random() * 100;
 </script>
 
 {#key stationData}
     <svg
             {width}
             {height}
-            viewBox="{-width / 2}, {-height / 2}, {width}, {height}"
+            viewBox="{-width / 2 - 20}, {-height / 2 - 20}, {width + 50}, {height + 50}"
             style:max-width="100%"
             style:height="auto"
     >
         <g class="chart-inner">
             {#each zoning_pie_data as slice, index}
-                <path d={arc(slice, 0.8, 1)} fill={color(slice.data[0])} stroke="white"
+                <path d={arc(slice, 0.2, 0.4)} fill={color(slice.data[0])} stroke="white" stroke-width="3"
                       on:mouseenter={(evt) => dotInteraction(slice.data[1], index, evt)}
                       on:mouseleave={(evt) => dotInteraction(slice.data[1], index, evt)}
                       on:focus={(evt) => dotInteraction(slice.data[1], index, evt)}
@@ -90,7 +91,7 @@
                 />
             {/each}
             {#each usage_pie_data as slice, index}
-                <path d={arc(slice, 0.5, 0.75)} fill={color(slice.data[1])} stroke="white"
+                <path d={arc(slice, 0.65, 0.85)} fill={color(slice.data[0])} stroke="white" stroke-width="3"
                       on:mouseenter={(evt) => dotInteraction(slice.data[1], index, evt)}
                       on:mouseleave={(evt) => dotInteraction(slice.data[1], index, evt)}
                       on:focus={(evt) => dotInteraction(slice.data[1], index, evt)}
@@ -100,7 +101,7 @@
                 />
             {/each}
             {#each future_pie_data as slice, index}
-                <path d={arc(slice, 0.2, 0.45)} fill={color(slice.data[1])} stroke="white"
+                <path d={arc(slice, 1.12, 1.34)} fill={color(slice.data[0])} stroke="white" stroke-width="3"
                       on:mouseenter={(evt) => dotInteraction(slice.data[1], index, evt)}
                       on:mouseleave={(evt) => dotInteraction(slice.data[1], index, evt)}
                       on:focus={(evt) => dotInteraction(slice.data[1], index, evt)}
@@ -110,6 +111,27 @@
                 />
             {/each}
         </g>
+        <path id={`wavy-current-zoning-${idContainer}`} d={arc({startAngle: 0, endAngle:5.8, padAngle: 0}, 0.2, 0.48)}
+              class="donut-text-path" transform='rotate(95)'></path>
+        <text style="text-anchor: middle;">
+            <textPath xlink:href={`#wavy-current-zoning-${idContainer}`} startOffset="50%" class="donut-text">
+                Current Zoning
+            </textPath>
+        </text>
+        <path id={`wavy-current-usage-${idContainer}`} d={arc({startAngle: 0, endAngle:5.8, padAngle: 0}, 0.2, 0.92)}
+              class="donut-text-path" transform='rotate(114)'></path>
+        <text style="text-anchor: middle;">
+            <textPath xlink:href={`#wavy-current-usage-${idContainer}`} startOffset="50%" class="donut-text">
+                Current Usage
+            </textPath>
+        </text>
+        <path id={`wavy-future-${idContainer}`} d={arc({startAngle: 0, endAngle:5.8, padAngle: 0}, 0.2, 1.4)}
+              class="donut-text-path" transform='rotate(120)'></path>
+        <text style="text-anchor: middle;">
+            <textPath xlink:href={`#wavy-future-${idContainer}`} startOffset="50%" class="donut-text">
+                Future Zoning
+            </textPath>
+        </text>
     </svg>
 {/key}
 
@@ -117,9 +139,9 @@
     hidden={!showTooltip}
     style="top: {tooltipPosition.y}px; left: {tooltipPosition.x}px"
     bind:this={donutTooltip}
-    role="tooltip">
+    role="chart-tooltip">
     <dt>{ hoveredSlice.name }</dt>
-    <dd>{ hoveredSlice.value }</dd>
+    <dd>{ hoveredSlice.value }%</dd>
 </dl>
 
 <style>
@@ -132,7 +154,6 @@
         display: grid;
         grid-template-columns: auto auto; /* Define two columns */
         grid-auto-rows: auto; /* This will create a new row for each term/description pair */
-        gap: 0.5em; /* Adjust the gap between items */
         align-items: start;
         position: fixed; /* Ensure it's positioned in relation to the SVG or a relative container */
         top: 10px;
@@ -141,20 +162,29 @@
         backdrop-filter: blur(10px);
         border-radius: 5px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow for better readability */
-        font-size: 0.9em;
-        padding: 1em;
+        font-size: 1.2em;
         transition-duration: 500ms;
         transition-property: opacity, visibility;
-
+        line-height: 30px;
+        padding: 10px;
         font-family: 'Montserrat', sans-serif;
         visibility: visible;
-        width: 250px;
+        width: 400px;
         color: #a9987a;
 
         &[hidden]:not(:hover, :focus-within) {
             opacity: 0;
             visibility: hidden;
         }
+    }
+
+    .donut-text-path {
+        fill: none;
+    }
+
+    .donut-text {
+        fill: #f0f0f0;
+        font-weight: bold;
     }
 
     dl.info dt {
