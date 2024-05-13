@@ -85,21 +85,21 @@
         </ul>
     {/if}
     <h2>WHAT'S THE HOUSING MIX?</h2>
-    <div style="display: flex; align-items: center; gap: 10px;">
-        <label style="cursor: pointer;">
-            <input type="radio" value="zoning" bind:group={selectedComponent} />
-            Zoning
-        </label>
-        <label style="cursor: pointer;">
-            <input type="radio" value="usage" bind:group={selectedComponent} />
-            Usage
-        </label>
-    </div>
-    <br/>
     <div class="treemap-container">
         {#key stopName}
             <div>
                 {#if stopName}
+                    <div>
+                        <label style="cursor: pointer;">
+                            <input type="radio" value="zoning" bind:group={selectedComponent} />
+                            Zoning
+                        </label>
+                        <label style="cursor: pointer;">
+                            <input type="radio" value="usage" bind:group={selectedComponent} />
+                            Usage
+                        </label>
+                    </div>
+                    <br/>
                     <div style="display: flex; align-items: center; gap: 100px;">
                         <div>
                             <div id="treeMap" class={treeMapVisibility}>
@@ -139,7 +139,7 @@
         width: 100%; /* Ensures it takes up no more than 100% of its parent */
         max-width: 100%; /* Ensures it does not exceed the width of the parent */
         flex-wrap: wrap; /* Ensures contents wrap and do not overflow */
-        align-items: flex-start;
+        align-items: center;
         gap: 10px;
     }
 </style>
