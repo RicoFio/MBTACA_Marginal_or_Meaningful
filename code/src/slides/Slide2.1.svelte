@@ -1,4 +1,7 @@
 <script>
+    import {onMount} from 'svelte';
+    import Select from 'svelte-select';
+    import {calculateBoundingBox} from "$lib/mapComponents/mapUtils.js";
     import {observerStore} from '../lib/panelComponents/Scrolly_slide';
 
     export let active = false;

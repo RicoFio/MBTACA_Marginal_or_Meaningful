@@ -28,6 +28,9 @@
             relevant demographic statistics about the area surrounding each MBTA station.
         </p>
         <br>
+        <br>
+        <br>
+        <br>
         <div class="select-container">
             <Select {items} {searchable} on:change={handleSelect} on:click={handleSelect} class="searchbar"
                     placeholder="Please select a municipality"/>
