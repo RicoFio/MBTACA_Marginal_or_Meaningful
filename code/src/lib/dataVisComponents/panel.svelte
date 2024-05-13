@@ -174,7 +174,7 @@
         left: 0;
         width: 40%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.9);
+        background-color: rgba(0, 0, 0, 0.8);
         padding: 20px;
         color: #9f9090;
         /*backdrop-filter: blur(8px);*/
