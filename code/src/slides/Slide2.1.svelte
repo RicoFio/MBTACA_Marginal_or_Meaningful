@@ -32,8 +32,6 @@
         <h3>
             {municipality.Name} is a {municipality.MBTACommunityType} community with a population of {municipality.PopulationSize} and 
             {municipality.TotalHousingUnits} housing units. {municipality.Name} is currently compliant with the MBTA Communities Act as of April 2024, because they have submitted an acceptable action plan to the state. <br> <br>
-
-            Shapefiles for these MBTA communities come from the 2020 census, retrieved from Social Explorer. <br> <br>
         </h3>
         {#if isVisible}
         {#if (municipality && !station)}

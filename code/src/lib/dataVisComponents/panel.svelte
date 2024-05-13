@@ -12,7 +12,7 @@
     // import Slide51 from "../../slides/Slide5.1.svelte";
     import Slide6 from "../../slides/Slide6.svelte";
     import Slide7 from "../../slides/Slide7.svelte";
-    import Slide8 from "../../slides/Slide8.svelte";
+    // import Slide8 from "../../slides/Slide8.svelte";
 
     import { tick } from "svelte";
     import { onMount } from 'svelte';
@@ -148,9 +148,9 @@
         <Slide4 active={value === 5}  bind:municipality={selectedMunicipality} bind:station={firstStation} bind:value/>
         <Slide5 active={value === 6}  bind:municipality={selectedMunicipality} bind:station={firstStation}/>
 <!--        <Slide51 active={value === 7}  bind:municipality={selectedMunicipality} bind:station={firstStation} zoningAndCensusFiles={zoningAndCensusFiles}/>-->
-        <Slide6 active={value === 7}  bind:municipality={selectedMunicipality} bind:stations={selectedStations} bind:comparisonMode={comparisonMode}/>
+        <Slide6 active={value === 7}  bind:municipality={selectedMunicipality} bind:stations={selectedStations} bind:comparisonMode={comparisonMode} zoningAndCensusFiles={zoningAndCensusFiles}/>
         <Slide7 active={value === 8}  bind:guidedMode={guidedMode} bind:comparisonMode={comparisonMode} bind:explorationMode={explorationMode} />
-        <Slide8 active={value === 9} />
+<!--        <Slide8 active={value === 9} />-->
     </Scrolly>
 </div>
 

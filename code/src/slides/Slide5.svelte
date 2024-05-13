@@ -85,11 +85,6 @@
             Toggle the treemap diagram to see how the current and future zoning mix differ. If a significant number of parcels around the station need to be upzoned to become compliant, this may be a big change, but in some areas, the current and future zoning mix might be very similar.
             Under the MBTA Communities Act, municipalities get to decide where to site their multifamily districts, and can use these statistics to help make their decisions. 
         </h3>
-        <ul>
-            <li>Parcel data, including parcel-level zoning and usage information, is sourced from</li>
-            <li>Zoning code designations for Brookline from</li>
-            <li>Usage code designations for the state of Massachusetts from <a href="https://cityofboston.gov" target="_blank">CityOfBoston.gov</a></li>
-        </ul>
     {/if}
     <h2>WHAT'S THE HOUSING MIX?</h2>
     <div style="display: flex; align-items: center; gap: 10px;">
