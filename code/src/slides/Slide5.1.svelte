@@ -20,7 +20,6 @@
 
 <div class="slide">
     <div style="display: flex; align-items: center; gap: 10px;">
-        <h1>LETS TALK</h1>
         {#key station}
             {#if station}
                 <MultiPieChart bind:stationData={stationData} />

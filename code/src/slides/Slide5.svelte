@@ -91,7 +91,7 @@
 <div class="slide">
     {#if (municipality && station)}
         <h1>{municipality.Name}: {station.Name}</h1>
-        <h3>
+        <p>
             The visualizations below show the area's current zoning and usage breakdown within a 0.5-mile radius
             of {station.Name} station. Both usage and zoning information are defined at the parcel level, and parcels
             within the 0.5-mile buffer are aggregated. Notice that in many areas, the zoning and usage don't necessarily
@@ -105,13 +105,7 @@
             areas, the current and future zoning mix might be very similar.
             Under the MBTA Communities Act, municipalities get to decide where to site their multifamily districts, and
             can use these statistics to help make their decisions.
-        </h3>
-        <ul>
-            <li>Parcel data, including parcel-level zoning and usage information, is sourced from</li>
-            <li>Zoning code designations for Brookline from</li>
-            <li>Usage code designations for the state of Massachusetts from <a href="https://cityofboston.gov"
-                                                                               target="_blank">CityOfBoston.gov</a></li>
-        </ul>
+        </p>
     {/if}
     <h2>WHAT'S THE HOUSING MIX?</h2>
     <div class="treemap-container">
