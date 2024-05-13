@@ -1,14 +1,15 @@
 <script>
-    import { onMount } from "svelte";
-    export let active = false;
+    import {onMount} from "svelte";
     import * as d3 from "d3";
     import ForceGraph from "../lib/dataVisComponents/ForceGraph.svelte";
     import ForceGraphSelector from "../lib/dataVisComponents/ForceGraphSelector.svelte"
-    import { observerStore } from '../lib/panelComponents/Scrolly_slide.js';
+    import {observerStore} from '../lib/panelComponents/Scrolly_slide.js';
+
+    export let active = false;
 
     export let municipality = {};
     export let station = {};
-    
+
     let full_data;
     let station_data;
 
@@ -16,7 +17,7 @@
     let to_34 = 0;
     let to_64 = 0;
     let over_65 = 0;
-    let less_than_25000 = 0; 
+    let less_than_25000 = 0;
     let to_49999 = 0;
     let to_74999 = 0;
     let to_99999 = 0;
@@ -68,18 +69,18 @@
         to_64 = (station_data?.properties.percentage_weighted_total_population_male_35_to_64_years + station_data?.properties.percentage_weighted_total_population_female_35_to_64_years) * 100;
         over_65 = (station_data?.properties.percentage_weighted_total_population_male_65_years_and_over + station_data?.properties.percentage_weighted_total_population_female_65_years_and_over) * 100;
         // race
-        white = (station_data?.properties.percentage_weighted_total_population_not_hispanic_or_latino_white_alone)*100;
-        black = (station_data?.properties.percentage_weighted_total_population_not_hispanic_or_latino_black_or_african_american_alone)*100;
-        asian = (station_data?.properties.percentage_weighted_total_population_not_hispanic_or_latino_asian_alone)*100;
-        other_race = (station_data?.properties.percentage_weighted_total_population_not_hispanic_or_latino_american_indian_and_alaska_native_alone + station_data?.properties.percentage_weighted_total_population_not_hispanic_or_latino_native_hawaiian_and_other_pacific_islander_alone + station_data?.properties.percentage_weighted_total_population_not_hispanic_or_latino_some_other_race_alone + station_data?.properties.percentage_weighted_total_population_not_hispanic_or_latino_two_or_more_races) *100;
-        hispanic = (station_data?.properties.percentage_weighted_total_population_hispanic_or_latino)*100;
+        white = (station_data?.properties.percentage_weighted_total_population_not_hispanic_or_latino_white_alone) * 100;
+        black = (station_data?.properties.percentage_weighted_total_population_not_hispanic_or_latino_black_or_african_american_alone) * 100;
+        asian = (station_data?.properties.percentage_weighted_total_population_not_hispanic_or_latino_asian_alone) * 100;
+        other_race = (station_data?.properties.percentage_weighted_total_population_not_hispanic_or_latino_american_indian_and_alaska_native_alone + station_data?.properties.percentage_weighted_total_population_not_hispanic_or_latino_native_hawaiian_and_other_pacific_islander_alone + station_data?.properties.percentage_weighted_total_population_not_hispanic_or_latino_some_other_race_alone + station_data?.properties.percentage_weighted_total_population_not_hispanic_or_latino_two_or_more_races) * 100;
+        hispanic = (station_data?.properties.percentage_weighted_total_population_hispanic_or_latino) * 100;
         // Gender
-        female = (station_data?.properties.percentage_weighted_total_population_female)*100;
-        male = (station_data?.properties.percentage_weighted_total_population_male)*100;
+        female = (station_data?.properties.percentage_weighted_total_population_female) * 100;
+        male = (station_data?.properties.percentage_weighted_total_population_male) * 100;
         // Income
         less_than_25000 = station_data?.properties.percentage_weighted_households_less_than_25000 * 100;
         to_49999 = station_data?.properties.percentage_weighted_households_25000_to_49999 * 100;
-        to_74999 = station_data?.properties.percentage_weighted_households_50000_to_74999 * 100; 
+        to_74999 = station_data?.properties.percentage_weighted_households_50000_to_74999 * 100;
         to_99999 = station_data?.properties.percentage_weighted_households_75000_to_99999 * 100;
         more_than_100000 = station_data?.properties.percentage_weighted_households_100000_or_more * 100;
         // Vehicles
@@ -145,25 +146,32 @@
 <div class="slide">
     {#if (municipality && station)}
         <h1>{municipality.Name}: {station.Name}</h1>
-        <h3>
-        {station.Name} is located within {municipality.Name}, a {municipality.MBTACommunityType} community. It serves the following routes: {station.Routes}. The MBTA Communities Act stipulates that municipalities must create at least one by-right multifamily district within a 0.5-mile radius of a transit stop within their borders, which is visualized on the right. <br> <br>
-        Toggle the force diagrams to see relevant demographic statistics for the zone around the transit station. Racial, age, gender and income demographics, as well as behavioral characteristics like how much of the population uses transit to get to work, may influence the effect of upzoning on a certain location. <br> <br> </h3>
-        <p>Demographic data is sourced from the 2022 ACS 5-year rolling estimates (downloaded from Social Explorer).</p>
+        <p>
+            {station.Name} is located within {municipality.Name}, a {municipality.MBTACommunityType} community. It
+            serves the following routes: {station.Routes}. The MBTA Communities Act stipulates that municipalities must
+            create at least one by-right multifamily district within a 0.5-mile radius of a transit stop within their
+            borders, which is visualized on the right. <br> <br>
+            Toggle the force diagrams to see relevant demographic statistics for the zone around the transit station.
+            Racial, age, gender and income demographics, as well as behavioral characteristics like how much of the
+            population uses transit to get to work, may influence the effect of upzoning on a certain location.
+            <br>
+            <br>
+        </p>
     {/if}
     {#if isVisible}
-    <h2>WHO LIVES HERE? - let's find out</h2>
-    <ForceGraphSelector bind:activeSelection></ForceGraphSelector>
+        <h2>WHO LIVES HERE? - let's find out</h2>
+        <ForceGraphSelector bind:activeSelection></ForceGraphSelector>
 
-    {#key current_data} <!--forcing visualization to re-render when data is updated -->
-        {#if !isNaN(under_18)}
-            <ForceGraph
-                    cssHeight=50
-                    cssWidth=40
-                    data={ current_data }
-                    selectedCategory = { activeSelection }
-            />
-        {/if}
-    {/key}
+        {#key current_data} <!--forcing visualization to re-render when data is updated -->
+            {#if !isNaN(under_18)}
+                <ForceGraph
+                        cssHeight=50
+                        cssWidth=40
+                        data={ current_data }
+                        selectedCategory={ activeSelection }
+                />
+            {/if}
+        {/key}
     {/if}
 </div>
 <!-- </ScrollySlide> -->
@@ -172,17 +180,17 @@
     @import url("$lib/slide.css");
 
     .slide {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
-  
+
     p {
-      margin: 0;
-      padding: 1em;
-      width: 100%;
-      text-align: center;
+        margin: 0;
+        padding: 1em;
+        width: 100%;
+        text-align: center;
     }
-  </style>
+</style>
