@@ -9,15 +9,13 @@
     export let municipality = {};
     export let station = {};
 
-    let treeMapHeight = 0;
-    let treeMapUsageHeight = 0;
     let selectedComponent = 'zoning';
     let stopZoneData;
     let transformedStopZoneDataForMunicipality;
     let transformedStopZoneUsageDataForMunicipality;
     let transformedStopZoneFutureDataForMunicipality;
 
-    let stopData = {};
+    let stopData = [];
     $: stopName = station?.Name;
 
     function transformStopZoneData(originalData) {
@@ -41,11 +39,6 @@
                 value: originalData[0].properties.pctUsedAsCommercial,
                 category1: "pctUsedAsCommercial"
             },
-            {
-                name: "Multiple Buildings on 1 Lot",
-                value: originalData[0].properties.pctUsedAsMultiBuildings1Lot,
-                category1: "pctUsedAsMultiBuildings1Lot"
-            },
             {name: "Duplex", value: originalData[0].properties.pctUsedAsDuplex, category1: "pctUsedAsDuplex"},
             {name: "Triplex", value: originalData[0].properties.pctUsedAsTriplex, category1: "pctUsedAsTriplex"}
         ];
@@ -58,11 +51,6 @@
             originalData[0].properties.pctUsedAsCommercial
 
         let out = [
-            {
-                name: "Single Family",
-                value: originalData[0].properties.pctFutureZonedAsSF,
-                category1: "pctFutureZonedAsSF"
-            },
             {name: "Commercial", value: commercial, category1: "isZonedAsCommercial"},
             {
                 name: "Multi Family",
@@ -74,9 +62,6 @@
     }
 
     onMount(async () => {
-        treeMapHeight = document.getElementById('treeMap').clientHeight;
-        treeMapUsageHeight = document.getElementById('treeMapUsage').clientHeight;
-
         stopZoneData = await d3.json(
             "/data/brookline_milton_stop_zone_zoning_usage_census_v2.geojson",
         );
@@ -94,8 +79,13 @@
         }
     }
 
-    $: treeMapVisibility = selectedComponent == 'zoning' ? 'visible' : 'hidden';
-    $: treeMapUsageVisibility = selectedComponent == 'usage' ? 'visible' : 'hidden';
+    $: treeMapVisibility = activeSelection == 'zoning' ? 'visible' : 'hidden';
+    $: treeMapUsageVisibility = activeSelection == 'usage' ? 'visible' : 'hidden';
+    let activeSelection = 'zoning';
+
+    function isSelected(value) {
+        return activeSelection === value ? 'selected' : '';
+    }
 </script>
 
 <div class="slide">
@@ -118,21 +108,19 @@
         </p>
     {/if}
     <h2>WHAT'S THE HOUSING MIX?</h2>
-    <div style="display: flex; align-items: center; gap: 10px;">
-        <label style="cursor: pointer;">
-            <input type="radio" value="zoning" bind:group={selectedComponent}/>
-            Zoning
-        </label>
-        <label style="cursor: pointer;">
-            <input type="radio" value="usage" bind:group={selectedComponent}/>
-            Usage
-        </label>
-    </div>
-    <br/>
-    <div style="display: flex; align-items: center; gap: 10px;">
+    <div class="treemap-container">
         {#key stopName}
             <div>
                 {#if stopName}
+                    <div class="radio-container">
+                        {#each ['zoning', 'usage'] as category}
+                            <label class={isSelected(category)}>
+                                <input type="radio" bind:group={activeSelection} name="selector" value={category}>
+                                {category.replace(/_/g, ' ').toUpperCase()} <!-- Improved readability -->
+                            </label>
+                        {/each}
+                    </div>
+                    <br/>
                     <div style="display: flex; align-items: center; gap: 100px;">
                         <div>
                             <div id="treeMap" class={treeMapVisibility}>
@@ -153,37 +141,33 @@
                 {/if}
             </div>
         {/key}
-
-        <div>
-            <div id="treeMap" class={treeMapVisibility}>
-                <h2></h2>
-                {#if transformedStopZoneDataForMunicipality != undefined}
-
-                {:else}
-
-                {/if}
-            </div>
-
-            <div id="treeMapUsage" class={treeMapUsageVisibility}>
-                <h2></h2>
-                {#if transformedStopZoneUsageDataForMunicipality != undefined}
-
-                {:else}
-
-                {/if}
-            </div>
-        </div>
-
-        <div id="treeMapFuture">
-
-            {#if transformedStopZoneFutureDataForMunicipality != undefined}
-
-            {:else}
-            {/if}
-        </div>
+    </div>
+    <div>
+        {#if (stopData?.length > 0)}
+            <p>
+                In the area surrounding {stopName}, there are
+                currently {String(stopData[0].properties.pctZonedAsSF).slice(0, 5)}% parcels zoned for single family
+                residency,
+                of which {String(stopData[0].properties.pctUsedAsSF).slice(0, 5)}% are actually used as Single Family.
+                This means that
+                {String(stopData[0].properties.pctMustUpzone).slice(0, 5)}% parcels (colored in orange in the map on the right) must upzone
+                in order to comply with the MBTA communities Act, and
+                {String(stopData[0].properties.pctWillChange).slice(0, 5)}% will likely actually change their use. The parcels in green, in turn, do not have to change.
+            </p>
+            <p>
+                Should you see parcels in white on the right, it means that we have not yet processed the data for this station.
+            </p>
+        {/if}
     </div>
 </div>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <style>
     @import url("$lib/slide.css");
 
@@ -193,5 +177,42 @@
 
     .visible {
         display: block;
+    }
+
+    .radio-container {
+        position: relative;
+        top: 16px;
+        left: 16px;
+        padding: 4px;
+        border-radius: 2px;
+        display: flex;
+        flex-direction: row; /* Align items horizontally */
+        gap: 10px; /* Add some space between items */
+    }
+
+    /* Basic styling for labels */
+    label {
+        cursor: pointer;
+        transition: font-weight 0.3s ease;
+        white-space: nowrap; /* Prevent labels from wrapping */
+    }
+
+    /* Hide the radio button */
+    input[type="radio"] {
+        display: none;
+    }
+
+    /* When a label is selected, make the text bold */
+    .selected {
+        font-weight: bold;
+    }
+
+    .treemap-container {
+        display: flex;
+        width: 100%; /* Ensures it takes up no more than 100% of its parent */
+        max-width: 100%; /* Ensures it does not exceed the width of the parent */
+        flex-wrap: wrap; /* Ensures contents wrap and do not overflow */
+        align-items: center;
+        gap: 10px;
     }
 </style>

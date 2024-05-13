@@ -35,7 +35,7 @@
     <br>
     <br>
     <h2>Data sources and Acknowledgments</h2>
-    <h3>
+    <p>
         This project was developed with guidance and feedback from the <a href="https://www.mapc.org/" target="_blank">Metropolitan
         Area Planning Commission (MAPC)</a>.
         Shapefiles for the MBTA communities come from the 2020 census, retrieved from Social Explorer.
@@ -47,7 +47,7 @@
         <a href=https://www.wbur.org/radioboston/2023/11/27/mbta-communites-act-density-transit-oriented-housing
            target="_blank">www.wbur.org</a> and
         <a href=https://www.mass.gov/info-details/multi-family-zoning-requirement-for-mbta-communities target="_blank">www.mass.gov</a>.
-    </h3>
+    </p>
 </div>
 
 <style>

@@ -1,19 +1,24 @@
 
 
-export function getTreemapColorByCategory(d) {
+export function getCirclePackingColorByCategory(d) {
+    console.log(d.category1);
     switch (d.category1) {
+        case "pctUsedAsComm":
+            return "#97340b";
+        case "pctUsedAsCommerical":
+            return "#97340b";
         case "pctUsedAsCommercial":
-            return "#abafa7";
+            return "#97340b";
         case "isZonedAsCommercial":
-            return "#abafa7";
+            return "#97340b";
         case "pctZonedAsCommercial":
-            return "#abafa7";
+            return "#97340b";
         case "pctZonedAsSF":
-            return "#05515e";
+            return "#f39034";
         case "pctUsedAsSF":
-            return "#05515e";
+            return "#f39034";
         case "pctFutureZonedAsSF":
-            return "#05515e";
+            return "#f39034";
         case "pctFutureZonedAsMulti":
             return "#999624";
         case "pctZonedAsMultifamily":
@@ -21,10 +26,10 @@ export function getTreemapColorByCategory(d) {
         case "pctUsedAsMultiBuildings1Lot":
             return "#999624";
         case "pctUsedAsDuplex":
-            return "#629681";
+            return "#999624";
         case "pctUsedAsTriplex":
-            return "#97340b";
+            return "#999624";
         default:
-            return "white";
+            return "#abafa7";
     }
 }

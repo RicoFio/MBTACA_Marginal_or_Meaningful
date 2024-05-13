@@ -174,18 +174,18 @@
         {/key}
     {/if}
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <!-- </ScrollySlide> -->
 
 <style>
     @import url("$lib/slide.css");
-
-    .slide {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
 
     p {
         margin: 0;
