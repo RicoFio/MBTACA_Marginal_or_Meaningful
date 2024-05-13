@@ -25,6 +25,6 @@ export function getCirclePackingColorByCategory(d) {
         case "pctUsedAsTriplex":
             return "#97340b";
         default:
-            return "gray";
+            return "white";
     }
 }

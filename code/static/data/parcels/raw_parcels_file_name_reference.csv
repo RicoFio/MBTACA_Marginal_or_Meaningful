@@ -1,0 +1,165 @@
+StopName,FileName
+Sharon,data/parcels/per_station/sharon_parcels.geojson
+South Weymouth,data/parcels/per_station/south_weymouth_parcels.geojson
+East Weymouth,data/parcels/per_station/east_weymouth_parcels.geojson
+Hingham,data/parcels/per_station/hingham_parcels.geojson
+Weymouth Landing/East Braintree,data/parcels/per_station/weymouth_landing_east_braintree_parcels.geojson
+Worcester,data/parcels/per_station/worcester_parcels.geojson
+Chelsea,data/parcels/per_station/chelsea_parcels.geojson
+Wellington,data/parcels/per_station/wellington_parcels.geojson
+Assembly,data/parcels/per_station/assembly_parcels.geojson
+Holbrook/Randolph,data/parcels/per_station/holbrook_randolph_parcels.geojson
+Reading,data/parcels/per_station/reading_parcels.geojson
+Route 128,data/parcels/per_station/route_128_parcels.geojson
+Dedham Corporate Center,data/parcels/per_station/dedham_corporate_center_parcels.geojson
+Endicott,data/parcels/per_station/endicott_parcels.geojson
+Kingston,data/parcels/per_station/kingston_parcels.geojson
+Quincy Center,data/parcels/per_station/quincy_center_parcels.geojson
+Quincy Adams,data/parcels/per_station/quincy_adams_parcels.geojson
+Wollaston,data/parcels/per_station/wollaston_parcels.geojson
+North Quincy,data/parcels/per_station/north_quincy_parcels.geojson
+Greenwood,data/parcels/per_station/greenwood_parcels.geojson
+Waverley,data/parcels/per_station/waverley_parcels.geojson
+Bridgewater,data/parcels/per_station/bridgewater_parcels.geojson
+Hanson,data/parcels/per_station/hanson_parcels.geojson
+Middleborough/Lakeville,data/parcels/per_station/middleborough_lakeville_parcels.geojson
+Newburyport,data/parcels/per_station/newburyport_parcels.geojson
+Halifax,data/parcels/per_station/halifax_parcels.geojson
+Ayer,data/parcels/per_station/ayer_parcels.geojson
+Alewife,data/parcels/per_station/alewife_parcels.geojson
+Davis,data/parcels/per_station/davis_parcels.geojson
+Porter,data/parcels/per_station/porter_parcels.geojson
+Harvard,data/parcels/per_station/harvard_parcels.geojson
+Union Square,data/parcels/per_station/union_square_parcels.geojson
+East Somerville,data/parcels/per_station/east_somerville_parcels.geojson
+Lechmere,data/parcels/per_station/lechmere_parcels.geojson
+Central,data/parcels/per_station/central_parcels.geojson
+Kendall/MIT,data/parcels/per_station/kendall_mit_parcels.geojson
+Gloucester,data/parcels/per_station/gloucester_parcels.geojson
+West Gloucester,data/parcels/per_station/west_gloucester_parcels.geojson
+Belmont,data/parcels/per_station/belmont_parcels.geojson
+Foxboro,data/parcels/per_station/foxboro_parcels.geojson
+Walpole,data/parcels/per_station/walpole_parcels.geojson
+Windsor Gardens,data/parcels/per_station/windsor_gardens_parcels.geojson
+North Wilmington,data/parcels/per_station/north_wilmington_parcels.geojson
+Wilmington,data/parcels/per_station/wilmington_parcels.geojson
+Norwood Central,data/parcels/per_station/norwood_central_parcels.geojson
+Norwood Depot,data/parcels/per_station/norwood_depot_parcels.geojson
+Swampscott,data/parcels/per_station/swampscott_parcels.geojson
+Shirley,data/parcels/per_station/shirley_parcels.geojson
+Islington,data/parcels/per_station/islington_parcels.geojson
+West Medford,data/parcels/per_station/west_medford_parcels.geojson
+Medford/Tufts,data/parcels/per_station/medford_tufts_parcels.geojson
+Ball Square,data/parcels/per_station/ball_square_parcels.geojson
+Magoun Square,data/parcels/per_station/magoun_square_parcels.geojson
+North Billerica,data/parcels/per_station/north_billerica_parcels.geojson
+Lincoln,data/parcels/per_station/lincoln_parcels.geojson
+Ipswich,data/parcels/per_station/ipswich_parcels.geojson
+Rowley,data/parcels/per_station/rowley_parcels.geojson
+Melrose Highlands,data/parcels/per_station/melrose_highlands_parcels.geojson
+Wakefield,data/parcels/per_station/wakefield_parcels.geojson
+Lawrence,data/parcels/per_station/lawrence_parcels.geojson
+Norfolk,data/parcels/per_station/norfolk_parcels.geojson
+Stoughton,data/parcels/per_station/stoughton_parcels.geojson
+Revere Beach,data/parcels/per_station/revere_beach_parcels.geojson
+Wonderland,data/parcels/per_station/wonderland_parcels.geojson
+Beachmont,data/parcels/per_station/beachmont_parcels.geojson
+South Acton,data/parcels/per_station/south_acton_parcels.geojson
+West Natick,data/parcels/per_station/west_natick_parcels.geojson
+Natick Center,data/parcels/per_station/natick_center_parcels.geojson
+Grafton,data/parcels/per_station/grafton_parcels.geojson
+North Leominster,data/parcels/per_station/north_leominster_parcels.geojson
+Fitchburg,data/parcels/per_station/fitchburg_parcels.geojson
+Wachusett,data/parcels/per_station/wachusett_parcels.geojson
+Nantasket Junction,data/parcels/per_station/nantasket_junction_parcels.geojson
+Cohasset,data/parcels/per_station/cohasset_parcels.geojson
+West Hingham,data/parcels/per_station/west_hingham_parcels.geojson
+Hamilton/Wenham,data/parcels/per_station/hamilton_wenham_parcels.geojson
+Wellesley Farms,data/parcels/per_station/wellesley_farms_parcels.geojson
+Wellesley Hills,data/parcels/per_station/wellesley_hills_parcels.geojson
+Wellesley Square,data/parcels/per_station/wellesley_square_parcels.geojson
+Waban,data/parcels/per_station/waban_parcels.geojson
+Needham Heights,data/parcels/per_station/needham_heights_parcels.geojson
+Needham Center,data/parcels/per_station/needham_center_parcels.geojson
+Hersey,data/parcels/per_station/hersey_parcels.geojson
+Needham Junction,data/parcels/per_station/needham_junction_parcels.geojson
+River Works,data/parcels/per_station/river_works_parcels.geojson
+Abington,data/parcels/per_station/abington_parcels.geojson
+Forge Park/495,data/parcels/per_station/forge_park_495_parcels.geojson
+Franklin,data/parcels/per_station/franklin_parcels.geojson
+Braintree,data/parcels/per_station/braintree_parcels.geojson
+Ashland,data/parcels/per_station/ashland_parcels.geojson
+Southborough,data/parcels/per_station/southborough_parcels.geojson
+Brandeis/Roberts,data/parcels/per_station/brandeis_roberts_parcels.geojson
+Waltham,data/parcels/per_station/waltham_parcels.geojson
+Kendal Green,data/parcels/per_station/kendal_green_parcels.geojson
+Wedgemere,data/parcels/per_station/wedgemere_parcels.geojson
+Winchester Center,data/parcels/per_station/winchester_center_parcels.geojson
+West Concord,data/parcels/per_station/west_concord_parcels.geojson
+Concord,data/parcels/per_station/concord_parcels.geojson
+Beverly,data/parcels/per_station/beverly_parcels.geojson
+Montserrat,data/parcels/per_station/montserrat_parcels.geojson
+Beverly Farms,data/parcels/per_station/beverly_farms_parcels.geojson
+North Beverly,data/parcels/per_station/north_beverly_parcels.geojson
+Rockport,data/parcels/per_station/rockport_parcels.geojson
+Whitman,data/parcels/per_station/whitman_parcels.geojson
+Riverside,data/parcels/per_station/riverside_parcels.geojson
+Newton Highlands,data/parcels/per_station/newton_highlands_parcels.geojson
+Auburndale,data/parcels/per_station/auburndale_parcels.geojson
+West Newton,data/parcels/per_station/west_newton_parcels.geojson
+Woodland,data/parcels/per_station/woodland_parcels.geojson
+Newton Centre,data/parcels/per_station/newton_centre_parcels.geojson
+Newtonville,data/parcels/per_station/newtonville_parcels.geojson
+Chestnut Hill,data/parcels/per_station/chestnut_hill_parcels.geojson
+Boston College,data/parcels/per_station/boston_college_parcels.geojson
+Eliot,data/parcels/per_station/eliot_parcels.geojson
+Anderson/Woburn,data/parcels/per_station/anderson_woburn_parcels.geojson
+Littleton/Route 495,data/parcels/per_station/littleton_route_495_parcels.geojson
+Lynn Interim,data/parcels/per_station/lynn_interim_parcels.geojson
+North Scituate,data/parcels/per_station/north_scituate_parcels.geojson
+Ballardvale,data/parcels/per_station/ballardvale_parcels.geojson
+Andover,data/parcels/per_station/andover_parcels.geojson
+Lowell,data/parcels/per_station/lowell_parcels.geojson
+Salem,data/parcels/per_station/salem_parcels.geojson
+Mansfield,data/parcels/per_station/mansfield_parcels.geojson
+Westborough,data/parcels/per_station/westborough_parcels.geojson
+Haverhill,data/parcels/per_station/haverhill_parcels.geojson
+Bradford,data/parcels/per_station/bradford_parcels.geojson
+Oak Grove,data/parcels/per_station/oak_grove_parcels.geojson
+Wyoming Hill,data/parcels/per_station/wyoming_hill_parcels.geojson
+Melrose/Cedar Park,data/parcels/per_station/melrose_cedar_park_parcels.geojson
+Capen Street,data/parcels/per_station/capen_street_parcels.geojson
+Valley Road,data/parcels/per_station/valley_road_parcels.geojson
+Central Avenue,data/parcels/per_station/central_avenue_parcels.geojson
+Milton,data/parcels/per_station/milton_parcels.geojson
+Greenbush,data/parcels/per_station/greenbush_parcels.geojson
+Eastern Avenue,data/parcels/per_station/eastern_avenue_parcels.geojson
+Box District,data/parcels/per_station/box_district_parcels.geojson
+Bellingham Square,data/parcels/per_station/bellingham_square_parcels.geojson
+Campello,data/parcels/per_station/campello_parcels.geojson
+Brockton,data/parcels/per_station/brockton_parcels.geojson
+Montello,data/parcels/per_station/montello_parcels.geojson
+Canton Center,data/parcels/per_station/canton_center_parcels.geojson
+Canton Junction,data/parcels/per_station/canton_junction_parcels.geojson
+Gilman Square,data/parcels/per_station/gilman_square_parcels.geojson
+Hawes Street,data/parcels/per_station/hawes_street_parcels.geojson
+Kent Street,data/parcels/per_station/kent_street_parcels.geojson
+Longwood,data/parcels/per_station/longwood_parcels.geojson
+Saint Mary's Street,data/parcels/per_station/saint_marys_street_parcels.geojson
+Saint Paul Street,data/parcels/per_station/saint_paul_street_parcels.geojson
+Coolidge Corner,data/parcels/per_station/coolidge_corner_parcels.geojson
+Summit Avenue,data/parcels/per_station/summit_avenue_parcels.geojson
+Brandon Hall,data/parcels/per_station/brandon_hall_parcels.geojson
+Fairbanks Street,data/parcels/per_station/fairbanks_street_parcels.geojson
+Washington Square,data/parcels/per_station/washington_square_parcels.geojson
+Dean Road,data/parcels/per_station/dean_road_parcels.geojson
+Tappan Street,data/parcels/per_station/tappan_street_parcels.geojson
+Beaconsfield,data/parcels/per_station/beaconsfield_parcels.geojson
+Englewood Avenue,data/parcels/per_station/englewood_avenue_parcels.geojson
+Reservoir,data/parcels/per_station/reservoir_parcels.geojson
+Brookline Village,data/parcels/per_station/brookline_village_parcels.geojson
+Brookline Hills,data/parcels/per_station/brookline_hills_parcels.geojson
+Attleboro,data/parcels/per_station/attleboro_parcels.geojson
+South Attleboro,data/parcels/per_station/south_attleboro_parcels.geojson
+Framingham,data/parcels/per_station/framingham_parcels.geojson
+Malden Center,data/parcels/per_station/malden_center_parcels.geojson
