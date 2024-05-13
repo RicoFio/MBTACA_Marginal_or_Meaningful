@@ -203,21 +203,25 @@
     </VisualizationWrapper>
     {#if mousePosition.x != null && currentHoveredPoint}
         <div
-            class={mousePosition.x === null ? "tooltip-hidden" : "tooltip-visible"}
+            class={mousePosition.x === null ? "tooltip-forcegraph-hidden" : "tooltip-forcegraph-visible"}
             style="left: {pageMousePosition.x + 10}px; top: {pageMousePosition.y + 10}px"
         >
 
         {#if selectedCategory == "age"}
             About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area are of age {currentHoveredPoint.label}.
         {:else if selectedCategory == "race"}
-            About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area are {currentHoveredPoint.label}.
+            {#if currentHoveredPoint.value == 'other_race'}
+                About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area belong to another race.
+            {:else}
+                About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area are {currentHoveredPoint.label}.
+            {/if}
         {:else if selectedCategory == "gender"}
             About {currentHoveredPoint.value.toFixed(2)}% of inhabitants in the selected area are {currentHoveredPoint.label}.
-        {:else if selectedCategory == "mean household income"}
+        {:else if selectedCategory == "median household income"}
             {#if currentHoveredPoint.value == 5}
-            The top 5% of households in the selected area have a mean income of {currentHoveredPoint.label}.
+            The top 5% of households in the selected area have a median income of {currentHoveredPoint.label}.
             {:else}
-            About {currentHoveredPoint.value.toFixed(2)}% of households in the selected area have a mean income of {currentHoveredPoint.label}.
+            About {currentHoveredPoint.value.toFixed(2)}% of households in the selected area have a median income of {currentHoveredPoint.label}.
             {/if}
         {:else if selectedCategory == "vehicles per household"}
             {#if currentHoveredPoint.label == 'one'}
@@ -242,17 +246,17 @@
 <style>
     .icon:hover {
         padding: 2vh;
-        background-color: aqua;
+        background-color: #000000;
     }
 
-    .tooltip-hidden {
+    .tooltip-forcegraph-hidden {
         visibility: hidden;
         font-family: 'Montserrat', sans-serif;
         width: 200px;
         position: absolute;
     }
 
-    .tooltip-visible {
+    .tooltip-forcegraph-visible {
         z-index: 100;
         font: 18px sans-serif;
         font-family: 'Montserrat', sans-serif;

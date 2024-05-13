@@ -46,7 +46,7 @@
         isVisible = store.isVisible;
     });
 
-    export let value = 0;
+    export let value;
     $: if (value === 6) {
         observerStore.resetVisibility();  // Reset visibility whenever checking this condition
         observerStore.startObservation();
@@ -116,7 +116,7 @@
             {label: 'male', value: male},
             {label: 'female', value: female},
         ],
-        "mean household income": [
+        "median household income": [
             {label: 'less than 25,000 $', value: less_than_25000},
             {label: '25,000 to 49,999 $', value: to_49999},
             {label: '50,000 to 74,999 $', value: to_74999},
@@ -158,21 +158,19 @@
             <br>
         </p>
     {/if}
-    {#if isVisible}
-        <h2>WHO LIVES HERE? - let's find out</h2>
-        <ForceGraphSelector bind:activeSelection></ForceGraphSelector>
+    <h2>WHO LIVES HERE? - let's find out</h2>
+    <ForceGraphSelector bind:activeSelection></ForceGraphSelector>
 
-        {#key current_data} <!--forcing visualization to re-render when data is updated -->
-            {#if !isNaN(under_18)}
-                <ForceGraph
-                        cssHeight=50
-                        cssWidth=40
-                        data={ current_data }
-                        selectedCategory={ activeSelection }
-                />
-            {/if}
-        {/key}
-    {/if}
+    {#key current_data} <!--forcing visualization to re-render when data is updated -->
+        {#if !isNaN(under_18)}
+            <ForceGraph
+                    cssHeight=50
+                    cssWidth=40
+                    data={ current_data }
+                    selectedCategory={ activeSelection }
+            />
+        {/if}
+    {/key}
 </div>
 <br>
 <br>

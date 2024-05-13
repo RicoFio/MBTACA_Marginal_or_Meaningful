@@ -8,7 +8,7 @@
     export let municipality = null;
     export let station = null;
 
-    export let value = 0;
+    export let value;
     let isVisible = false;
 
     const unsubscribe = observerStore.subscribe(store => {

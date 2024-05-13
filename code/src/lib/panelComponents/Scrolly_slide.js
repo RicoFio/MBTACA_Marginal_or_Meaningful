@@ -24,7 +24,7 @@ function createObserverStore() {
                 if (entry.isIntersecting) {
                     state.timeout = setTimeout(() => {
                         update(innerState => ({ ...innerState, isVisible: true }));
-                    }, 5000);
+                    }, 3000);
                 }
             }, {
                 root: document.querySelector('.slide'),
