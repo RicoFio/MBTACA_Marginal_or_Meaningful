@@ -152,13 +152,16 @@
         {#if (stopData?.length > 0)}
             <p>
                 In the area surrounding {stopName}, there are
-                currently {String(stopData[0].properties.pctZonedAsSF).slice(0, 5)}% parcels zoned for single family residency,
-                of which {String(stopData[0].properties.pctUsedAsSF).slice(0, 5)}% are actually used as Single Family. This
-                means
-                that {String(stopData[0].properties.pctMustUpzone).slice(0, 5)}% parcels (colored in orange) must upzone in
-                order
-                to comply with the MBTA communities Act, and {String(stopData[0].properties.pctWillChange).slice(0, 5)}% will
-                likely actually change their use.
+                currently {String(stopData[0].properties.pctZonedAsSF).slice(0, 5)}% parcels zoned for single family
+                residency,
+                of which {String(stopData[0].properties.pctUsedAsSF).slice(0, 5)}% are actually used as Single Family.
+                This means that
+                {String(stopData[0].properties.pctMustUpzone).slice(0, 5)}% parcels (colored in orange in the map on the right) must upzone
+                in order to comply with the MBTA communities Act, and
+                {String(stopData[0].properties.pctWillChange).slice(0, 5)}% will likely actually change their use. The parcels in green, in turn, do not have to change.
+            </p>
+            <p>
+                Should you see parcels in white on the right, it means that we have not yet processed the data for this station.
             </p>
         {/if}
     </div>
