@@ -24,7 +24,7 @@
             The MBTA Communities Act is a 2021 Massachusetts state law that aims to reduce the housing crisis by
             requiring cities near MBTA stations to upzone at least one area within their borders, allowing multi-family
             housing without an extensive permitting process. Massachusetts governor Maura Healy has stated that
-            noncompliance could result in result in not only a loss of state funding for housing but also potential
+            noncompliance could result in not only a loss of state funding for housing but also potential
             legal action. <br>
         </p>
         <br>
